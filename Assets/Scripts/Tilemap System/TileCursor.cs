@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
-
+//Class for displaying the selction tile on any given tile during gameplay
+//Can be derived for further modifications to the tile map
 public class TileCursor : MonoBehaviour
 {
     public Tilemap hoverMap;
@@ -17,7 +18,7 @@ public class TileCursor : MonoBehaviour
     {
         HandleCursor();
     }
-
+    //Move the selection to the current tile if there is one
     protected virtual void HandleCursor()
     {
         Vector3Int tile = GetMouseTile();
@@ -35,7 +36,7 @@ public class TileCursor : MonoBehaviour
         hoverMap.SetTile(pos, selectTile);
     }
 
-    //May be changed
+    //Do the math to get where the mouse currently sits on the placeholder tilemap
     protected Vector3Int GetMouseTile()
     {
         Vector2 mouseScreen = Mouse.current.position.ReadValue();
@@ -48,6 +49,7 @@ public class TileCursor : MonoBehaviour
     {
         hoverMap.SetTile(currentTile, null);
     }
+    //Toggles for enabling and disabling the highlight, will be good when input is added
     public void HideHighlight()
     {
         DeselectLast();

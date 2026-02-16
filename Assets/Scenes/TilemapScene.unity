@@ -206,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 342470563}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: -0.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -283,7 +283,7 @@ Transform:
   m_GameObject: {fileID: 456173020}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
+  m_LocalPosition: {x: -0.5, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1946,7 +1946,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 994418586}
-  - component: {fileID: 994418585}
+  - component: {fileID: 994418587}
   m_Layer: 0
   m_Name: TileCursor
   m_TagString: Untagged
@@ -1954,21 +1954,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &994418585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 994418584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1bc04a1d371b0a4ca7ac181bb6a5876, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  hoverMap: {fileID: 498094933}
-  targetMap: {fileID: 713243558}
-  selectTile: {fileID: 11400000, guid: 6ac496089163b1848a9c347950e63ea1, type: 2}
 --- !u!4 &994418586
 Transform:
   m_ObjectHideFlags: 0
@@ -1984,6 +1969,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &994418587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994418584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97cbdc7bd53354d48818a7c14e6f0365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  hoverMap: {fileID: 498094933}
+  targetMap: {fileID: 713243558}
+  selectTile: {fileID: 11400000, guid: 6ac496089163b1848a9c347950e63ea1, type: 2}
+  tileManager: {fileID: 1190201941}
+  type: 2
+  paintingTile: 0
 --- !u!1 &1190201940
 GameObject:
   m_ObjectHideFlags: 0
@@ -2098,7 +2101,7 @@ Transform:
   m_GameObject: {fileID: 1440589465}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
+  m_LocalPosition: {x: -0.5, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

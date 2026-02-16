@@ -8,7 +8,7 @@ public enum TileType
     //Path,
     //Water
 }
-public class TileData : MonoBehaviour
+public class TileData
 {
     public Vector3Int gridPos;
     public TileType type;

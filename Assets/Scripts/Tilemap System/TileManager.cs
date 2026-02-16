@@ -63,6 +63,10 @@ public class TileManager : MonoBehaviour
             for (int j = -size / 2; j < size / 2; j++)
             {
                 Vector3Int tilePos = new Vector3Int(i, j, 0);
+                if (!placeholderMap.HasTile(tilePos))
+                {
+                    SetTile(tilePos, TileType.Grass);
+                }
                 SetBaseDisplayTile(tilePos);
                 SetOverlayDisplayTile(tilePos);
             }
@@ -123,12 +127,9 @@ public class TileManager : MonoBehaviour
 
         //Update the 4 affected display tiles
         //If water or path, draw to the overlay
-        if (type == TileType.WateredDirt)
-        {
-            //do overlay things then update tile
-            SetOverlayDisplayTile(pos);
 
-        }
+        SetOverlayDisplayTile(pos);
+
 
         //Update four surrounding neighbors
         SetBaseDisplayTile(pos);

@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "AgainstTheGrainInput",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "b0c95a14-5c47-44ba-84c9-0c4e3019df18",
+            "actions": [
+                {
+                    "name": "Paint",
+                    "type": "Button",
+                    "id": "adf93ab9-e5cc-40d8-8c4c-2952b22e7820",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1d8b4a3f-3209-45e8-b0aa-c2f790d8e86d",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Paint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
