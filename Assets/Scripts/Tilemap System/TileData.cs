@@ -1,11 +1,12 @@
 using UnityEngine;
 public enum TileType
 {
+    None,
     Grass,
     Dirt,
     WateredDirt,
-    Path,
-    Water
+    //Path,
+    //Water
 }
 public class TileData : MonoBehaviour
 {
@@ -47,5 +48,11 @@ public class TileData : MonoBehaviour
     public bool HasOccupant()
     {
         return occupyingEntity != null;
+    }
+
+    public void UpdateType(TileType type)
+    {
+        this.type = type;
+        //maybe disable walking if a certain type later
     }
 }
