@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObject/Unit")]
-public class Unit : ScriptableObject
+public class Unit : MonoBehaviour
 {
     [Header("General Settings")]
     public int ID;
