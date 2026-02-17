@@ -6,14 +6,13 @@ public enum UnitType
 {
     Farmer, Animal, Enemy
 }
-public class Unit : MonoBehaviour
+public class Unit : Entity
 {
     [Header("General Settings")]
     public int ID;
     public UnitType type;
     public bool isActive = false;
     public SpriteRenderer sprite;
-    private Vector3Int currentPosition;
     public bool isEnemy = false;
 
 
@@ -54,16 +53,6 @@ public class Unit : MonoBehaviour
     void GetStrength(int strengthValue)
     {
         strength = strengthValue;
-    }
-
-    public void SetPosition(Vector3Int pos)
-    {
-        currentPosition = pos;
-    }
-
-    public Vector3Int GetPosition()
-    {
-        return currentPosition;
     }
 
 }

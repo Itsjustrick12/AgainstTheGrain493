@@ -55,4 +55,22 @@ public class TileData
         this.type = type;
         //maybe disable walking if a certain type later
     }
+
+    public void PlaceEntity(Entity entity)
+    {
+        if (entity != null)
+        {
+            Debug.Log("Entity was overwritten!");
+        }
+        occupyingEntity = entity;
+    }
+
+    public bool CanPlaceEntity()
+    {
+        if (occupyingEntity != null)
+        {
+            return false;
+        }
+        return true;
+    }
 }

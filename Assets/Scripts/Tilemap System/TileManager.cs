@@ -208,5 +208,15 @@ public class TileManager : MonoBehaviour
         return tiles[mask+16];
     }
 
+    public void PlaceEntityOnTile(Vector3Int pos, Entity entity)
+    {
+        TileData data = GetTileDataAt(pos);
+        if (data == null) return;
 
+        if (data.CanPlaceEntity())
+        {
+            data.PlaceEntity(entity);
+            entity.SetGridPos(pos);
+        }
+    }
 }
