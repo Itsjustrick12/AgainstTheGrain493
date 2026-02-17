@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum UnitType
+{
+    Farmer, Animal, Enemy
+}
 public class Unit : MonoBehaviour
 {
     [Header("General Settings")]
@@ -9,49 +13,58 @@ public class Unit : MonoBehaviour
     public UnitType type;
     public bool isActive = false;
     public SpriteRenderer sprite;
-    public Vector3Int currentPosition;
+    private Vector3Int currentPosition;
     public bool isEnemy = false;
 
 
     [Header("Stats")]
     public int maxHealth = 10;
     public int currentHealth = 10;
-    public int strength = 0;
-    public int movementRange = 0;
+    public int strength = 1;
+    public int movementRange = 3;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    int getHealth()
+    int GetHealth()
     {
         return currentHealth;
     }
 
-    void setHealth(int healthValue){ 
+    public void GetHealth(int healthValue){ 
         currentHealth = healthValue;
     }
 
-     int getStrength()
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Debug.Log("Unit has Died!");
+    }
+
+    int GetStrength()
     {
         return strength;
     }
-    void setStrength(int strengthValue)
+
+    void GetStrength(int strengthValue)
     {
         strength = strengthValue;
     }
 
+    public void SetPosition(Vector3Int pos)
+    {
+        currentPosition = pos;
+    }
+
+    public Vector3Int GetPosition()
+    {
+        return currentPosition;
+    }
 
 }
-public enum UnitType
-{
-    Farmer, Animal, Enemy
-}
+

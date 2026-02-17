@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6812441379819157092}
   - component: {fileID: 1197789032886672170}
   m_Layer: 0
-  m_Name: Prefab2
+  m_Name: Robot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: b32cf115713db5e4b882f84776cd1bef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,12 +104,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a247b7d29174994c8f37eb81eb84fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Unit
-  ID: 0
-  type: 0
+  ID: 2
+  type: 2
   isActive: 0
-  sprite: {fileID: 0}
-  currentPosition: {x: 0, y: 0, z: 0}
-  isEnemy: 0
+  sprite: {fileID: 6812441379819157092}
+  isEnemy: 1
   maxHealth: 10
   currentHealth: 10
   strength: 0
