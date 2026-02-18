@@ -143,6 +143,11 @@ public class GameManager : MonoBehaviour
         return new List<Unit>(enemyUnits.GetComponentsInChildren<Unit>());
     }
 
+    public List<Crop> GetAllCrops()
+    {
+        return new List<Crop>(cropContainer.GetComponentsInChildren<Crop>());
+    }
+
     private void OnEnable()
     {
         input = new AgainstTheGrainInput();
