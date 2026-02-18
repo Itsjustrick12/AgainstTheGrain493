@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
     public void SpawnCropOnTile(CropInfo cropInfo, Vector3Int pos)
     {
         TileData data = tileManager.GetTileDataAt(pos);
-        if (data == null || data.HasOccupant())
+        if (data == null || data.HasOccupant() || data.type == TileType.Grass)
         {
             //Dont place anything if somethings already here
             return;
