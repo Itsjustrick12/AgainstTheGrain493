@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 //test class used for ai pathfinding
 
-public class TileHelper
+public class TileHelper : MonoBehaviour
 {
     public static int X_SIZE = 16;
     public static int Y_SIZE = 16;
@@ -10,7 +10,7 @@ public class TileHelper
 
     public void Start()
     {   
-        tileManager = Object.FindObjectOfType<TileManager>();
+        tileManager = FindFirstObjectByType<TileManager>();
     }
 
     //changes a 0,0 Vector3Int to the grid layout
@@ -120,7 +120,7 @@ public class TileHelper
                 }
                 //if tile is not walkable, skip
                 var tileData = tileManager.GetTileDataAt(neighborPos);
-                if (tileData == null || !tileData.canWalk)
+                if (tileData == null || !tileData.CanEnter())
                 {
                     continue;
                 }

@@ -67,7 +67,11 @@ public class TileManager : MonoBehaviour
                 {
                     SetTile(tilePos, TileType.Grass);
                 }
-                SetBaseDisplayTile(tilePos);
+                else
+                {
+                    SetTile(tilePos, GetTileTypeAt(tilePos));
+                }
+                    SetBaseDisplayTile(tilePos);
                 SetOverlayDisplayTile(tilePos);
             }
         }
@@ -142,7 +146,7 @@ public class TileManager : MonoBehaviour
         }
         else
         {
-            tilePosToData[pos] = new TileData(type);
+            tilePosToData[pos] = new TileData(pos, type);
         }
 
     }
