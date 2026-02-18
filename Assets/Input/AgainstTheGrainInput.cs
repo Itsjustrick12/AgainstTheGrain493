@@ -127,6 +127,15 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ReadTile"",
+                    ""type"": ""Button"",
+                    ""id"": ""29771e3e-67a4-4ba8-a80c-fb56df4ca19a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -173,6 +182,17 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
                     ""action"": ""PickB"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3016e4b5-b7bc-4fd9-a079-33bacc45a5f2"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReadTile"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -185,6 +205,7 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         m_Gameplay_DrawPath = m_Gameplay.FindAction("DrawPath", throwIfNotFound: true);
         m_Gameplay_PickA = m_Gameplay.FindAction("PickA", throwIfNotFound: true);
         m_Gameplay_PickB = m_Gameplay.FindAction("PickB", throwIfNotFound: true);
+        m_Gameplay_ReadTile = m_Gameplay.FindAction("ReadTile", throwIfNotFound: true);
     }
 
     ~@AgainstTheGrainInput()
@@ -269,6 +290,7 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_DrawPath;
     private readonly InputAction m_Gameplay_PickA;
     private readonly InputAction m_Gameplay_PickB;
+    private readonly InputAction m_Gameplay_ReadTile;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -296,6 +318,10 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Gameplay/PickB".
         /// </summary>
         public InputAction @PickB => m_Wrapper.m_Gameplay_PickB;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/ReadTile".
+        /// </summary>
+        public InputAction @ReadTile => m_Wrapper.m_Gameplay_ReadTile;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -334,6 +360,9 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
             @PickB.started += instance.OnPickB;
             @PickB.performed += instance.OnPickB;
             @PickB.canceled += instance.OnPickB;
+            @ReadTile.started += instance.OnReadTile;
+            @ReadTile.performed += instance.OnReadTile;
+            @ReadTile.canceled += instance.OnReadTile;
         }
 
         /// <summary>
@@ -357,6 +386,9 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
             @PickB.started -= instance.OnPickB;
             @PickB.performed -= instance.OnPickB;
             @PickB.canceled -= instance.OnPickB;
+            @ReadTile.started -= instance.OnReadTile;
+            @ReadTile.performed -= instance.OnReadTile;
+            @ReadTile.canceled -= instance.OnReadTile;
         }
 
         /// <summary>
@@ -425,5 +457,12 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPickB(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ReadTile" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnReadTile(InputAction.CallbackContext context);
     }
 }

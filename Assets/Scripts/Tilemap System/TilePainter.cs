@@ -115,6 +115,7 @@ public class TilePainter : TileCursor
         input.Enable();
         input.Gameplay.Paint.canceled += LiftBrush;
         input.Gameplay.Paint.started += DropBrush;
+        input.Gameplay.ReadTile.performed += ReadTile;
         input.Gameplay.DrawPath.performed += DrawPath;
         input.Gameplay.PickA.performed += PickStart;
         input.Gameplay.PickB.performed += PickEnd;
@@ -124,6 +125,7 @@ public class TilePainter : TileCursor
     {
         input.Gameplay.Paint.canceled -= LiftBrush;
         input.Gameplay.Paint.started -= DropBrush;
+        input.Gameplay.ReadTile.performed -= ReadTile;
         input.Gameplay.DrawPath.performed += DrawPath;
         input.Gameplay.PickA.performed += PickStart;
         input.Gameplay.PickB.performed += PickEnd;
