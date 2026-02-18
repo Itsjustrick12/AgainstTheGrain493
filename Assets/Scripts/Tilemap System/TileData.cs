@@ -1,3 +1,4 @@
+using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 public enum TileType
 {
@@ -48,10 +49,28 @@ public class TileData
         return occupyingEntity != null;
     }
 
+    public void ClearOccupant()
+    {
+        occupyingEntity = null;
+    }
+
     public void UpdateType(TileType type)
     {
         this.type = type;
         //maybe disable walking if a certain type later
+
+        //attempt to water a crop if theres one here that needs to be watered
+        if (type == TileType.WateredDirt &&
+            occupyingEntity != null && occupyingEntity is Crop cropCheck)
+        {
+            cropCheck.WaterCrop();
+        }
+        //if the type is updated to be grass and theres a crop here, destroy it
+        if (type == TileType.Grass && occupyingEntity != null && occupyingEntity is Crop checkCrop){
+            checkCrop.DestroyEntity();
+            occupyingEntity = null;
+        }
+    
     }
 
     public void PlaceEntity(Entity entity)
@@ -59,8 +78,18 @@ public class TileData
         if (occupyingEntity != null)
         {
             Debug.Log("Entity was overwritten!");
+            occupyingEntity.DestroyEntity();
         }
         occupyingEntity = entity;
+        //Water if the entity is a crop and this tile is watered
+        if (occupyingEntity is Crop cropCheck)
+        {
+            cropCheck.Intialize();
+            if (type == TileType.WateredDirt)
+            {
+                cropCheck.WaterCrop();
+            }
+        }
     }
 
     public bool CanPlaceEntity()

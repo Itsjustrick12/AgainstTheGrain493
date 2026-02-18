@@ -12,7 +12,6 @@ public class Unit : Entity
     public int ID;
     public UnitType type;
     public bool isActive = false;
-    public SpriteRenderer sprite;
     public bool isEnemy = false;
 
 
@@ -43,6 +42,7 @@ public class Unit : Entity
     public void Die()
     {
         Debug.Log("Unit has Died!");
+        DestroyEntity();
     }
 
     int GetStrength()

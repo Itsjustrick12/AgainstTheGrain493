@@ -216,4 +216,39 @@ public class TileManager : MonoBehaviour
             entity.SetGridPos(pos);
         }
     }
+
+    public void DryWateredTiles()
+    {
+        List<Vector3Int> wateredPositions = new List<Vector3Int>();
+
+        //Find all watered tiles first
+        foreach (var pair in tilePosToData)
+        {
+            TileData data = pair.Value;
+            if (data.type == TileType.WateredDirt)
+            {
+                wateredPositions.Add(pair.Key);
+            }
+        }
+
+        //Update the necessary tiles
+        foreach (var pos in wateredPositions)
+        {
+            // Update the TileData type
+            tilePosToData[pos].UpdateType(TileType.Dirt);
+
+            // Update the placeholder map & visuals
+            SetTile(pos, TileType.Dirt);
+        }
+    }
+
+    private void OnEnable()
+    {
+        GameManager.StartPlayerTurn += DryWateredTiles;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.StartPlayerTurn -= DryWateredTiles;
+    }
 }

@@ -2,8 +2,10 @@ using UnityEngine;
 
 //This is the base script that is used for all things that can occupy tiles in the game
 //This includes units, obstacles, interactable objects, and crops
+[RequireComponent(typeof(SpriteRenderer))]
 public class Entity : MonoBehaviour
 {
+    protected SpriteRenderer sprite;
     //Stores the location of where this entity actually is
     private Vector3Int gridPos;
     //Determines where or not something can pathfind through the tile this entity is on
@@ -36,5 +38,18 @@ public class Entity : MonoBehaviour
     {
         //Update the Transform to refelct the gameobject visually
         this.gameObject.transform.position = pos + (new Vector3(0.5f, 0.5f, 0f));
+    }
+
+    public virtual void DestroyEntity()
+    {
+        //Remove this entity from the field by updating the tile data it belongs to
+        TileManager tM = FindFirstObjectByType<TileManager>();
+        tM.GetTileDataAt(GetGridPos()).ClearOccupant();
+        Destroy(this.gameObject);
+    }
+
+    public virtual void Awake()
+    {
+        sprite = GetComponent<SpriteRenderer>();
     }
 }

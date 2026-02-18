@@ -9,6 +9,7 @@ using UnityEngine.Tilemaps;
 public class TilePainter : TileCursor
 {
     [SerializeField] TileManager tileManager;
+    [SerializeField] GameManager gameManager;
     [SerializeField] TileHelper pathfinder;
 
     public Tilemap debugMap;
@@ -28,6 +29,7 @@ public class TilePainter : TileCursor
     public void Awake()
     {
         tileManager = FindFirstObjectByType<TileManager>();
+        gameManager = FindFirstObjectByType<GameManager>();
         pathfinder = FindFirstObjectByType<TileHelper>();
     }
 
@@ -104,6 +106,23 @@ public class TilePainter : TileCursor
         }
     }
 
+    public void PlaceCrop(InputAction.CallbackContext a)
+    {
+        gameManager.SpawnCropOnTile(CropDatabase.Instance.GetCropInfo(1), currentTile);
+    }
+
+    public void AttemptHarvest(InputAction.CallbackContext a)
+    {
+        TileData data = tileManager.GetTileDataAt(currentTile);
+        if (data != null && data.HasOccupant())
+        {
+            if (data.occupyingEntity is Crop cropCheck)
+            {
+                cropCheck.Harvest();
+            }
+        }
+    }
+
     public void ClearDebugMap()
     {
         debugMap.ClearAllTiles();
@@ -119,6 +138,8 @@ public class TilePainter : TileCursor
         input.Gameplay.DrawPath.performed += DrawPath;
         input.Gameplay.PickA.performed += PickStart;
         input.Gameplay.PickB.performed += PickEnd;
+        input.Gameplay.PlaceCrop.performed += PlaceCrop;
+        input.Gameplay.Harvest.performed += AttemptHarvest;
     }
 
     private void OnDisable()
@@ -126,9 +147,11 @@ public class TilePainter : TileCursor
         input.Gameplay.Paint.canceled -= LiftBrush;
         input.Gameplay.Paint.started -= DropBrush;
         input.Gameplay.ReadTile.performed -= ReadTile;
-        input.Gameplay.DrawPath.performed += DrawPath;
-        input.Gameplay.PickA.performed += PickStart;
-        input.Gameplay.PickB.performed += PickEnd;
+        input.Gameplay.DrawPath.performed -= DrawPath;
+        input.Gameplay.PickA.performed -= PickStart;
+        input.Gameplay.PickB.performed -= PickEnd;
+        input.Gameplay.PlaceCrop.performed -= PlaceCrop;
+        input.Gameplay.Harvest.performed -= AttemptHarvest;
         input.Disable();
     }
 

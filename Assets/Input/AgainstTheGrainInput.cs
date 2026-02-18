@@ -136,6 +136,33 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AdvanceTurn"",
+                    ""type"": ""Button"",
+                    ""id"": ""78d4b674-8346-49d6-8026-88502c777b4a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlaceCrop"",
+                    ""type"": ""Button"",
+                    ""id"": ""d870247d-7ae2-43ba-bc7f-fe9f70300f06"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Harvest"",
+                    ""type"": ""Button"",
+                    ""id"": ""a5aa5b05-0740-4cf1-ab83-36d38d3c616a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -193,6 +220,39 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
                     ""action"": ""ReadTile"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a6a223bd-42d9-4f4f-b1d4-07a5819fb8f9"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AdvanceTurn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ee8c0b3-d39e-40d9-96a5-ed6176894be4"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlaceCrop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1ab49b7d-aa08-4624-9d13-6d6b057e7e96"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Harvest"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -206,6 +266,9 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         m_Gameplay_PickA = m_Gameplay.FindAction("PickA", throwIfNotFound: true);
         m_Gameplay_PickB = m_Gameplay.FindAction("PickB", throwIfNotFound: true);
         m_Gameplay_ReadTile = m_Gameplay.FindAction("ReadTile", throwIfNotFound: true);
+        m_Gameplay_AdvanceTurn = m_Gameplay.FindAction("AdvanceTurn", throwIfNotFound: true);
+        m_Gameplay_PlaceCrop = m_Gameplay.FindAction("PlaceCrop", throwIfNotFound: true);
+        m_Gameplay_Harvest = m_Gameplay.FindAction("Harvest", throwIfNotFound: true);
     }
 
     ~@AgainstTheGrainInput()
@@ -291,6 +354,9 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_PickA;
     private readonly InputAction m_Gameplay_PickB;
     private readonly InputAction m_Gameplay_ReadTile;
+    private readonly InputAction m_Gameplay_AdvanceTurn;
+    private readonly InputAction m_Gameplay_PlaceCrop;
+    private readonly InputAction m_Gameplay_Harvest;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -322,6 +388,18 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Gameplay/ReadTile".
         /// </summary>
         public InputAction @ReadTile => m_Wrapper.m_Gameplay_ReadTile;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/AdvanceTurn".
+        /// </summary>
+        public InputAction @AdvanceTurn => m_Wrapper.m_Gameplay_AdvanceTurn;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/PlaceCrop".
+        /// </summary>
+        public InputAction @PlaceCrop => m_Wrapper.m_Gameplay_PlaceCrop;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Harvest".
+        /// </summary>
+        public InputAction @Harvest => m_Wrapper.m_Gameplay_Harvest;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -363,6 +441,15 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
             @ReadTile.started += instance.OnReadTile;
             @ReadTile.performed += instance.OnReadTile;
             @ReadTile.canceled += instance.OnReadTile;
+            @AdvanceTurn.started += instance.OnAdvanceTurn;
+            @AdvanceTurn.performed += instance.OnAdvanceTurn;
+            @AdvanceTurn.canceled += instance.OnAdvanceTurn;
+            @PlaceCrop.started += instance.OnPlaceCrop;
+            @PlaceCrop.performed += instance.OnPlaceCrop;
+            @PlaceCrop.canceled += instance.OnPlaceCrop;
+            @Harvest.started += instance.OnHarvest;
+            @Harvest.performed += instance.OnHarvest;
+            @Harvest.canceled += instance.OnHarvest;
         }
 
         /// <summary>
@@ -389,6 +476,15 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
             @ReadTile.started -= instance.OnReadTile;
             @ReadTile.performed -= instance.OnReadTile;
             @ReadTile.canceled -= instance.OnReadTile;
+            @AdvanceTurn.started -= instance.OnAdvanceTurn;
+            @AdvanceTurn.performed -= instance.OnAdvanceTurn;
+            @AdvanceTurn.canceled -= instance.OnAdvanceTurn;
+            @PlaceCrop.started -= instance.OnPlaceCrop;
+            @PlaceCrop.performed -= instance.OnPlaceCrop;
+            @PlaceCrop.canceled -= instance.OnPlaceCrop;
+            @Harvest.started -= instance.OnHarvest;
+            @Harvest.performed -= instance.OnHarvest;
+            @Harvest.canceled -= instance.OnHarvest;
         }
 
         /// <summary>
@@ -464,5 +560,26 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnReadTile(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "AdvanceTurn" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAdvanceTurn(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "PlaceCrop" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPlaceCrop(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Harvest" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHarvest(InputAction.CallbackContext context);
     }
 }
