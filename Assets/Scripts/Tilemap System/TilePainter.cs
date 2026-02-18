@@ -39,6 +39,15 @@ public class TilePainter : TileCursor
         PaintTile(GetMouseTile());
     }
 
+    public void ReadTile(InputAction.CallbackContext a)
+    {
+        TileData data = tileManager.GetTileDataAt(currentTile);
+        if (data != null)
+        {
+            data.PrintTileData();
+        }
+    }
+
     public void LiftBrush(InputAction.CallbackContext a)
     {
         paintingTile = false;
@@ -50,12 +59,14 @@ public class TilePainter : TileCursor
         input.Enable();
         input.Gameplay.Paint.canceled += LiftBrush;
         input.Gameplay.Paint.started += DropBrush;
+        input.Gameplay.ReadInfo.performed += ReadTile;
     }
 
     private void OnDisable()
     {
         input.Gameplay.Paint.canceled -= LiftBrush;
         input.Gameplay.Paint.started -= DropBrush;
+        input.Gameplay.ReadInfo.performed -= ReadTile;
         input.Disable();
     }
 

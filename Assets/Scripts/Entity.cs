@@ -32,4 +32,9 @@ public class Entity : MonoBehaviour
         return isInteractable;
     }
 
+    public void UpdateTransform(Vector3Int pos)
+    {
+        //Update the Transform to refelct the gameobject visually
+        this.gameObject.transform.position = pos + (new Vector3(0.5f, 0.5f, 0f));
+    }
 }

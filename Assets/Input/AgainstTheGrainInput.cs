@@ -100,6 +100,15 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ReadInfo"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd0fd853-3366-4f18-86ab-172e36f366e6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -113,6 +122,17 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
                     ""action"": ""Paint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f51fa41d-1127-4827-9c85-320cd6dd7d88"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReadInfo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -122,6 +142,7 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Paint = m_Gameplay.FindAction("Paint", throwIfNotFound: true);
+        m_Gameplay_ReadInfo = m_Gameplay.FindAction("ReadInfo", throwIfNotFound: true);
     }
 
     ~@AgainstTheGrainInput()
@@ -203,6 +224,7 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gameplay;
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Paint;
+    private readonly InputAction m_Gameplay_ReadInfo;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -218,6 +240,10 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Gameplay/Paint".
         /// </summary>
         public InputAction @Paint => m_Wrapper.m_Gameplay_Paint;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/ReadInfo".
+        /// </summary>
+        public InputAction @ReadInfo => m_Wrapper.m_Gameplay_ReadInfo;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -247,6 +273,9 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
             @Paint.started += instance.OnPaint;
             @Paint.performed += instance.OnPaint;
             @Paint.canceled += instance.OnPaint;
+            @ReadInfo.started += instance.OnReadInfo;
+            @ReadInfo.performed += instance.OnReadInfo;
+            @ReadInfo.canceled += instance.OnReadInfo;
         }
 
         /// <summary>
@@ -261,6 +290,9 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
             @Paint.started -= instance.OnPaint;
             @Paint.performed -= instance.OnPaint;
             @Paint.canceled -= instance.OnPaint;
+            @ReadInfo.started -= instance.OnReadInfo;
+            @ReadInfo.performed -= instance.OnReadInfo;
+            @ReadInfo.canceled -= instance.OnReadInfo;
         }
 
         /// <summary>
@@ -308,5 +340,12 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPaint(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ReadInfo" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnReadInfo(InputAction.CallbackContext context);
     }
 }

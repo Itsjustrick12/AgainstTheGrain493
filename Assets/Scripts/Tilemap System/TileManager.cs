@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -54,7 +53,7 @@ public class TileManager : MonoBehaviour
     //Stores grass dirt interaction tiles and greyed out for watered soil
     [SerializeField] TileBase[] tiles;
 
-    public void Start()
+    public void Awake()
     {
         tilePosToData = new Dictionary<Vector3Int, TileData>();
         int size = 16;
@@ -66,6 +65,10 @@ public class TileManager : MonoBehaviour
                 if (!placeholderMap.HasTile(tilePos))
                 {
                     SetTile(tilePos, TileType.Grass);
+                }
+                else
+                {
+                    SetTile(tilePos, TypeFromPlaceholder(placeholderMap.GetTile(tilePos)));
                 }
                 SetBaseDisplayTile(tilePos);
                 SetOverlayDisplayTile(tilePos);
@@ -108,15 +111,8 @@ public class TileManager : MonoBehaviour
     //Get a reference to the data stored at any given position
     public TileData GetTileDataAt(Vector3Int pos)
     {
-        tilePosToData.TryGetValue(pos, out TileData temp);
-        //See if theres anything stored for the pos
-        TileData tileData = temp;
-        if (tileData != null)
-        {
-            return tileData;
-        }
-        //otherwise pass nothing back
-        return null;
+        tilePosToData.TryGetValue(pos, out TileData tileData);
+        return tileData;
     }
 
     //Used when initiating the game scene board
@@ -142,7 +138,7 @@ public class TileManager : MonoBehaviour
         }
         else
         {
-            tilePosToData[pos] = new TileData(type);
+            tilePosToData[pos] = new TileData(pos, type);
         }
 
     }
@@ -215,6 +211,7 @@ public class TileManager : MonoBehaviour
 
         if (data.CanPlaceEntity())
         {
+            Debug.Log("Entity Placed!");
             data.PlaceEntity(entity);
             entity.SetGridPos(pos);
         }

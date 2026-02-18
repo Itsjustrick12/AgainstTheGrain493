@@ -13,7 +13,7 @@ public class TileData
     public Vector3Int gridPos;
     public TileType type;
     //This is the entity stored at the current tile, could be a crop, unit, structure, or object etc
-    public Entity occupyingEntity;
+    public Entity occupyingEntity = null;
     //This is based on the TILE not the entity blocking the tile
     public bool canWalk;
     //Some tiles may require additional movement costs down the line
@@ -23,16 +23,9 @@ public class TileData
     public int defenseBonus;
 
     //Makes an unoccupied grass tile
-    public TileData()
+    public TileData(Vector3Int pos, TileType type = TileType.Grass, Entity occupyingEntity = null, bool canWalk = true, int movementCost = 1, int defenseBonus = 0)
     {
-        type = TileType.Grass;
-        occupyingEntity = null;
-        canWalk = true;
-        movementCost = 1;
-        defenseBonus = 0;
-    }
-    public TileData(TileType type, Entity occupyingEntity = null, bool canWalk = true, int movementCost = 1, int defenseBonus = 0)
-    {
+        this.gridPos = pos;
         this.type = type;
         this.occupyingEntity = occupyingEntity;
         this.canWalk = canWalk;
@@ -58,7 +51,7 @@ public class TileData
 
     public void PlaceEntity(Entity entity)
     {
-        if (entity != null)
+        if (occupyingEntity != null)
         {
             Debug.Log("Entity was overwritten!");
         }
@@ -67,10 +60,33 @@ public class TileData
 
     public bool CanPlaceEntity()
     {
-        if (occupyingEntity != null)
+        if (occupyingEntity == null)
         {
-            return false;
+            return true;
         }
-        return true;
+        return false;
+    }
+
+    public void PrintTileData()
+    {
+        string occupantName = "False";
+
+        if (occupyingEntity != null) {
+            occupantName = "True";
+        }
+
+
+        Debug.Log(
+            $"--- TILE DATA ---\n" +
+            $"Grid Position: {gridPos}\n" +
+            $"Type: {type}\n" +
+            $"Can Walk: {canWalk}\n" +
+            $"Is Walkable(): {IsWalkable()}\n" +
+            $"Movement Cost: {movementCost}\n" +
+            $"Defense Bonus: {defenseBonus}\n" +
+            $"Has Occupant: {HasOccupant()}\n" +
+            $"Occupying Entity: {occupantName}\n" +
+            $"-------------------"
+        );
     }
 }

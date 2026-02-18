@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7941187540243799669}
   - component: {fileID: 8533745808882360955}
   m_Layer: 0
-  m_Name: Farmer Test
+  m_Name: Red Farmer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,11 +78,11 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -11110815
+  m_SortingLayer: 2
+  m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: fc8f2a8a4261f3245ad091e202fb4a2b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 142f3bc5e6344454bafa271d8a4b5045, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Unit
   isObstacle: 1
   isInteractable: 0
-  ID: 0
+  ID: 2
   type: 0
   isActive: 0
   sprite: {fileID: 0}
