@@ -68,9 +68,9 @@ public class TileManager : MonoBehaviour
                 }
                 else
                 {
-                    SetTile(tilePos, TypeFromPlaceholder(placeholderMap.GetTile(tilePos)));
+                    SetTile(tilePos, GetTileTypeAt(tilePos));
                 }
-                SetBaseDisplayTile(tilePos);
+                    SetBaseDisplayTile(tilePos);
                 SetOverlayDisplayTile(tilePos);
             }
         }

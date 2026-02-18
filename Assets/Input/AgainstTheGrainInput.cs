@@ -102,9 +102,27 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ReadInfo"",
+                    ""name"": ""DrawPath"",
                     ""type"": ""Button"",
-                    ""id"": ""dd0fd853-3366-4f18-86ab-172e36f366e6"",
+                    ""id"": ""11bef6fe-effb-4c92-90af-c55247d50f4f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PickA"",
+                    ""type"": ""Button"",
+                    ""id"": ""2a5b4c28-466e-46ec-aa10-31a413743d6c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PickB"",
+                    ""type"": ""Button"",
+                    ""id"": ""1fe2eea8-dea7-403b-98f2-2b68b5e424d5"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -125,12 +143,34 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f51fa41d-1127-4827-9c85-320cd6dd7d88"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""id"": ""c19ac4e7-581e-4775-a06a-31a5e67c19d8"",
+                    ""path"": ""<Keyboard>/p"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ReadInfo"",
+                    ""action"": ""DrawPath"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f1d74f2f-7506-4470-a796-cf0cdc9f8f22"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PickA"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""78ea41ff-d08d-47f5-8503-9b863e21e890"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PickB"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -142,7 +182,9 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Paint = m_Gameplay.FindAction("Paint", throwIfNotFound: true);
-        m_Gameplay_ReadInfo = m_Gameplay.FindAction("ReadInfo", throwIfNotFound: true);
+        m_Gameplay_DrawPath = m_Gameplay.FindAction("DrawPath", throwIfNotFound: true);
+        m_Gameplay_PickA = m_Gameplay.FindAction("PickA", throwIfNotFound: true);
+        m_Gameplay_PickB = m_Gameplay.FindAction("PickB", throwIfNotFound: true);
     }
 
     ~@AgainstTheGrainInput()
@@ -224,7 +266,9 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gameplay;
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Paint;
-    private readonly InputAction m_Gameplay_ReadInfo;
+    private readonly InputAction m_Gameplay_DrawPath;
+    private readonly InputAction m_Gameplay_PickA;
+    private readonly InputAction m_Gameplay_PickB;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -241,9 +285,17 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Paint => m_Wrapper.m_Gameplay_Paint;
         /// <summary>
-        /// Provides access to the underlying input action "Gameplay/ReadInfo".
+        /// Provides access to the underlying input action "Gameplay/DrawPath".
         /// </summary>
-        public InputAction @ReadInfo => m_Wrapper.m_Gameplay_ReadInfo;
+        public InputAction @DrawPath => m_Wrapper.m_Gameplay_DrawPath;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/PickA".
+        /// </summary>
+        public InputAction @PickA => m_Wrapper.m_Gameplay_PickA;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/PickB".
+        /// </summary>
+        public InputAction @PickB => m_Wrapper.m_Gameplay_PickB;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -273,9 +325,15 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
             @Paint.started += instance.OnPaint;
             @Paint.performed += instance.OnPaint;
             @Paint.canceled += instance.OnPaint;
-            @ReadInfo.started += instance.OnReadInfo;
-            @ReadInfo.performed += instance.OnReadInfo;
-            @ReadInfo.canceled += instance.OnReadInfo;
+            @DrawPath.started += instance.OnDrawPath;
+            @DrawPath.performed += instance.OnDrawPath;
+            @DrawPath.canceled += instance.OnDrawPath;
+            @PickA.started += instance.OnPickA;
+            @PickA.performed += instance.OnPickA;
+            @PickA.canceled += instance.OnPickA;
+            @PickB.started += instance.OnPickB;
+            @PickB.performed += instance.OnPickB;
+            @PickB.canceled += instance.OnPickB;
         }
 
         /// <summary>
@@ -290,9 +348,15 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
             @Paint.started -= instance.OnPaint;
             @Paint.performed -= instance.OnPaint;
             @Paint.canceled -= instance.OnPaint;
-            @ReadInfo.started -= instance.OnReadInfo;
-            @ReadInfo.performed -= instance.OnReadInfo;
-            @ReadInfo.canceled -= instance.OnReadInfo;
+            @DrawPath.started -= instance.OnDrawPath;
+            @DrawPath.performed -= instance.OnDrawPath;
+            @DrawPath.canceled -= instance.OnDrawPath;
+            @PickA.started -= instance.OnPickA;
+            @PickA.performed -= instance.OnPickA;
+            @PickA.canceled -= instance.OnPickA;
+            @PickB.started -= instance.OnPickB;
+            @PickB.performed -= instance.OnPickB;
+            @PickB.canceled -= instance.OnPickB;
         }
 
         /// <summary>
@@ -341,11 +405,25 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPaint(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "ReadInfo" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "DrawPath" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnReadInfo(InputAction.CallbackContext context);
+        void OnDrawPath(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "PickA" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPickA(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "PickB" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPickB(InputAction.CallbackContext context);
     }
 }

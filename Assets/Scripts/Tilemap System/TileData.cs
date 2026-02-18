@@ -25,12 +25,17 @@ public class TileData
     //Makes an unoccupied grass tile
     public TileData(Vector3Int pos, TileType type = TileType.Grass, Entity occupyingEntity = null, bool canWalk = true, int movementCost = 1, int defenseBonus = 0)
     {
-        this.gridPos = pos;
+        gridPos = pos;
         this.type = type;
         this.occupyingEntity = occupyingEntity;
         this.canWalk = canWalk;
         this.movementCost = movementCost;
         this.defenseBonus = defenseBonus;
+    }
+
+    public bool CanEnter()
+    {
+        return occupyingEntity == null && canWalk;
     }
 
     //Used for pathfinding algorithms
