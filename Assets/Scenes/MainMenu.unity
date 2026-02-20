@@ -1470,6 +1470,7 @@ GameObject:
   - component: {fileID: 1699879824}
   - component: {fileID: 1699879823}
   - component: {fileID: 1699879822}
+  - component: {fileID: 1699879825}
   m_Layer: 5
   m_Name: Start Button
   m_TagString: Untagged
@@ -1541,9 +1542,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1030628989}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: StartGame
+      - m_Target: {fileID: 1699879825}
+        m_TargetAssemblyTypeName: ToScene, Assembly-CSharp
+        m_MethodName: LoadScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1591,6 +1592,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1699879820}
   m_CullTransparentMesh: 1
+--- !u!114 &1699879825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699879820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd6326cc3f6a2ef4992911f3ccfd3ab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToScene
+  SceneNumber: 1
 --- !u!1 &2133387172
 GameObject:
   m_ObjectHideFlags: 0
