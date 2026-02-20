@@ -80,7 +80,7 @@ public class Entity : MonoBehaviour
         }
     }
 
-    public EntityType GetType()
+    public virtual EntityType GetEntityType()
     {
         return type;
     }

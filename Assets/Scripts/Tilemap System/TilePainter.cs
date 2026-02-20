@@ -4,6 +4,7 @@ using System.Net;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 //Debug Class used for testing tile system implementation and rendering
 //Use the type in the inspector and the left click to paint to the map
 public class TilePainter : TileCursor
@@ -123,6 +124,20 @@ public class TilePainter : TileCursor
         }
     }
 
+    public void AttemptTarget(InputAction.CallbackContext a)
+    {
+        TileData data = tileManager.GetTileDataAt(currentTile);
+        if (data != null && data.HasOccupant())
+        {
+            if (data.occupyingEntity is Unit unitCheck)
+            {
+                Vector3Int targetLoc = unitCheck.SetAndReturnTarget();
+
+                debugMap.SetTile(targetLoc, endTile);
+            }
+        }
+    }
+
     public void ClearDebugMap()
     {
         debugMap.ClearAllTiles();
@@ -140,6 +155,7 @@ public class TilePainter : TileCursor
         input.Gameplay.PickB.performed += PickEnd;
         input.Gameplay.PlaceCrop.performed += PlaceCrop;
         input.Gameplay.Harvest.performed += AttemptHarvest;
+        input.Gameplay.Target.performed += AttemptTarget;
     }
 
     private void OnDisable()
@@ -152,6 +168,7 @@ public class TilePainter : TileCursor
         input.Gameplay.PickB.performed -= PickEnd;
         input.Gameplay.PlaceCrop.performed -= PlaceCrop;
         input.Gameplay.Harvest.performed -= AttemptHarvest;
+        input.Gameplay.Target.performed -= AttemptTarget;
         input.Disable();
     }
 

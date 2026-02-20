@@ -29,7 +29,7 @@ public class Unit : Entity
     }
 
     //gets vector3Int List for best target based on difficulty
-    void GetTarget()
+    public void SetTarget()
     {
 
         List<Vector3Int> tempList = FindPositions(true);
@@ -47,17 +47,24 @@ public class Unit : Entity
             FindHard(tempList);
         }
         //look for any target on proper difficulty
-
     }
 
     List<Vector3Int> FindPositions(bool prime)
     {
         List<Vector3Int> temp = new List<Vector3Int>();
-        
-        List<Unit> tempUnits = gameManager.GetAllFriendlyUnits();
+        List<Unit> tempUnits;
+        if (isEnemy)
+        {
+
+            tempUnits = gameManager.GetAllFriendlyUnits();
+        }
+        else {
+            tempUnits = gameManager.GetAllEnemyUnits();
+        }
+
         for(int i = 0; i < tempUnits.Count; i++)
         {
-            if(primary.Contains(tempUnits[i].GetType()) || !prime)
+            if(primary.Contains(tempUnits[i].GetEntityType()) || !prime)
             {
                 temp.Add(tempUnits[i].GetGridPos());
             }
@@ -84,9 +91,20 @@ public class Unit : Entity
             if(TurnsToReach(tileHelper.TilePath(this.GetGridPos(), targets[i])) < ttr)
             {
                 ttr = TurnsToReach(tileHelper.TilePath(this.GetGridPos(), targets[i]));
-                target = this.GetGridPos();
+                target = targets[i];
             }
         }
+    }
+
+    public Vector3Int GetCurrentTarget()
+    {
+        return target;
+    }
+
+    public Vector3Int SetAndReturnTarget()
+    {
+        SetTarget();
+        return GetCurrentTarget();
     }
 
     //TODO

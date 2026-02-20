@@ -104,14 +104,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a247b7d29174994c8f37eb81eb84fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Unit
+  maxHealth: 10
+  type: 3
+  currentHealth: 10
   isObstacle: 1
   isInteractable: 0
   ID: 0
-  type: 0
   isActive: 0
-  sprite: {fileID: 0}
+  primary: 02000000
+  target: {x: 0, y: 0, z: -1}
   isEnemy: 0
-  maxHealth: 10
-  currentHealth: 10
   strength: 0
   movementRange: 0
+  iq: 1

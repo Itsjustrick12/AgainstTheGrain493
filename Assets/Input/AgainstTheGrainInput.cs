@@ -163,6 +163,15 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Target"",
+                    ""type"": ""Button"",
+                    ""id"": ""a860d26e-af10-43a6-9b91-2d20b63a3323"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -253,6 +262,17 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
                     ""action"": ""Harvest"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ceeb042a-ffd6-4743-b593-9e6dcaa5e8d3"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Target"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -269,6 +289,7 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         m_Gameplay_AdvanceTurn = m_Gameplay.FindAction("AdvanceTurn", throwIfNotFound: true);
         m_Gameplay_PlaceCrop = m_Gameplay.FindAction("PlaceCrop", throwIfNotFound: true);
         m_Gameplay_Harvest = m_Gameplay.FindAction("Harvest", throwIfNotFound: true);
+        m_Gameplay_Target = m_Gameplay.FindAction("Target", throwIfNotFound: true);
     }
 
     ~@AgainstTheGrainInput()
@@ -357,6 +378,7 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_AdvanceTurn;
     private readonly InputAction m_Gameplay_PlaceCrop;
     private readonly InputAction m_Gameplay_Harvest;
+    private readonly InputAction m_Gameplay_Target;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -400,6 +422,10 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Gameplay/Harvest".
         /// </summary>
         public InputAction @Harvest => m_Wrapper.m_Gameplay_Harvest;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Target".
+        /// </summary>
+        public InputAction @Target => m_Wrapper.m_Gameplay_Target;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -450,6 +476,9 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
             @Harvest.started += instance.OnHarvest;
             @Harvest.performed += instance.OnHarvest;
             @Harvest.canceled += instance.OnHarvest;
+            @Target.started += instance.OnTarget;
+            @Target.performed += instance.OnTarget;
+            @Target.canceled += instance.OnTarget;
         }
 
         /// <summary>
@@ -485,6 +514,9 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
             @Harvest.started -= instance.OnHarvest;
             @Harvest.performed -= instance.OnHarvest;
             @Harvest.canceled -= instance.OnHarvest;
+            @Target.started -= instance.OnTarget;
+            @Target.performed -= instance.OnTarget;
+            @Target.canceled -= instance.OnTarget;
         }
 
         /// <summary>
@@ -581,5 +613,12 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnHarvest(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Target" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTarget(InputAction.CallbackContext context);
     }
 }
