@@ -112,15 +112,16 @@ public class TileHelper : MonoBehaviour
                 currentNode.location + Vector3Int.right
             };
 
-            foreach(var neighborPos in neighbors)
+            foreach(Vector3Int neighborPos in neighbors)
             {
-                if (!InRange(neighborPos) || closedSet.Contains(neighborPos))
+                if(!InRange(neighborPos) || closedSet.Contains(neighborPos))
                 {
                     continue;
                 }
+
                 //if tile is not walkable, skip
-                var tileData = tileManager.GetTileDataAt(neighborPos);
-                if (tileData == null || !tileData.CanEnter())
+                TileData tileData = tileManager.GetTileDataAt(neighborPos);
+                if(tileData == null || !tileData.CanEnter())
                 {
                     continue;
                 }
@@ -128,7 +129,7 @@ public class TileHelper : MonoBehaviour
 
                 Node existingNode = openList.Find(n => n.location == neighborPos);
 
-                if (existingNode == null)
+                if(existingNode == null)
                 {
                     Node neighborNode = new Node(neighborPos, currentNode);
                     neighborNode.SetG(gCost);

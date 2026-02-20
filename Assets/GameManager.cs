@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     {
         SpawnStartingUnits();
     }
+    
     public void BeginPlayerTurn(InputAction.CallbackContext context)
     {
         BeginPlayerTurn();
