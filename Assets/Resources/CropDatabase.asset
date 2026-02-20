@@ -20,7 +20,7 @@ MonoBehaviour:
     sellValue: 25
     seedTile: {fileID: 11400000, guid: 94e9ab666cab9664bb8939e2a2157a94, type: 2}
     growthStageSprites:
-    - {fileID: -1824608321, guid: e15d3f917b318484cb873a206677667f, type: 3}
-    - {fileID: 948709357, guid: e15d3f917b318484cb873a206677667f, type: 3}
-    - {fileID: -1738007581, guid: e15d3f917b318484cb873a206677667f, type: 3}
+    - {fileID: 3545203897024761417, guid: 7f2d3c582f78f0f48b9992352c3dd522, type: 3}
+    - {fileID: -8876900742276911374, guid: 7f2d3c582f78f0f48b9992352c3dd522, type: 3}
+    - {fileID: -564861489, guid: 7f2d3c582f78f0f48b9992352c3dd522, type: 3}
     cropIcon: {fileID: -1738007581, guid: e15d3f917b318484cb873a206677667f, type: 3}

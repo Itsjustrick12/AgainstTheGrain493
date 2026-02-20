@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: b32cf115713db5e4b882f84776cd1bef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7e0d79c0c15839545ba24133eb72199a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -109,7 +109,6 @@ MonoBehaviour:
   ID: 2
   type: 2
   isActive: 0
-  sprite: {fileID: 6812441379819157092}
   isEnemy: 1
   maxHealth: 10
   currentHealth: 10
