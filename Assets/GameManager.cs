@@ -23,7 +23,10 @@ public class GameManager : MonoBehaviour
 
     public static event Action StartPlayerTurn;
 
-    
+    public GameObject pauseScreen;
+    public GameObject winScreen;
+    public GameObject loseScreen;
+
 
     public void Awake()
     {
@@ -160,5 +163,29 @@ public class GameManager : MonoBehaviour
     {
         input.Gameplay.AdvanceTurn.performed -= BeginPlayerTurn;
         input.Disable();
+    }
+
+    //Display lose Screen
+    public void GameOver()
+    {
+        //probably do other things later but just want to test functionality
+        loseScreen.SetActive(true);
+    }
+
+    public void ShowWinScreen()
+    {
+        winScreen.SetActive(true);
+    }
+
+    public void PauseGame()
+    {
+        pauseScreen.SetActive(true);
+    }
+
+    public void HideAllUIScreens()
+    {
+        loseScreen.SetActive(false);
+        winScreen.SetActive(false);
+        pauseScreen.SetActive(false);
     }
 }
