@@ -132,6 +132,16 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void EnemyTurn()
+    {
+        List<Unit> tempunits = GetAllEnemyUnits();
+
+        for(int i = 0; i < tempunits.Count; i++)
+        {
+            tempunits[i].DoTurn();
+        }
+    }
+
 
     //Uses the transform containers to return all friendly units
     public List<Unit> GetAllFriendlyUnits()

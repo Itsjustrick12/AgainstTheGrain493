@@ -23,7 +23,7 @@ public class Unit : Entity
         return strength;
     }
 
-    void GetStrength(int strengthValue)
+    void SetStrength(int strengthValue)
     {
         strength = strengthValue;
     }
@@ -33,32 +33,57 @@ public class Unit : Entity
     {
 
         List<Vector3Int> tempList = FindPositions(true);
-        //look for primary target on proper difficulty
-        if(this.iq < 2)
+
+        //if no primary targets look at all targets
+        if(tempList.Count < 1)
         {
-            FindEasy(tempList);
+            tempList = FindPositions(false);
         }
-        else if(this.iq < 5)
+
+        if(tempList.Count > 0)
         {
-            FindMedium(tempList);
+            //find target target based on difficulty
+            if(true)
+            {
+                FindEasy(tempList);
+            }
+            else if(this.iq < 5)
+            {
+                FindMedium(tempList);
+            }
+            else
+            {
+                FindHard(tempList);
+            }
         }
         else
         {
-            FindHard(tempList);
+            this.target = new Vector3Int(0,0,-1);
         }
-        //look for any target on proper difficulty
+    }
+
+    public Vector3Int GetTarget()
+    {
+        return target;
+    }
+
+    public Vector3Int SetAndReturnTarget()
+    {
+        SetTarget();
+        return GetTarget();
     }
 
     List<Vector3Int> FindPositions(bool prime)
     {
         List<Vector3Int> temp = new List<Vector3Int>();
         List<Unit> tempUnits;
+
         if (isEnemy)
         {
-
             tempUnits = gameManager.GetAllFriendlyUnits();
         }
-        else {
+        else
+        {
             tempUnits = gameManager.GetAllEnemyUnits();
         }
 
@@ -82,7 +107,6 @@ public class Unit : Entity
         return temp;
     }
 
-    //TODO
     void FindEasy(List<Vector3Int> targets)
     {
         int ttr = 999;
@@ -96,23 +120,17 @@ public class Unit : Entity
         }
     }
 
-    public Vector3Int GetCurrentTarget()
-    {
-        return target;
-    }
-
-    public Vector3Int SetAndReturnTarget()
-    {
-        SetTarget();
-        return GetCurrentTarget();
-    }
-
     //TODO
     void FindMedium(List<Vector3Int> targets)
     {
+        int ttk = 999;
         for(int i = 0; i < targets.Count; i++)
         {
-            
+            if(TurnsToKill(tileHelper.TilePath(this.GetGridPos(), targets[i])) < ttk)
+            {
+                ttk = TurnsToKill(tileHelper.TilePath(this.GetGridPos(), targets[i]));
+                target = targets[i];
+            }
         }
 
     }
@@ -164,7 +182,85 @@ public class Unit : Entity
         return ttr;
     }
 
-    
+    bool Win1v1()
+    {
+        bool ret = false;
+        /*if(tileGetTileDataAt(path[i]))
+        {
+
+        }*/
+        return ret;
+    }
+
+    void Move(List<Vector3Int> path)
+    {
+        //make sure we dont pass the movement amount of the unit
+        int tempMovement = movementRange;
+        while(tempMovement > 0 && path.Count > 0)
+        {
+            //if there is nothing in the next tile
+            if(tileManager.GetTileDataAt(path[0]).occupyingEntity == null)
+            {
+                //if we have enough movement left
+                if(tempMovement >= tileManager.GetTileDataAt(path[0]).movementCost)
+                {
+                    //set our grid position to the next tile
+                    this.SetGridPos(path[0]);
+                    //change amount of movement left
+                    tempMovement -= tileManager.GetTileDataAt(path[0]).movementCost;
+                    //remove the current tile from the path
+                    path.RemoveAt(0);
+                }
+                else
+                {
+                    tempMovement = 0;
+                }
+            }
+            else
+            {
+                tempMovement = 0;
+            }
+        }
+    }
+
+    void Attack()
+    {
+        //check to see if the target is next to us
+        if(target == this.GetGridPos() + Vector3Int.up || target == this.GetGridPos() + Vector3Int.down || target == this.GetGridPos() + Vector3Int.left || target == this.GetGridPos() + Vector3Int.right && target.z != -1)
+        {
+            //we make sure the target tile has an entity
+            if(tileManager.GetTileDataAt(target).occupyingEntity != null)
+            {
+                //we then attack the target
+                tileManager.GetTileDataAt(target).occupyingEntity.TakeDamage(this.GetStrength());
+
+                //if we kill the target
+                if(tileManager.GetTileDataAt(target).occupyingEntity == null)
+                {
+                    //we then set target
+                    this.SetTarget();
+                }
+            }
+        }
+    }
+
+    public void DoTurn()
+    {
+        //if a target hasn't been set we find the next target
+        if(this.GetGridPos().z != -1)
+        {
+            this.SetTarget();
+        }
+
+        //if we found a target we move to it
+        if(this.GetGridPos().z != -1)
+        {
+            Move(tileHelper.TilePath(this.GetGridPos(), target));
+        }
+
+        //then we attack the target
+        Attack();
+    }
 
 }
 

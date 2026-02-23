@@ -55,14 +55,14 @@ public class TileHelper : MonoBehaviour
         List<Vector3Int> ret = new List<Vector3Int>();
 
         //check to make sure it's in range
-        if (!InRange(start) || !InRange(end))
+        if(!InRange(start) || !InRange(end))
         {
             ret.Add(Vector3Int.zero);
             return ret;
         }
 
         //check to make sure they aren't equal
-        if (start == end)
+        if(start == end)
         {
             ret.Add(start);
             ret.Add(end);
@@ -80,18 +80,18 @@ public class TileHelper : MonoBehaviour
         openList.Add(startNode);
 
         //keep looping until the list is empty
-        while (openList.Count > 0)
+        while(openList.Count > 0)
         {
             //sort openList by f
             openList.Sort((a, b) => a.f.CompareTo(b.f));
             Node currentNode = openList[0];
 
             //check if the current node is the end
-            if (currentNode.location == end)
+            if(currentNode.location == end)
             {
                 //if it is get the return ready
                 Node node = currentNode;
-                while (node != null)
+                while(node != null)
                 {
                     ret.Insert(0, node.location);
                     node = node.parent;
