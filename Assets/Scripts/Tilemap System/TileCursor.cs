@@ -59,4 +59,9 @@ public class TileCursor : MonoBehaviour
     {
         showHighlight = true;
     }
+
+    public Vector3Int GetCurrentTile()
+    {
+        return currentTile;
+    }
 }

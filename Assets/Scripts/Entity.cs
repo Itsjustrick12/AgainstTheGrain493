@@ -12,6 +12,7 @@ public class Entity : MonoBehaviour
     [SerializeField] private bool isObstacle;
     //Determines if this entity can be clicked on or affected in any way
     [SerializeField] private bool isInteractable;
+    private Vector3 offset = new Vector3(0.5f, 0.5f, 0);
     //Helper function for all derived entities to use to determine whether or not something is occupying the tile
     public Vector3Int GetGridPos()
     {
@@ -20,6 +21,7 @@ public class Entity : MonoBehaviour
     public void SetGridPos(Vector3Int pos)
     {
         gridPos = pos;
+        transform.position = pos+offset;
     }
     public virtual bool IsObstacle()
     {
@@ -32,6 +34,19 @@ public class Entity : MonoBehaviour
     public bool IsInteractable()
     {
         return isInteractable;
+    }
+    public void HideSprite()
+    {
+        sprite.enabled = false;
+    }
+    public void ShowSprite()
+    {
+        sprite.enabled = true;
+    }
+
+    public Sprite GetSprite()
+    {
+        return sprite.sprite;
     }
 
     public void UpdateTransform(Vector3Int pos)

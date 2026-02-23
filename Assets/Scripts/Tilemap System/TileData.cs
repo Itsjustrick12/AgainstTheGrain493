@@ -34,6 +34,10 @@ public class TileData
         this.defenseBonus = defenseBonus;
     }
 
+    public Entity GetOccupyingEntity()
+    {
+        return occupyingEntity;
+    }
     public bool CanEnter()
     {
         return occupyingEntity == null && canWalk;
@@ -75,12 +79,19 @@ public class TileData
 
     public void PlaceEntity(Entity entity)
     {
+        if (entity == null)
+        {
+            Debug.LogError("You are trying to place a NULL entity onto a tile, use clear occupant instead");
+            return;
+        }
+
         if (occupyingEntity != null)
         {
             Debug.Log("Entity was overwritten!");
             occupyingEntity.DestroyEntity();
         }
         occupyingEntity = entity;
+        occupyingEntity.SetGridPos(gridPos);
         //Water if the entity is a crop and this tile is watered
         if (occupyingEntity is Crop cropCheck)
         {

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static UnityEditor.PlayerSettings;
 
 //Dual Grid Tilemap Implementation is based on the logic from this video: https://www.youtube.com/watch?v=jEWFSv3ivTg
 public class TileManager : MonoBehaviour
@@ -240,6 +241,25 @@ public class TileManager : MonoBehaviour
             // Update the placeholder map & visuals
             SetTile(pos, TileType.Dirt);
         }
+    }
+
+    public void MoveEntity(Vector3Int start, Vector3Int end)
+    {
+        TileData fromData = tilePosToData[start];
+        TileData toData = tilePosToData[end];
+        if (fromData == null || toData == null)
+        {
+            return;
+        }
+
+        if (toData.CanPlaceEntity() && fromData.HasOccupant())
+        {
+            //Do swap to new tile
+            Entity selectedEntity = fromData.GetOccupyingEntity();
+            fromData.ClearOccupant();
+            PlaceEntityOnTile(end, selectedEntity);
+        }
+        
     }
 
     private void OnEnable()
