@@ -1,12 +1,23 @@
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public enum InteractionState
 {
     Selection,
     Movement,
-    Action
+    ActionSelection,
+    TargetSelection,
+    Execution
+}
+
+//This is needed to call events and recieve callbacks from UI buttons
+[System.Serializable]
+public class UnitActionEvent : UnityEvent<UnitAction>
+{
 }
 
 //This script is responsible for handling the interactions between units
@@ -17,6 +28,7 @@ public class UnitInteractionSystem : MonoBehaviour
 
     //Stores the location of the current tile selected
     public TileCursor cursor;
+    [SerializeField]private ActionMenu actionMenu;
 
     public InteractionState state;
 
@@ -29,12 +41,16 @@ public class UnitInteractionSystem : MonoBehaviour
 
     private Vector3 offset = new Vector3(0.5f, 0.75f, 0);
 
-    private AgainstTheGrainInput input;
+    //Change this later but for now default Unity UI interactions is good
+    private DefaultInputActions input;
+
+    public bool makingDecision = false;
 
     public void Awake()
     {
         cursor = FindFirstObjectByType<TileCursor>();
         tileManager = FindFirstObjectByType<TileManager>();
+        //actionMenu = FindFirstObjectByType<ActionMenu>();
         state = InteractionState.Selection;
     }
 
@@ -66,6 +82,7 @@ public class UnitInteractionSystem : MonoBehaviour
         //Do a temp like swap for the position
     }
 
+    //Transitions through the state machine to determine what action to take
     public void OnSelect(InputAction.CallbackContext context)
     {
         Vector3Int pos = cursor.GetCurrentTile();
@@ -100,7 +117,7 @@ public class UnitInteractionSystem : MonoBehaviour
                         //Just place at same place and move on
                         ClearHoverSprite();
                         //switch to interaction selection phase
-                        state = InteractionState.Selection;
+                        ShowUnitOptions(toData.GetOccupyingEntity());
                         return;
                     }
                     //Only place if entity can go to new tile
@@ -108,8 +125,9 @@ public class UnitInteractionSystem : MonoBehaviour
                     {
                         ClearHoverSprite();
                         tileManager.MoveEntity(selectedPosition, pos);
+
                         //For now just switch to selection
-                        state = InteractionState.Selection;
+                        ShowUnitOptions(toData.GetOccupyingEntity());
                         return;
                     }
                 }
@@ -121,15 +139,38 @@ public class UnitInteractionSystem : MonoBehaviour
 
                 }
                 break;
-            case InteractionState.Action:
+            case InteractionState.ActionSelection:
                 //do action logic for determining nearby tiles here
                 //temp, just go to state
-                state = InteractionState.Selection;
+                //Attempt the action
+                Unit unitCheck = selectedEntity as Unit;
+                if (unitCheck != null)
+                {
+                    //do the action
+                    List<UnitAction> actions = unitCheck.GetAvailableActions();
+                    //Select the proper action
+                    //todo add this logic
+                    //ExecuteAction(actions[0], pos);
+                }
                 break;
+            case InteractionState.TargetSelection:
+
             default:
                 break;
         }
     }
+    public void ExecuteAction(UnitAction action, Vector3Int pos)
+    {
+        if (selectedEntity is Unit unit)
+        {
+            if (action.IsPossible(unit))
+            {
+                //action.PerformAt(unit, pos);
+                state = InteractionState.Selection;
+            }
+        }
+    }
+
     //Call upon selected a unit in movement
     public void LiftHoverSprite()
     {
@@ -150,16 +191,39 @@ public class UnitInteractionSystem : MonoBehaviour
         hoverSprite.sprite = null;
     }
 
+    private void ShowUnitOptions(Unit unit)
+    {
+        if (unit == null)
+        {
+            Debug.LogError("THERES NO UNIT TO SHOW OPTIONS FOR");
+            return;
+        }
+        state = InteractionState.ActionSelection;
+        actionMenu.ShowMenu(unit);
+        makingDecision = true;
+    }
+
+    private void ShowUnitOptions(Entity entity)
+    {
+        Unit unit = entity as Unit;
+        if (unit == null)
+        {
+            Debug.LogError("This isn't a unit, can't show options");
+            return;
+        }
+        ShowUnitOptions(unit);
+    }
+
     private void OnEnable()
     {
-        input = new AgainstTheGrainInput();
+        input = new DefaultInputActions();
         input.Enable();
-        input.Gameplay.ReadTile.performed += OnSelect;
+        input.UI.Submit.performed += OnSelect;
     }
 
     private void OnDisable()
     {
-        input.Gameplay.ReadTile.performed -= OnSelect;
+        input.UI.Submit.performed -= OnSelect;
         input.Disable();
     }
 }

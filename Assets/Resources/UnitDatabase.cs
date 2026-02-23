@@ -18,6 +18,9 @@ public class UnitInfo
     public TileBase tile;
     public Sprite sprite;
 
+    [Header("Actions")]
+    public List<UnitAction> actions;
+
     public bool isEnemy;
 
 }
@@ -81,6 +84,24 @@ public class UnitDatabase : ScriptableObject
         if (lookup.TryGetValue(id, out UnitInfo unit))
         {
             return unit;
+        }
+
+        Debug.LogError($"There is no Unit with ID: {id} in the lookup!");
+        return null;
+
+    }
+
+    public List<UnitAction> GetActions(int id)
+    {
+        if (lookup == null)
+        {
+            BuildLookup();
+        }
+
+        //Use the lookup to try and find unit info
+        if (lookup.TryGetValue(id, out UnitInfo unit))
+        {
+            return unit.actions;
         }
 
         Debug.LogError($"There is no Unit with ID: {id} in the lookup!");

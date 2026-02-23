@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public GameObject winScreen;
     public GameObject loseScreen;
 
+    public bool isPlayerTurn = true;
 
     public void Awake()
     {
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
+        isPlayerTurn = true;
         SpawnStartingUnits();
     }
     public void BeginPlayerTurn(InputAction.CallbackContext context)

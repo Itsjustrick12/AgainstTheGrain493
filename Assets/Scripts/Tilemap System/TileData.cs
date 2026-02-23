@@ -112,6 +112,19 @@ public class TileData
         return false;
     }
 
+    public bool HasUnit()
+    {
+        if (occupyingEntity != null)
+        {
+            Unit unitCheck = occupyingEntity as Unit;
+            if (unitCheck != null)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void PrintTileData()
     {
         string occupantName = "False";

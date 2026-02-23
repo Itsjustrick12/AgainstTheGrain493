@@ -18,16 +18,25 @@ MonoBehaviour:
     prefab: {fileID: 4935858330493278644, guid: 1c422d24f53de6546b123d691157a9ff, type: 3}
     tile: {fileID: 11400000, guid: 8f1c3a6be2ed07e4a9f8a03a066991e9, type: 2}
     sprite: {fileID: 21300000, guid: b7a7074cb46a1f54d9a682bd9efea838, type: 3}
+    actions:
+    - {fileID: 11400000, guid: 5f0c03dba52164544948dc40d7fe64b0, type: 2}
+    - {fileID: 11400000, guid: 1a13efa1659efda4791a69f19ea430e1, type: 2}
     isEnemy: 0
   - id: 2
     unitName: RedFarmer
     prefab: {fileID: 4935858330493278644, guid: ea129828cb21e2743b00d1d1941e01b9, type: 3}
     tile: {fileID: 11400000, guid: ca68c80e455ade5408897ac43603953a, type: 2}
     sprite: {fileID: 21300000, guid: e5dcea8cd9007db44b8c3ed8c6a6e9fa, type: 3}
+    actions:
+    - {fileID: 11400000, guid: 5f0c03dba52164544948dc40d7fe64b0, type: 2}
+    - {fileID: 11400000, guid: 1a13efa1659efda4791a69f19ea430e1, type: 2}
+    - {fileID: 11400000, guid: 7c13517389f0d4c4e93d63f8ee88274a, type: 2}
     isEnemy: 0
   - id: 3
     unitName: Robot
     prefab: {fileID: 1180065947808181623, guid: 5b34ecd98973263479dfea6cd49ec888, type: 3}
     tile: {fileID: 11400000, guid: 4103c465fb4936142ada9747c3d0bf7f, type: 2}
     sprite: {fileID: 21300000, guid: 7e0d79c0c15839545ba24133eb72199a, type: 3}
+    actions:
+    - {fileID: 11400000, guid: 7c13517389f0d4c4e93d63f8ee88274a, type: 2}
     isEnemy: 1

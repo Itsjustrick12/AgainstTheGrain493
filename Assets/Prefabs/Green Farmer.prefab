@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Unit
   isObstacle: 1
   isInteractable: 0
-  ID: 0
+  ID: 1
   type: 0
   isActive: 0
   isEnemy: 0

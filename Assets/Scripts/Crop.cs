@@ -53,13 +53,14 @@ public class Crop : Entity
         if (CanGrow())
         {
             //Process the crop's stage
-            currentStage += 1;
+            currentStage = Mathf.Min(currentStage + 1, refCrop.numStages);
 
             //If processed through all stages, its now harvestable
-            if (refCrop != null && refCrop.numStages <= currentStage)
+            if (refCrop != null && refCrop.numStages-1 == currentStage)
             {
                 //Get the last sprite index
                 sprite.sprite = refCrop.growthStageSprites[refCrop.numStages - 1];
+                isHarvestable = true;
             }
             else
             {
@@ -87,16 +88,20 @@ public class Crop : Entity
         return false;
     }
 
+    public bool CanBeHarvested()
+    {
+        return isHarvestable;
+    }
+
     public void Harvest()
     {
-        if (currentStage < refCrop.numStages - 1)
+        if (CanBeHarvested())
         {
-            Debug.Log("This crop is not ready to be harvested");
-            return;
+            //TODO Add logic for increasing the player's crop count
+            //Remove the entity from it's current TileData and destroy the GameObject
+            DestroyEntity();
         }
-        //TODO Add logic for increasing the player's crop count
-        //Remove the entity from it's current TileData and destroy the GameObject
-        DestroyEntity();
+
     }
 
     //Use the events system to get updates about state when the turn advanced

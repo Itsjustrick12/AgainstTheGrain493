@@ -24,7 +24,7 @@ public class TileManager : MonoBehaviour
     public Tilemap borderMap;
 
     //Used for getting nearby references of tiles
-    private static Vector3Int[] NEIGHBORS = new Vector3Int[]
+    [HideInInspector]private static Vector3Int[] NEIGHBORS = new Vector3Int[]
     {
         //Offsets for referencing specific tiles
         new Vector3Int(0,0,0), //Top Right
@@ -33,7 +33,7 @@ public class TileManager : MonoBehaviour
         new Vector3Int(1,1,0) //Bottom Left
     };
     //Used for working backwards from display to placeholder
-    private static Vector3Int[] DIRECTIONS = new Vector3Int[]
+    public static Vector3Int[] DIRECTIONS = new Vector3Int[]
     {
         new Vector3Int(1, 0, 0),
         new Vector3Int(-1, 0, 0),
@@ -260,6 +260,29 @@ public class TileManager : MonoBehaviour
             PlaceEntityOnTile(end, selectedEntity);
         }
         
+    }
+    //Need to check for unit null upon return
+    public Unit GetUnitOnTile(Vector3Int pos)
+    {
+        Unit unit = GetEntityOnTile(pos) as Unit;
+        return unit;
+    }
+
+    public Crop GetCropOnTile(Vector3Int pos)
+    {
+        Crop crop = GetEntityOnTile(pos) as Crop;
+        return crop;
+    }
+
+    public Entity GetEntityOnTile(Vector3Int pos)
+    {
+        TileData data = GetTileDataAt(pos);
+        //try to get a unit
+        if (data != null && data.HasOccupant())
+        {
+            return (data.occupyingEntity);
+        }
+        return null;
     }
 
     private void OnEnable()
