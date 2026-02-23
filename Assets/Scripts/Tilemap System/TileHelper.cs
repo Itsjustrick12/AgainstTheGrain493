@@ -1,3 +1,4 @@
+using NUnit.Framework.Internal.Commands;
 using System.Collections.Generic;
 using UnityEngine;
 //test class used for ai pathfinding
@@ -148,6 +149,43 @@ public class TileHelper : MonoBehaviour
         ret.Add(Vector3Int.zero);
         return ret;
     }
+
+    //----
+    //Make a function, public void draw interaction range
+    //Tkae in Vecotr 3 positon and unit, then see units range of movement and determine all possible movements
+    //Output the list of positions, drawn somewhere else
+
+    public List<Vector3Int> DrawInteractionRange(Vector3Int currentPos, Unit currentUnit)
+    {
+        var validPositions = new List<Vector3Int>();
+        for(int i = 0; i < X_SIZE; i++)
+        {
+            for(int j = 0; j < Y_SIZE; j++)
+            {
+                Vector3Int candidateTile = new Vector3Int(i, j, 0);
+                if(candidateTile == currentPos || !InRange(candidateTile))
+                {
+                    continue;
+                }
+                var validPath = TilePath(currentPos, candidateTile);
+
+                if(validPath == null || validPath.Count == 1 && validPath[0] == Vector3Int.zero)
+                {
+                    continue;
+                }
+
+                int pathLength = validPath.Count - 1;
+
+                if (pathLength <= currentUnit.movementRange)
+                {
+                    validPositions.Add(candidateTile);
+                }
+
+            }
+        }
+
+        return validPositions;
+    }
 };
 
 public class Node
@@ -190,10 +228,4 @@ public class Node
         end = TileHelper.GridtoZero(end);
         return Mathf.Abs(start[0] - end[0]) + Mathf.Abs(location[1] - end[1]);
     }
-
-    //----
-    //Make a function, public void draw interaction range
-    //Tkae in Vecotr 3 positon and unit, then see units range of movement and determine all possible movements
-    //Output the list of positions, drawn somewhere else
-
 };
