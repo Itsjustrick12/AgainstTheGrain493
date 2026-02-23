@@ -190,4 +190,10 @@ public class Node
         end = TileHelper.GridtoZero(end);
         return Mathf.Abs(start[0] - end[0]) + Mathf.Abs(location[1] - end[1]);
     }
+
+    //----
+    //Make a function, public void draw interaction range
+    //Tkae in Vecotr 3 positon and unit, then see units range of movement and determine all possible movements
+    //Output the list of positions, drawn somewhere else
+
 };
