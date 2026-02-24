@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
@@ -36,13 +37,15 @@ public class GameManager : MonoBehaviour
         isPlayerTurn = true;
         SpawnStartingUnits();
     }
-    public void BeginPlayerTurn(InputAction.CallbackContext context)
+    
+    public void BeginEnemyTurn(InputAction.CallbackContext context)
     {
-        BeginPlayerTurn();
+        StartCoroutine(EnemyTurnRoutine());
     }
 
     public void BeginPlayerTurn()
     {
+        isPlayerTurn = true;
         // Call this whenever a turn/day ends
         Debug.Log("Turn advanced!");
         List<Unit> friendlies = GetAllFriendlyUnits();
@@ -138,6 +141,20 @@ public class GameManager : MonoBehaviour
 
     }
 
+    private IEnumerator EnemyTurnRoutine()
+    {
+        isPlayerTurn = false;
+        List<Unit> tempunits = GetAllEnemyUnits();
+
+        foreach (Unit unit in tempunits)
+        {
+            unit.DoTurn();
+            yield return new WaitForSeconds(0.5f); // pause between each enemy
+        }
+
+        BeginPlayerTurn();
+    }
+
 
     //Uses the transform containers to return all friendly units
     public List<Unit> GetAllFriendlyUnits()
@@ -158,14 +175,14 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         input = new AgainstTheGrainInput();
-        input.Gameplay.AdvanceTurn.performed += BeginPlayerTurn;
+        input.Gameplay.AdvanceTurn.performed += BeginEnemyTurn;
         input.Enable();
 
     }
 
     private void OnDisable()
     {
-        input.Gameplay.AdvanceTurn.performed -= BeginPlayerTurn;
+        input.Gameplay.AdvanceTurn.performed -= BeginEnemyTurn;
         input.Disable();
     }
 

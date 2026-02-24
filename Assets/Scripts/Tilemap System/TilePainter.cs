@@ -1,9 +1,12 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 //Debug Class used for testing tile system implementation and rendering
 //Use the type in the inspector and the left click to paint to the map
 public class TilePainter : TileCursor
@@ -65,6 +68,15 @@ public class TilePainter : TileCursor
         }
     }
 
+    public void KillEntity(InputAction.CallbackContext a)
+    {
+        TileData data = tileManager.GetTileDataAt(currentTile);
+        if (data != null && data.HasOccupant())
+        {
+            data.KillEntity();
+        }
+    }
+
     public void LiftBrush(InputAction.CallbackContext a)
     {
         paintingTile = false;
@@ -79,6 +91,7 @@ public class TilePainter : TileCursor
         }
         startPoint = currentTile;
         debugMap.SetTile(startPoint,startTile);
+        Debug.Log("Start is now: " + startPoint);
     }
 
     public void PickEnd(InputAction.CallbackContext a)
@@ -90,11 +103,16 @@ public class TilePainter : TileCursor
         }
         endPoint = currentTile;
         debugMap.SetTile(endPoint, endTile);
+        Debug.Log("End is now: " + endPoint);
     }
 
     public void DrawPath(InputAction.CallbackContext a)
     {
+
+        Debug.Log("Start Pos: " + startPoint + " | End Pos: " + endPoint);
         List<Vector3Int> positions = pathfinder.TilePath(startPoint, endPoint);
+
+        Debug.Log("Path Of Length: " + positions.Count);
 
         //Update the map to show the new tiles
         ClearDebugMap();
@@ -119,6 +137,20 @@ public class TilePainter : TileCursor
             if (data.occupyingEntity is Crop cropCheck)
             {
                 cropCheck.Harvest();
+            }
+        }
+    }
+
+    public void AttemptTarget(InputAction.CallbackContext a)
+    {
+        TileData data = tileManager.GetTileDataAt(currentTile);
+        if (data != null && data.HasOccupant())
+        {
+            if (data.occupyingEntity is Unit unitCheck)
+            {
+                Vector3Int targetLoc = unitCheck.SetAndReturnTarget();
+
+                debugMap.SetTile(targetLoc, endTile);
             }
         }
     }
@@ -160,6 +192,8 @@ public class TilePainter : TileCursor
         input.Gameplay.PickB.performed += PickEnd;
         input.Gameplay.PlaceCrop.performed += PlaceCrop;
         input.Gameplay.Harvest.performed += AttemptHarvest;
+        input.Gameplay.Target.performed += AttemptTarget;
+        input.Gameplay.Kill.performed += KillEntity;
     }
 
     private void OnDisable()
@@ -173,6 +207,8 @@ public class TilePainter : TileCursor
         input.Gameplay.PickB.performed -= PickEnd;
         input.Gameplay.PlaceCrop.performed -= PlaceCrop;
         input.Gameplay.Harvest.performed -= AttemptHarvest;
+        input.Gameplay.Target.performed -= AttemptTarget;
+        input.Gameplay.Kill.performed -= KillEntity;
         input.Disable();
     }
 

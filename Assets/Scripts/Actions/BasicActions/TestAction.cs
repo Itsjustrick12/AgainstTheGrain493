@@ -24,15 +24,7 @@ public class TestAction : UnitAction
     //Determines whether or not a unit can perform a given action
     public override bool IsPossible(Unit unit)
     {
-
-        if (unit.type == UnitType.Farmer)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return unit.IsActive();
     }
 
     public override void PerformAt(Unit unit, List<Vector3Int> positions)

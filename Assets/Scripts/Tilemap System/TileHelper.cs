@@ -55,18 +55,20 @@ public class TileHelper : MonoBehaviour
     {
         List<Vector3Int> ret = new List<Vector3Int>();
 
+        //Debug.Log("Start Pos: " + start + " | End Pos: " + end);
         //check to make sure it's in range
-        if (!InRange(start) || !InRange(end))
+        if(!InRange(start) || !InRange(end))
         {
             ret.Add(Vector3Int.zero);
+            Debug.Log("Not in range");
             return ret;
         }
 
         //check to make sure they aren't equal
-        if (start == end)
+        if(start == end)
         {
             ret.Add(start);
-            ret.Add(end);
+            Debug.Log("Start = End");
             return ret;
         }
 
@@ -81,14 +83,14 @@ public class TileHelper : MonoBehaviour
         openList.Add(startNode);
 
         //keep looping until the list is empty
-        while (openList.Count > 0)
+        while(openList.Count > 0)
         {
             //sort openList by f
             openList.Sort((a, b) => a.f.CompareTo(b.f));
             Node currentNode = openList[0];
 
             //check if the current node is the end
-            if (currentNode.location == end)
+            if(currentNode.location == end)
             {
                 //if it is get the return ready
                 Node node = currentNode;
@@ -97,6 +99,11 @@ public class TileHelper : MonoBehaviour
                     ret.Insert(0, node.location);
                     node = node.parent;
                 }
+                //Debug.Log("Path Of Length: " + ret.Count);
+                //for(int i = 0; i < ret.Count; i++)
+                //{
+                //    Debug.Log(ret[i]);
+                //}
                 return ret;
             }
 
@@ -115,13 +122,14 @@ public class TileHelper : MonoBehaviour
 
             foreach(var neighborPos in neighbors)
             {
-                if (!InRange(neighborPos) || closedSet.Contains(neighborPos))
+                if(!InRange(neighborPos) || closedSet.Contains(neighborPos))
                 {
                     continue;
                 }
+
                 //if tile is not walkable, skip
                 var tileData = tileManager.GetTileDataAt(neighborPos);
-                if (tileData == null || !tileData.CanEnter())
+                if(tileData == null || (!tileData.CanEnter() && neighborPos != end))
                 {
                     continue;
                 }
@@ -129,7 +137,7 @@ public class TileHelper : MonoBehaviour
 
                 Node existingNode = openList.Find(n => n.location == neighborPos);
 
-                if (existingNode == null)
+                if(existingNode == null)
                 {
                     Node neighborNode = new Node(neighborPos, currentNode);
                     neighborNode.SetG(gCost);
@@ -147,6 +155,7 @@ public class TileHelper : MonoBehaviour
 
         // No path
         ret.Add(Vector3Int.zero);
+        Debug.Log("No path");
         return ret;
     }
 

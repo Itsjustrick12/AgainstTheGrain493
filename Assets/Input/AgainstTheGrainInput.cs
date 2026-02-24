@@ -163,6 +163,24 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Target"",
+                    ""type"": ""Button"",
+                    ""id"": ""a860d26e-af10-43a6-9b91-2d20b63a3323"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Kill"",
+                    ""type"": ""Button"",
+                    ""id"": ""6f990bf5-f69e-462e-af08-c8028a05ea4e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -253,6 +271,39 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
                     ""action"": ""Harvest"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ceeb042a-ffd6-4743-b593-9e6dcaa5e8d3"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Target"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1d5df5bc-b62f-4b4f-bb28-0669d518aa2e"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Kill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c4354c8-aae9-41c8-926c-7b308806ba51"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Kill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -269,6 +320,8 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         m_Gameplay_AdvanceTurn = m_Gameplay.FindAction("AdvanceTurn", throwIfNotFound: true);
         m_Gameplay_PlaceCrop = m_Gameplay.FindAction("PlaceCrop", throwIfNotFound: true);
         m_Gameplay_Harvest = m_Gameplay.FindAction("Harvest", throwIfNotFound: true);
+        m_Gameplay_Target = m_Gameplay.FindAction("Target", throwIfNotFound: true);
+        m_Gameplay_Kill = m_Gameplay.FindAction("Kill", throwIfNotFound: true);
     }
 
     ~@AgainstTheGrainInput()
@@ -357,6 +410,8 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_AdvanceTurn;
     private readonly InputAction m_Gameplay_PlaceCrop;
     private readonly InputAction m_Gameplay_Harvest;
+    private readonly InputAction m_Gameplay_Target;
+    private readonly InputAction m_Gameplay_Kill;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -400,6 +455,14 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Gameplay/Harvest".
         /// </summary>
         public InputAction @Harvest => m_Wrapper.m_Gameplay_Harvest;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Target".
+        /// </summary>
+        public InputAction @Target => m_Wrapper.m_Gameplay_Target;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Kill".
+        /// </summary>
+        public InputAction @Kill => m_Wrapper.m_Gameplay_Kill;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -450,6 +513,12 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
             @Harvest.started += instance.OnHarvest;
             @Harvest.performed += instance.OnHarvest;
             @Harvest.canceled += instance.OnHarvest;
+            @Target.started += instance.OnTarget;
+            @Target.performed += instance.OnTarget;
+            @Target.canceled += instance.OnTarget;
+            @Kill.started += instance.OnKill;
+            @Kill.performed += instance.OnKill;
+            @Kill.canceled += instance.OnKill;
         }
 
         /// <summary>
@@ -485,6 +554,12 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
             @Harvest.started -= instance.OnHarvest;
             @Harvest.performed -= instance.OnHarvest;
             @Harvest.canceled -= instance.OnHarvest;
+            @Target.started -= instance.OnTarget;
+            @Target.performed -= instance.OnTarget;
+            @Target.canceled -= instance.OnTarget;
+            @Kill.started -= instance.OnKill;
+            @Kill.performed -= instance.OnKill;
+            @Kill.canceled -= instance.OnKill;
         }
 
         /// <summary>
@@ -581,5 +656,19 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnHarvest(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Target" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTarget(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Kill" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnKill(InputAction.CallbackContext context);
     }
 }

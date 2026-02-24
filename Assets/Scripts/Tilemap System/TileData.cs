@@ -58,6 +58,12 @@ public class TileData
         occupyingEntity = null;
     }
 
+    public void KillEntity()
+    {
+        GameObject.Destroy(occupyingEntity.gameObject);
+        occupyingEntity = null;
+    }
+
     public void UpdateType(TileType type)
     {
         this.type = type;
@@ -90,6 +96,7 @@ public class TileData
             Debug.Log("Entity was overwritten!");
             occupyingEntity.DestroyEntity();
         }
+
         occupyingEntity = entity;
         occupyingEntity.SetGridPos(gridPos);
         //Water if the entity is a crop and this tile is watered
