@@ -18,7 +18,7 @@ public class Unit : Entity
     public int strength = 1;
     //Only increase for ranged attackers
     public int attackRange = 1;
-
+    public int iq = 1;
     public int movementRange = 3;
 
     //Hidden logic for determining what a unit is able to do, define by the unit database
@@ -51,24 +51,24 @@ public class Unit : Entity
         return actions.Where(action => action.IsPossible(this)).ToList();
     }
 
-    //int GetHealth()
-    //{
-    //    return currentHealth;
-    //}
+    int GetHealth()
+    {
+        return currentHealth;
+    }
 
-    //public void GetHealth(int healthValue){ 
-    //    currentHealth = healthValue;
-    //}
+    public void GetHealth(int healthValue){ 
+        currentHealth = healthValue;
+    }
 
-    //public void TakeDamage(int damage)
-    //{
-    //    currentHealth -= damage;
-    //    Debug.Log("Unit hit for " + damage + " damage!");
-    //    if (currentHealth <= 0)
-    //    {
-    //        Die();
-    //    }
-    //}
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        Debug.Log("Unit hit for " + damage + " damage!");
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
 
     public int GetAttackRange()
     {
@@ -106,12 +106,11 @@ public class Unit : Entity
         return IsSameTeamAs(unitCheck);
     }
 
-    //public void Die()
-    //{
-    //    Debug.Log("Unit has Died!");
-    //    DestroyEntity();
-    //}
-    public int iq = 1;
+    public void Die()
+    {
+        Debug.Log("Unit has Died!");
+        DestroyEntity();
+    }
 
     public int GetStrength()
     {
@@ -291,6 +290,11 @@ public class Unit : Entity
     {
         //make sure we dont pass the movement amount of the unit
         int tempMovement = movementRange;
+
+        if(GetGridPos() == path[0])
+        {
+            path.RemoveAt(0);
+        }
         while(tempMovement > 0 && path.Count > 0)
         {
             //if there is nothing in the next tile
@@ -299,6 +303,7 @@ public class Unit : Entity
                 //if we have enough movement left
                 if(tempMovement >= tileManager.GetTileDataAt(path[0]).movementCost)
                 {
+                    Debug.Log("Move to " + path[0]);
                     //set our grid position to the next tile
                     this.SetGridPos(path[0]);
                     //change amount of movement left
@@ -308,11 +313,13 @@ public class Unit : Entity
                 }
                 else
                 {
+                    Debug.Log("Not enough movement");
                     tempMovement = 0;
                 }
             }
             else
             {
+                Debug.Log("Entity in next tile");
                 tempMovement = 0;
             }
         }
@@ -344,17 +351,17 @@ public class Unit : Entity
         //if a target hasn't been set we find the next target
         if(target.z == -1)
         {
+            Debug.Log("Finding Target");
             this.SetTarget();
         }
 
         //if we found a target we move to it
         if(target.z != -1)
         {
+            Debug.Log("Target found at " + target);
             //tileManager.GetTileDataAt(GetGridPos()).ClearOccupant();
             //tileManager.GetTileDataAt(target).ClearOccupant();
             List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), target);
-            Debug.Log("Start Pos: " + GetGridPos() + " | End Pos: " + target);
-            Debug.Log("Path Of Length: " + path.Count);
 
             Move(path);
         }
