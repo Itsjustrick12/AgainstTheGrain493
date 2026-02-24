@@ -120,7 +120,7 @@ public class TileHelper : MonoBehaviour
                 }
                 //if tile is not walkable, skip
                 var tileData = tileManager.GetTileDataAt(neighborPos);
-                if (tileData == null || !tileData.CanEnter())
+                if (tileData == null || (!tileData.CanEnter() && neighborPos!=end))
                 {
                     continue;
                 }

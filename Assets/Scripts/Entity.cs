@@ -20,10 +20,9 @@ public class Entity : MonoBehaviour
     //Stores the location of where this entity actually is
     private Vector3Int gridPos;
     protected bool isActive = true;
-
     protected TileManager tileManager;
     protected GameManager gameManager;
-    protected TileHelper tileHelper;
+    [SerializeField]protected TileHelper tileHelper;
 
     [Header("Stats")]
     //stores the entity's max hitpoints

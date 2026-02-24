@@ -1,10 +1,12 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 //Debug Class used for testing tile system implementation and rendering
 //Use the type in the inspector and the left click to paint to the map
 public class TilePainter : TileCursor
@@ -80,6 +82,7 @@ public class TilePainter : TileCursor
         }
         startPoint = currentTile;
         debugMap.SetTile(startPoint,startTile);
+        Debug.Log("Start is now: " + startPoint);
     }
 
     public void PickEnd(InputAction.CallbackContext a)
@@ -91,11 +94,16 @@ public class TilePainter : TileCursor
         }
         endPoint = currentTile;
         debugMap.SetTile(endPoint, endTile);
+        Debug.Log("End is now: " + endPoint);
     }
 
     public void DrawPath(InputAction.CallbackContext a)
     {
+
+        Debug.Log("Start Pos: " + startPoint + " | End Pos: " + endPoint);
         List<Vector3Int> positions = pathfinder.TilePath(startPoint, endPoint);
+
+        Debug.Log("Path Of Length: " + positions.Count);
 
         //Update the map to show the new tiles
         ClearDebugMap();

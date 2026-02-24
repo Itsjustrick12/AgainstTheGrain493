@@ -8,8 +8,6 @@ public class Unit : Entity
 {
     [Header("General Settings")]
     public int ID;
-    public UnitType type;
-    public bool isActive = false;
     //added for targeting
     public List<EntityType> primary = new List<EntityType>();
     //no target uses a negative z value
@@ -53,24 +51,24 @@ public class Unit : Entity
         return actions.Where(action => action.IsPossible(this)).ToList();
     }
 
-    int GetHealth()
-    {
-        return currentHealth;
-    }
+    //int GetHealth()
+    //{
+    //    return currentHealth;
+    //}
 
-    public void GetHealth(int healthValue){ 
-        currentHealth = healthValue;
-    }
+    //public void GetHealth(int healthValue){ 
+    //    currentHealth = healthValue;
+    //}
 
-    public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-        Debug.Log("Unit hit for " + damage + " damage!");
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
+    //public void TakeDamage(int damage)
+    //{
+    //    currentHealth -= damage;
+    //    Debug.Log("Unit hit for " + damage + " damage!");
+    //    if (currentHealth <= 0)
+    //    {
+    //        Die();
+    //    }
+    //}
 
     public int GetAttackRange()
     {
@@ -108,11 +106,11 @@ public class Unit : Entity
         return IsSameTeamAs(unitCheck);
     }
 
-    public void Die()
-    {
-        Debug.Log("Unit has Died!");
-        DestroyEntity();
-    }
+    //public void Die()
+    //{
+    //    Debug.Log("Unit has Died!");
+    //    DestroyEntity();
+    //}
     public int iq = 1;
 
     public int GetStrength()
@@ -195,7 +193,7 @@ public class Unit : Entity
         if(primary.Contains(EntityType.Crop) || !prime)
         {
             List<Crop> tempCrops = gameManager.GetAllCrops();
-            for(int i = 0; i < tempUnits.Count; i++)
+            for(int i = 0; i < tempCrops.Count; i++)
             {
                 temp.Add(tempCrops[i].GetGridPos());
             }
@@ -344,15 +342,21 @@ public class Unit : Entity
     public void DoTurn()
     {
         //if a target hasn't been set we find the next target
-        if(this.GetGridPos().z != -1)
+        if(target.z == -1)
         {
             this.SetTarget();
         }
 
         //if we found a target we move to it
-        if(this.GetGridPos().z != -1)
+        if(target.z != -1)
         {
-            Move(tileHelper.TilePath(this.GetGridPos(), target));
+            //tileManager.GetTileDataAt(GetGridPos()).ClearOccupant();
+            //tileManager.GetTileDataAt(target).ClearOccupant();
+            List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), target);
+            Debug.Log("Start Pos: " + GetGridPos() + " | End Pos: " + target);
+            Debug.Log("Path Of Length: " + path.Count);
+
+            Move(path);
         }
 
         //then we attack the target
