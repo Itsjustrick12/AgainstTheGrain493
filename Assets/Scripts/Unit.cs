@@ -340,7 +340,7 @@ public class Unit : Entity
                 if(tileManager.GetTileDataAt(target).occupyingEntity == null)
                 {
                     //we then set target
-                    this.SetTarget();
+                    target = new Vector3Int(0,0,-1);
                 }
             }
         }
