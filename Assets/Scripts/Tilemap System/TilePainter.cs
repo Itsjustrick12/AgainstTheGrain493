@@ -128,13 +128,32 @@ public class TilePainter : TileCursor
         debugMap.ClearAllTiles();
     }
 
+    public void DrawMovementRange(InputAction.CallbackContext a)
+    {
+        //Get the interaction tiles
+        
+        //Get the unit reference
+        Unit unitref = tileManager.GetTileDataAt(currentTile).occupyingEntity as Unit;
+        if (unitref != null)
+        {
+            debugMap.ClearAllTiles();
+            List<Vector3Int> range = pathfinder.GetMovementRange(unitref);
+            //Debug.Log("Range has " + range.Count + " tiles in it!");
+            foreach (Vector3Int pos in range) {
+                debugMap.SetTile(pos, pathTile);
+            }
+
+
+        }
+    }
+
     private void OnEnable()
     {
         input = new AgainstTheGrainInput();
         input.Enable();
         input.Gameplay.Paint.canceled += LiftBrush;
         input.Gameplay.Paint.started += DropBrush;
-        input.Gameplay.ReadTile.performed += ReadTile;
+        input.Gameplay.ReadTile.performed += DrawMovementRange;
         input.Gameplay.DrawPath.performed += DrawPath;
         input.Gameplay.PickA.performed += PickStart;
         input.Gameplay.PickB.performed += PickEnd;
@@ -146,7 +165,7 @@ public class TilePainter : TileCursor
     {
         input.Gameplay.Paint.canceled -= LiftBrush;
         input.Gameplay.Paint.started -= DropBrush;
-        input.Gameplay.ReadTile.performed -= ReadTile;
+        input.Gameplay.ReadTile.performed -= DrawMovementRange;
         input.Gameplay.DrawPath.performed -= DrawPath;
         input.Gameplay.PickA.performed -= PickStart;
         input.Gameplay.PickB.performed -= PickEnd;

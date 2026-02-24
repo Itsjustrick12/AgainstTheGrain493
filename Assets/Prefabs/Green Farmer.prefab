@@ -109,9 +109,8 @@ MonoBehaviour:
   ID: 0
   type: 0
   isActive: 0
-  sprite: {fileID: 0}
   isEnemy: 0
   maxHealth: 10
   currentHealth: 10
   strength: 0
-  movementRange: 0
+  movementRange: 3
