@@ -104,53 +104,19 @@ public class Unit : Entity
     //gets vector3Int List for best target based on difficulty
     public void SetTarget()
     {
-        // First try primary targets
-        List<Vector3Int> targets = FindPositions(true);
         
-        //if any primary targets are found
-        if(targets.Count > 0)
+        //choose target based on iq
+        if (iq == 1)
         {
-            //see if the target is pathable
-            if (iq == 1)
-            {
-                target = FindEasy(targets);
-            }
-            else if (iq < 5)
-            {
-                target = FindMedium(targets);
-            }
-            else
-            {
-                target = FindHard(targets);
-            }
+            target = FindEasy();
         }
-
-        //if a pathable target was found exit
-        if(target.z != -1)
+        else if (iq < 5)
         {
-            Debug.Log("Pathable Target found");
-            return;
+            target = FindMedium();
         }
-
-        // Fall back to any valid target
-        targets = FindPositions(false);
-
-        //if any target is found
-        if(targets.Count > 0)
+        else
         {
-            //see if any target is viable
-            if (iq == 1)
-            {
-                target = FindEasy(targets);
-            }
-            else if (iq < 5)
-            {
-                target = FindMedium(targets);
-            }
-            else
-            {
-                target = FindHard(targets);
-            }
+            target = FindHard();
         }
 
         // Still nothing, clear target
@@ -200,7 +166,6 @@ public class Unit : Entity
         //only grabs crops if they're a primary target or secondary targeting
         if(primary.Contains(EntityType.Crop) || !prime)
         {
-            Debug.Log("Looking for crops");
             List<Crop> tempCrops = gameManager.GetAllCrops();
             for(int i = 0; i < tempCrops.Count; i++)
             {
@@ -211,11 +176,47 @@ public class Unit : Entity
         return temp;
     }
 
-    //targeting for "Easy" enemies
-    Vector3Int FindEasy(List<Vector3Int> targets)
+    /*
+        targeting for "Easy" enemies
+        
+        targets clostest primary target
+
+        if there is no targetable primary target it chooses the closest unit
+    */
+    Vector3Int FindEasy()
     {
+        //gets all primary targets
+        List<Vector3Int> targets = FindPositions(true);
+
         Vector3Int best = new Vector3Int(0, 0, -1);
         int bestTTR = int.MaxValue;
+
+        foreach (Vector3Int t in targets)
+        {
+            //get the path for the next potential target
+            List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), t);
+
+            // Skip paths that return no path (only 1 item in list)
+            if (path.Count == 1)
+                continue;
+
+            //uses turnstoreach to find the "best" target
+            int ttr = TurnsToReach(path);
+            if (ttr < bestTTR)
+            {
+                bestTTR = ttr;
+                best = t;
+            }
+        }
+
+        // if an accesible primary target was found return
+        if(best.z != -1)
+        {
+            return best;
+        }
+
+        //now we look for any target
+        targets = FindPositions(false);
 
         foreach (Vector3Int t in targets)
         {
@@ -238,9 +239,18 @@ public class Unit : Entity
         return best;
     }
 
-    //targeting for "Medium" enemies
-    Vector3Int FindMedium(List<Vector3Int> targets)
+    /*
+        targeting for "Medium" enemies
+
+        targets closest primary target
+        or
+        secondary target that takes -1 turn to kill
+    */
+    Vector3Int FindMedium()
     {
+        //get list of all targets
+        List<Vector3Int> targets = FindPositions(false);
+
         Vector3Int best = new Vector3Int(0, 0, -1);
         int bestTTK = int.MaxValue;
 
@@ -255,6 +265,12 @@ public class Unit : Entity
 
             //uses turnstokill to find the "best" target
             int ttk = TurnsToKill(path);
+
+            //if the potential target is a secondary target add 1 to the ttk
+            if(!primary.Contains(tileManager.GetTileDataAt(t).GetOccupyingEntity().GetEntityType()))
+            {
+                ttk++;
+            }
             if (ttk < bestTTK)
             {
                 bestTTK = ttk;
@@ -266,9 +282,9 @@ public class Unit : Entity
     }
 
     //TODO
-    Vector3Int FindHard(List<Vector3Int> targets)
+    Vector3Int FindHard()
     {
-        return FindMedium(targets);
+        return FindMedium();
 
     }
 
@@ -281,9 +297,9 @@ public class Unit : Entity
         ttk += TurnsToReach(path);
 
         //checks the last spot in the path to make sure there is actually a target
-        if(tileManager.GetTileDataAt(path[path.Count]).occupyingEntity != null)
+        if(tileManager.GetTileDataAt(path[path.Count - 1]).occupyingEntity != null)
         {
-            Entity temptarget = tileManager.GetTileDataAt(path[path.Count]).occupyingEntity;
+            Entity temptarget = tileManager.GetTileDataAt(path[path.Count - 1]).occupyingEntity;
 
             //so since temptarget can be attacked on the move turn you subtrace 1 turn from
             //the amount of turns required to kill target
