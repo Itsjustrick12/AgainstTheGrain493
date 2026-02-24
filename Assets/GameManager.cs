@@ -40,9 +40,10 @@ public class GameManager : MonoBehaviour
         isPlayerTurn = true;
         SpawnStartingUnits();
     }
-    public void BeginPlayerTurn(InputAction.CallbackContext context)
+    
+    public void BeginEnemyTurn(InputAction.CallbackContext context)
     {
-        BeginPlayerTurn();
+        EnemyTurn();
     }
 
     public void BeginPlayerTurn()
@@ -142,6 +143,19 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void EnemyTurn()
+    {
+        isPlayerTurn = false;
+        List<Unit> tempunits = GetAllEnemyUnits();
+
+        foreach(Unit unit in tempunits)
+        {
+            unit.DoTurn();
+
+        }
+        BeginPlayerTurn();
+    }
+
 
     //Uses the transform containers to return all friendly units
     public List<Unit> GetAllFriendlyUnits()
@@ -162,14 +176,14 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         input = new AgainstTheGrainInput();
-        input.Gameplay.AdvanceTurn.performed += BeginPlayerTurn;
+        input.Gameplay.AdvanceTurn.performed += BeginEnemyTurn;
         input.Enable();
 
     }
 
     private void OnDisable()
     {
-        input.Gameplay.AdvanceTurn.performed -= BeginPlayerTurn;
+        input.Gameplay.AdvanceTurn.performed -= BeginEnemyTurn;
         input.Disable();
     }
 
