@@ -67,7 +67,7 @@ public class TileHelper : MonoBehaviour
         if(start == end)
         {
             ret.Add(start);
-            Debug.Log("Path is equal");
+            Debug.Log("Start = End");
             return ret;
         }
 

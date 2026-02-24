@@ -106,25 +106,59 @@ public class Unit : Entity
     {
         // First try primary targets
         List<Vector3Int> targets = FindPositions(true);
-
-        // Fall back to any valid target
-        if (targets.Count == 0)
-            targets = FindPositions(false);
-
-        // Still nothing, clear target
-        if (targets.Count == 0)
+        
+        //if any primary targets are found
+        if(targets.Count > 0)
         {
-            target = new Vector3Int(0, 0, -1);
+            //see if the target is pathable
+            if (iq == 1)
+            {
+                target = FindEasy(targets);
+            }
+            else if (iq < 5)
+            {
+                target = FindMedium(targets);
+            }
+            else
+            {
+                target = FindHard(targets);
+            }
+        }
+
+        //if a pathable target was found exit
+        if(target.z != -1)
+        {
+            Debug.Log("Pathable Target found");
             return;
         }
 
-        // Pick target based on IQ
-        if (iq == 1)
-            target = FindEasy(targets);
-        else if (iq < 5)
-            target = FindMedium(targets);
-        else
-            target = FindHard(targets);
+        // Fall back to any valid target
+        targets = FindPositions(false);
+
+        //if any target is found
+        if(targets.Count > 0)
+        {
+            //see if any target is viable
+            if (iq == 1)
+            {
+                target = FindEasy(targets);
+            }
+            else if (iq < 5)
+            {
+                target = FindMedium(targets);
+            }
+            else
+            {
+                target = FindHard(targets);
+            }
+        }
+
+        // Still nothing, clear target
+        if (target.z == -1)
+        {
+            Debug.Log("No Pathable Primary/Any Target found");
+            return;
+        }
     }
 
     public Vector3Int GetTarget()
@@ -143,6 +177,7 @@ public class Unit : Entity
         List<Vector3Int> temp = new List<Vector3Int>();
         List<Unit> tempUnits;
 
+        //grabs the list depending on team
         if (isEnemy)
         {
             tempUnits = gameManager.GetAllFriendlyUnits();
@@ -152,16 +187,20 @@ public class Unit : Entity
             tempUnits = gameManager.GetAllEnemyUnits();
         }
 
+        //gets all of the entities to be targeted
         for(int i = 0; i < tempUnits.Count; i++)
         {
+            //only grabs an entity if it's a primary target or secondary targeting
             if(primary.Contains(tempUnits[i].GetEntityType()) || !prime)
             {
                 temp.Add(tempUnits[i].GetGridPos());
             }
         }
 
-        if(primary.Contains(EntityType.Crop) || (!prime && primary.Contains(EntityType.Crop)))
+        //only grabs crops if they're a primary target or secondary targeting
+        if(primary.Contains(EntityType.Crop) || !prime)
         {
+            Debug.Log("Looking for crops");
             List<Crop> tempCrops = gameManager.GetAllCrops();
             for(int i = 0; i < tempCrops.Count; i++)
             {
@@ -172,6 +211,7 @@ public class Unit : Entity
         return temp;
     }
 
+    //targeting for "Easy" enemies
     Vector3Int FindEasy(List<Vector3Int> targets)
     {
         Vector3Int best = new Vector3Int(0, 0, -1);
@@ -179,12 +219,14 @@ public class Unit : Entity
 
         foreach (Vector3Int t in targets)
         {
+            //get the path for the next potential target
             List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), t);
 
-            // Skip invalid paths
-            if (path.Count == 1 && path[0] == Vector3Int.zero)
+            // Skip paths that return no path (only 1 item in list)
+            if (path.Count == 1)
                 continue;
 
+            //uses turnstoreach to find the "best" target
             int ttr = TurnsToReach(path);
             if (ttr < bestTTR)
             {
@@ -196,6 +238,7 @@ public class Unit : Entity
         return best;
     }
 
+    //targeting for "Medium" enemies
     Vector3Int FindMedium(List<Vector3Int> targets)
     {
         Vector3Int best = new Vector3Int(0, 0, -1);
@@ -203,11 +246,14 @@ public class Unit : Entity
 
         foreach (Vector3Int t in targets)
         {
+            //get the path for the next potential target
             List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), t);
 
-            if (path.Count == 1 && path[0] == Vector3Int.zero)
+            // Skip paths that return no path (only 1 item in list)
+            if (path.Count == 1)
                 continue;
 
+            //uses turnstokill to find the "best" target
             int ttk = TurnsToKill(path);
             if (ttk < bestTTK)
             {
@@ -234,11 +280,20 @@ public class Unit : Entity
         //turns to get(next) to target
         ttk += TurnsToReach(path);
 
-        //turn to kill target
+        //checks the last spot in the path to make sure there is actually a target
         if(tileManager.GetTileDataAt(path[path.Count]).occupyingEntity != null)
         {
             Entity temptarget = tileManager.GetTileDataAt(path[path.Count]).occupyingEntity;
-            ttk += temptarget.GetHealth() / this.GetStrength();
+
+            //so since temptarget can be attacked on the move turn you subtrace 1 turn from
+            //the amount of turns required to kill target
+            ttk += temptarget.GetHealth() / this.GetStrength() - 1;
+
+            //if there is leftover it adds another turn
+            if(temptarget.GetHealth() % this.GetStrength() > 0)
+            {
+                ttk++;
+            }
         }
 
         return ttk;
@@ -282,7 +337,7 @@ public class Unit : Entity
         {
             path.RemoveAt(0);
         }
-        while(tempMovement > 0 && path.Count > 0)
+        while(tempMovement > 0 && path.Count > 1)
         {
             //if there is nothing in the next tile
             if(tileManager.GetTileDataAt(path[0]).occupyingEntity == null)
@@ -350,11 +405,9 @@ public class Unit : Entity
     public void DoTurn()
     {
         //if a target hasn't been set we find the next target
-        if(target.z == -1)
-        {
-            //Debug.Log("Finding Target");
-            this.SetTarget();
-        }
+
+        //Debug.Log("Finding Target");
+        this.SetTarget();
 
         //See if our target is up to date (needed for concurrent enemy execution)
         TileData data = tileManager.GetTileDataAt(target);
@@ -378,7 +431,7 @@ public class Unit : Entity
         {
             //Debug.Log("Target found at " + target);
             List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), target);
-            if (path.Count > 1)
+            if (path.Count > 2)
             {
                 Move(path);
             }

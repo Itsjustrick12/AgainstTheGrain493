@@ -113,7 +113,7 @@ MonoBehaviour:
   isInteractable: 0
   shadeSprite: {fileID: 8357789075482895520}
   ID: 2
-  primary: 030000000000000001000000
+  primary: 030000000000000005000000
   target: {x: 0, y: 0, z: -1}
   isEnemy: 1
   strength: 5
