@@ -13,7 +13,6 @@ public class Unit : Entity
     [Header("General Settings")]
     public int ID;
     public UnitType type;
-    public bool isActive = false;
     public bool isEnemy = false;
 
 
@@ -48,6 +47,10 @@ public class Unit : Entity
 
     public List<UnitAction> GetAvailableActions()
     {
+        foreach (var action in actions)
+        {
+            Debug.Log($"Action: {action.GetName()} | IsPossible: {action.IsPossible(this)}");
+        }
         //Return all the actions that are currently possible given the Unit's information (and generally position)
         return actions.Where(action => action.IsPossible(this)).ToList();
     }
@@ -64,6 +67,7 @@ public class Unit : Entity
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        Debug.Log("Unit hit for " + damage + " damage!");
         if (currentHealth <= 0)
         {
             Die();

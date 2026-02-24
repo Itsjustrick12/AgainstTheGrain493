@@ -1,27 +1,26 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ActionButton : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI text;
 
-    private UnitAction storedAction;
-    private UnitActionEvent onPressed;
+    [SerializeField]private UnitAction storedAction;
 
-    public void Initialize(UnitAction action, UnitActionEvent callback)
+    public void Initialize(UnitAction action)
     {
         if (action == null)
         {
             Debug.LogError("This action doesn't exist!");
         }
         storedAction = action;
-        onPressed = callback;
-
         text.text = action.GetName();
     }
 
-    public void Press()
+    public UnitAction GetAction()
     {
-        onPressed?.Invoke(storedAction);
+        return storedAction;
     }
+
 }

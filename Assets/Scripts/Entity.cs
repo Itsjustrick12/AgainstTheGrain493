@@ -8,12 +8,16 @@ public class Entity : MonoBehaviour
     protected SpriteRenderer sprite;
     //Stores the location of where this entity actually is
     private Vector3Int gridPos;
+    protected bool isActive = true;
     //Determines where or not something can pathfind through the tile this entity is on
     [SerializeField] private bool isObstacle;
     //Determines if this entity can be clicked on or affected in any way
     [SerializeField] private bool isInteractable;
     private Vector3 offset = new Vector3(0.5f, 0.5f, 0);
     //Helper function for all derived entities to use to determine whether or not something is occupying the tile
+
+    //Used for deactivating the entity
+    public SpriteRenderer shadeSprite;
     public Vector3Int GetGridPos()
     {
         return gridPos;
@@ -66,5 +70,23 @@ public class Entity : MonoBehaviour
     public virtual void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
+        shadeSprite.sprite = sprite.sprite;
+    }
+
+   public bool IsActive()
+    {
+        return isActive;
+    }
+
+    public void Deactivate()
+    {
+        shadeSprite.enabled = true;
+        isActive = false;
+    }
+
+    public void Activate()
+    {
+        shadeSprite.enabled = false;
+        isActive = true;
     }
 }

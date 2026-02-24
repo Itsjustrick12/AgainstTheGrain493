@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -17,7 +18,7 @@ public class ActionMenu : MonoBehaviour
     private TileManager tileManager;
     private GameManager gameManager;
 
-    [SerializeField]private int selectedChoice = -1;
+    [SerializeField]private int selectedChoice = 0;
     private int numChoices;
 
     //for input modularity
@@ -30,35 +31,24 @@ public class ActionMenu : MonoBehaviour
     public GameObject actionButtonPrefab;
     public GameObject selectionArrow;
 
+    [Header("Default Actions")]
+    public UnitAction wait;
+    public UnitAction cancel;
+
     //Used to manage what actions are shown to the player
     private List<GameObject> spawnedButtons = new();
-
-    public Vector3Int actionLocation;
 
     public void Awake()
     {
         tileManager = FindFirstObjectByType<TileManager>();
         cursor = FindFirstObjectByType<TileCursor>();
         gameManager = FindFirstObjectByType<GameManager>();
-        PopulateOptions();
-    }
-    public void ExecuteAction(InputAction.CallbackContext a)
-    {
-        //if (!GameManager.instance.isPlayerTurn)
-        //{
-        //    return;
-        //}
-        Debug.Log("Current Choice: " + selectedChoice);
-        ReportAction();
     }
 
     //Used ChatGPT here for understanding Vector2 based inputs
     public void Navigate(InputAction.CallbackContext context)
     {
         if (!gameManager.isPlayerTurn)
-            return;
-
-        if (!context.performed)
             return;
 
         Vector2 inputVector = context.ReadValue<Vector2>();
@@ -83,19 +73,6 @@ public class ActionMenu : MonoBehaviour
             if (selectedChoice >= numChoices)
                 selectedChoice = 0;
         }
-
-        SelectButton();
-    }
-
-    public void DeselectButton()
-    {
-        
-
-    }
-
-    public void SelectButton()
-    {
-        
     }
 
     //Called from the UnitInteractionSystem for getting the action the user wants
@@ -107,26 +84,33 @@ public class ActionMenu : MonoBehaviour
         }
 
         gameObject.SetActive(true);
-        TurnOffInput();
         //Delete previous buttons
         ClearButtons();
 
         List<UnitAction> actions = unit.GetAvailableActions();
+
+        Debug.Log("Actions is of size " + actions.Count);
         
         //Only create buttons for the possible actions from the given position
         foreach (UnitAction action in actions)
         {
-
-            //Each action has it's own "can i do this?" logic, check to see if the action is availible
-            if (!action.IsPossible(unit))
-            {
-                continue;
-            }
-
             CreateButton(action);
         }
-        TurnOnInput();
+        //Add Wait and Cancel
+        AddDefaults();
+
+        selectedChoice = 0;
+        numChoices = spawnedButtons.Count();
     }
+
+    public void DeselectButton()
+    {
+        if (numChoices == 0)
+            return;
+
+        EventSystem.current.SetSelectedGameObject(null);
+    }
+
     //Spawns the buttonPrefab for each action availble to the Unit
     private void CreateButton(UnitAction action)
     {
@@ -138,8 +122,9 @@ public class ActionMenu : MonoBehaviour
         ActionButton actionButton = buttonObj.GetComponent<ActionButton>();
 
         // Initialize with action + event callback
-        actionButton.Initialize(action, OnActionSelected);
+        actionButton.Initialize(action);
     }
+
     //Resets the options upon showing a new unit
     private void ClearButtons()
     {
@@ -151,27 +136,26 @@ public class ActionMenu : MonoBehaviour
         spawnedButtons.Clear();
     }
 
-    public void ReportAction()
+    //Is used to tell the interaction system what action to do
+    private void ReportAction(InputAction.CallbackContext context)
     {
+        if (spawnedButtons.Count == 0)
+            return;
 
+        UnitAction action = spawnedButtons[selectedChoice]
+            .GetComponent<ActionButton>()
+            .GetAction();
+
+        OnActionSelected.Invoke(action);
+        HideMenu();
     }
 
-    public void PopulateOptions()
-    {
-
-    }
 
     //Only show details based options and the end turn button when no unit is selected
-    public void DetermineDefaults()
+    public void AddDefaults()
     {
-
-    }
-
-    //hide any buttons that have actions that cant be taken
-    public void DetermineValidOptions(Unit unit)
-    {
-
-        
+        CreateButton(cancel);
+        CreateButton(wait);
     }
 
     public void HideMenu()
@@ -185,14 +169,14 @@ public class ActionMenu : MonoBehaviour
         input = new DefaultInputActions();
         input.Enable();
         input.UI.Navigate.performed += Navigate;
-        //input.UI.Submit.performed += ExecuteAction;
+        input.UI.Submit.performed += ReportAction;
 
     }
 
     private void OnDisable()
     {
         input.UI.Navigate.performed -= Navigate;
-        //input.UI.Submit.performed -= ExecuteAction;
+        input.UI.Submit.performed -= ReportAction;
         input.Disable();
     }
 
@@ -202,7 +186,7 @@ public class ActionMenu : MonoBehaviour
             return;
 
         input.Disable();
-        input.Dispose();
+        //input.Dispose();
 
     }
 

@@ -49,6 +49,12 @@ public class GameManager : MonoBehaviour
     {
         // Call this whenever a turn/day ends
         Debug.Log("Turn advanced!");
+        List<Unit> friendlies = GetAllFriendlyUnits();
+        //Reactivate the friendly units
+        foreach (Unit unit in friendlies)
+        {
+            unit.Activate();
+        }
         StartPlayerTurn?.Invoke();
     }
 

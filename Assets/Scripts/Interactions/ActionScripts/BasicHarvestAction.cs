@@ -40,7 +40,7 @@ public class BasicHarvestAction : UnitAction
 
             }
         }
-        Debug.Log("Found " + targets.Count + " different crops that can be harvested");
+        //Debug.Log("Found " + targets.Count + " different crops that can be harvested");
         return targets;
 
     }
@@ -53,7 +53,7 @@ public class BasicHarvestAction : UnitAction
     public override bool IsPossible(Unit unit)
     {
         //Attack isn't possible if there are no nearby enemy units or the unit already moved
-        if (GetValidTargets(unit).Count <= 0 && !unit.isActive)
+        if (GetValidTargets(unit).Count <= 0 || !unit.IsActive())
         {
             return false;
         }

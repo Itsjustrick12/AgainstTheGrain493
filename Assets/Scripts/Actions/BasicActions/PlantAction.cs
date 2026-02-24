@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(menuName = "Actions/Attack")]
-public class BasicAttackAction : UnitAction
+
+[CreateAssetMenu(fileName = "PlantAction", menuName = "Actions/Plant")]
+public class PlantAction : UnitAction
 {
     public override string GetName()
     {
-        return "Attack";
+        return "Plant";
     }
     //Need to validate size when returned
     public override List<Vector3Int> GetValidTargets(Unit unit)
@@ -28,19 +29,9 @@ public class BasicAttackAction : UnitAction
             Vector3Int currentTile = startPos + offset;
             TileData data = TM.GetTileDataAt(currentTile);
 
-            if (data != null && data.HasOccupant())
+            if (data != null && data.IsPlantable())
             {
-                Unit unitCheck = data.occupyingEntity as Unit;
-                if (unitCheck == null)
-                {
-                    continue;
-                }
-                else if (!unit.IsSameTeamAs(unitCheck))
-                {
-
-                    targets.Add(currentTile);
-                }
-
+                targets.Add(currentTile);
             }
         }
 
@@ -72,15 +63,9 @@ public class BasicAttackAction : UnitAction
 
     public override void PerformAt(Unit unit, Vector3Int pos)
     {
-        //Execute a simple attack on the unit at the location specified
-        Unit targetUnit = FindFirstObjectByType<TileManager>().GetUnitOnTile(pos);
-
-        if (targetUnit == null)
-        {
-            return;
-        }
-
-        //do a simple attack
-        targetUnit.TakeDamage(unit.GetStrength());
+        GameManager GM = FindFirstObjectByType<GameManager>();
+        
+        //TODO: Update this here when we add more crops
+        GM.SpawnCropOnTile(CropDatabase.Instance.GetCropInfo(1), pos);
     }
 }

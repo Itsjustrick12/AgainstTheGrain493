@@ -125,6 +125,11 @@ public class TileData
         return false;
     }
 
+    public bool IsPlantable()
+    {
+        return (occupyingEntity == null) && (type == TileType.Dirt || type == TileType.WateredDirt);
+    }
+
     public void PrintTileData()
     {
         string occupantName = "False";
