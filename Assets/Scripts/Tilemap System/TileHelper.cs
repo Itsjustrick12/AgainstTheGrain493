@@ -1,3 +1,4 @@
+using NUnit.Framework.Internal.Commands;
 using System.Collections.Generic;
 using UnityEngine;
 //test class used for ai pathfinding
@@ -148,6 +149,198 @@ public class TileHelper : MonoBehaviour
         ret.Add(Vector3Int.zero);
         return ret;
     }
+
+    //----
+    //Make a function, public void draw movement range
+    //Tkae in Vecotr 3 positon and unit, then see units range of movement and determine all possible movements
+    //Output the list of positions, drawn somewhere else
+
+    public List<Vector3Int> GetMovementRange(Unit currentUnit)
+    {
+        Vector3Int currentPos = currentUnit.GetGridPos();
+        int moveAmt = currentUnit.movementRange;
+
+        var validPositions = new List<Vector3Int>();
+
+        // Loop around the unit within possible movement distance +-moveamt
+        for (int i = -moveAmt; i <= moveAmt; i++)
+        {
+            for (int j = -moveAmt; j <= moveAmt; j++)
+            {
+                //Skip tiles that are unreachable via the distance
+                if (Mathf.Abs(i) + Mathf.Abs(j) > moveAmt)
+                    continue;
+
+                //Get a reference to the next possible tile to pathfind to
+                Vector3Int candidateTile = new Vector3Int(currentPos.x + i, currentPos.y + j,0);
+                //Add the starting position without considering the path
+                if (candidateTile == currentPos)
+                {
+                    validPositions.Add(candidateTile);
+                    continue;
+                }
+
+                if (!InRange(candidateTile))
+                    continue;
+                //Pathfind to each tile
+                var validPath = TilePath(currentPos, candidateTile);
+
+                if (validPath == null)
+                    continue;
+
+                int pathLength = validPath.Count - 1;
+                //Don't allow the default "There's no path with size 1"
+                if (pathLength <= moveAmt && pathLength != 0)
+                {
+                    validPositions.Add(candidateTile);
+                }
+            }
+        }
+
+        return validPositions;
+    }
+
+    //Draw interaction range
+    public List<Vector3Int> GetInteractionRange(Unit currentUnit)
+    {
+        Vector3Int currentPos = currentUnit.GetGridPos();
+        //Interaction range is anything that can be reached from the farthest tile you can move to
+        int moveAmt = currentUnit.movementRange + 1;
+
+        var validPositions = new List<Vector3Int>();
+
+        // Loop around the unit within possible movement distance +-moveamt
+        for (int i = -moveAmt; i <= moveAmt; i++)
+        {
+            for (int j = -moveAmt; j <= moveAmt; j++)
+            {
+                //Skip tiles that are unreachable via the distance
+                if (Mathf.Abs(i) + Mathf.Abs(j) > moveAmt)
+                    continue;
+
+                //Get a reference to the next possible tile to pathfind to
+                Vector3Int candidateTile = new Vector3Int(currentPos.x + i, currentPos.y + j, 0);
+                //The starting tile is not a part of the interaction range
+                if (candidateTile == currentPos)
+                {
+                    continue;
+                }
+
+                if (!InRange(candidateTile))
+                    continue;
+                //Pathfind to each tile, allowing paths with ends that have the end be a valid spot
+                var validPath = InteractionTilePath(currentPos, candidateTile);
+
+                if (validPath == null)
+                    continue;
+
+                int pathLength = validPath.Count - 1;
+                ////Don't need this check because the interactionpath returns null
+                //if (pathLength <= moveAmt && pathLength != 0)
+                //{
+                //    validPositions.Add(candidateTile);
+                //}
+
+                if (pathLength <= moveAmt && pathLength != 0)
+                {
+                    var tileData = tileManager.GetTileDataAt(candidateTile);
+                    if (tileData != null)
+                    {
+                        validPositions.Add(candidateTile);
+                    }
+                }
+            }
+        }
+
+        return validPositions;
+    }
+
+    public List<Vector3Int> InteractionTilePath(Vector3Int start, Vector3Int end)
+    {
+        List<Vector3Int> ret = new List<Vector3Int>();
+
+        if (!InRange(start) || !InRange(end))
+            return null;
+
+        if (start == end)
+        {
+            ret.Add(start);
+            return ret;
+        }
+
+        List<Node> openList = new List<Node>();
+        HashSet<Vector3Int> closedSet = new HashSet<Vector3Int>();
+
+        Node startNode = new Node(start);
+        startNode.SetH(end);
+        startNode.SetF();
+        openList.Add(startNode);
+
+        while (openList.Count > 0)
+        {
+            openList.Sort((a, b) => a.f.CompareTo(b.f));
+            Node current = openList[0];
+            openList.RemoveAt(0);
+
+            if (current.location == end)
+            {
+                //Allow reaching end even if it contains an entity
+                Node node = current;
+                while (node != null)
+                {
+                    ret.Insert(0, node.location);
+                    node = node.parent;
+                }
+                return ret;
+            }
+
+            closedSet.Add(current.location);
+
+            Vector3Int[] neighbors =
+            {
+            current.location + Vector3Int.up,
+            current.location + Vector3Int.down,
+            current.location + Vector3Int.left,
+            current.location + Vector3Int.right
+        };
+
+            foreach (var neighbor in neighbors)
+            {
+                if (!InRange(neighbor) || closedSet.Contains(neighbor))
+                    continue;
+
+                var tileData = tileManager.GetTileDataAt(neighbor);
+                if (tileData == null)
+                    continue;
+
+                //DIFFERENCE from normal TilePath
+                // Allow walking onto the END tile even if it's occupied
+
+                if (neighbor != end && !tileData.CanEnter())
+                    continue;
+
+                int gCost = current.g + tileData.movementCost;
+
+                Node existing = openList.Find(n => n.location == neighbor);
+
+                if (existing == null)
+                {
+                    Node neighborNode = new Node(neighbor, current);
+                    neighborNode.SetG(gCost);
+                    neighborNode.SetH(end);
+                    openList.Add(neighborNode);
+                }
+                else if (gCost < existing.g)
+                {
+                    existing.parent = current;
+                    existing.SetG(gCost);
+                }
+            }
+        }
+
+        return null;
+    }
+
 };
 
 public class Node

@@ -2,13 +2,9 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
-using UnityEngine.Windows;
-using static UnityEngine.AdaptivePerformance.Provider.AdaptivePerformanceSubsystemDescriptor;
-
 public class GameManager : MonoBehaviour
 {
     public TileManager tileManager;
