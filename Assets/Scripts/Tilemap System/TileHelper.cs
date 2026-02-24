@@ -313,7 +313,7 @@ public class TileHelper : MonoBehaviour
                 if (tileData == null)
                     continue;
 
-                //DIFFERENCE from normal TilePath
+                //Main difference from normal TilePath:
                 // Allow walking onto the END tile even if it's occupied
 
                 if (neighbor != end && !tileData.CanEnter())

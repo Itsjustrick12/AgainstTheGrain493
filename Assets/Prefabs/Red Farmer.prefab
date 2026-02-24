@@ -115,7 +115,7 @@ MonoBehaviour:
   currentHealth: 10
   strength: 5
   attackRange: 1
-  movementRange: 0
+  movementRange: 3
 --- !u!1001 &8331469104203548412
 PrefabInstance:
   m_ObjectHideFlags: 0
