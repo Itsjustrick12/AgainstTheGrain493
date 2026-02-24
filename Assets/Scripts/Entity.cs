@@ -124,8 +124,9 @@ public class Entity : MonoBehaviour
     {
         //Remove this entity from the field by updating the tile data it belongs to
         TileManager tM = FindFirstObjectByType<TileManager>();
-        tM.GetTileDataAt(GetGridPos()).ClearOccupant();
+        tM.GetTileDataAt(GetGridPos()).occupyingEntity = null;
         Destroy(this.gameObject);
+    
     }
 
     public virtual void Awake()

@@ -212,7 +212,7 @@ public class TileManager : MonoBehaviour
 
         if (data.CanPlaceEntity())
         {
-            Debug.Log("Entity Placed!");
+            //Debug.Log("Entity Placed!");
             data.PlaceEntity(entity);
             entity.SetGridPos(pos);
         }

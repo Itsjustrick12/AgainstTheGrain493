@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEditor.Tilemaps;
@@ -43,11 +44,12 @@ public class GameManager : MonoBehaviour
     
     public void BeginEnemyTurn(InputAction.CallbackContext context)
     {
-        EnemyTurn();
+        StartCoroutine(EnemyTurnRoutine());
     }
 
     public void BeginPlayerTurn()
     {
+        isPlayerTurn = true;
         // Call this whenever a turn/day ends
         Debug.Log("Turn advanced!");
         List<Unit> friendlies = GetAllFriendlyUnits();
@@ -143,16 +145,17 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void EnemyTurn()
+    private IEnumerator EnemyTurnRoutine()
     {
         isPlayerTurn = false;
         List<Unit> tempunits = GetAllEnemyUnits();
 
-        foreach(Unit unit in tempunits)
+        foreach (Unit unit in tempunits)
         {
             unit.DoTurn();
-
+            yield return new WaitForSeconds(0.5f); // pause between each enemy
         }
+
         BeginPlayerTurn();
     }
 

@@ -68,6 +68,15 @@ public class TilePainter : TileCursor
         }
     }
 
+    public void KillEntity(InputAction.CallbackContext a)
+    {
+        TileData data = tileManager.GetTileDataAt(currentTile);
+        if (data != null && data.HasOccupant())
+        {
+            data.KillEntity();
+        }
+    }
+
     public void LiftBrush(InputAction.CallbackContext a)
     {
         paintingTile = false;
@@ -157,26 +166,28 @@ public class TilePainter : TileCursor
         input.Enable();
         input.Gameplay.Paint.canceled += LiftBrush;
         input.Gameplay.Paint.started += DropBrush;
-        //input.Gameplay.ReadTile.performed += ReadTile;
+        input.Gameplay.ReadTile.performed += ReadTile;
         input.Gameplay.DrawPath.performed += DrawPath;
         input.Gameplay.PickA.performed += PickStart;
         input.Gameplay.PickB.performed += PickEnd;
         input.Gameplay.PlaceCrop.performed += PlaceCrop;
         input.Gameplay.Harvest.performed += AttemptHarvest;
         input.Gameplay.Target.performed += AttemptTarget;
+        input.Gameplay.Kill.performed += KillEntity;
     }
 
     private void OnDisable()
     {
         input.Gameplay.Paint.canceled -= LiftBrush;
         input.Gameplay.Paint.started -= DropBrush;
-        //input.Gameplay.ReadTile.performed -= ReadTile;
+        input.Gameplay.ReadTile.performed -= ReadTile;
         input.Gameplay.DrawPath.performed -= DrawPath;
         input.Gameplay.PickA.performed -= PickStart;
         input.Gameplay.PickB.performed -= PickEnd;
         input.Gameplay.PlaceCrop.performed -= PlaceCrop;
         input.Gameplay.Harvest.performed -= AttemptHarvest;
         input.Gameplay.Target.performed -= AttemptTarget;
+        input.Gameplay.Kill.performed -= KillEntity;
         input.Disable();
     }
 

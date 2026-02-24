@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a247b7d29174994c8f37eb81eb84fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Unit
+  tileHelper: {fileID: 0}
   maxHealth: 10
   type: 2
   currentHealth: 10
@@ -117,8 +118,8 @@ MonoBehaviour:
   isEnemy: 1
   strength: 5
   attackRange: 1
-  movementRange: 10
   iq: 1
+  movementRange: 4
 --- !u!1001 &8709564363311679588
 PrefabInstance:
   m_ObjectHideFlags: 0

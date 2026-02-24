@@ -51,23 +51,8 @@ public class Unit : Entity
         return actions.Where(action => action.IsPossible(this)).ToList();
     }
 
-    int GetHealth()
-    {
-        return currentHealth;
-    }
-
     public void GetHealth(int healthValue){ 
         currentHealth = healthValue;
-    }
-
-    public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-        Debug.Log("Unit hit for " + damage + " damage!");
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
     }
 
     public int GetAttackRange()
@@ -106,12 +91,6 @@ public class Unit : Entity
         return IsSameTeamAs(unitCheck);
     }
 
-    public void Die()
-    {
-        Debug.Log("Unit has Died!");
-        DestroyEntity();
-    }
-
     public int GetStrength()
     {
         return strength;
@@ -125,35 +104,27 @@ public class Unit : Entity
     //gets vector3Int List for best target based on difficulty
     public void SetTarget()
     {
+        // First try primary targets
+        List<Vector3Int> targets = FindPositions(true);
 
-        List<Vector3Int> tempList = FindPositions(true);
+        // Fall back to any valid target
+        if (targets.Count == 0)
+            targets = FindPositions(false);
 
-        //if no primary targets look at all targets
-        if(tempList.Count < 1)
+        // Still nothing, clear target
+        if (targets.Count == 0)
         {
-            tempList = FindPositions(false);
+            target = new Vector3Int(0, 0, -1);
+            return;
         }
 
-        if(tempList.Count > 0)
-        {
-            //find target target based on difficulty
-            if(true)
-            {
-                FindEasy(tempList);
-            }
-            else if(this.iq < 5)
-            {
-                FindMedium(tempList);
-            }
-            else
-            {
-                FindHard(tempList);
-            }
-        }
+        // Pick target based on IQ
+        if (iq == 1)
+            target = FindEasy(targets);
+        else if (iq < 5)
+            target = FindMedium(targets);
         else
-        {
-            this.target = new Vector3Int(0,0,-1);
-        }
+            target = FindHard(targets);
     }
 
     public Vector3Int GetTarget()
@@ -189,7 +160,7 @@ public class Unit : Entity
             }
         }
 
-        if(primary.Contains(EntityType.Crop) || !prime)
+        if(primary.Contains(EntityType.Crop) || (!prime && primary.Contains(EntityType.Crop)))
         {
             List<Crop> tempCrops = gameManager.GetAllCrops();
             for(int i = 0; i < tempCrops.Count; i++)
@@ -201,41 +172,57 @@ public class Unit : Entity
         return temp;
     }
 
-    void FindEasy(List<Vector3Int> targets)
+    Vector3Int FindEasy(List<Vector3Int> targets)
     {
-        int ttr = 999;
-        for(int i = 0; i < targets.Count; i++)
-        {
-            if(TurnsToReach(tileHelper.TilePath(this.GetGridPos(), targets[i])) < ttr)
-            {
-                ttr = TurnsToReach(tileHelper.TilePath(this.GetGridPos(), targets[i]));
-                target = targets[i];
-            }
-        }
-    }
+        Vector3Int best = new Vector3Int(0, 0, -1);
+        int bestTTR = int.MaxValue;
 
-    //TODO
-    void FindMedium(List<Vector3Int> targets)
-    {
-        int ttk = 999;
-        for(int i = 0; i < targets.Count; i++)
+        foreach (Vector3Int t in targets)
         {
-            if(TurnsToKill(tileHelper.TilePath(this.GetGridPos(), targets[i])) < ttk)
+            List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), t);
+
+            // Skip invalid paths
+            if (path.Count == 1 && path[0] == Vector3Int.zero)
+                continue;
+
+            int ttr = TurnsToReach(path);
+            if (ttr < bestTTR)
             {
-                ttk = TurnsToKill(tileHelper.TilePath(this.GetGridPos(), targets[i]));
-                target = targets[i];
+                bestTTR = ttr;
+                best = t;
             }
         }
 
+        return best;
+    }
+
+    Vector3Int FindMedium(List<Vector3Int> targets)
+    {
+        Vector3Int best = new Vector3Int(0, 0, -1);
+        int bestTTK = int.MaxValue;
+
+        foreach (Vector3Int t in targets)
+        {
+            List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), t);
+
+            if (path.Count == 1 && path[0] == Vector3Int.zero)
+                continue;
+
+            int ttk = TurnsToKill(path);
+            if (ttk < bestTTK)
+            {
+                bestTTK = ttk;
+                best = t;
+            }
+        }
+
+        return best;
     }
 
     //TODO
-    void FindHard(List<Vector3Int> targets)
+    Vector3Int FindHard(List<Vector3Int> targets)
     {
-        for(int i = 0; i < targets.Count; i++)
-        {
-            
-        }
+        return FindMedium(targets);
 
     }
 
@@ -303,9 +290,9 @@ public class Unit : Entity
                 //if we have enough movement left
                 if(tempMovement >= tileManager.GetTileDataAt(path[0]).movementCost)
                 {
-                    Debug.Log("Move to " + path[0]);
+                    //Debug.Log("Move to " + path[0]);
                     //set our grid position to the next tile
-                    this.SetGridPos(path[0]);
+                    tileManager.MoveEntity(GetGridPos(), path[0]);
                     //change amount of movement left
                     tempMovement -= tileManager.GetTileDataAt(path[0]).movementCost;
                     //remove the current tile from the path
@@ -313,13 +300,13 @@ public class Unit : Entity
                 }
                 else
                 {
-                    Debug.Log("Not enough movement");
+                    //Debug.Log("Not enough movement");
                     tempMovement = 0;
                 }
             }
             else
             {
-                Debug.Log("Entity in next tile");
+                //Debug.Log("Entity in next tile");
                 tempMovement = 0;
             }
         }
@@ -327,23 +314,37 @@ public class Unit : Entity
 
     void Attack()
     {
-        //check to see if the target is next to us
-        if(target == this.GetGridPos() + Vector3Int.up || target == this.GetGridPos() + Vector3Int.down || target == this.GetGridPos() + Vector3Int.left || target == this.GetGridPos() + Vector3Int.right && target.z != -1)
+        if (target.z == -1)
         {
-            //we make sure the target tile has an entity
-            if(tileManager.GetTileDataAt(target).occupyingEntity != null)
-            {
-                //we then attack the target
-                tileManager.GetTileDataAt(target).occupyingEntity.TakeDamage(this.GetStrength());
-
-                //if we kill the target
-                if(tileManager.GetTileDataAt(target).occupyingEntity == null)
-                {
-                    //we then set target
-                    target = new Vector3Int(0,0,-1);
-                }
-            }
+            Debug.Log("No target!");
+            return;
         }
+
+
+        Vector3Int pos = GetGridPos();
+        bool isAdjacent = target == pos + Vector3Int.up ||
+                          target == pos + Vector3Int.down ||
+                          target == pos + Vector3Int.left ||
+                          target == pos + Vector3Int.right;
+
+        if (!isAdjacent)
+        {
+            Debug.Log("Target isn't adjacent!");
+            //Set the target a second time
+            return;
+        }
+
+        TileData targetTile = tileManager.GetTileDataAt(target);
+        if (targetTile == null || targetTile.occupyingEntity == null)
+        {
+            Debug.Log("Nothing to attack!");
+            return;
+        }
+
+        targetTile.occupyingEntity.TakeDamage(GetStrength());
+
+        if (targetTile.occupyingEntity == null)
+            target = new Vector3Int(0, 0, -1);
     }
 
     public void DoTurn()
@@ -351,19 +352,40 @@ public class Unit : Entity
         //if a target hasn't been set we find the next target
         if(target.z == -1)
         {
-            Debug.Log("Finding Target");
+            //Debug.Log("Finding Target");
             this.SetTarget();
         }
 
-        //if we found a target we move to it
-        if(target.z != -1)
+        //See if our target is up to date (needed for concurrent enemy execution)
+        TileData data = tileManager.GetTileDataAt(target);
+        if (data != null && data.HasUnit())
         {
-            Debug.Log("Target found at " + target);
-            //tileManager.GetTileDataAt(GetGridPos()).ClearOccupant();
-            //tileManager.GetTileDataAt(target).ClearOccupant();
-            List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), target);
+            Unit unitCheck = data.GetOccupyingEntity() as Unit;
+            if (unitCheck && IsSameTeamAs(unitCheck))
+            {
+                SetTarget();
+            }
+        }
+        else
+        {
+            //Get a new target if our old one is outdata
+            SetTarget();
+        }
 
-            Move(path);
+
+        //if we found a target we move to it
+        if (target.z != -1)
+        {
+            //Debug.Log("Target found at " + target);
+            List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), target);
+            if (path.Count > 1)
+            {
+                Move(path);
+            }
+            else
+            {
+                Debug.Log("No Need to Move!");
+            }
         }
 
         //then we attack the target

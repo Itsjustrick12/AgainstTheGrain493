@@ -54,7 +54,7 @@ public class TileHelper : MonoBehaviour
     {
         List<Vector3Int> ret = new List<Vector3Int>();
 
-        Debug.Log("Start Pos: " + start + " | End Pos: " + end);
+        //Debug.Log("Start Pos: " + start + " | End Pos: " + end);
         //check to make sure it's in range
         if(!InRange(start) || !InRange(end))
         {
@@ -98,11 +98,11 @@ public class TileHelper : MonoBehaviour
                     ret.Insert(0, node.location);
                     node = node.parent;
                 }
-                Debug.Log("Path Of Length: " + ret.Count);
-                for(int i = 0; i < ret.Count; i++)
-                {
-                    Debug.Log(ret[i]);
-                }
+                //Debug.Log("Path Of Length: " + ret.Count);
+                //for(int i = 0; i < ret.Count; i++)
+                //{
+                //    Debug.Log(ret[i]);
+                //}
                 return ret;
             }
 
