@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 public class GameManager : MonoBehaviour
 {
+    [Header("General Settings")]
     public TileManager tileManager;
 
     //Transforms for sorting
@@ -23,13 +24,15 @@ public class GameManager : MonoBehaviour
     public GameObject pauseScreen;
     public GameObject winScreen;
     public GameObject loseScreen;
-
+    
+    [Header("Stats")]
     public bool isPlayerTurn = true;
+    public int coins = 0;
+    public List<int> harvestedCrops = new List<int> {0,2};
 
     public void Awake()
     {
         tileManager = FindFirstObjectByType<TileManager>();
-
     }
 
     public void Start()
@@ -208,5 +211,97 @@ public class GameManager : MonoBehaviour
         loseScreen.SetActive(false);
         winScreen.SetActive(false);
         pauseScreen.SetActive(false);
+    }
+
+    public void SetCoins(int i)
+    {
+        if(i < 0)
+        {
+            coins = 0;
+            return;
+        }
+
+        coins = i;
+    }
+
+    public int GetCoins()
+    {
+        return coins;
+    }
+
+    public void AddCoins(int i)
+    {
+        SetCoins(GetCoins() + i);
+    }
+
+    //false has no change, true changes value
+    public bool AttemptToBuy(int i)
+    {
+        if(GetCoins() - i < 0)
+        {
+            return false;
+        }
+
+        SetCoins(GetCoins() - i);
+        return true;
+    }
+
+
+    public int GetHarvestedCrops(int id)
+    {
+        if(id < harvestedCrops.Count && id >= 0)
+        {
+            return harvestedCrops[id];
+        }
+        
+        return -1;
+    }
+
+    //returns the list of all crops
+    public List<int> GetAllHarvestedCrops()
+    {
+        List<int> ret = new List<int>{};
+
+        for(int i = 0; i < harvestedCrops.Count; i++)
+        {
+            ret.Add(GetHarvestedCrops(i));
+        }
+        
+        return ret;
+    }
+
+    public void AddHarvestedCrops(int id)
+    {
+        if(id < harvestedCrops.Count && id >= 0)
+        {
+            SetHarvestedCrops(id, GetHarvestedCrops(id) + 1);
+        }
+    }
+
+    //false has no change, true changes value
+    public bool SellHarvestedCrops(int id)
+    {
+        if(id < harvestedCrops.Count && id >= 0)
+        {
+            if(GetHarvestedCrops(id) < 1)
+            {
+                return false;
+            }
+
+            SetHarvestedCrops(id, GetHarvestedCrops(id) - 1);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public void SetHarvestedCrops(int id, int amount)
+    {
+        //makes sure the id is an actual id
+        if(id < harvestedCrops.Count && id >= 0)
+        {
+            harvestedCrops[id] = amount;
+        }
     }
 }
