@@ -177,12 +177,14 @@ public class GameManager : MonoBehaviour
     {
         input = new AgainstTheGrainInput();
         input.Gameplay.AdvanceTurn.performed += BeginEnemyTurn;
+        Entity.OnEntityDestroyed += CheckEndState;
         input.Enable();
 
     }
 
     private void OnDisable()
     {
+        Entity.OnEntityDestroyed -= CheckEndState;
         input.Gameplay.AdvanceTurn.performed -= BeginEnemyTurn;
         input.Disable();
     }
@@ -237,6 +239,11 @@ public class GameManager : MonoBehaviour
             Debug.Log("You Lose!");
             GameOver();
         }
+    }
+
+    public void CheckEndState(Entity entity)
+    {
+        CheckEndState();
     }
 
     //Display lose Screen

@@ -1,9 +1,6 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using static UnityEditor.PlayerSettings;
-
 //Dual Grid Tilemap Implementation is based on the logic from this video: https://www.youtube.com/watch?v=jEWFSv3ivTg
 public class TileManager : MonoBehaviour
 {

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 //This is the base script that is used for all things that can occupy tiles in the game
@@ -40,6 +41,8 @@ public class Entity : MonoBehaviour
 
     //Used for deactivating the entity
     public SpriteRenderer shadeSprite;
+
+    public static event Action<Entity> OnEntityDestroyed;
     public Vector3Int GetGridPos()
     {
         return gridPos;
@@ -110,9 +113,19 @@ public class Entity : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("Unit has Died!");
-        DestroyEntity();
-        gameManager.CheckEndState();
+        //Remove entity from tile
+        TileData tile = tileManager.GetTileDataAt(GetGridPos());
+        tile.ClearOccupant();
+
+        //Remove from hierarchy (needed for the check of how many units there are
+        transform.SetParent(null);
+
+        //Now game state is accurate
+        OnEntityDestroyed(this);
+
+        //Destroy entity after the check to allow it to happen
+        Destroy(gameObject);
+
     }
 
     public void UpdateTransform(Vector3Int pos)
