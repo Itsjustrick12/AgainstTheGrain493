@@ -21,6 +21,8 @@ public class UnitInfo
     [Header("Actions")]
     public List<UnitAction> actions;
 
+    public int purchasePrice;
+
     public bool isEnemy;
 
 }
@@ -120,6 +122,18 @@ public class UnitDatabase : ScriptableObject
 
         return unit.prefab;
     }
+
+    public int GetPurcahsePrice(int id)
+    {
+        UnitInfo unit = GetUnitInfo(id);
+        if (unit == null)
+        {
+            return -1;
+        }
+
+        return unit.purchasePrice;
+    }
+
     //Get reference to the specfied unit's placeholder tile
     public TileBase GetTile(int id)
     {

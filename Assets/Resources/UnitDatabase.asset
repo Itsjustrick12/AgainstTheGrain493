@@ -22,6 +22,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5f0c03dba52164544948dc40d7fe64b0, type: 2}
     - {fileID: 11400000, guid: 1a13efa1659efda4791a69f19ea430e1, type: 2}
     - {fileID: 11400000, guid: 6a0ad3e9b99fa8e4c93497897f6d6ba4, type: 2}
+    purchasePrice: -1
     isEnemy: 0
   - id: 2
     unitName: RedFarmer
@@ -33,12 +34,32 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 1a13efa1659efda4791a69f19ea430e1, type: 2}
     - {fileID: 11400000, guid: 7c13517389f0d4c4e93d63f8ee88274a, type: 2}
     - {fileID: 11400000, guid: 6a0ad3e9b99fa8e4c93497897f6d6ba4, type: 2}
+    purchasePrice: -1
     isEnemy: 0
   - id: 3
+    unitName: Chicken
+    prefab: {fileID: 4935858330493278644, guid: 51a175c101e7e7d44bb2f0b1c4b9f49e, type: 3}
+    tile: {fileID: 11400000, guid: 0515031a4a931464784e87f24fb1cbbf, type: 2}
+    sprite: {fileID: 21300000, guid: f9602e3a55eb2ed40aa160e80b54c8d2, type: 3}
+    actions:
+    - {fileID: 11400000, guid: 7c13517389f0d4c4e93d63f8ee88274a, type: 2}
+    purchasePrice: 5
+    isEnemy: 0
+  - id: 4
+    unitName: Cow
+    prefab: {fileID: 4935858330493278644, guid: a6c6ac34c9a87be46a42bb270624b9e2, type: 3}
+    tile: {fileID: 11400000, guid: e735c8601f6b19f4ea60982a2ee6b8f9, type: 2}
+    sprite: {fileID: 21300000, guid: 5676c8b58cd4d8942a29343e4f051cc1, type: 3}
+    actions:
+    - {fileID: 11400000, guid: 7c13517389f0d4c4e93d63f8ee88274a, type: 2}
+    purchasePrice: 10
+    isEnemy: 0
+  - id: 5
     unitName: Robot
     prefab: {fileID: 1180065947808181623, guid: 5b34ecd98973263479dfea6cd49ec888, type: 3}
     tile: {fileID: 11400000, guid: 4103c465fb4936142ada9747c3d0bf7f, type: 2}
     sprite: {fileID: 21300000, guid: 7e0d79c0c15839545ba24133eb72199a, type: 3}
     actions:
     - {fileID: 11400000, guid: 7c13517389f0d4c4e93d63f8ee88274a, type: 2}
+    purchasePrice: -1
     isEnemy: 1
