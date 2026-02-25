@@ -107,13 +107,18 @@ public class UnitInteractionSystem : MonoBehaviour
                     //If above is true, get reference to entity and switch to movement phase
                     selectedPosition = pos;
                     selectedEntity = tileManager.GetTileDataAt(pos).GetOccupyingEntity();
-                    if (!(selectedEntity is Unit))
+                    if (selectedEntity is Unit)
                     {
+                        LiftHoverSprite();
+                        state = InteractionState.Movement;
                         return;
                     }
-                    LiftHoverSprite();
-                    state = InteractionState.Movement;
-                    return;
+                    else if (selectedEntity is Structure)
+                    {
+                        //do structure interaction
+                        Structure structureCheck = selectedEntity as Structure;
+                        structureCheck.Interact();
+                    }
                 }
                 else
                 {

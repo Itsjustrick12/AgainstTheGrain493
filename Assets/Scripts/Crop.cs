@@ -99,7 +99,7 @@ public class Crop : Entity
         {
             //TODO Add logic for increasing the player's crop count
             //Remove the entity from it's current TileData and destroy the GameObject
-            gameManager.AddHarvestedCrops(id);
+            EconomyManager.Instance.AddHarvestedCrops(id);
             DestroyEntity();
         }
 

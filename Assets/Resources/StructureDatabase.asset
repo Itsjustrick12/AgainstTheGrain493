@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a2d0a8c48ba0ab41aacb4ede8881d3c, type: 3}
+  m_Name: StructureDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::StructureDatabase
+  structures:
+  - id: 1
+    structureName: Barn
+    prefab: {fileID: 4935858330493278644, guid: 1fb64ed29ebab7643b1a81c0905270c5, type: 3}
+    placementTile: {fileID: 11400000, guid: 3d2de26cfccd69f46915ad2ef928c7ca, type: 2}
+    icon: {fileID: 1558526159, guid: cdfe7375b027c674fad321294e681b36, type: 3}

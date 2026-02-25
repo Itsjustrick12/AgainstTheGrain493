@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public Transform friendlyUnits;
     public Transform enemyUnits;
     public Transform cropContainer;
+    public Transform structureContainter;
 
     public Tilemap entityMap;
     private AgainstTheGrainInput input;
@@ -25,10 +26,7 @@ public class GameManager : MonoBehaviour
     public GameObject winScreen;
     public GameObject loseScreen;
     
-    [Header("Stats")]
     public bool isPlayerTurn = true;
-    public int coins = 0;
-    public List<int> harvestedCrops = new List<int> {0,2};
 
     public void Awake()
     {
@@ -74,6 +72,8 @@ public class GameManager : MonoBehaviour
                     TileBase temp = entityMap.GetTile(tilePos);
                     UnitInfo unitInfo = UnitDatabase.Instance.GetUnitInfoFromTile(temp);
                     CropInfo cropInfo = CropDatabase.Instance.GetCropInfoFromTile(temp);
+                    StructureInfo structInfo = StructureDatabase.Instance.GetStructureInfoFromTile(temp);
+
                     if (unitInfo != null)
                     {
                         SpawnUnitOnTile(unitInfo, tilePos);
@@ -81,6 +81,10 @@ public class GameManager : MonoBehaviour
                     else if (cropInfo != null)
                     {
                         SpawnCropOnTile(cropInfo, tilePos);
+                    }
+                    else if (structInfo != null)
+                    {
+                        SpawnStructureOnTile(structInfo, tilePos);
                     }
 
                     entityMap.SetTile(tilePos, null);
@@ -113,6 +117,28 @@ public class GameManager : MonoBehaviour
 
             tileManager.PlaceEntityOnTile(pos, unitRef);
             unitRef.UpdateTransform(pos);
+        }
+
+    }
+
+    public void SpawnStructureOnTile(StructureInfo structInfo, Vector3Int pos)
+    {
+        TileData data = tileManager.GetTileDataAt(pos);
+        if (data == null || data.HasOccupant())
+        {
+            //Dont place anything if somethings already here
+            return;
+        }
+        //spawn the new object
+        GameObject obj = Instantiate(structInfo.prefab);
+        obj.transform.SetParent(structureContainter);
+        //Update the position
+        Structure structRef = obj.GetComponent<Structure>();
+        if (structRef != null)
+        {
+
+            tileManager.PlaceEntityOnTile(pos, structRef);
+            structRef.UpdateTransform(pos);
         }
 
     }
@@ -211,97 +237,5 @@ public class GameManager : MonoBehaviour
         loseScreen.SetActive(false);
         winScreen.SetActive(false);
         pauseScreen.SetActive(false);
-    }
-
-    public void SetCoins(int i)
-    {
-        if(i < 0)
-        {
-            coins = 0;
-            return;
-        }
-
-        coins = i;
-    }
-
-    public int GetCoins()
-    {
-        return coins;
-    }
-
-    public void AddCoins(int i)
-    {
-        SetCoins(GetCoins() + i);
-    }
-
-    //false has no change, true changes value
-    public bool AttemptToBuy(int i)
-    {
-        if(GetCoins() - i < 0)
-        {
-            return false;
-        }
-
-        SetCoins(GetCoins() - i);
-        return true;
-    }
-
-
-    public int GetHarvestedCrops(int id)
-    {
-        if(id < harvestedCrops.Count && id >= 0)
-        {
-            return harvestedCrops[id];
-        }
-        
-        return -1;
-    }
-
-    //returns the list of all crops
-    public List<int> GetAllHarvestedCrops()
-    {
-        List<int> ret = new List<int>{};
-
-        for(int i = 0; i < harvestedCrops.Count; i++)
-        {
-            ret.Add(GetHarvestedCrops(i));
-        }
-        
-        return ret;
-    }
-
-    public void AddHarvestedCrops(int id)
-    {
-        if(id < harvestedCrops.Count && id >= 0)
-        {
-            SetHarvestedCrops(id, GetHarvestedCrops(id) + 1);
-        }
-    }
-
-    //false has no change, true changes value
-    public bool SellHarvestedCrops(int id)
-    {
-        if(id < harvestedCrops.Count && id >= 0)
-        {
-            if(GetHarvestedCrops(id) < 1)
-            {
-                return false;
-            }
-
-            SetHarvestedCrops(id, GetHarvestedCrops(id) - 1);
-
-            return true;
-        }
-
-        return false;
-    }
-
-    public void SetHarvestedCrops(int id, int amount)
-    {
-        //makes sure the id is an actual id
-        if(id < harvestedCrops.Count && id >= 0)
-        {
-            harvestedCrops[id] = amount;
-        }
     }
 }

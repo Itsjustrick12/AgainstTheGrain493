@@ -80,7 +80,7 @@ public class CropDatabase : ScriptableObject
         if (lookup.TryGetValue(id, out CropInfo crop))
             return crop;
 
-        Debug.LogError($"No Crop with ID: {id} found!");
+        Debug.LogError("No crop exists with id: " + id);
         return null;
     }
 
