@@ -6,9 +6,9 @@ public class ActionButton : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI text;
 
-    [SerializeField]private UnitAction storedAction;
+    [SerializeField]private EntityAction storedAction;
 
-    public void Initialize(UnitAction action)
+    public void Initialize(EntityAction action)
     {
         if (action == null)
         {
@@ -18,7 +18,7 @@ public class ActionButton : MonoBehaviour
         text.text = action.GetName();
     }
 
-    public UnitAction GetAction()
+    public EntityAction GetAction()
     {
         return storedAction;
     }

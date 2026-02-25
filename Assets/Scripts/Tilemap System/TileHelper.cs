@@ -155,7 +155,7 @@ public class TileHelper : MonoBehaviour
 
         // No path
         ret.Add(Vector3Int.zero);
-        Debug.Log("No path");
+        //Debug.Log("No path");
         return ret;
     }
 

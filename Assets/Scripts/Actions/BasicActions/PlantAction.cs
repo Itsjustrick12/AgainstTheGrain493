@@ -2,14 +2,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlantAction", menuName = "Actions/Plant")]
-public class PlantAction : UnitAction
+public class PlantAction : EntityAction
 {
     public override string GetName()
     {
         return "Plant";
     }
     //Need to validate size when returned
-    public override List<Vector3Int> GetValidTargets(Unit unit)
+    public override List<Vector3Int> GetValidTargets(Entity unit)
     {
         List<Vector3Int> targets = new List<Vector3Int>();
         //get references 
@@ -44,7 +44,7 @@ public class PlantAction : UnitAction
         return false;
     }
 
-    public override bool IsPossible(Unit unit)
+    public override bool IsPossible(Entity unit)
     {
         //Attack isn't possible if there are no nearby enemy units or the unit already moved
         if (GetValidTargets(unit).Count <= 0 || !unit.IsActive())
@@ -54,14 +54,14 @@ public class PlantAction : UnitAction
         return true;
     }
 
-    public override void PerformAt(Unit unit, List<Vector3Int> positions)
+    public override void PerformAt(Entity unit, List<Vector3Int> positions)
     {
         //Just attack the unit from the selected position, for this basic attack there shouldn't be more than one target
         PerformAt(unit, positions[0]);
 
     }
 
-    public override void PerformAt(Unit unit, Vector3Int pos)
+    public override void PerformAt(Entity unit, Vector3Int pos)
     {
         GameManager GM = FindFirstObjectByType<GameManager>();
         

@@ -22,7 +22,7 @@ public class Unit : Entity
     public int movementRange = 3;
 
     //Hidden logic for determining what a unit is able to do, define by the unit database
-    private List<UnitAction> actions = new();
+    private List<EntityAction> actions = new();
 
     public override void Awake()
     {
@@ -30,7 +30,7 @@ public class Unit : Entity
         InitializeActions();
     }
 
-    public void InitializeActions(List<UnitAction> unitActions)
+    public void InitializeActions(List<EntityAction> unitActions)
     {
         actions = unitActions;
     }
@@ -41,12 +41,12 @@ public class Unit : Entity
         actions = UnitDatabase.Instance.GetActions(ID);
     }
 
-    public List<UnitAction> GetAvailableActions()
+    public List<EntityAction> GetAvailableActions()
     {
-        foreach (var action in actions)
-        {
-            Debug.Log($"Action: {action.GetName()} | IsPossible: {action.IsPossible(this)}");
-        }
+        //foreach (var action in actions)
+        //{
+        //    Debug.Log($"Action: {action.GetName()} | IsPossible: {action.IsPossible(this)}");
+        //}
         //Return all the actions that are currently possible given the Unit's information (and generally position)
         return actions.Where(action => action.IsPossible(this)).ToList();
     }

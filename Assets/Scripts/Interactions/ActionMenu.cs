@@ -24,7 +24,7 @@ public class ActionMenu : MonoBehaviour
     //for input modularity
     DefaultInputActions input;
 
-    public UnitActionEvent OnActionSelected;
+    public EntityActionEvent OnActionSelected;
 
     [Header("UI References")]
     public Transform buttonContainer;
@@ -32,8 +32,8 @@ public class ActionMenu : MonoBehaviour
     public GameObject selectionArrow;
 
     [Header("Default Actions")]
-    public UnitAction wait;
-    public UnitAction cancel;
+    public EntityAction wait;
+    public EntityAction cancel;
 
     //Used to manage what actions are shown to the player
     private List<GameObject> spawnedButtons = new();
@@ -87,12 +87,12 @@ public class ActionMenu : MonoBehaviour
         //Delete previous buttons
         ClearButtons();
 
-        List<UnitAction> actions = unit.GetAvailableActions();
+        List<EntityAction> actions = unit.GetAvailableActions();
 
         Debug.Log("Actions is of size " + actions.Count);
         
         //Only create buttons for the possible actions from the given position
-        foreach (UnitAction action in actions)
+        foreach (EntityAction action in actions)
         {
             CreateButton(action);
         }
@@ -112,7 +112,7 @@ public class ActionMenu : MonoBehaviour
     }
 
     //Spawns the buttonPrefab for each action availble to the Unit
-    private void CreateButton(UnitAction action)
+    private void CreateButton(EntityAction action)
     {
         // Spawn button
         GameObject buttonObj = Instantiate(actionButtonPrefab, buttonContainer);
@@ -142,7 +142,7 @@ public class ActionMenu : MonoBehaviour
         if (spawnedButtons.Count == 0)
             return;
 
-        UnitAction action = spawnedButtons[selectedChoice]
+        EntityAction action = spawnedButtons[selectedChoice]
             .GetComponent<ActionButton>()
             .GetAction();
 

@@ -3,26 +3,14 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 [System.Serializable]
-public class CropInfo
+public class CropInfo : EntityInfo
 {
-    public int id;
-    public string cropName;
-
-    [Header("Growth Settings")]
+    [Header("Crop Specific")]
     //Seed stage counts as a stage, if you want a simple "grow for one turn to harvest" this number would be two
     public int numStages; 
-
-    [Header("Economic Settings")]
-    public int sellValue;
-
-    [Header("Tilemap / Visuals")]
-    //May be used by the tilemap if we want to plant pre-assigned tiles like this
-    public TileBase seedTile;
     //Used to progress to full harvest, these are the sprites rendered on the tilemap
     //There should be a sprite for each sprite
     public Sprite[] growthStageSprites;
-    //Used to display for UI and post harvest use
-    public Sprite cropIcon;
 }
 
 [CreateAssetMenu(fileName = "AgainstTheGrain/Crop Database", menuName = "CropDatabase")]
@@ -87,13 +75,13 @@ public class CropDatabase : ScriptableObject
     public TileBase GetSeedTile(int id)
     {
         CropInfo crop = GetCropInfo(id);
-        return crop != null ? crop.seedTile : null;
+        return crop != null ? crop.tile : null;
     }
 
     public Sprite GetIcon(int id)
     {
         CropInfo crop = GetCropInfo(id);
-        return crop != null ? crop.cropIcon : null;
+        return crop != null ? crop.sprite : null;
     }
 
     public int GetNumStages(int id)
@@ -112,7 +100,7 @@ public class CropDatabase : ScriptableObject
     {
         foreach (var crop in crops)
         {
-            if (crop.seedTile == tile)
+            if (crop.tile == tile)
                 return crop.id;
         }
 
@@ -123,7 +111,7 @@ public class CropDatabase : ScriptableObject
     {
         foreach (var crop in crops)
         {
-            if (crop.seedTile == tile)
+            if (crop.tile == tile)
                 return crop;
         }
 

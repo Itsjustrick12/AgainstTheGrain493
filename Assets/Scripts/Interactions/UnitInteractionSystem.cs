@@ -20,7 +20,7 @@ public enum InteractionState
 
 //This is needed to call events and recieve callbacks from UI buttons
 [System.Serializable]
-public class UnitActionEvent : UnityEvent<UnitAction>
+public class EntityActionEvent : UnityEvent<EntityAction>
 {
 }
 
@@ -56,7 +56,7 @@ public class UnitInteractionSystem : MonoBehaviour
     private DefaultInputActions input;
 
     [SerializeField] List<Vector3Int> validLocations;
-    private UnitAction currAction;
+    private EntityAction currAction;
 
     public void Awake()
     {
@@ -118,6 +118,7 @@ public class UnitInteractionSystem : MonoBehaviour
                         //do structure interaction
                         Structure structureCheck = selectedEntity as Structure;
                         structureCheck.Interact();
+                        state = InteractionState.ActionSelection;
                     }
                 }
                 else
@@ -224,7 +225,8 @@ public class UnitInteractionSystem : MonoBehaviour
         actionMenu.ShowMenu(unit);
     }
 
-    public void SelectAction(UnitAction action)
+
+    public void SelectAction(EntityAction action)
     {
         //Check for unique UI ish actions for not doing direct things
 

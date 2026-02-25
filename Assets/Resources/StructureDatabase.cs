@@ -3,17 +3,8 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 [System.Serializable]
-public class StructureInfo
-{
-    public int id;
-    public string structureName;
-
-    [Header("Prefab")]
-    public GameObject prefab;
-
-    [Header("Tilemap / Visuals")]
-    public TileBase placementTile;
-    public Sprite icon;
+public class StructureInfo : EntityInfo
+{ 
 }
 [CreateAssetMenu(fileName = "AgainstTheGrain/Structure Database", menuName = "StructureDatabase")]
 public class StructureDatabase : ScriptableObject
@@ -82,14 +73,14 @@ public class StructureDatabase : ScriptableObject
     public Sprite GetIcon(int id)
     {
         StructureInfo structure = GetStructureInfo(id);
-        return structure != null ? structure.icon : null;
+        return structure != null ? structure.sprite : null;
     }
 
     public int GetIDFromTile(TileBase tile)
     {
         foreach (var structure in structures)
         {
-            if (structure.placementTile == tile)
+            if (structure.tile == tile)
                 return structure.id;
         }
 
@@ -100,7 +91,7 @@ public class StructureDatabase : ScriptableObject
     {
         foreach (var structure in structures)
         {
-            if (structure.placementTile == tile)
+            if (structure.tile == tile)
                 return structure;
         }
 

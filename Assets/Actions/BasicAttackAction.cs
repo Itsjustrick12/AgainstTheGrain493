@@ -1,24 +1,31 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 [CreateAssetMenu(menuName = "Actions/Attack")]
-public class BasicAttackAction : UnitAction
+public class BasicAttackAction : EntityAction
 {
     public override string GetName()
     {
         return "Attack";
     }
     //Need to validate size when returned
-    public override List<Vector3Int> GetValidTargets(Unit unit)
+    public override List<Vector3Int> GetValidTargets(Entity entity)
     {
         List<Vector3Int> targets = new List<Vector3Int>();
         //get references 
-        if (unit == null)
+        if (entity == null)
         {
             Debug.LogError("Trying to get valid targets based on an invalid Unit in attack action");
             return targets;
         }
 
         TileManager TM = FindFirstObjectByType<TileManager>();
+
+        Unit unit = entity as Unit;
+        if (unit == null)
+        {
+            Debug.LogError("No Unit, just an entity");
+        }
 
         Vector3Int startPos = unit.GetGridPos();
 
@@ -53,7 +60,7 @@ public class BasicAttackAction : UnitAction
         return false;
     }
 
-    public override bool IsPossible(Unit unit)
+    public override bool IsPossible(Entity unit)
     {
         //Attack isn't possible if there are no nearby enemy units or the unit already moved
         if (GetValidTargets(unit).Count <= 0 || !unit.IsActive())
@@ -63,14 +70,14 @@ public class BasicAttackAction : UnitAction
         return true;
     }
 
-    public override void PerformAt(Unit unit, List<Vector3Int> positions)
+    public override void PerformAt(Entity unit, List<Vector3Int> positions)
     {
         //Just attack the unit from the selected position, for this basic attack there shouldn't be more than one target
         PerformAt(unit, positions[0]);
 
     }
 
-    public override void PerformAt(Unit unit, Vector3Int pos)
+    public override void PerformAt(Entity entity, Vector3Int pos)
     {
         //Execute a simple attack on the unit at the location specified
         Unit targetUnit = FindFirstObjectByType<TileManager>().GetUnitOnTile(pos);
@@ -78,6 +85,12 @@ public class BasicAttackAction : UnitAction
         if (targetUnit == null)
         {
             return;
+        }
+
+        Unit unit = entity as Unit;
+        if (unit == null)
+        {
+            Debug.LogError("No Unit, just an entity");
         }
 
         //do a simple attack

@@ -16,7 +16,7 @@ public class AnimalButton : MonoBehaviour
 
         unitImage.sprite = info.sprite;
         priceText.text = info.purchasePrice.ToString();
-        nameText.text = info.unitName;
+        nameText.text = info.entityName;
     }
 
     public void UpdateButton()
