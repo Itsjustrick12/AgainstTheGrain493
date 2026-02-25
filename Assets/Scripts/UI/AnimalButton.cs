@@ -4,11 +4,17 @@ using UnityEngine.UI;
 
 public class AnimalButton : MonoBehaviour
 {
+    BarnUIMenu barnUI;
     public TextMeshProUGUI nameText;
     public Image unitImage;
     public TextMeshProUGUI priceText;
 
     public int entityID;
+
+    private void Awake()
+    {
+        barnUI = FindFirstObjectByType<BarnUIMenu>();
+    }
 
     public void UpdateButton(int id)
     {
@@ -22,5 +28,10 @@ public class AnimalButton : MonoBehaviour
     public void UpdateButton()
     {
         UpdateButton(entityID);
+    }
+
+    public void PurchaseEntity()
+    {
+        barnUI.BuyUnit(entityID);
     }
 }

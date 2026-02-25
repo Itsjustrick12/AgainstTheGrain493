@@ -1,7 +1,9 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 public class Structure : Entity
 {
+    public int ID;
     public static Action OnBarnInteraction;
     public void Interact()
     {
@@ -10,5 +12,22 @@ public class Structure : Entity
             Debug.Log("INTERACTING WITH BARN");
             OnBarnInteraction?.Invoke();
         }
+    }
+
+    public override void Awake()
+    {
+        base.Awake();
+        InitializeActions();
+    }
+
+    public void InitializeActions(List<EntityAction> newActions)
+    {
+        actions = newActions;
+    }
+
+    public void InitializeActions()
+    {
+        //This references the action set defined in the unit database
+        actions = StructureDatabase.Instance.GetActions(ID);
     }
 }

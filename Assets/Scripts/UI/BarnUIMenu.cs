@@ -1,5 +1,9 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+[System.Serializable]
+public class IntEvent : UnityEvent<int> { }
+
 //Right now only interface with the wheat crop
 public class BarnUIMenu : MonoBehaviour
 {
@@ -9,6 +13,10 @@ public class BarnUIMenu : MonoBehaviour
     public TextMeshProUGUI coinText;
 
     public GameObject uiPanel;
+
+    public static IntEvent OnUnitPurchased = new IntEvent();
+    public static UnityEvent OnPurchaseComplete = new UnityEvent();
+    public static UnityEvent CancelAction = new UnityEvent();
 
     private void OnDisable()
     {
@@ -32,6 +40,7 @@ public class BarnUIMenu : MonoBehaviour
 
     public void ShowMenu()
     {
+        Structure.OnBarnInteraction += ShowMenu;
         uiPanel.SetActive(true);
         UpdateCropText(econManager.GetHarvestedCrops(1));
         UpdateCoinText(econManager.GetCoins());
@@ -41,6 +50,12 @@ public class BarnUIMenu : MonoBehaviour
     public void HideMenu()
     {
         uiPanel.SetActive(false);
+    }
+
+    public void CloseMenu()
+    {
+        CancelAction?.Invoke();
+        HideMenu();
     }
 
     public void UpdateCropText(int grainAmount)
@@ -63,5 +78,21 @@ public class BarnUIMenu : MonoBehaviour
         {
             Debug.Log("You have nothing to sell");
         }
+    }
+
+    public void BuyUnit(int id)
+    {
+        UnitInfo info = UnitDatabase.Instance.GetUnitInfo(id);
+        if (info != null && econManager.AttemptToBuy(info.purchasePrice))
+        {
+            //Set the unit to spawn, close the menu, and await spawn
+            UpdateCoinText(econManager.GetCoins());
+            OnUnitPurchased.Invoke(id);
+            Debug.Log("Purchased unit: " + info.entityName);
+
+            OnPurchaseComplete.Invoke();
+            HideMenu();
+        }
+        
     }
 }

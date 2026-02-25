@@ -21,18 +21,10 @@ public class Unit : Entity
     public int iq = 1;
     public int movementRange = 3;
 
-    //Hidden logic for determining what a unit is able to do, define by the unit database
-    private List<EntityAction> actions = new();
-
     public override void Awake()
     {
         base.Awake();
         InitializeActions();
-    }
-
-    public void InitializeActions(List<EntityAction> unitActions)
-    {
-        actions = unitActions;
     }
 
     public void InitializeActions()
@@ -40,17 +32,6 @@ public class Unit : Entity
         //This references the action set defined in the unit database
         actions = UnitDatabase.Instance.GetActions(ID);
     }
-
-    public List<EntityAction> GetAvailableActions()
-    {
-        //foreach (var action in actions)
-        //{
-        //    Debug.Log($"Action: {action.GetName()} | IsPossible: {action.IsPossible(this)}");
-        //}
-        //Return all the actions that are currently possible given the Unit's information (and generally position)
-        return actions.Where(action => action.IsPossible(this)).ToList();
-    }
-
     public void GetHealth(int healthValue){ 
         currentHealth = healthValue;
     }

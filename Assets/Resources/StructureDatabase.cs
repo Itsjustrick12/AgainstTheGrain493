@@ -69,6 +69,23 @@ public class StructureDatabase : ScriptableObject
         StructureInfo structure = GetStructureInfo(id);
         return structure != null ? structure.prefab : null;
     }
+    public List<EntityAction> GetActions(int id)
+    {
+        if (lookup == null)
+        {
+            BuildLookup();
+        }
+
+        //Use the lookup to try and find unit info
+        if (lookup.TryGetValue(id, out StructureInfo unit))
+        {
+            return unit.actions;
+        }
+
+        Debug.LogError($"There is no Unit with ID: {id} in the lookup!");
+        return null;
+
+    }
 
     public Sprite GetIcon(int id)
     {

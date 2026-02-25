@@ -28,16 +28,25 @@ public class EconomyManager : MonoBehaviour
         return coins;
     }
 
-    public void SetCoins(int amount)
+    public bool CanAfford(int amt)
+    {
+        if (amt <= coins)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void SetCoins(int amt)
     {
 
         //Clamp so coins can never be negative
-        coins = Mathf.Max(0, amount);
+        coins = Mathf.Max(0, amt);
     }
 
-    public void AddCoins(int amount)
+    public void AddCoins(int amt)
     {
-        SetCoins(coins + amount);
+        SetCoins(coins + amt);
     }
 
     public bool AttemptToBuy(int cost)
@@ -51,7 +60,7 @@ public class EconomyManager : MonoBehaviour
 
     public int GetHarvestedCrops(int id)
     {
-        return harvestedCrops.TryGetValue(id, out int amount) ? amount : 0;
+        return harvestedCrops.TryGetValue(id, out int amt) ? amt : 0;
     }
 
     public Dictionary<int, int> GetAllHarvestedCrops()
@@ -69,12 +78,14 @@ public class EconomyManager : MonoBehaviour
         if (!harvestedCrops.ContainsKey(id) || harvestedCrops[id] <= 0)
             return false;
 
-        harvestedCrops[id]--;
+        harvestedCrops[id] = harvestedCrops[id]-1;
+        CropInfo info = CropDatabase.Instance.GetCropInfo(id);
+        AddCoins(info.sellValue);
         return true;
     }
 
-    public void SetHarvestedCrops(int id, int amount)
+    public void SetHarvestedCrops(int id, int amt)
     {
-        harvestedCrops[id] = Mathf.Max(0, amount);
+        harvestedCrops[id] = Mathf.Max(0, amt);
     }
 }

@@ -50,10 +50,16 @@ public class GameManager : MonoBehaviour
         // Call this whenever a turn/day ends
         Debug.Log("Turn advanced!");
         List<Unit> friendlies = GetAllFriendlyUnits();
+        List<Structure> structures = GetAllStructures();
         //Reactivate the friendly units
         foreach (Unit unit in friendlies)
         {
             unit.Activate();
+        }
+        //Reactivate Structures
+        foreach (Structure structure in structures)
+        {
+            structure.Activate();
         }
         StartPlayerTurn?.Invoke();
     }
@@ -194,6 +200,11 @@ public class GameManager : MonoBehaviour
     public List<Unit> GetAllEnemyUnits()
     {
         return new List<Unit>(enemyUnits.GetComponentsInChildren<Unit>());
+    }
+
+    public List<Structure> GetAllStructures()
+    {
+        return new List<Structure>(structureContainter.GetComponentsInChildren<Structure>());
     }
 
     public List<Crop> GetAllCrops()

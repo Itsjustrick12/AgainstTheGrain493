@@ -18,6 +18,7 @@ MonoBehaviour:
     prefab: {fileID: 4935858330493278644, guid: 1fb64ed29ebab7643b1a81c0905270c5, type: 3}
     tile: {fileID: 11400000, guid: 3d2de26cfccd69f46915ad2ef928c7ca, type: 2}
     sprite: {fileID: 1558526159, guid: cdfe7375b027c674fad321294e681b36, type: 3}
-    actions: []
+    actions:
+    - {fileID: 11400000, guid: ed87d6aeb80615548a89ea604f5e3cfe, type: 2}
     purchasePrice: -1
     sellValue: -1

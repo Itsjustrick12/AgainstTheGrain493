@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 //This is the base script that is used for all things that can occupy tiles in the game
@@ -38,12 +40,27 @@ public class Entity : MonoBehaviour
     private Vector3 offset = new Vector3(0.5f, 0.5f, 0);
     //Helper function for all derived entities to use to determine whether or not something is occupying the tile
 
+    //Hidden logic for determining what a unit is able to do, define by the unit database
+    protected List<EntityAction> actions = new();
+
     //Used for deactivating the entity
     public SpriteRenderer shadeSprite;
     public Vector3Int GetGridPos()
     {
         return gridPos;
     }
+
+    public void InitializeActions(List<EntityAction> newActions)
+    {
+        actions = newActions;
+    }
+
+    public List<EntityAction> GetAvailableActions()
+    {
+        //Return all the actions that are currently possible given the Unit's information (and generally position)
+        return actions.Where(action => action.IsPossible(this)).ToList();
+    }
+
     public void SetGridPos(Vector3Int pos)
     {
         gridPos = pos;

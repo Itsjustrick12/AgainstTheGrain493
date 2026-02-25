@@ -1,13 +1,9 @@
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Unity.VisualScripting;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
-using static UnityEditor.PlayerSettings;
 
 public enum InteractionState
 {
@@ -58,6 +54,8 @@ public class UnitInteractionSystem : MonoBehaviour
     [SerializeField] List<Vector3Int> validLocations;
     private EntityAction currAction;
 
+    private int nextUnitID = -1;
+
     public void Awake()
     {
         cursor = FindFirstObjectByType<TileCursor>();
@@ -65,6 +63,9 @@ public class UnitInteractionSystem : MonoBehaviour
         //actionMenu = FindFirstObjectByType<ActionMenu>();
         actionMenu.OnActionSelected.AddListener(SelectAction);
         state = InteractionState.Selection;
+        BarnUIMenu.OnUnitPurchased.AddListener(SetNextUnit);
+        BarnUIMenu.OnPurchaseComplete.AddListener(SelectAction);
+        BarnUIMenu.CancelAction.AddListener(StopAction);
     }
 
     public void Update()
@@ -115,9 +116,19 @@ public class UnitInteractionSystem : MonoBehaviour
                     }
                     else if (selectedEntity is Structure)
                     {
-                        //do structure interaction
+                        //do structure interaction, skip movement interaction
                         Structure structureCheck = selectedEntity as Structure;
                         structureCheck.Interact();
+
+                        structureCheck.InitializeActions();
+                        List<EntityAction> actions = structureCheck.GetAvailableActions();
+
+                        // Store the SpawnUnitAction as currAction so SelectAction can use it later
+                        // when OnPurchaseComplete fires after the player picks a unit in the UI
+                        if (actions != null && actions.Count > 0)
+                        {
+                            currAction = actions[0]; // assumes first action is SpawnUnitAction
+                        }
                         state = InteractionState.ActionSelection;
                     }
                 }
@@ -198,6 +209,8 @@ public class UnitInteractionSystem : MonoBehaviour
             //Execute the action
             currAction.PerformAt(selectedEntity as Unit, pos);
             selectedEntity.Deactivate();
+            currAction = null;
+            nextUnitID = -1;
             optionsMap.ClearAllTiles();
             return true;
         }
@@ -214,6 +227,11 @@ public class UnitInteractionSystem : MonoBehaviour
         hoverSprite.sprite = null;
     }
 
+    public void SetNextUnit(int id)
+    {
+        nextUnitID = id;
+    }
+
     private void ShowUnitOptions(Unit unit)
     {
         if (unit == null)
@@ -225,41 +243,70 @@ public class UnitInteractionSystem : MonoBehaviour
         actionMenu.ShowMenu(unit);
     }
 
+    public void StopAction()
+    {
+        //Clear tile highlights
+        optionsMap.ClearAllTiles();
+
+        //Clear hover
+        ClearHoverSprite();
+
+        //Reset action
+        currAction = null;
+
+        //If unit was moved but not finalized, move it back
+        if (afterLocation != prevLocation)
+        {
+            tileManager.MoveEntity(afterLocation, prevLocation);
+        }
+
+        state = InteractionState.Selection;
+    }
+
+    public void SelectAction()
+    {
+        SelectAction(currAction);
+    }
 
     public void SelectAction(EntityAction action)
     {
         //Check for unique UI ish actions for not doing direct things
 
         //once this is called, shift to tile selection based on target tiles
-        if (action.GetName() == "Wait")
+        if (action is WaitAction)
         {
             //Don't do anything, consider the unit moved and don't do anything else
             state = InteractionState.Selection;
             selectedEntity.Deactivate();
             return;
         }
-        else if (action.GetName() == "Cancel")
+        else if (action is Cancel)
         {
             //Undo the movement from the previous action and return
             tileManager.MoveEntity(afterLocation, prevLocation);
             state = InteractionState.Selection;
             return;
         }
-        else
+        //Special case, requires picking an integer set by a UI (barnUI probably)
+        if (action is SpawnUnitAction)
         {
-            currAction = action;
-
-            //Switch to target selection phase
-            //Update the valid locations
-            validLocations = action.GetValidTargets(selectedEntity as Unit);
-            //Highlight the selectable locations
-            foreach (Vector3Int pos in validLocations)
-            {
-                optionsMap.SetTile(pos, optionTile);
-            }
-            //Otherwise, perform the action on the selected tile
-            state = InteractionState.TargetSelection;
+            Debug.Log("SpawnUnit found!");
+            SpawnUnitAction spawnAction = action as SpawnUnitAction;
+            spawnAction.SetSpawnUnit(nextUnitID);
         }
+
+        currAction = action;
+
+        //Switch to target selection phase
+        //Update the valid locations
+        validLocations = action.GetValidTargets(selectedEntity);
+        //Highlight the selectable locations
+        foreach (Vector3Int pos in validLocations)
+        {
+            optionsMap.SetTile(pos, optionTile);
+        }
+        //Otherwise, perform the action on the selected tile
+        state = InteractionState.TargetSelection;
     }
 
     private void ShowUnitOptions(Entity entity)

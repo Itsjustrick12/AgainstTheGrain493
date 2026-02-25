@@ -112,6 +112,7 @@ MonoBehaviour:
   isObstacle: 1
   isInteractable: 1
   shadeSprite: {fileID: 1624670681131030402}
+  ID: 1
 --- !u!1001 &2137449664765164358
 PrefabInstance:
   m_ObjectHideFlags: 0
