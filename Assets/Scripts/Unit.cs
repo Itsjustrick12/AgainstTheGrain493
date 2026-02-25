@@ -40,6 +40,18 @@ public class Unit : Entity
         //This references the action set defined in the unit database
         actions = UnitDatabase.Instance.GetActions(ID);
     }
+    //This is dumb change this later
+    public bool CanAttack()
+    {
+        foreach (var action in actions)
+        {
+            if (action.GetName() == "Attack")
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public List<UnitAction> GetAvailableActions()
     {

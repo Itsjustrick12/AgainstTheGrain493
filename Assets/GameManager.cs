@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
@@ -184,6 +185,58 @@ public class GameManager : MonoBehaviour
     {
         input.Gameplay.AdvanceTurn.performed -= BeginEnemyTurn;
         input.Disable();
+    }
+
+    public bool IsFriendlyDefeated()
+    {
+        //determine whether or not the friendly units can still play
+        //Determine if there's any units that can still attack
+        List<Unit> units = GetAllFriendlyUnits();
+        //basic check, is there any friendly units?
+        if (units.Count == 0) return true;
+
+        //Deteremine whether or not theres a unit that can attack
+        foreach (Unit unit in units)
+        {
+            if (unit.CanAttack())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public bool IsEnemyDefeated()
+    {
+        //determine whether or not the friendly units can still play
+        //Determine if there's any units that can still attack
+        List<Unit> units = GetAllEnemyUnits();
+        //basic check, is there any friendly units?
+        if (units.Count == 0) return true;
+
+        //Deteremine whether or not theres a unit that can attack
+        foreach (Unit unit in units)
+        {
+            if (unit.CanAttack())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void CheckEndState()
+    {
+        if (IsEnemyDefeated())
+        {
+            Debug.Log("You win!");
+            ShowWinScreen();
+        }
+        else if (IsFriendlyDefeated())
+        {
+            Debug.Log("You Lose!");
+            GameOver();
+        }
     }
 
     //Display lose Screen

@@ -119,6 +119,16 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &146110421 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 397948963524348807, guid: 511910f91a7db044fa02d1572f16d646, type: 3}
+  m_PrefabInstance: {fileID: 1737360683561656735}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &293600054 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1448899629610580934, guid: 6b7bb24c090c1c744b6fe56db3c03d0c, type: 3}
+  m_PrefabInstance: {fileID: 1925819193}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &324580620
 GameObject:
   m_ObjectHideFlags: 0
@@ -2469,10 +2479,10 @@ MonoBehaviour:
   enemyUnits: {fileID: 1483628605}
   cropContainer: {fileID: 918111452}
   entityMap: {fileID: 2100850072}
-  pauseScreen: {fileID: 0}
-  winScreen: {fileID: 0}
-  loseScreen: {fileID: 0}
-  isPlayerTurn: 1
+  pauseScreen: {fileID: 2053069364}
+  winScreen: {fileID: 293600054}
+  loseScreen: {fileID: 146110421}
+  isPlayerTurn: 0
 --- !u!4 &957032419
 Transform:
   m_ObjectHideFlags: 0
@@ -3333,6 +3343,11 @@ PrefabInstance:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7961048960228547833, guid: 6b7bb24c090c1c744b6fe56db3c03d0c, type: 3}
   m_PrefabInstance: {fileID: 1925819193}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2053069364 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6266717205927948596, guid: e295d7e69961d9c4eb3fd1f19d46aaac, type: 3}
+  m_PrefabInstance: {fileID: 851258897}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2080642187
 GameObject:

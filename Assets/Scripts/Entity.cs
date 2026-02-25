@@ -112,6 +112,7 @@ public class Entity : MonoBehaviour
     {
         Debug.Log("Unit has Died!");
         DestroyEntity();
+        gameManager.CheckEndState();
     }
 
     public void UpdateTransform(Vector3Int pos)
