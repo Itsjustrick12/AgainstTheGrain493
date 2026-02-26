@@ -181,13 +181,22 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""34e5063f-dd84-45d1-baee-e96d332f7c67"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""1d8b4a3f-3209-45e8-b0aa-c2f790d8e86d"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -304,6 +313,17 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
                     ""action"": ""Kill"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""980dc84d-3dfd-4744-a364-bc4507825dc8"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -322,6 +342,7 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         m_Gameplay_Harvest = m_Gameplay.FindAction("Harvest", throwIfNotFound: true);
         m_Gameplay_Target = m_Gameplay.FindAction("Target", throwIfNotFound: true);
         m_Gameplay_Kill = m_Gameplay.FindAction("Kill", throwIfNotFound: true);
+        m_Gameplay_Select = m_Gameplay.FindAction("Select", throwIfNotFound: true);
     }
 
     ~@AgainstTheGrainInput()
@@ -412,6 +433,7 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Harvest;
     private readonly InputAction m_Gameplay_Target;
     private readonly InputAction m_Gameplay_Kill;
+    private readonly InputAction m_Gameplay_Select;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -463,6 +485,10 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Gameplay/Kill".
         /// </summary>
         public InputAction @Kill => m_Wrapper.m_Gameplay_Kill;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Select".
+        /// </summary>
+        public InputAction @Select => m_Wrapper.m_Gameplay_Select;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -519,6 +545,9 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
             @Kill.started += instance.OnKill;
             @Kill.performed += instance.OnKill;
             @Kill.canceled += instance.OnKill;
+            @Select.started += instance.OnSelect;
+            @Select.performed += instance.OnSelect;
+            @Select.canceled += instance.OnSelect;
         }
 
         /// <summary>
@@ -560,6 +589,9 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
             @Kill.started -= instance.OnKill;
             @Kill.performed -= instance.OnKill;
             @Kill.canceled -= instance.OnKill;
+            @Select.started -= instance.OnSelect;
+            @Select.performed -= instance.OnSelect;
+            @Select.canceled -= instance.OnSelect;
         }
 
         /// <summary>
@@ -670,5 +702,12 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnKill(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Select" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelect(InputAction.CallbackContext context);
     }
 }

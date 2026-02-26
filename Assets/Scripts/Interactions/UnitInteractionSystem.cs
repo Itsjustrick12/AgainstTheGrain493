@@ -49,7 +49,7 @@ public class UnitInteractionSystem : MonoBehaviour
     private Vector3 offset = new Vector3(0.5f, 0.75f, 0);
 
     //Change this later but for now default Unity UI interactions is good
-    private DefaultInputActions input;
+    private AgainstTheGrainInput input;
 
     [SerializeField] List<Vector3Int> validLocations;
     private EntityAction currAction;
@@ -118,7 +118,6 @@ public class UnitInteractionSystem : MonoBehaviour
                     {
                         //do structure interaction, skip movement interaction
                         Structure structureCheck = selectedEntity as Structure;
-                        structureCheck.Interact();
 
                         structureCheck.InitializeActions();
                         List<EntityAction> actions = structureCheck.GetAvailableActions();
@@ -130,6 +129,7 @@ public class UnitInteractionSystem : MonoBehaviour
                             currAction = actions[0]; // assumes first action is SpawnUnitAction
                         }
                         state = InteractionState.ActionSelection;
+                        structureCheck.Interact();
                     }
                 }
                 else
@@ -211,6 +211,8 @@ public class UnitInteractionSystem : MonoBehaviour
             selectedEntity.Deactivate();
             currAction = null;
             nextUnitID = -1;
+            selectedEntity = null;
+            selectedPosition = new Vector3Int(0,0,-1);
             optionsMap.ClearAllTiles();
             return true;
         }
@@ -322,14 +324,14 @@ public class UnitInteractionSystem : MonoBehaviour
 
     private void OnEnable()
     {
-        input = new DefaultInputActions();
+        input = new AgainstTheGrainInput();
         input.Enable();
-        input.UI.Submit.performed += OnSelect;
+        input.Gameplay.Select.performed += OnSelect;
     }
 
     private void OnDisable()
     {
-        input.UI.Submit.performed -= OnSelect;
+        input.Gameplay.Select.performed -= OnSelect;
         input.Disable();
     }
 }
