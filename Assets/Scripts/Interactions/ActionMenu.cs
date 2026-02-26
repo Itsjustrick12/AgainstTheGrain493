@@ -21,6 +21,8 @@ public class ActionMenu : MonoBehaviour
     [SerializeField]private int selectedChoice = 0;
     private int numChoices;
 
+    public Color shadeColor;
+
     //for input modularity
     DefaultInputActions input;
 
@@ -68,7 +70,7 @@ public class ActionMenu : MonoBehaviour
             {
                 selectedChoice = numChoices - 1;
             }
-            spawnedButtons[selectedChoice].GetComponent<Image>().color = Color.green;
+            spawnedButtons[selectedChoice].GetComponent<Image>().color = shadeColor;
         }
         else if (inputVector.y < 0)
         {
@@ -78,7 +80,7 @@ public class ActionMenu : MonoBehaviour
             {
                 selectedChoice = 0;
             }
-            spawnedButtons[selectedChoice].GetComponent<Image>().color = Color.green;
+            spawnedButtons[selectedChoice].GetComponent<Image>().color = shadeColor;
         }
     }
 
@@ -108,7 +110,7 @@ public class ActionMenu : MonoBehaviour
 
         selectedChoice = 0;
         numChoices = spawnedButtons.Count();
-        spawnedButtons[selectedChoice].GetComponent<Image>().color = Color.green;
+        spawnedButtons[selectedChoice].GetComponent<Image>().color = shadeColor;
     }
 
     public void DeselectButton()

@@ -238,14 +238,14 @@ public class GameManager : MonoBehaviour
         if (units.Count == 0) return true;
 
         //Deteremine whether or not theres a unit that can attack
-        foreach (Unit unit in units)
-        {
-            if (unit.CanAttack())
-            {
-                return false;
-            }
-        }
-        return true;
+        //foreach (Unit unit in units)
+        //{
+        //    if (unit.CanAttack())
+        //    {
+        //        return false;
+        //    }
+        //}
+        return false;
     }
 
     public bool IsEnemyDefeated()
