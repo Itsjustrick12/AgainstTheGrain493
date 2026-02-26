@@ -119,6 +119,11 @@ public class Unit : Entity
         return GetTarget();
     }
 
+    public List<Vector3Int> GetMovementRange()
+    {
+        return tileHelper.GetMovementRange(this);
+    }
+
     List<Vector3Int> FindPositions(bool prime)
     {
         List<Vector3Int> temp = new List<Vector3Int>();

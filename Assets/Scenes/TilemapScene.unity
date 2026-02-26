@@ -2530,7 +2530,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 994418584}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97cbdc7bd53354d48818a7c14e6f0365, type: 3}
   m_Name: 
@@ -3251,10 +3251,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42083d1308dfa354c9f13eb0fd30bc85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  tileManager: {fileID: 0}
+  hoverMap: {fileID: 498094933}
+  targetMap: {fileID: 713243558}
+  selectTile: {fileID: 11400000, guid: 6ac496089163b1848a9c347950e63ea1, type: 2}
+  tileManager: {fileID: 1190201941}
   optionsMap: {fileID: 1363077475}
   optionTile: {fileID: 11400000, guid: 0e3b1dffc54c09f408c77b596213517b, type: 2}
-  cursor: {fileID: 0}
   actionMenu: {fileID: 901733146}
   state: 0
   selectedPosition: {x: 0, y: 0, z: 0}

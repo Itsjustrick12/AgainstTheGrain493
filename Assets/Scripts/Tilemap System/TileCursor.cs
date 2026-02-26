@@ -9,12 +9,12 @@ public class TileCursor : MonoBehaviour
     public Tilemap targetMap;
     public TileBase selectTile;
 
-    private bool showHighlight = true;
+    protected bool showHighlight = true;
 
     //The currently hovered tile
     protected Vector3Int currentTile;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    protected virtual void Update()
+    public virtual void Update()
     {
         HandleCursor();
     }

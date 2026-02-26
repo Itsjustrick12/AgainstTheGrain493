@@ -22,14 +22,13 @@ public class EntityActionEvent : UnityEvent<EntityAction>
 
 //This script is responsible for handling the interactions between units
 //This includes movement, crop interactions, attacking, and more
-public class UnitInteractionSystem : MonoBehaviour
+public class UnitInteractionSystem : TileCursor
 {
     public TileManager tileManager;
 
     public Tilemap optionsMap;
     public TileBase optionTile;
     //Stores the location of the current tile selected
-    public TileCursor cursor;
     [SerializeField]private ActionMenu actionMenu;
 
     public InteractionState state;
@@ -58,7 +57,6 @@ public class UnitInteractionSystem : MonoBehaviour
 
     public void Awake()
     {
-        cursor = FindFirstObjectByType<TileCursor>();
         tileManager = FindFirstObjectByType<TileManager>();
         //actionMenu = FindFirstObjectByType<ActionMenu>();
         actionMenu.OnActionSelected.AddListener(SelectAction);
@@ -67,12 +65,27 @@ public class UnitInteractionSystem : MonoBehaviour
         BarnUIMenu.OnPurchaseComplete.AddListener(SelectAction);
         BarnUIMenu.CancelAction.AddListener(StopAction);
     }
-
-    public void Update()
+    //Restrict to only display updated tiles
+    protected override void HandleCursor()
     {
-        Vector3Int currPos = cursor.GetCurrentTile();
+        Vector3Int tile = GetMouseTile();
+
+        if (showHighlight && tile != currentTile && targetMap.HasTile(tile))
+        {
+            if ((validLocations.Count==0) || (validLocations.Count > 0 && IsInRange(tile)))
+            {
+                DeselectLast();
+                currentTile = tile;
+                SelectCurrent(tile);
+            }
+        }
+    }
+
+    public override void Update()
+    {
+        base.Update();
         //Move the hoverSprite to the currently selected location
-        hoverTransform.position = currPos + offset;
+        hoverTransform.position = GetCurrentTile() + offset;
     }
 
     public bool AttemptSelection(Vector3Int pos)
@@ -98,7 +111,7 @@ public class UnitInteractionSystem : MonoBehaviour
     //Transitions through the state machine to determine what action to take
     public void OnSelect(InputAction.CallbackContext context)
     {
-        Vector3Int pos = cursor.GetCurrentTile();
+        Vector3Int pos = GetCurrentTile();
         switch (state)
         {
             case InteractionState.Selection:
@@ -110,7 +123,14 @@ public class UnitInteractionSystem : MonoBehaviour
                     selectedEntity = tileManager.GetTileDataAt(pos).GetOccupyingEntity();
                     if (selectedEntity is Unit)
                     {
+                        Unit unit = selectedEntity as Unit;
+                        validLocations = unit.GetMovementRange();
+                        
                         LiftHoverSprite();
+                        foreach(Vector3Int tile in validLocations)
+                        {
+                            optionsMap.SetTile(tile, optionTile);
+                        }
                         state = InteractionState.Movement;
                         return;
                     }
@@ -143,7 +163,7 @@ public class UnitInteractionSystem : MonoBehaviour
                 //if selected tile, try to place the unit at the current location to see if it works
                 if (selectedEntity != null && toData != null)
                 {
-
+                    optionsMap.ClearAllTiles();
                     //check they if they're the same
                     if (fromData == toData)
                     {
@@ -201,6 +221,11 @@ public class UnitInteractionSystem : MonoBehaviour
 
     }
 
+    public bool IsInRange(Vector3Int pos)
+    {
+        return validLocations.Contains(pos);
+    }
+
     public bool AttemptTarget(Vector3Int pos)
     {
         //Check that the position you clicked is a valid target
@@ -209,11 +234,7 @@ public class UnitInteractionSystem : MonoBehaviour
             //Execute the action
             currAction.PerformAt(selectedEntity as Unit, pos);
             selectedEntity.Deactivate();
-            currAction = null;
-            nextUnitID = -1;
-            selectedEntity = null;
-            selectedPosition = new Vector3Int(0,0,-1);
-            optionsMap.ClearAllTiles();
+            ResetData();
             return true;
         }
         return false; 
@@ -247,14 +268,7 @@ public class UnitInteractionSystem : MonoBehaviour
 
     public void StopAction()
     {
-        //Clear tile highlights
-        optionsMap.ClearAllTiles();
-
-        //Clear hover
-        ClearHoverSprite();
-
-        //Reset action
-        currAction = null;
+        ResetData();
 
         //If unit was moved but not finalized, move it back
         if (afterLocation != prevLocation)
@@ -263,6 +277,22 @@ public class UnitInteractionSystem : MonoBehaviour
         }
 
         state = InteractionState.Selection;
+    }
+
+    private void ResetData()
+    {
+        //Clear tile highlights
+        optionsMap.ClearAllTiles();
+
+        validLocations.Clear();
+        selectedEntity = null;
+        selectedPosition = new Vector3Int(0, 0, -1);
+
+        //Clear hover
+        ClearHoverSprite();
+
+        //Reset action
+        currAction = null;
     }
 
     public void SelectAction()

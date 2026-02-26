@@ -20,11 +20,6 @@ public class Structure : Entity
         InitializeActions();
     }
 
-    public void InitializeActions(List<EntityAction> newActions)
-    {
-        actions = newActions;
-    }
-
     public void InitializeActions()
     {
         //This references the action set defined in the unit database

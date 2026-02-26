@@ -36,7 +36,7 @@ public class TilePainter : TileCursor
         pathfinder = FindFirstObjectByType<TileHelper>();
     }
 
-    protected override void Update()
+    public override void Update()
     {
         HandleCursor();
         Vector3Int tile = GetMouseTile();
