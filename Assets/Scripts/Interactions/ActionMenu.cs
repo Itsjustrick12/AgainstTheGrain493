@@ -58,20 +58,27 @@ public class ActionMenu : MonoBehaviour
             return;
 
         DeselectButton();
+        spawnedButtons[selectedChoice].GetComponent<Image>().color = Color.white;
 
         if (inputVector.y > 0)
         {
             // Up
             selectedChoice--;
             if (selectedChoice < 0)
+            {
                 selectedChoice = numChoices - 1;
+            }
+            spawnedButtons[selectedChoice].GetComponent<Image>().color = Color.green;
         }
         else if (inputVector.y < 0)
         {
             // Down
             selectedChoice++;
             if (selectedChoice >= numChoices)
+            {
                 selectedChoice = 0;
+            }
+            spawnedButtons[selectedChoice].GetComponent<Image>().color = Color.green;
         }
     }
 
@@ -101,6 +108,7 @@ public class ActionMenu : MonoBehaviour
 
         selectedChoice = 0;
         numChoices = spawnedButtons.Count();
+        spawnedButtons[selectedChoice].GetComponent<Image>().color = Color.green;
     }
 
     public void DeselectButton()
