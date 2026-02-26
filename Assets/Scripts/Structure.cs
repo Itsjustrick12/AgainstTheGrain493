@@ -4,13 +4,11 @@ using System.Collections.Generic;
 public class Structure : Entity
 {
     public int ID;
-    public static Action OnBarnInteraction;
-    public void Interact()
+    public virtual void Interact()
     {
         if (isActive)
         {
-            Debug.Log("INTERACTING WITH BARN");
-            OnBarnInteraction?.Invoke();
+            Debug.Log("Tried to Intreact with simple structure");
         }
     }
 

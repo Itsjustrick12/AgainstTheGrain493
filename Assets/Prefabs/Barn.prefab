@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 465499869951987616}
   - component: {fileID: 7941187540243799669}
-  - component: {fileID: -7627904738135456434}
+  - component: {fileID: 7447031074357923016}
   m_Layer: 0
   m_Name: Barn
   m_TagString: Untagged
@@ -92,8 +92,8 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
---- !u!114 &-7627904738135456434
+  m_SpriteSortPoint: 1
+--- !u!114 &7447031074357923016
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,9 +102,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4935858330493278644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14e7a28b1dd5e6e478eb3568c55de45d, type: 3}
+  m_Script: {fileID: 11500000, guid: c402a8b62877aad4abced7845b563eb4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Structure
+  m_EditorClassIdentifier: Assembly-CSharp::Barn
   tileHelper: {fileID: 0}
   maxHealth: 10
   type: 4

@@ -399,7 +399,7 @@ public class Unit : Entity
 
         if (!isAdjacent)
         {
-            Debug.Log("Target isn't adjacent!");
+            //Debug.Log("Target isn't adjacent!");
             //Set the target a second time
             return;
         }

@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 465499869951987616}
   - component: {fileID: 7941187540243799669}
-  - component: {fileID: 8533745808882360955}
+  - component: {fileID: 7148097182886275197}
   m_Layer: 0
-  m_Name: Green Farmer
+  m_Name: Fence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2432255912712850490, guid: 9bb79eeb3bedfee4c904eef24c7d1d56, type: 3}
+  m_Sprite: {fileID: -4505600179052156391, guid: ab8f8f0f3a21e6f468adb99cc64d74b6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,7 +93,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 1
---- !u!114 &8533745808882360955
+--- !u!114 &7148097182886275197
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,24 +102,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 4935858330493278644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a247b7d29174994c8f37eb81eb84fda, type: 3}
+  m_Script: {fileID: 11500000, guid: c1855c932e7f83a4fa6b89640e5781a8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Unit
+  m_EditorClassIdentifier: Assembly-CSharp::Fence
   tileHelper: {fileID: 0}
   maxHealth: 10
-  type: 3
+  type: 4
   currentHealth: 10
   isObstacle: 1
   isInteractable: 0
   shadeSprite: {fileID: 1624670681131030402}
-  ID: 1
-  primary: 
-  target: {x: 0, y: 0, z: -1}
-  isEnemy: 0
-  strength: 5
-  attackRange: 1
-  iq: 1
-  movementRange: 3
+  ID: 2
+  fenceSprites:
+  - {fileID: 328069896806880549, guid: ab8f8f0f3a21e6f468adb99cc64d74b6, type: 3}
+  - {fileID: -1649021542309480986, guid: ab8f8f0f3a21e6f468adb99cc64d74b6, type: 3}
+  - {fileID: 9011835135703650088, guid: ab8f8f0f3a21e6f468adb99cc64d74b6, type: 3}
+  - {fileID: -4505600179052156391, guid: ab8f8f0f3a21e6f468adb99cc64d74b6, type: 3}
+  - {fileID: -2278132303818480719, guid: ab8f8f0f3a21e6f468adb99cc64d74b6, type: 3}
+  - {fileID: 637346134, guid: ab8f8f0f3a21e6f468adb99cc64d74b6, type: 3}
+  - {fileID: -46894489, guid: ab8f8f0f3a21e6f468adb99cc64d74b6, type: 3}
+  - {fileID: -621987865, guid: ab8f8f0f3a21e6f468adb99cc64d74b6, type: 3}
+  - {fileID: -1382653919, guid: ab8f8f0f3a21e6f468adb99cc64d74b6, type: 3}
+  - {fileID: -807416117, guid: ab8f8f0f3a21e6f468adb99cc64d74b6, type: 3}
+  - {fileID: 1113261384, guid: ab8f8f0f3a21e6f468adb99cc64d74b6, type: 3}
+  - {fileID: -745989058, guid: ab8f8f0f3a21e6f468adb99cc64d74b6, type: 3}
 --- !u!1001 &2137449664765164358
 PrefabInstance:
   m_ObjectHideFlags: 0

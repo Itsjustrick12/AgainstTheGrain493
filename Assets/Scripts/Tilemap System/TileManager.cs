@@ -19,6 +19,7 @@ public class TileManager : MonoBehaviour
     public Tilemap entitiesMap;
     //Will be used for drawing the boarder around where tiles are placed so theres no screen edges
     public Tilemap borderMap;
+    public TileBase borderTile;
 
     //Used for getting nearby references of tiles
     [HideInInspector]private static Vector3Int[] NEIGHBORS = new Vector3Int[]
@@ -72,6 +73,7 @@ public class TileManager : MonoBehaviour
                 SetOverlayDisplayTile(tilePos);
             }
         }
+        DrawBorder(size);
     }
 
     //Needed for determining what kind of tile needs to be rendered based on the placeholder
@@ -280,6 +282,24 @@ public class TileManager : MonoBehaviour
             return (data.occupyingEntity);
         }
         return null;
+    }
+
+    public void DrawBorder(int size)
+    {
+        int half = size / 2;
+        int borderWidth = 2;
+
+        for (int i = -half - borderWidth; i < half + borderWidth; i++)
+        {
+            for (int j = -half - borderWidth; j < half + borderWidth; j++)
+            {
+                // Skip the interior (the actual grid)
+                if (i >= -half && i < half && j >= -half && j < half)
+                    continue;
+
+                borderMap.SetTile(new Vector3Int(i, j, 0), borderTile);
+            }
+        }
     }
 
     private void OnEnable()

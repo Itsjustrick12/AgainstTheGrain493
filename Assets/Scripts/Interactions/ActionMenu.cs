@@ -89,7 +89,7 @@ public class ActionMenu : MonoBehaviour
 
         List<EntityAction> actions = unit.GetAvailableActions();
 
-        Debug.Log("Actions is of size " + actions.Count);
+        //Debug.Log("Actions is of size " + actions.Count);
         
         //Only create buttons for the possible actions from the given position
         foreach (EntityAction action in actions)
@@ -154,8 +154,8 @@ public class ActionMenu : MonoBehaviour
     //Only show details based options and the end turn button when no unit is selected
     public void AddDefaults()
     {
-        CreateButton(cancel);
         CreateButton(wait);
+        CreateButton(cancel);
     }
 
     public void HideMenu()

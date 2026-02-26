@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 1f127be500a11f44da971e93ccc56555
+guid: 8606ebf5ba179e4458492079ebed871c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5397573168801136404
-    second: Fence_0
-  - first:
-      213: 2311940087313822035
-    second: Fence_1
+      213: 7430678223763323853
+    second: WhiteInfoTile_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -103,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fence_0
+      name: WhiteInfoTile_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,14 +115,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ce0cd60fcc7f715b0800000000000000
-      internalID: -5397573168801136404
+      spriteID: dcbb4af99721f1760800000000000000
+      internalID: 7430678223763323853
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fence_1
+      name: WhiteInfoTile_1
       rect:
         serializedVersion: 2
         x: 32
@@ -138,16 +135,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 351735e9249a51020800000000000000
-      internalID: 2311940087313822035
+      spriteID: e4c42200703e5a24392de9815879cf7e
+      internalID: -416405805
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fence_2
+      name: WhiteInfoTile_2
       rect:
         serializedVersion: 2
         x: 64
@@ -162,14 +159,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02a04b834ab596046893fcf247d6314c
-      internalID: -785550722
+      spriteID: 58f3fb25fcc1c4848867af72cad3150d
+      internalID: -1357950966
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fence_3
+      name: WhiteInfoTile_3
       rect:
         serializedVersion: 2
         x: 96
@@ -184,36 +181,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63bb28c5f2ae997419179e472389ebff
-      internalID: 800142062
+      spriteID: 535ef63901982a94fa4d40a16c52c0b5
+      internalID: 571466588
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fence_4
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6d32b1edd3739df44817187358ff4549
-      internalID: 1020839074
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fence_5
+      name: WhiteInfoTile_4
       rect:
         serializedVersion: 2
         x: 0
@@ -228,14 +203,36 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b930f8a096fc9934eb2746b2acdd8f19
-      internalID: 588462282
+      spriteID: 1ff79d90b982ab64495c4663239f1735
+      internalID: -101906176
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fence_6
+      name: WhiteInfoTile_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5995102dd7e0b74190ef75dd2e931fc
+      internalID: -646103151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WhiteInfoTile_6
       rect:
         serializedVersion: 2
         x: 64
@@ -250,14 +247,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 261985aac7c314340b058400422e7e5b
-      internalID: -780477374
+      spriteID: a541f16f524a1e64f9f76dd1cf399238
+      internalID: 1996267704
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fence_7
+      name: WhiteInfoTile_7
       rect:
         serializedVersion: 2
         x: 96
@@ -272,80 +269,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65bcd99f9aea76e458a8a33099142e7a
-      internalID: -418211153
+      spriteID: 55003d783dcbe7d49bcbd24f24d085c7
+      internalID: -27823227
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fence_8
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 46d3ea2dd78a93f48b5b85c4e9efbc02
-      internalID: 1458689687
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fence_9
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5421011b60c7f164f9dfd837866703e5
-      internalID: 164042012
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fence_10
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 77e6963e88e1580469bcbd15ce28fbfa
-      internalID: -893936623
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fence_11
+      name: WhiteInfoTile_8
       rect:
         serializedVersion: 2
         x: 0
@@ -360,14 +291,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1c2d14fd312d5b4795f94cba9ef5bd0
-      internalID: 4707031
+      spriteID: 595a882a24468c54d893208c0d4b986c
+      internalID: 915713570
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fence_12
+      name: WhiteInfoTile_9
       rect:
         serializedVersion: 2
         x: 32
@@ -382,14 +313,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ada13ef1204e9c547b9a0d13ba3b96a1
-      internalID: -595071216
+      spriteID: 3b618284a6509e44da78094bc4ef8f4a
+      internalID: -995673816
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fence_13
+      name: WhiteInfoTile_10
       rect:
         serializedVersion: 2
         x: 64
@@ -404,14 +335,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3aab9d4a7f3c9924184be78fc1f1318a
-      internalID: 1687809953
+      spriteID: f885f6da779df764799667c7f92945e7
+      internalID: 420689160
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fence_14
+      name: WhiteInfoTile_11
       rect:
         serializedVersion: 2
         x: 96
@@ -426,36 +357,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8980b6291a64ca0419d63b37af6b6960
-      internalID: -286317890
+      spriteID: 0a07019abecf7a64e909acaad19e8621
+      internalID: 1461942912
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fence_15
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ca99331edfa2f3a44af80225b4eab638
-      internalID: 1481771678
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fence_16
+      name: WhiteInfoTile_12
       rect:
         serializedVersion: 2
         x: 0
@@ -470,14 +379,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0914cbd4d35e1694d922bd4f4367541c
-      internalID: 1822214064
+      spriteID: 9e1217280801f3f41b09ef94985e51f4
+      internalID: -1070815511
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fence_17
+      name: WhiteInfoTile_13
       rect:
         serializedVersion: 2
         x: 32
@@ -492,14 +401,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9237e01ceee4bb4c8e642baae1dfba2
-      internalID: -578910648
+      spriteID: 40a562b1c65a4ad4a96fad90d6122d4c
+      internalID: -1174738921
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fence_18
+      name: WhiteInfoTile_14
       rect:
         serializedVersion: 2
         x: 64
@@ -514,14 +423,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7fc5acb5d847ff4ead75d1fbabd4cad
-      internalID: -407401481
+      spriteID: 77e1b04100771164384631cc76f1a9c6
+      internalID: -1514846725
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fence_19
+      name: WhiteInfoTile_15
       rect:
         serializedVersion: 2
         x: 96
@@ -536,8 +445,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d14697eb499304640a4be3ef6d7f34fd
-      internalID: 844976067
+      spriteID: dc0dd0cd6a40ddd47bb64573cc123312
+      internalID: 879093096
       vertices: []
       indices: 
       edges: []
@@ -546,7 +455,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8d9b67445075b5342a102248b581f8db
+    spriteID: b9fa02cb08c045a4daf0a443ab66b968
     internalID: 0
     vertices: []
     indices: 
@@ -558,26 +467,22 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Fence_0: -5397573168801136404
-      Fence_1: 2311940087313822035
-      Fence_10: -893936623
-      Fence_11: 4707031
-      Fence_12: -595071216
-      Fence_13: 1687809953
-      Fence_14: -286317890
-      Fence_15: 1481771678
-      Fence_16: 1822214064
-      Fence_17: -578910648
-      Fence_18: -407401481
-      Fence_19: 844976067
-      Fence_2: -785550722
-      Fence_3: 800142062
-      Fence_4: 1020839074
-      Fence_5: 588462282
-      Fence_6: -780477374
-      Fence_7: -418211153
-      Fence_8: 1458689687
-      Fence_9: 164042012
+      WhiteInfoTile_0: 7430678223763323853
+      WhiteInfoTile_1: -416405805
+      WhiteInfoTile_10: 420689160
+      WhiteInfoTile_11: 1461942912
+      WhiteInfoTile_12: -1070815511
+      WhiteInfoTile_13: -1174738921
+      WhiteInfoTile_14: -1514846725
+      WhiteInfoTile_15: 879093096
+      WhiteInfoTile_2: -1357950966
+      WhiteInfoTile_3: 571466588
+      WhiteInfoTile_4: -101906176
+      WhiteInfoTile_5: -646103151
+      WhiteInfoTile_6: 1996267704
+      WhiteInfoTile_7: -27823227
+      WhiteInfoTile_8: 915713570
+      WhiteInfoTile_9: -995673816
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

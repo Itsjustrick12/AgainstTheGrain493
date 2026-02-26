@@ -128,7 +128,7 @@ public class Entity : MonoBehaviour
         type = temp;
     }
 
-    public void Die()
+    public virtual void Die()
     {
         //Remove entity from tile
         TileData tile = tileManager.GetTileDataAt(GetGridPos());
@@ -183,7 +183,7 @@ public class Entity : MonoBehaviour
         isActive = true;
     }
 
-    public void Start()
+    public virtual void Start()
     {
         tileManager = FindFirstObjectByType<TileManager>();
         gameManager = FindFirstObjectByType<GameManager>();

@@ -148,9 +148,9 @@ public class UnitInteractionSystem : TileCursor
                         if (actions != null && actions.Count > 0)
                         {
                             currAction = actions[0]; // assumes first action is SpawnUnitAction
+                            state = InteractionState.ActionSelection;
+                            structureCheck.Interact();
                         }
-                        state = InteractionState.ActionSelection;
-                        structureCheck.Interact();
                     }
                 }
                 else

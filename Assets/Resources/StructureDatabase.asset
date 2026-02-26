@@ -22,3 +22,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: ed87d6aeb80615548a89ea604f5e3cfe, type: 2}
     purchasePrice: -1
     sellValue: -1
+  - id: 2
+    entityName: Fence
+    prefab: {fileID: 4935858330493278644, guid: 382b3da311946024e9b29fa5bea1c4d4, type: 3}
+    tile: {fileID: 11400000, guid: e8d46877861594d40bad8ff7f86951b4, type: 2}
+    sprite: {fileID: -4505600179052156391, guid: ab8f8f0f3a21e6f468adb99cc64d74b6, type: 3}
+    actions: []
+    purchasePrice: -1
+    sellValue: -1

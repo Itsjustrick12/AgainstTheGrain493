@@ -20,13 +20,13 @@ public class BarnUIMenu : MonoBehaviour
 
     private void OnDisable()
     {
-        Structure.OnBarnInteraction -= ShowMenu;
+        Barn.OnBarnInteraction -= ShowMenu;
     }
 
     public void Awake()
     {
         econManager = EconomyManager.Instance;
-        Structure.OnBarnInteraction += ShowMenu;
+        Barn.OnBarnInteraction += ShowMenu;
     }
 
     public void Start()
@@ -40,7 +40,7 @@ public class BarnUIMenu : MonoBehaviour
 
     public void ShowMenu()
     {
-        Structure.OnBarnInteraction += ShowMenu;
+        Barn.OnBarnInteraction += ShowMenu;
         uiPanel.SetActive(true);
         UpdateCropText(econManager.GetHarvestedCrops(1));
         UpdateCoinText(econManager.GetCoins());
