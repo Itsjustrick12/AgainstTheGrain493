@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 5676c8b58cd4d8942a29343e4f051cc1, type: 3}
+  m_Sprite: {fileID: 6168083732550661486, guid: 2349e13b25187b741a90c5fc24dc3709, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Unit
   tileHelper: {fileID: 0}
   maxHealth: 15
-  type: 1
+  type: 0
   currentHealth: 15
   isObstacle: 1
   isInteractable: 0

@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: b7a7074cb46a1f54d9a682bd9efea838, type: 3}
+  m_Sprite: {fileID: -2432255912712850490, guid: 9bb79eeb3bedfee4c904eef24c7d1d56, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,16 +105,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a247b7d29174994c8f37eb81eb84fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Unit
+  tileHelper: {fileID: 0}
+  maxHealth: 10
+  type: 3
+  currentHealth: 10
   isObstacle: 1
   isInteractable: 0
   shadeSprite: {fileID: 1624670681131030402}
   ID: 1
-  type: 0
+  primary: 
+  target: {x: 0, y: 0, z: -1}
   isEnemy: 0
-  maxHealth: 10
-  currentHealth: 10
   strength: 5
   attackRange: 1
+  iq: 1
   movementRange: 3
 --- !u!1001 &2137449664765164358
 PrefabInstance:
