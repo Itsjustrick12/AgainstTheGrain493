@@ -68,13 +68,16 @@ public class BasicWaterAction : EntityAction
 
     public override void PerformAt(Entity unit, Vector3Int pos)
     {
+        TileManager manager = FindFirstObjectByType<TileManager>();
         //Execute a simple attack on the unit at the location specified
-        Crop targetCrop = FindFirstObjectByType<TileManager>().GetCropOnTile(pos);
+        Crop targetCrop = manager.GetCropOnTile(pos);
 
         if (targetCrop == null)
         {
             return;
         }
+
+        manager.SetTile(pos, TileType.WateredDirt);
 
         //Water the crop at the position
         targetCrop.WaterCrop();

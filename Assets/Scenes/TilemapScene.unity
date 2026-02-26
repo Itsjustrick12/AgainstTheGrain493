@@ -388,45 +388,55 @@ Tilemap:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456173020}
   m_Enabled: 1
-  m_Tiles: {}
+  m_Tiles:
+  - first: {x: 3090, y: 222, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 0515031a4a931464784e87f24fb1cbbf, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: f9602e3a55eb2ed40aa160e80b54c8d2, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 0
+  - m_RefCount: 1
     m_Data:
-      e00: 1e-45
+      e00: 1
       e01: 0
-      e02: 9.019932e+28
-      e03: 1.1754966e-38
-      e10: 1e-45
-      e11: 0
-      e12: 1.64e-43
-      e13: 5.41e-43
-      e20: -4.0312087e-11
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
       e21: 0
-      e22: 2.8021447e+37
-      e23: -4.8723933e-29
-      e30: 4.591e-41
+      e22: 1
+      e23: 0
+      e30: 0
       e31: 0
-      e32: 5.45e-43
-      e33: 5.41e-43
+      e32: 0
+      e33: 1
   m_TileColorArray:
-  - m_RefCount: 0
-    m_Data: {r: 1.9380114e-18, g: 1.9380114e-18, b: 1.9380114e-18, a: 1.9380114e-18}
+  - m_RefCount: 1
+    m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -5, y: -6, z: 0}
-  m_Size: {x: 6, y: 7, z: 1}
+  m_Size: {x: 3096, y: 229, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -2499,7 +2509,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 994418586}
-  - component: {fileID: 994418587}
   - component: {fileID: 994418588}
   m_Layer: 0
   m_Name: TileCursor
@@ -2523,32 +2532,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &994418587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 994418584}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97cbdc7bd53354d48818a7c14e6f0365, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  hoverMap: {fileID: 498094933}
-  targetMap: {fileID: 713243558}
-  selectTile: {fileID: 11400000, guid: 6ac496089163b1848a9c347950e63ea1, type: 2}
-  tileManager: {fileID: 1190201941}
-  gameManager: {fileID: 0}
-  pathfinder: {fileID: 994418588}
-  debugMap: {fileID: 1363077475}
-  type: 2
-  paintingTile: 0
-  startPoint: {x: 0, y: 0, z: 0}
-  endPoint: {x: 0, y: 0, z: 0}
-  pathTile: {fileID: 11400000, guid: 83134dbfeb80ced4f80a6eba38d3e997, type: 2}
-  startTile: {fileID: 11400000, guid: 378ad7e77a42b9f4aa8f5a5eacac469e, type: 2}
-  endTile: {fileID: 11400000, guid: 0e3b1dffc54c09f408c77b596213517b, type: 2}
 --- !u!114 &994418588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2590,7 +2573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18120918334272a49a6db0a606c47699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  coins: 50
+  coins: 5
 --- !u!4 &1059514642
 Transform:
   m_ObjectHideFlags: 0

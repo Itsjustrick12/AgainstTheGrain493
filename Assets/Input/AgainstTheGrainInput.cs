@@ -190,6 +190,15 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Scrub"",
+                    ""type"": ""Button"",
+                    ""id"": ""7ac77ca0-c994-4669-863d-0ec2f5c79275"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -324,6 +333,17 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
                     ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""af56d917-6fc3-4c49-94cf-45165fb50dd3"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scrub"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -343,6 +363,7 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         m_Gameplay_Target = m_Gameplay.FindAction("Target", throwIfNotFound: true);
         m_Gameplay_Kill = m_Gameplay.FindAction("Kill", throwIfNotFound: true);
         m_Gameplay_Select = m_Gameplay.FindAction("Select", throwIfNotFound: true);
+        m_Gameplay_Scrub = m_Gameplay.FindAction("Scrub", throwIfNotFound: true);
     }
 
     ~@AgainstTheGrainInput()
@@ -434,6 +455,7 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Target;
     private readonly InputAction m_Gameplay_Kill;
     private readonly InputAction m_Gameplay_Select;
+    private readonly InputAction m_Gameplay_Scrub;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -489,6 +511,10 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Gameplay/Select".
         /// </summary>
         public InputAction @Select => m_Wrapper.m_Gameplay_Select;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Scrub".
+        /// </summary>
+        public InputAction @Scrub => m_Wrapper.m_Gameplay_Scrub;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -548,6 +574,9 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
             @Select.started += instance.OnSelect;
             @Select.performed += instance.OnSelect;
             @Select.canceled += instance.OnSelect;
+            @Scrub.started += instance.OnScrub;
+            @Scrub.performed += instance.OnScrub;
+            @Scrub.canceled += instance.OnScrub;
         }
 
         /// <summary>
@@ -592,6 +621,9 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
             @Select.started -= instance.OnSelect;
             @Select.performed -= instance.OnSelect;
             @Select.canceled -= instance.OnSelect;
+            @Scrub.started -= instance.OnScrub;
+            @Scrub.performed -= instance.OnScrub;
+            @Scrub.canceled -= instance.OnScrub;
         }
 
         /// <summary>
@@ -709,5 +741,12 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSelect(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Scrub" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnScrub(InputAction.CallbackContext context);
     }
 }

@@ -124,6 +124,7 @@ public class UnitInteractionSystem : TileCursor
                     if (selectedEntity is Unit)
                     {
                         Unit unit = selectedEntity as Unit;
+                        if (unit.isEnemy) return;
                         validLocations = unit.GetMovementRange();
                         
                         LiftHoverSprite();
@@ -310,6 +311,7 @@ public class UnitInteractionSystem : TileCursor
             //Don't do anything, consider the unit moved and don't do anything else
             state = InteractionState.Selection;
             selectedEntity.Deactivate();
+            ResetData();
             return;
         }
         else if (action is Cancel)
@@ -317,6 +319,7 @@ public class UnitInteractionSystem : TileCursor
             //Undo the movement from the previous action and return
             tileManager.MoveEntity(afterLocation, prevLocation);
             state = InteractionState.Selection;
+            ResetData();
             return;
         }
         //Special case, requires picking an integer set by a UI (barnUI probably)

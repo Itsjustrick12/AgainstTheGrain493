@@ -198,6 +198,14 @@ public class TileHelper : MonoBehaviour
                     continue;
 
                 int pathLength = validPath.Count - 1;
+
+                //get tile data ref
+                TileData data = tileManager.GetTileDataAt(candidateTile);
+                if (data == null || data.HasOccupant())
+                {
+                    continue;
+                }
+
                 //Don't allow the default "There's no path with size 1"
                 if (pathLength <= moveAmt && pathLength != 0)
                 {
