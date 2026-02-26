@@ -45,16 +45,6 @@ public class Unit : Entity
         return false;
     }
 
-    public List<UnitAction> GetAvailableActions()
-    {
-        foreach (var action in actions)
-        {
-            Debug.Log($"Action: {action.GetName()} | IsPossible: {action.IsPossible(this)}");
-        }
-        //Return all the actions that are currently possible given the Unit's information (and generally position)
-        return actions.Where(action => action.IsPossible(this)).ToList();
-    }
-
     public void GetHealth(int healthValue){ 
         currentHealth = healthValue;
     }
