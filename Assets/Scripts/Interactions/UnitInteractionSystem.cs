@@ -55,6 +55,8 @@ public class UnitInteractionSystem : TileCursor
 
     private int nextUnitID = -1;
 
+    public bool isInputOn = true;
+
     public void Awake()
     {
         tileManager = FindFirstObjectByType<TileManager>();
@@ -64,10 +66,14 @@ public class UnitInteractionSystem : TileCursor
         BarnUIMenu.OnUnitPurchased.AddListener(SetNextUnit);
         BarnUIMenu.OnPurchaseComplete.AddListener(SelectAction);
         BarnUIMenu.CancelAction.AddListener(StopAction);
+
+        validLocations = new List<Vector3Int>();
     }
     //Restrict to only display updated tiles
     protected override void HandleCursor()
     {
+        if (!isInputOn) return;
+
         Vector3Int tile = GetMouseTile();
 
         if (showHighlight && tile != currentTile && targetMap.HasTile(tile))
@@ -100,7 +106,7 @@ public class UnitInteractionSystem : TileCursor
 
         selectedPosition = pos;
         selectedEntity = data.GetOccupyingEntity();
-        if (selectedEntity.IsActive())
+        if (selectedEntity != null && selectedEntity.IsActive())
         {
 
             return true;
@@ -121,7 +127,7 @@ public class UnitInteractionSystem : TileCursor
                     //If above is true, get reference to entity and switch to movement phase
                     selectedPosition = pos;
                     selectedEntity = tileManager.GetTileDataAt(pos).GetOccupyingEntity();
-                    if (selectedEntity is Unit)
+                    if (selectedEntity != null && selectedEntity is Unit)
                     {
                         Unit unit = selectedEntity as Unit;
                         if (unit.isEnemy) return;
@@ -135,7 +141,7 @@ public class UnitInteractionSystem : TileCursor
                         state = InteractionState.Movement;
                         return;
                     }
-                    else if (selectedEntity is Structure)
+                    else if (selectedEntity != null && selectedEntity is Structure)
                     {
                         //do structure interaction, skip movement interaction
                         Structure structureCheck = selectedEntity as Structure;
@@ -229,11 +235,13 @@ public class UnitInteractionSystem : TileCursor
 
     public bool AttemptTarget(Vector3Int pos)
     {
+        if (currAction == null) return false;
         //Check that the position you clicked is a valid target
         if (validLocations.Count > 0 && validLocations.Contains(pos))
         {
             //Execute the action
-            currAction.PerformAt(selectedEntity as Unit, pos);
+            //Need to remain general
+            currAction.PerformAt(selectedEntity as Entity, pos);
             selectedEntity.Deactivate();
             ResetData();
             return true;
@@ -272,7 +280,7 @@ public class UnitInteractionSystem : TileCursor
         ResetData();
 
         //If unit was moved but not finalized, move it back
-        if (afterLocation != prevLocation)
+        if (afterLocation != prevLocation && (afterLocation != null && prevLocation != null))
         {
             tileManager.MoveEntity(afterLocation, prevLocation);
         }
@@ -304,7 +312,10 @@ public class UnitInteractionSystem : TileCursor
     public void SelectAction(EntityAction action)
     {
         //Check for unique UI ish actions for not doing direct things
-
+        if (action == null)
+        {
+            Debug.LogError("NO ACTION SELECTED!");
+        }
         //once this is called, shift to tile selection based on target tiles
         if (action is WaitAction)
         {
@@ -316,6 +327,7 @@ public class UnitInteractionSystem : TileCursor
         }
         else if (action is Cancel)
         {
+
             //Undo the movement from the previous action and return
             tileManager.MoveEntity(afterLocation, prevLocation);
             state = InteractionState.Selection;
@@ -366,5 +378,17 @@ public class UnitInteractionSystem : TileCursor
     {
         input.Gameplay.Select.performed -= OnSelect;
         input.Disable();
+    }
+
+    public void DisableInputs()
+    {
+        isInputOn = false;
+        input.Disable();
+    }
+
+    public void EnableInputs()
+    {
+        isInputOn = true;
+        input.Enable();
     }
 }

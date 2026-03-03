@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
 {
     [Header("General Settings")]
     public TileManager tileManager;
+    //Needed for pause logic
+    private UnitInteractionSystem interactionSystem;
+    public ActionMenu actionMenu;
 
     //Transforms for sorting
     public Transform friendlyUnits;
@@ -28,14 +31,18 @@ public class GameManager : MonoBehaviour
     public GameObject loseScreen;
     
     public bool isPlayerTurn = true;
+    public bool isPaused = false;
 
     public void Awake()
     {
         tileManager = FindFirstObjectByType<TileManager>();
+        interactionSystem = FindFirstObjectByType<UnitInteractionSystem>();
+        
     }
 
     public void Start()
     {
+        //actionMenu = FindFirstObjectByType<ActionMenu>();
         isPlayerTurn = true;
         SpawnStartingUnits();
     }
@@ -49,7 +56,7 @@ public class GameManager : MonoBehaviour
     {
         isPlayerTurn = true;
         // Call this whenever a turn/day ends
-        Debug.Log("Turn advanced!");
+        //Debug.Log("Turn advanced!");
         List<Unit> friendlies = GetAllFriendlyUnits();
         List<Structure> structures = GetAllStructures();
         //Reactivate the friendly units
@@ -218,6 +225,7 @@ public class GameManager : MonoBehaviour
         input = new AgainstTheGrainInput();
         input.Gameplay.AdvanceTurn.performed += BeginEnemyTurn;
         Entity.OnEntityDestroyed += CheckEndState;
+        input.Gameplay.Pause.performed += TogglePause;
         input.Enable();
 
     }
@@ -226,7 +234,20 @@ public class GameManager : MonoBehaviour
     {
         Entity.OnEntityDestroyed -= CheckEndState;
         input.Gameplay.AdvanceTurn.performed -= BeginEnemyTurn;
+        input.Gameplay.Pause.performed -= TogglePause;
         input.Disable();
+    }
+
+    public void TogglePause(InputAction.CallbackContext context)
+    {
+        if (!isPaused)
+        {
+            PauseGame();
+        }
+        else
+        {
+            UnPauseGame();
+        }
     }
 
     public bool IsFriendlyDefeated()
@@ -300,7 +321,18 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
+        isPaused = true;
+        interactionSystem.DisableInputs();
+        actionMenu.TurnOffInput();
         pauseScreen.SetActive(true);
+    }
+
+    public void UnPauseGame()
+    {
+        isPaused = false;
+        interactionSystem.EnableInputs();
+        actionMenu.TurnOnInput();
+        pauseScreen.SetActive(false);
     }
 
     public void HideAllUIScreens()
@@ -309,4 +341,6 @@ public class GameManager : MonoBehaviour
         winScreen.SetActive(false);
         pauseScreen.SetActive(false);
     }
+
+    
 }
