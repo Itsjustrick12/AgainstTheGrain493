@@ -11,7 +11,7 @@ public class TilePainter : TileCursor
 {
     [SerializeField] TileManager tileManager;
     [SerializeField] GameManager gameManager;
-    [SerializeField] TileHelper pathfinder;
+    [SerializeField] TileHelper tileHelper;
 
     public Tilemap debugMap;
     public TileType type = TileType.Dirt;
@@ -31,7 +31,7 @@ public class TilePainter : TileCursor
     {
         tileManager = FindFirstObjectByType<TileManager>();
         gameManager = FindFirstObjectByType<GameManager>();
-        pathfinder = FindFirstObjectByType<TileHelper>();
+        tileHelper = FindFirstObjectByType<TileHelper>();
     }
 
     protected override void Update()
@@ -95,7 +95,13 @@ public class TilePainter : TileCursor
 
     public void DrawPath(InputAction.CallbackContext a)
     {
+<<<<<<< Updated upstream
         List<Vector3Int> positions = pathfinder.TilePath(startPoint, endPoint);
+=======
+
+        Debug.Log("Start Pos: " + startPoint + " | End Pos: " + endPoint);
+        List<Vector3Int> positions = tileHelper.TilePath(startPoint, endPoint);
+>>>>>>> Stashed changes
 
         //Update the map to show the new tiles
         ClearDebugMap();
@@ -143,6 +149,28 @@ public class TilePainter : TileCursor
         debugMap.ClearAllTiles();
     }
 
+<<<<<<< Updated upstream
+=======
+    public void DrawMovementRange(InputAction.CallbackContext a)
+    {
+        //Get the interaction tiles
+        
+        //Get the unit reference
+        Unit unitref = tileManager.GetTileDataAt(currentTile).occupyingEntity as Unit;
+        if (unitref != null)
+        {
+            debugMap.ClearAllTiles();
+            List<Vector3Int> range = tileHelper.GetMovementRange(unitref);
+            //Debug.Log("Range has " + range.Count + " tiles in it!");
+            foreach (Vector3Int pos in range) {
+                debugMap.SetTile(pos, pathTile);
+            }
+
+
+        }
+    }
+
+>>>>>>> Stashed changes
     private void OnEnable()
     {
         input = new AgainstTheGrainInput();

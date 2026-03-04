@@ -1998,6 +1998,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   tileManager: {fileID: 1190201941}
+<<<<<<< Updated upstream
+=======
+  aiManager: {fileID: 0}
+  actionMenu: {fileID: 901733146}
+>>>>>>> Stashed changes
   friendlyUnits: {fileID: 1633857713}
   enemyUnits: {fileID: 1483628605}
   cropContainer: {fileID: 918111452}
@@ -2595,6 +2600,117 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
+<<<<<<< Updated upstream
+=======
+  m_Father: {fileID: 324580621}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1644611963
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1644611965}
+  - component: {fileID: 1644611964}
+  m_Layer: 0
+  m_Name: AIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1644611964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644611963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fea1cc68a5bfa4e7397ea4e20197c5da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AIManager
+  tileManager: {fileID: 0}
+  tileHelper: {fileID: 0}
+  gameManager: {fileID: 0}
+--- !u!4 &1644611965
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644611963}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1662612539
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1662612541}
+  - component: {fileID: 1662612540}
+  m_Layer: 0
+  m_Name: UnitInteractionSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1662612540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662612539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42083d1308dfa354c9f13eb0fd30bc85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  hoverMap: {fileID: 498094933}
+  targetMap: {fileID: 713243558}
+  selectTile: {fileID: 11400000, guid: 6ac496089163b1848a9c347950e63ea1, type: 2}
+  tileManager: {fileID: 1190201941}
+  optionsMap: {fileID: 1363077475}
+  optionTile: {fileID: 11400000, guid: e5091c83003c5a14ba2ac5bd6049d005, type: 2}
+  actionMenu: {fileID: 901733146}
+  state: 0
+  selectedPosition: {x: 0, y: 0, z: 0}
+  prevLocation: {x: 0, y: 0, z: 0}
+  afterLocation: {x: 0, y: 0, z: 0}
+  selectedEntity: {fileID: 0}
+  hoverTransform: {fileID: 702921834}
+  hoverSprite: {fileID: 702921833}
+  validLocations: []
+  isInputOn: 1
+--- !u!4 &1662612541
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662612539}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -33.62593, y: 418.87015, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 702921834}
+>>>>>>> Stashed changes
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2080642187
@@ -2995,6 +3111,7 @@ SceneRoots:
   - {fileID: 1627008776}
   - {fileID: 1190201942}
   - {fileID: 994418586}
+  - {fileID: 1644611965}
   - {fileID: 957032419}
   - {fileID: 1633857713}
   - {fileID: 1483628605}
