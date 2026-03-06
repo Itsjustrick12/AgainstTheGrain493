@@ -1,7 +1,5 @@
 using JetBrains.Annotations;
 using UnityEngine;
-using static UnityEngine.AdaptivePerformance.Provider.AdaptivePerformanceSubsystemDescriptor;
-
 //The crop object that is spawned in the game world and treated like an entity
 public class Crop : Entity
 {
@@ -9,10 +7,18 @@ public class Crop : Entity
     public int id;
     private CropInfo refCrop;
 
-    public int currentStage = 0;
+    private int currentStage = 0;
 
-    public bool isWatered = false;
-    public bool isHarvestable = false;
+    [Header("State Variables")]
+
+    private bool isWatered = false;
+    private bool isHarvestable = false;
+
+    //Used for multiharvesting
+    private bool isMultiHarvest = false;
+    private int onHarvestStage = 0;
+    private bool isBarren = false;
+    private Sprite barrenSprite;
 
     public void Intialize(CropInfo info)
     {
@@ -22,6 +28,9 @@ public class Crop : Entity
         currentStage = 0;
         isHarvestable = false;
         sprite.sprite = info.growthStageSprites[0];
+        isMultiHarvest = info.isMultiHarvest;
+        onHarvestStage = info.onHarvestStage;
+        barrenSprite = info.barrenSprite;
     }
 
     public void Intialize(int id)
@@ -45,7 +54,16 @@ public class Crop : Entity
 
     public void WaterCrop()
     {
+        shadeSprite.sprite = sprite.sprite;
+        shadeSprite.enabled = true;
         isWatered = true;
+    }
+
+    public void ResetWater()
+    {
+        shadeSprite.sprite = sprite.sprite;
+        shadeSprite.enabled = false;
+        isWatered = false;
     }
 
     public void ProcessGrowth()
@@ -53,7 +71,7 @@ public class Crop : Entity
         if (CanGrow())
         {
             //Process the crop's stage
-            currentStage = Mathf.Min(currentStage + 1, refCrop.numStages);
+            currentStage = Mathf.Min(currentStage + 1, refCrop.numStages-1);
 
             //If processed through all stages, its now harvestable
             if (refCrop != null && refCrop.numStages-1 == currentStage)
@@ -61,21 +79,29 @@ public class Crop : Entity
                 //Get the last sprite index
                 sprite.sprite = refCrop.growthStageSprites[refCrop.numStages - 1];
                 isHarvestable = true;
+                isBarren = false;
             }
             else
             {
-                if (refCrop.growthStageSprites.Length < currentStage)
+                if (refCrop.growthStageSprites.Length <= currentStage)
                 {
                     Debug.Log("There isn't a sprite for this stage");
                     return;
                 }
-                
-                sprite.sprite = refCrop.growthStageSprites[currentStage];
-                
+                // Only swap away from barren sprite once it actually starts regrowing
+                if (isBarren && currentStage > onHarvestStage)
+                {
+                    isBarren = false;
+                }
+                if (!isBarren)
+                {
+                    sprite.sprite = refCrop.growthStageSprites[currentStage];
+                }
+
             }
 
         }
-        isWatered = false;
+        ResetWater();
     }
 
     //May get more complicated later
@@ -97,12 +123,34 @@ public class Crop : Entity
     {
         if (CanBeHarvested())
         {
+
+            EconomyManager.Instance.AddHarvestedCrops(id);
+            //If multiharvest, jump to the stage defined by the CropInfo, then proceed like normal
+            if (isMultiHarvest)
+            {
+                currentStage = onHarvestStage;
+                sprite.sprite = barrenSprite;
+                isHarvestable = false;
+                isBarren = true;
+            }
+            else
+            {
+                DestroyEntity();
+            }
             //TODO Add logic for increasing the player's crop count
             //Remove the entity from it's current TileData and destroy the GameObject
-            EconomyManager.Instance.AddHarvestedCrops(id);
-            DestroyEntity();
         }
 
+    }
+
+    public bool IsHarvestable()
+    {
+        return isHarvestable;
+    }
+
+    public bool IsWatered()
+    {
+        return isWatered;
     }
 
     //Use the events system to get updates about state when the turn advanced

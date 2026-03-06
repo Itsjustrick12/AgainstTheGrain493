@@ -1,12 +1,20 @@
+using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlantAction", menuName = "Actions/Plant")]
 public class PlantAction : EntityAction
 {
+    public int cropID = 1;
+    public string cropName = "Wheat";
     public override string GetName()
     {
-        return "Plant";
+        return "Plant" + cropName;
+    }
+
+    public void SetCropID(int id)
+    {
+        cropID = id;
     }
     //Need to validate size when returned
     public override List<Vector3Int> GetValidTargets(Entity unit)
@@ -66,6 +74,6 @@ public class PlantAction : EntityAction
         GameManager GM = FindFirstObjectByType<GameManager>();
         
         //TODO: Update this here when we add more crops
-        GM.SpawnCropOnTile(CropDatabase.Instance.GetCropInfo(1), pos);
+        GM.SpawnCropOnTile(CropDatabase.Instance.GetCropInfo(cropID), pos);
     }
 }

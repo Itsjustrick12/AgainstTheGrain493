@@ -22,6 +22,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5f0c03dba52164544948dc40d7fe64b0, type: 2}
     - {fileID: 11400000, guid: 1a13efa1659efda4791a69f19ea430e1, type: 2}
     - {fileID: 11400000, guid: 6a0ad3e9b99fa8e4c93497897f6d6ba4, type: 2}
+    - {fileID: 11400000, guid: 75f94b344dece194fad8c531de7015a6, type: 2}
     purchasePrice: -1
     sellValue: -1
     isEnemy: 0

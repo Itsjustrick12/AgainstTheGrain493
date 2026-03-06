@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4849015099110217540}
   - component: {fileID: 5442547608994482518}
   m_Layer: 0
-  m_Name: CropObject
+  m_Name: PepperCrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1824608321, guid: e15d3f917b318484cb873a206677667f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c289e39c76ca7604183fe03d4842e6e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,13 +105,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c811388a01bc2444ca2ce2bb5984b96b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Crop
+  tileHelper: {fileID: 0}
+  maxHealth: 5
+  type: 1
+  currentHealth: 5
   isObstacle: 0
   isInteractable: 0
   shadeSprite: {fileID: 8188005240772754455}
-  id: 0
+  id: 1
   currentStage: 0
   isWatered: 0
   isHarvestable: 0
+  isMultiHarvest: 1
+  onHarvestStage: -1
 --- !u!1001 &8828147252785549523
 PrefabInstance:
   m_ObjectHideFlags: 0
