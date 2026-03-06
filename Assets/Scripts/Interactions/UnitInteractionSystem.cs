@@ -145,8 +145,6 @@ public class UnitInteractionSystem : TileCursor
                     {
                         //do structure interaction, skip movement interaction
                         Structure structureCheck = selectedEntity as Structure;
-
-                        structureCheck.InitializeActions();
                         List<EntityAction> actions = structureCheck.GetAvailableActions();
 
                         // Store the SpawnUnitAction as currAction so SelectAction can use it later

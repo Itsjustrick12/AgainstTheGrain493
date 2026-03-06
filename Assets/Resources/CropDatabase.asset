@@ -16,6 +16,7 @@ MonoBehaviour:
   crops:
   - id: 1
     entityName: WheatCrop
+    baseHealth: 5
     prefab: {fileID: 8456888675781698093, guid: e99dc2731176e79468640a096b828739, type: 3}
     tile: {fileID: 11400000, guid: 94e9ab666cab9664bb8939e2a2157a94, type: 2}
     sprite: {fileID: 21300000, guid: 6c7af6356423bc6408c6db531ad5c23d, type: 3}
@@ -32,6 +33,7 @@ MonoBehaviour:
     barrenSprite: {fileID: 0}
   - id: 2
     entityName: PepperCrop
+    baseHealth: 5
     prefab: {fileID: 8456888675781698093, guid: 9fa84f7421a3fb94dbfb5f3cc12af8b9, type: 3}
     tile: {fileID: 11400000, guid: f3c54a222914b6446861e850492876b3, type: 2}
     sprite: {fileID: 21300000, guid: 0884d838269b8d949ab65755168f3496, type: 3}

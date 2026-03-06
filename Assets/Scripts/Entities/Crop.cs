@@ -20,7 +20,7 @@ public class Crop : Entity
     private bool isBarren = false;
     private Sprite barrenSprite;
 
-    public void Intialize(CropInfo info)
+    public void Initialize(CropInfo info)
     {
         refCrop = info;
         id = info.id;
@@ -33,23 +33,14 @@ public class Crop : Entity
         barrenSprite = info.barrenSprite;
     }
 
-    public void Intialize(int id)
+    public override void Initialize()
     {
         CropInfo info = CropDatabase.Instance.GetCropInfo(id);
         if (info == null)
         {
             Debug.LogError("Tried to initialize crop without a valid info in the database scriptable object. Check the resources folder!");
         }
-        Intialize(info);
-    }
-
-    public void Intialize()
-    {
-        if (refCrop == null)
-        {
-            Debug.LogError("Tried to initialize crop without a valid info in the database scriptable object. Check the resources folder!");
-        }
-        Intialize(refCrop);
+        Initialize(info);
     }
 
     public void WaterCrop()

@@ -17,21 +17,27 @@ public class Unit : Entity
     [Header("Stats")]
     public int strength = 1;
     //Only increase for ranged attackers
-    public int attackRange = 1;
+    private int attackRange = 1;
     public int iq = 1;
     public int movementRange = 3;
 
     public override void Awake()
     {
         base.Awake();
-        InitializeActions();
     }
 
-    public void InitializeActions()
+    public override void Initialize()
     {
-        //This references the action set defined in the unit database
-        actions = UnitDatabase.Instance.GetActions(ID);
+        UnitInfo info = UnitDatabase.Instance.GetUnitInfo(ID);
+        attackRange = info.attackRange;
+        strength = info.strength;
+        maxHealth = info.baseHealth;
+        currentHealth = info.baseHealth;
+        actions = info.actions;
+        movementRange = info.moveRange;
     }
+
+
     //This is dumb change this later
     public bool CanAttack()
     {

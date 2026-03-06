@@ -101,7 +101,7 @@ public class TileData
         //Water if the entity is a crop and this tile is watered
         if (occupyingEntity is Crop cropCheck)
         {
-            cropCheck.Intialize();
+            cropCheck.Initialize();
             if (type == TileType.WateredDirt)
             {
                 cropCheck.WaterCrop();
