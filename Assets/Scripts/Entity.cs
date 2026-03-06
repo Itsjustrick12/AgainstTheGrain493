@@ -109,11 +109,9 @@ public class Entity : MonoBehaviour
         currentHealth = healthValue;
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        EntityInfo data = UnitDatabase.Instance.GetUnitInfo(1);
-        SoundManager.Instance.PlaySound(data.hurtSound);
         if (currentHealth <= 0)
         {
             Die();
@@ -132,8 +130,6 @@ public class Entity : MonoBehaviour
 
     public virtual void Die()
     {
-        EntityInfo data = UnitDatabase.Instance.GetUnitInfo(1);
-        SoundManager.Instance.PlaySound(data.deathSound);
         //Remove entity from tile
         TileData tile = tileManager.GetTileDataAt(GetGridPos());
         tile.ClearOccupant();

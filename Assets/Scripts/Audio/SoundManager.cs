@@ -4,7 +4,6 @@ using UnityEngine;
 
 public enum SoundType
 {
-    MOVE,
     ATTACK,
     HURT,
     SELECT,
@@ -32,6 +31,36 @@ public class SoundManager : MonoBehaviour
     public void PlaySound(AudioClip clip)
     {
         audioSource.PlayOneShot(clip);
+    }
+
+    public void PlayEntitySound(Entity entity, SoundType type)
+    {
+        Unit tempUnit = entity as Unit;
+        int unitID = tempUnit.ID;
+        if(tempUnit != null)
+        {
+            UnitInfo info = UnitDatabase.Instance.GetUnitInfo(unitID);
+            switch (type)
+            {
+                case SoundType.HURT:
+                    PlaySound(info.hurtSound);
+                    break;
+                case SoundType.DEATH:
+                    PlaySound(info.deathSound);
+                    break;
+                case SoundType.ATTACK:
+                    PlaySound(info.attackSound);
+                    break;
+                case SoundType.SELECT:
+                    PlaySound(info.pickupSound);
+                    break;
+                case SoundType.PLACE:
+                    PlaySound(info.pickupSound);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     /*

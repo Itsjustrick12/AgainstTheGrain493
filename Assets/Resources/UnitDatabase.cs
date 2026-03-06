@@ -27,6 +27,8 @@ public class EntityInfo
     public AudioClip hurtSound;
     public AudioClip deathSound;
     public AudioClip attackSound;
+    public AudioClip pickupSound;
+    public AudioClip placeSound;
 
 }
 

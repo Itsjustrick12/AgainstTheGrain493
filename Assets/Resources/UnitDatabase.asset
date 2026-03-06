@@ -27,6 +27,8 @@ MonoBehaviour:
     hurtSound: {fileID: 8300000, guid: d88985e9feca51649984a523bcd49efa, type: 3}
     deathSound: {fileID: 8300000, guid: 1eb23301a54e4e749965a894b4d2f2fe, type: 3}
     attackSound: {fileID: 8300000, guid: ca0faf8312322b84aae4628a6edab3b1, type: 3}
+    pickupSound: {fileID: 8300000, guid: d25529b61ff4dc544855f8a1a295b5c9, type: 3}
+    placeSound: {fileID: 8300000, guid: 92981af836a90e942aaecc03db4756a3, type: 3}
     isEnemy: 0
   - id: 2
     entityName: Red Farmer
@@ -40,9 +42,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 6a0ad3e9b99fa8e4c93497897f6d6ba4, type: 2}
     purchasePrice: -1
     sellValue: -1
-    hurtSound: {fileID: 0}
-    deathSound: {fileID: 0}
-    attackSound: {fileID: 0}
+    hurtSound: {fileID: 8300000, guid: d88985e9feca51649984a523bcd49efa, type: 3}
+    deathSound: {fileID: 8300000, guid: 1eb23301a54e4e749965a894b4d2f2fe, type: 3}
+    attackSound: {fileID: 8300000, guid: ca0faf8312322b84aae4628a6edab3b1, type: 3}
+    pickupSound: {fileID: 8300000, guid: d25529b61ff4dc544855f8a1a295b5c9, type: 3}
+    placeSound: {fileID: 8300000, guid: 92981af836a90e942aaecc03db4756a3, type: 3}
     isEnemy: 0
   - id: 3
     entityName: Chicken
@@ -53,9 +57,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7c13517389f0d4c4e93d63f8ee88274a, type: 2}
     purchasePrice: 5
     sellValue: 5
-    hurtSound: {fileID: 0}
-    deathSound: {fileID: 0}
-    attackSound: {fileID: 0}
+    hurtSound: {fileID: 8300000, guid: aacd512427a9c2c48881d7f5c2aaf349, type: 3}
+    deathSound: {fileID: 8300000, guid: aacd512427a9c2c48881d7f5c2aaf349, type: 3}
+    attackSound: {fileID: 8300000, guid: ca0faf8312322b84aae4628a6edab3b1, type: 3}
+    pickupSound: {fileID: 8300000, guid: d25529b61ff4dc544855f8a1a295b5c9, type: 3}
+    placeSound: {fileID: 8300000, guid: 92981af836a90e942aaecc03db4756a3, type: 3}
     isEnemy: 0
   - id: 4
     entityName: Cow
@@ -66,9 +72,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7c13517389f0d4c4e93d63f8ee88274a, type: 2}
     purchasePrice: 10
     sellValue: 15
-    hurtSound: {fileID: 0}
-    deathSound: {fileID: 0}
-    attackSound: {fileID: 0}
+    hurtSound: {fileID: 8300000, guid: d71b0082ba037544db64d95a065c52c0, type: 3}
+    deathSound: {fileID: 8300000, guid: d71b0082ba037544db64d95a065c52c0, type: 3}
+    attackSound: {fileID: 8300000, guid: ca0faf8312322b84aae4628a6edab3b1, type: 3}
+    pickupSound: {fileID: 8300000, guid: d25529b61ff4dc544855f8a1a295b5c9, type: 3}
+    placeSound: {fileID: 8300000, guid: 92981af836a90e942aaecc03db4756a3, type: 3}
     isEnemy: 0
   - id: 5
     entityName: Robot
@@ -79,7 +87,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7c13517389f0d4c4e93d63f8ee88274a, type: 2}
     purchasePrice: -1
     sellValue: -1
-    hurtSound: {fileID: 0}
-    deathSound: {fileID: 0}
-    attackSound: {fileID: 0}
+    hurtSound: {fileID: 8300000, guid: d88985e9feca51649984a523bcd49efa, type: 3}
+    deathSound: {fileID: 8300000, guid: 37dceea46c40b89468bd86dc6ac82917, type: 3}
+    attackSound: {fileID: 8300000, guid: ca0faf8312322b84aae4628a6edab3b1, type: 3}
+    pickupSound: {fileID: 8300000, guid: d25529b61ff4dc544855f8a1a295b5c9, type: 3}
+    placeSound: {fileID: 8300000, guid: 92981af836a90e942aaecc03db4756a3, type: 3}
     isEnemy: 1
