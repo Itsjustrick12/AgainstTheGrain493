@@ -32,7 +32,7 @@ public class BasicWaterAction : EntityAction
             {
                 Crop cropCheck = data.occupyingEntity as Crop;
                 //You only need to water crops if they aren't fully grown and they haven't been watered already
-                if (cropCheck != null && (!cropCheck.isWatered && !cropCheck.isHarvestable)){
+                if (cropCheck != null && (!cropCheck.IsWatered() && !cropCheck.IsHarvestable())){
                     
                     targets.Add(currentTile);
                 }

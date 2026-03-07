@@ -2859,6 +2859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   tileManager: {fileID: 1190201941}
+  actionMenu: {fileID: 901733146}
   friendlyUnits: {fileID: 1633857713}
   enemyUnits: {fileID: 1483628605}
   cropContainer: {fileID: 918111452}
@@ -2868,6 +2869,7 @@ MonoBehaviour:
   winScreen: {fileID: 913191185}
   loseScreen: {fileID: 1590905154}
   isPlayerTurn: 0
+  isPaused: 0
 --- !u!4 &957032419
 Transform:
   m_ObjectHideFlags: 0
@@ -3066,10 +3068,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 901733145}
   - {fileID: 264217085}
   - {fileID: 913191184}
   - {fileID: 1590905153}
-  - {fileID: 901733145}
   - {fileID: 1686362915}
   - {fileID: 1925819194}
   - {fileID: 1737360683561656736}
@@ -3888,6 +3890,7 @@ MonoBehaviour:
   hoverTransform: {fileID: 702921834}
   hoverSprite: {fileID: 702921833}
   validLocations: []
+  isInputOn: 1
 --- !u!4 &1662612541
 Transform:
   m_ObjectHideFlags: 0

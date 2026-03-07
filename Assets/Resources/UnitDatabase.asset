@@ -15,6 +15,7 @@ MonoBehaviour:
   units:
   - id: 1
     entityName: Green Farmer
+    baseHealth: 10
     prefab: {fileID: 4935858330493278644, guid: 1c422d24f53de6546b123d691157a9ff, type: 3}
     tile: {fileID: 11400000, guid: 8f1c3a6be2ed07e4a9f8a03a066991e9, type: 2}
     sprite: {fileID: -2432255912712850490, guid: 9bb79eeb3bedfee4c904eef24c7d1d56, type: 3}
@@ -22,6 +23,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5f0c03dba52164544948dc40d7fe64b0, type: 2}
     - {fileID: 11400000, guid: 1a13efa1659efda4791a69f19ea430e1, type: 2}
     - {fileID: 11400000, guid: 6a0ad3e9b99fa8e4c93497897f6d6ba4, type: 2}
+    - {fileID: 11400000, guid: 75f94b344dece194fad8c531de7015a6, type: 2}
     purchasePrice: -1
     sellValue: -1
     hurtSound: {fileID: 8300000, guid: d88985e9feca51649984a523bcd49efa, type: 3}
@@ -30,8 +32,12 @@ MonoBehaviour:
     pickupSound: {fileID: 8300000, guid: d25529b61ff4dc544855f8a1a295b5c9, type: 3}
     placeSound: {fileID: 8300000, guid: 92981af836a90e942aaecc03db4756a3, type: 3}
     isEnemy: 0
+    attackRange: 1
+    strength: 5
+    moveRange: 4
   - id: 2
     entityName: Red Farmer
+    baseHealth: 10
     prefab: {fileID: 4935858330493278644, guid: ea129828cb21e2743b00d1d1941e01b9, type: 3}
     tile: {fileID: 11400000, guid: ca68c80e455ade5408897ac43603953a, type: 2}
     sprite: {fileID: -517785369856942380, guid: 505ead9357501214e90d5b920738572e, type: 3}
@@ -48,8 +54,12 @@ MonoBehaviour:
     pickupSound: {fileID: 8300000, guid: d25529b61ff4dc544855f8a1a295b5c9, type: 3}
     placeSound: {fileID: 8300000, guid: 92981af836a90e942aaecc03db4756a3, type: 3}
     isEnemy: 0
+    attackRange: 1
+    strength: 5
+    moveRange: 3
   - id: 3
     entityName: Chicken
+    baseHealth: 5
     prefab: {fileID: 4935858330493278644, guid: 51a175c101e7e7d44bb2f0b1c4b9f49e, type: 3}
     tile: {fileID: 11400000, guid: 0515031a4a931464784e87f24fb1cbbf, type: 2}
     sprite: {fileID: 8678448789981272047, guid: be65cd5b858cdbb4188903d6a6ff1af2, type: 3}
@@ -63,8 +73,12 @@ MonoBehaviour:
     pickupSound: {fileID: 8300000, guid: d25529b61ff4dc544855f8a1a295b5c9, type: 3}
     placeSound: {fileID: 8300000, guid: 92981af836a90e942aaecc03db4756a3, type: 3}
     isEnemy: 0
+    attackRange: 1
+    strength: 5
+    moveRange: 5
   - id: 4
     entityName: Cow
+    baseHealth: 15
     prefab: {fileID: 4935858330493278644, guid: a6c6ac34c9a87be46a42bb270624b9e2, type: 3}
     tile: {fileID: 11400000, guid: e735c8601f6b19f4ea60982a2ee6b8f9, type: 2}
     sprite: {fileID: 6168083732550661486, guid: 2349e13b25187b741a90c5fc24dc3709, type: 3}
@@ -78,8 +92,12 @@ MonoBehaviour:
     pickupSound: {fileID: 8300000, guid: d25529b61ff4dc544855f8a1a295b5c9, type: 3}
     placeSound: {fileID: 8300000, guid: 92981af836a90e942aaecc03db4756a3, type: 3}
     isEnemy: 0
+    attackRange: 1
+    strength: 10
+    moveRange: 3
   - id: 5
     entityName: Robot
+    baseHealth: 10
     prefab: {fileID: 1180065947808181623, guid: 5b34ecd98973263479dfea6cd49ec888, type: 3}
     tile: {fileID: 11400000, guid: 4103c465fb4936142ada9747c3d0bf7f, type: 2}
     sprite: {fileID: -692177023350366618, guid: 218e9496bb314c04fa5700d940abea5a, type: 3}
@@ -93,3 +111,6 @@ MonoBehaviour:
     pickupSound: {fileID: 8300000, guid: d25529b61ff4dc544855f8a1a295b5c9, type: 3}
     placeSound: {fileID: 8300000, guid: 92981af836a90e942aaecc03db4756a3, type: 3}
     isEnemy: 1
+    attackRange: 1
+    strength: 5
+    moveRange: 3

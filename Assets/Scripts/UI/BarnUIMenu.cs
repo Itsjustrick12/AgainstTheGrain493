@@ -41,7 +41,10 @@ public class BarnUIMenu : MonoBehaviour
     public void ShowMenu()
     {
         Barn.OnBarnInteraction += ShowMenu;
-        uiPanel.SetActive(true);
+        if (uiPanel != null)
+        {
+            uiPanel.SetActive(true);
+        }
         UpdateCropText(econManager.GetHarvestedCrops(1));
         UpdateCoinText(econManager.GetCoins());
         
