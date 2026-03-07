@@ -176,7 +176,7 @@ public class GameManager : MonoBehaviour
         if (cropRef != null)
         {
             //Assign the crop to mirror here
-            cropRef.Intialize(cropInfo);
+            cropRef.Initialize(cropInfo);
             //Assign to the tiledata
             tileManager.PlaceEntityOnTile(pos, cropRef);
             cropRef.UpdateTransform(pos);

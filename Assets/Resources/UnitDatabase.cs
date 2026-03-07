@@ -8,6 +8,7 @@ public class EntityInfo
     //Basic Indentifiers
     public int id;
     public string entityName;
+    public int baseHealth = 0;
 
     [Header("Prefab Spawned in Game")]
     public GameObject prefab;
@@ -30,6 +31,9 @@ public class UnitInfo : EntityInfo
 {
     [Header("Unit Specific")]
     public bool isEnemy;
+    public int attackRange = 1;
+    public int strength = 5;
+    public int moveRange = 3;
 }
 //
 [CreateAssetMenu(fileName = "AgainstTheGrain/Unit Database", menuName = "UnitDatabase")]

@@ -11,6 +11,12 @@ public class CropInfo : EntityInfo
     //Used to progress to full harvest, these are the sprites rendered on the tilemap
     //There should be a sprite for each sprite
     public Sprite[] growthStageSprites;
+
+
+    [Header("MultiHarvesting")]
+    public bool isMultiHarvest = false;
+    public int onHarvestStage = -1;
+    public Sprite barrenSprite = null;
 }
 
 [CreateAssetMenu(fileName = "AgainstTheGrain/Crop Database", menuName = "CropDatabase")]

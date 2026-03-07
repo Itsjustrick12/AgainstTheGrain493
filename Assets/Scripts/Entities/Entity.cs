@@ -164,6 +164,12 @@ public class Entity : MonoBehaviour
     {
         sprite = GetComponent<SpriteRenderer>();
         shadeSprite.sprite = sprite.sprite;
+        Initialize();
+    }
+
+    //Used to update stats based on database
+    public virtual void Initialize()
+    {
     }
 
    public bool IsActive()

@@ -28,26 +28,49 @@ public class BasicAttackAction : EntityAction
         }
 
         Vector3Int startPos = unit.GetGridPos();
+        int atkRange = unit.GetAttackRange();
 
-        //get a reference to all tiles nearby and check if there are opposing units there
-        foreach (Vector3Int offset in TileManager.DIRECTIONS)
+        ////get a reference to all tiles nearby and check if there are opposing units there
+        //foreach (Vector3Int offset in TileManager.DIRECTIONS)
+        //{
+        //    Vector3Int currentTile = startPos + offset;
+        //    TileData data = TM.GetTileDataAt(currentTile);
+
+        //    if (data != null && data.HasOccupant())
+        //    {
+        //        Unit unitCheck = data.occupyingEntity as Unit;
+        //        if (unitCheck == null)
+        //        {
+        //            continue;
+        //        }
+        //        else if (!unit.IsSameTeamAs(unitCheck))
+        //        {
+
+        //            targets.Add(currentTile);
+        //        }
+
+        //    }
+        //}
+
+        for (int i = -atkRange; i <= atkRange; i++)
         {
-            Vector3Int currentTile = startPos + offset;
-            TileData data = TM.GetTileDataAt(currentTile);
-
-            if (data != null && data.HasOccupant())
+            for (int j = -atkRange; j <= atkRange; j++)
             {
-                Unit unitCheck = data.occupyingEntity as Unit;
-                if (unitCheck == null)
-                {
-                    continue;
-                }
-                else if (!unit.IsSameTeamAs(unitCheck))
-                {
+                if (Mathf.Abs(i) + Mathf.Abs(j) > atkRange) continue;
 
-                    targets.Add(currentTile);
-                }
+                //Don't include self as target
+                if (i == 0 && j == 0) continue;
 
+                Vector3Int currentTile = startPos + new Vector3Int(i, j, 0);
+                TileData data = TM.GetTileDataAt(currentTile);
+                if (data != null && data.HasOccupant())
+                {
+                    Unit unitCheck = data.occupyingEntity as Unit;
+                    if (unitCheck != null && !unit.IsSameTeamAs(unitCheck))
+                    {
+                        targets.Add(currentTile);
+                    }
+                }
             }
         }
 
