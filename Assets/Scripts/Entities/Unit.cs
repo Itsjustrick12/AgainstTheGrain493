@@ -466,5 +466,16 @@ public class Unit : Entity
         Attack();
     }
 
+    public override void Die()
+    {
+        SoundManager.Instance.PlayEntitySound(this, SoundType.DEATH);
+        base.Die();
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        SoundManager.Instance.PlayEntitySound(this, SoundType.HURT);
+        base.TakeDamage(damage);
+    }
 }
 

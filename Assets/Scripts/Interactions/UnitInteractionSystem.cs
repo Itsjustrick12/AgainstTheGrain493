@@ -138,6 +138,7 @@ public class UnitInteractionSystem : TileCursor
                         {
                             optionsMap.SetTile(tile, optionTile);
                         }
+                        SoundManager.Instance.PlayEntitySound(unit, SoundType.SELECT);
                         state = InteractionState.Movement;
                         return;
                     }
@@ -180,6 +181,7 @@ public class UnitInteractionSystem : TileCursor
                         //Needed for the cancel action to work
                         prevLocation = selectedPosition;
                         afterLocation = pos;
+                        SoundManager.Instance.PlayEntitySound(selectedEntity, SoundType.PLACE);
                         return;
                     }
                     //Only place if entity can go to new tile
@@ -193,6 +195,7 @@ public class UnitInteractionSystem : TileCursor
                         //Needed for the cancel action to work
                         prevLocation = selectedPosition;
                         afterLocation = pos;
+                        SoundManager.Instance.PlayEntitySound(selectedEntity, SoundType.PLACE);
                         return;
                     }
                 }

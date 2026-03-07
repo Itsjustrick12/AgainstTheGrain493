@@ -1,22 +1,34 @@
 fileFormatVersion: 2
-guid: b361948552e09404593902fff4d3beb6
+guid: dd8138d704bd3be4a8fb8a6b156a8c6b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3236512905532081046
-    second: carrotSheet_0
+      213: 8989598691769551689
+    second: rocks1_0
   - first:
-      213: 3334444880453318194
-    second: carrotSheet_1
+      213: 4704922966040405415
+    second: rocks1_1
   - first:
-      213: -1771787761306964100
-    second: carrotSheet_2
+      213: 1075267945422833953
+    second: rocks1_2
   - first:
-      213: 3211245783782517913
-    second: carrotSheet_3
+      213: -7706159854841547805
+    second: rocks1_3
   - first:
-      213: 1279160436157392869
-    second: carrotSheet_4
+      213: -2003134545632933944
+    second: rocks1_4
+  - first:
+      213: -2580594075583834838
+    second: rocks1_5
+  - first:
+      213: 2276775876948528320
+    second: rocks1_6
+  - first:
+      213: -1999102643630381414
+    second: rocks1_7
+  - first:
+      213: 6574165708084934437
+    second: rocks1_8
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -125,13 +137,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: carrotSheet_0
+      name: rocks1_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 17
-        width: 7
-        height: 7
+        x: 4
+        y: 5
+        width: 24
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,20 +152,42 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a6cfac209a89513d0800000000000000
-      internalID: -3236512905532081046
+      spriteID: 94b8d38916871cc70800000000000000
+      internalID: 8989598691769551689
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: carrotSheet_1
+      name: rocks1_1
       rect:
         serializedVersion: 2
-        x: 16
+        x: 36
+        y: 7
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a56a66828e3b4140800000000000000
+      internalID: 4704922966040405415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rocks1_2
+      rect:
+        serializedVersion: 2
+        x: 50
         y: 15
-        width: 6
-        height: 6
+        width: 10
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,20 +196,64 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2363a8eb3f3564e20800000000000000
-      internalID: 3334444880453318194
+      spriteID: 129ca45df7e1cee00800000000000000
+      internalID: 1075267945422833953
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: carrotSheet_2
+      name: rocks1_3
       rect:
         serializedVersion: 2
-        x: 41
-        y: 12
+        x: 77
+        y: 17
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e33bc5e0783e0590800000000000000
+      internalID: -7706159854841547805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rocks1_4
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 8
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c74c3a6ebf6334e0800000000000000
+      internalID: -2003134545632933944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rocks1_5
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 11
         width: 14
-        height: 9
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,20 +262,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c7fe9ed1b685967e0800000000000000
-      internalID: -1771787761306964100
+      spriteID: a25195f5c53ef2cd0800000000000000
+      internalID: -2580594075583834838
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: carrotSheet_3
+      name: rocks1_6
       rect:
         serializedVersion: 2
-        x: 73
-        y: 10
-        width: 14
-        height: 15
+        x: 67
+        y: 7
+        width: 9
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,20 +284,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 99ce3d4c603a09c20800000000000000
-      internalID: 3211245783782517913
+      spriteID: 0cc02b2e89bb89f10800000000000000
+      internalID: 2276775876948528320
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: carrotSheet_4
+      name: rocks1_7
       rect:
         serializedVersion: 2
-        x: 11
-        y: 10
-        width: 7
-        height: 6
+        x: 83
+        y: 8
+        width: 11
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,8 +306,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5e725efa3ad70c110800000000000000
-      internalID: 1279160436157392869
+      spriteID: a96edd0ccb2c144e0800000000000000
+      internalID: -1999102643630381414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rocks1_8
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 4
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 527f4fc41e02c3b50800000000000000
+      internalID: 6574165708084934437
       vertices: []
       indices: 
       edges: []
@@ -248,11 +348,15 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      carrotSheet_0: -3236512905532081046
-      carrotSheet_1: 3334444880453318194
-      carrotSheet_2: -1771787761306964100
-      carrotSheet_3: 3211245783782517913
-      carrotSheet_4: 1279160436157392869
+      rocks1_0: 8989598691769551689
+      rocks1_1: 4704922966040405415
+      rocks1_2: 1075267945422833953
+      rocks1_3: -7706159854841547805
+      rocks1_4: -2003134545632933944
+      rocks1_5: -2580594075583834838
+      rocks1_6: 2276775876948528320
+      rocks1_7: -1999102643630381414
+      rocks1_8: 6574165708084934437
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
