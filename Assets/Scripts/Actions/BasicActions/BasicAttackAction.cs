@@ -117,6 +117,8 @@ public class BasicAttackAction : EntityAction
         }
 
         //do a simple attack
+
+        SoundManager.Instance.PlayEntitySound(entity, SoundType.ATTACK);
         targetUnit.TakeDamage(unit.GetStrength());
     }
 }

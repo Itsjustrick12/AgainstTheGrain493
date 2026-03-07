@@ -23,6 +23,14 @@ public class EntityInfo
     [Header("Economy Values")]
     public int purchasePrice;
     public int sellValue;
+
+    [Header("Sounds")]
+    public AudioClip hurtSound;
+    public AudioClip deathSound;
+    public AudioClip attackSound;
+    public AudioClip pickupSound;
+    public AudioClip placeSound;
+
 }
 
 //Entries for Database system used by Level Editor and other UI
