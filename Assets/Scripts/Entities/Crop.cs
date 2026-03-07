@@ -31,6 +31,8 @@ public class Crop : Entity
         isMultiHarvest = info.isMultiHarvest;
         onHarvestStage = info.onHarvestStage;
         barrenSprite = info.barrenSprite;
+        maxHealth = info.baseHealth;
+        currentHealth = maxHealth;
     }
 
     public override void Initialize()

@@ -167,7 +167,7 @@ public class TileHelper : MonoBehaviour
     public List<Vector3Int> GetMovementRange(Unit currentUnit)
     {
         Vector3Int currentPos = currentUnit.GetGridPos();
-        int moveAmt = currentUnit.movementRange;
+        int moveAmt = currentUnit.GetMoveRange();
 
         var validPositions = new List<Vector3Int>();
 
@@ -222,7 +222,7 @@ public class TileHelper : MonoBehaviour
     {
         Vector3Int currentPos = currentUnit.GetGridPos();
         //Interaction range is anything that can be reached from the farthest tile you can move to
-        int moveAmt = currentUnit.movementRange + 1;
+        int moveAmt = currentUnit.GetMoveRange() + 1;
 
         var validPositions = new List<Vector3Int>();
 
