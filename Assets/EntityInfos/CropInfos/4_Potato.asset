@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79a0fde824500ef43b87be30ce7415db, type: 3}
+  m_Name: 4_Potato
+  m_EditorClassIdentifier: Assembly-CSharp::CropInfo
+  id: 4
+  entityName: Potato
+  baseHealth: 5
+  prefab: {fileID: 8456888675781698093, guid: 1fee31ce83c06d04fb0cca97560a9591, type: 3}
+  tile: {fileID: 11400000, guid: 9da6d1005214e9c4ea336374e2c93724, type: 2}
+  sprite: {fileID: 21300000, guid: 81cf9853789b59b419dedd715eaf71e2, type: 3}
+  actions: []
+  purchasePrice: 3
+  sellValue: 5
+  hurtSound: {fileID: 8300000, guid: d88985e9feca51649984a523bcd49efa, type: 3}
+  deathSound: {fileID: 8300000, guid: 1eb23301a54e4e749965a894b4d2f2fe, type: 3}
+  numStages: 3
+  growthStageSprites:
+  - {fileID: 7071762181734847076, guid: f51881ededeebf6499df2b912f3d7f8f, type: 3}
+  - {fileID: 9121828939671465186, guid: f51881ededeebf6499df2b912f3d7f8f, type: 3}
+  - {fileID: 9214337261797284827, guid: f51881ededeebf6499df2b912f3d7f8f, type: 3}
+  isMultiHarvest: 0
+  onHarvestStage: 0
+  barrenSprite: {fileID: 0}

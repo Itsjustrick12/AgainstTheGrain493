@@ -8,18 +8,20 @@ public class Unit : Entity
 {
     [Header("General Settings")]
     public int ID;
+    public bool isEnemy = false;
+
+    [Header("For Targeting")]
     //added for targeting
     public List<EntityType> primary = new List<EntityType>();
     //no target uses a negative z value
     public Vector3Int target = new Vector3Int(0,0,-1);
-    public bool isEnemy = false;
+    public int iq = 1;
 
     [Header("Stats")]
-    public int strength = 1;
+    private int strength = 1;
     //Only increase for ranged attackers
     private int attackRange = 1;
-    public int iq = 1;
-    public int movementRange = 3;
+    private int movementRange = 3;
 
     public override void Awake()
     {
@@ -37,6 +39,10 @@ public class Unit : Entity
         movementRange = info.moveRange;
     }
 
+    public int GetMoveRange()
+    {
+        return movementRange;
+    }
 
     //This is dumb change this later
     public bool CanAttack()

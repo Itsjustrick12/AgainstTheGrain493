@@ -30,6 +30,11 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySound(AudioClip clip)
     {
+        if (clip == null)
+        {
+            Debug.Log("No Sound for that type!");
+            return;
+        }
         audioSource.PlayOneShot(clip);
     }
 

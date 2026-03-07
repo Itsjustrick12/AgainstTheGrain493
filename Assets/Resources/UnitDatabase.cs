@@ -3,48 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class EntityInfo
-{
-    //Basic Indentifiers
-    public int id;
-    public string entityName;
-    public int baseHealth = 0;
-
-    [Header("Prefab Spawned in Game")]
-    public GameObject prefab;
-
-    [Header("Level Editor / Map Preview")]
-    public TileBase tile;
-    public Sprite sprite;
-
-    [Header("Actions")]
-    public List<EntityAction> actions;
-
-    [Header("Economy Values")]
-    public int purchasePrice;
-    public int sellValue;
-
-    [Header("Sounds")]
-    public AudioClip hurtSound;
-    public AudioClip deathSound;
-    public AudioClip attackSound;
-    public AudioClip pickupSound;
-    public AudioClip placeSound;
-
-}
-
-//Entries for Database system used by Level Editor and other UI
-[System.Serializable]
-public class UnitInfo : EntityInfo
-{
-    [Header("Unit Specific")]
-    public bool isEnemy;
-    public int attackRange = 1;
-    public int strength = 5;
-    public int moveRange = 3;
-}
-//
-[CreateAssetMenu(fileName = "AgainstTheGrain/Unit Database", menuName = "UnitDatabase")]
+[CreateAssetMenu(fileName = "NewUnitDatabase", menuName = "AgainstTheGrain/Databases/UnitDatabase")]
 public class UnitDatabase : ScriptableObject
 {
     private static UnitDatabase instance;

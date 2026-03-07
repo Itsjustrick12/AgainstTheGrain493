@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79a0fde824500ef43b87be30ce7415db, type: 3}
+  m_Name: 2_Pepper
+  m_EditorClassIdentifier: Assembly-CSharp::CropInfo
+  id: 2
+  entityName: Pepper
+  baseHealth: 5
+  prefab: {fileID: 8456888675781698093, guid: 9fa84f7421a3fb94dbfb5f3cc12af8b9, type: 3}
+  tile: {fileID: 11400000, guid: 5ecd5a2a3b92a794088076635862b058, type: 2}
+  sprite: {fileID: 21300000, guid: 0884d838269b8d949ab65755168f3496, type: 3}
+  actions: []
+  purchasePrice: 5
+  sellValue: 2
+  hurtSound: {fileID: 8300000, guid: d88985e9feca51649984a523bcd49efa, type: 3}
+  deathSound: {fileID: 8300000, guid: 1eb23301a54e4e749965a894b4d2f2fe, type: 3}
+  numStages: 4
+  growthStageSprites:
+  - {fileID: -70432849946870333, guid: 83b87e3bffd2ee646af8061a5fc77659, type: 3}
+  - {fileID: -8383837782914849855, guid: 83b87e3bffd2ee646af8061a5fc77659, type: 3}
+  - {fileID: -9115870875128642896, guid: 83b87e3bffd2ee646af8061a5fc77659, type: 3}
+  - {fileID: 7793692674314518977, guid: 83b87e3bffd2ee646af8061a5fc77659, type: 3}
+  isMultiHarvest: 1
+  onHarvestStage: 2
+  barrenSprite: {fileID: -533565442789820918, guid: 83b87e3bffd2ee646af8061a5fc77659, type: 3}

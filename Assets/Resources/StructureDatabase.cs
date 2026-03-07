@@ -2,11 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[System.Serializable]
-public class StructureInfo : EntityInfo
-{ 
-}
-[CreateAssetMenu(fileName = "AgainstTheGrain/Structure Database", menuName = "StructureDatabase")]
+[CreateAssetMenu(fileName = "NewStructureDatabase", menuName = "AgainstTheGrain/Databases/StructureDatabase")]
 public class StructureDatabase : ScriptableObject
 {
     private static StructureDatabase instance;
