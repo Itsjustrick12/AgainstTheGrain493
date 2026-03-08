@@ -153,8 +153,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -8.849976, y: 0}
-  m_SizeDelta: {x: -145.70001, y: 50}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -160, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &164908714
 MonoBehaviour:
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 12.6137085, y: -16.554504, z: -2.9520874, w: -7.867676}
+  m_margin: {x: 12.6137085, y: -16.944275, z: -1.9533386, w: -7.867676}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3426,7 +3426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18120918334272a49a6db0a606c47699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  coins: 10000
+  coins: 10
 --- !u!4 &1059514642
 Transform:
   m_ObjectHideFlags: 0
