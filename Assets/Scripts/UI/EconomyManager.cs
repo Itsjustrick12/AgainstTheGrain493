@@ -15,6 +15,8 @@ public class EconomyManager : MonoBehaviour
 
     //Used for returning coint amount to UI elements
     public static event Action<int> OnCoinsChanged;
+    //Pass the ID with the crop that changed
+    public static event Action<int> OnCropChanged;
 
     private void Awake()
     {
@@ -74,7 +76,8 @@ public class EconomyManager : MonoBehaviour
 
     public void AddHarvestedCrops(int id)
     {
-        harvestedCrops[id] = GetHarvestedCrops(id) + 1;
+        int current = GetHarvestedCrops(id);
+        SetHarvestedCrops(id, current + 1);
     }
 
     public bool SellHarvestedCrops(int id)
@@ -82,7 +85,7 @@ public class EconomyManager : MonoBehaviour
         if (!harvestedCrops.ContainsKey(id) || harvestedCrops[id] <= 0)
             return false;
 
-        harvestedCrops[id] = harvestedCrops[id]-1;
+        SetHarvestedCrops(id,harvestedCrops[id]-1);
         CropInfo info = CropDatabase.Instance.GetCropInfo(id);
         AddCoins(info.sellValue);
         return true;
@@ -91,5 +94,6 @@ public class EconomyManager : MonoBehaviour
     public void SetHarvestedCrops(int id, int amt)
     {
         harvestedCrops[id] = Mathf.Max(0, amt);
+        OnCropChanged?.Invoke(id);
     }
 }

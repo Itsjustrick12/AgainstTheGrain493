@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 85e41b1ca923b9948914246efc155dce
+guid: 3e9e9b9f72de5724da8b01d927146732
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1925051782030564687
-    second: ui_tab_crop_strip1_0
+      213: 6510635797947307249
+    second: uiTabRounded_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +52,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
-  spriteBorder: {x: 2, y: 0, z: 8, w: 0}
+  spriteBorder: {x: 3, y: 5, z: 7, w: 2}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -113,12 +113,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ui_tab_crop_strip1_0
+      name: uiTabRounded_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 150
+        width: 38
         height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f4d1a2a756827ba10800000000000000
-      internalID: 1925051782030564687
+      spriteID: 1f4579e63cc6a5a50800000000000000
+      internalID: 6510635797947307249
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ui_tab_crop_strip1_0: 1925051782030564687
+      uiTabRounded_0: 6510635797947307249
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
