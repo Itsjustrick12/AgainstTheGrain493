@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,9 @@ public class EconomyManager : MonoBehaviour
 
     [Header("Harvested Crops")]
     [SerializeField] private Dictionary<int, int> harvestedCrops = new Dictionary<int, int>();
+
+    //Used for returning coint amount to UI elements
+    public static event Action<int> OnCoinsChanged;
 
     private void Awake()
     {
@@ -39,9 +43,9 @@ public class EconomyManager : MonoBehaviour
 
     public void SetCoins(int amt)
     {
-
         //Clamp so coins can never be negative
         coins = Mathf.Max(0, amt);
+        OnCoinsChanged?.Invoke(coins);
     }
 
     public void AddCoins(int amt)
@@ -54,7 +58,7 @@ public class EconomyManager : MonoBehaviour
         if (coins < cost)
             return false;
 
-        coins -= cost;
+        SetCoins(coins - cost);
         return true;
     }
 
