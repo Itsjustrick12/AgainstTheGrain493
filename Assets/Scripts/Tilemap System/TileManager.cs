@@ -163,6 +163,32 @@ public class TileManager : MonoBehaviour
         }
     }
 
+    //Take the mask value and shift it to be the default layout for the 4x4 tilemap
+    //Will save time doing art
+    public int ConvertMaskIndex(int mask) {
+        
+        int[] convert = {
+        6,//grass grass grass grass
+        5, //TL dirt
+        2,//TR dirt
+        3,//TL TR dirt
+        10,//BL dirt
+        1,//TL BL dirt
+        4,//TR BL dirt
+        13, //TL TR BL dirt
+        7, //BR dirt
+        14, //TL BR dirt
+        11, //TR BR dirt
+        0,//TL TR BR dirt
+        9, //BL BR dirt
+        8, //TL BL BR dirt
+        15, //TR BL BR dirt
+        12//all dirt
+        };
+
+        return convert[mask];
+    }
+
     private TileBase CalculateBaseDisplayTile(Vector3Int pos)
     {
         TileType tR = GetTileTypeAt(pos - NEIGHBORS[0]);
@@ -180,7 +206,7 @@ public class TileManager : MonoBehaviour
         if (bL == TileType.Dirt || bL == TileType.WateredDirt) mask |= 4;   // BL
         if (bR == TileType.Dirt || bR == TileType.WateredDirt) mask |= 8;   // BR
 
-        return tiles[mask];
+        return tiles[ConvertMaskIndex(mask)];
     }
 
     private TileBase CalculateOverlayDisplayTile(Vector3Int pos)
@@ -201,7 +227,7 @@ public class TileManager : MonoBehaviour
         if (bR == TileType.WateredDirt) mask |= 8;   // BR
 
         //Return the mask shifted up to the opacity tiles
-        return tiles[mask+16];
+        return tiles[ConvertMaskIndex(mask) + 16];
     }
 
     public void PlaceEntityOnTile(Vector3Int pos, Entity entity)
