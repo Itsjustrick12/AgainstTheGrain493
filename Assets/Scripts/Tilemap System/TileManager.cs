@@ -55,7 +55,7 @@ public class TileManager : MonoBehaviour
     public void Awake()
     {
         tilePosToData = new Dictionary<Vector3Int, TileData>();
-        int size = 16;
+        int size = GameConstants.MapSizeToInt(GameManager.Instance.mapSize);
         for (int i = -size/2; i < size / 2; i++)
         {
             for (int j = -size / 2; j < size / 2; j++)
@@ -313,7 +313,7 @@ public class TileManager : MonoBehaviour
     public void DrawBorder(int size)
     {
         int half = size / 2;
-        int borderWidth = 2;
+        int borderWidth = 3;
 
         for (int i = -half - borderWidth; i < half + borderWidth; i++)
         {

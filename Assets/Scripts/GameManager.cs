@@ -9,7 +9,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 public class GameManager : MonoBehaviour
 {
+
     [Header("General Settings")]
+    public static GameManager Instance;
     public TileManager tileManager;
     //Needed for pause logic
     private UnitInteractionSystem interactionSystem;
@@ -33,11 +35,22 @@ public class GameManager : MonoBehaviour
     public bool isPlayerTurn = true;
     public bool isPaused = false;
 
-    public void Awake()
+    public MapSize mapSize = MapSize.SMALL;
+
+    private int currUnit = 0;
+
+    private void Awake()
     {
+        // Ensure only one instance exists
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
         tileManager = FindFirstObjectByType<TileManager>();
         interactionSystem = FindFirstObjectByType<UnitInteractionSystem>();
-        
     }
 
     public void Start()
@@ -76,7 +89,7 @@ public class GameManager : MonoBehaviour
     public void SpawnStartingUnits()
     {
         //loop over a placeholder tilemap for placing units 
-        int size = 16;
+        int size = GameConstants.MapSizeToInt(mapSize);
         for (int i = -size / 2; i < size / 2; i++)
         {
             for (int j = -size / 2; j < size / 2; j++)
@@ -189,9 +202,12 @@ public class GameManager : MonoBehaviour
     {
         isPlayerTurn = false;
         List<Unit> tempunits = GetAllEnemyUnits();
-
+        CameraController camera = FindFirstObjectByType<CameraController>();
         foreach (Unit unit in tempunits)
         {
+            //Focus on each unit with the camera
+            camera.FocusOnTilePosition(unit.GetGridPos(),0.25f);
+            yield return new WaitForSeconds(0.25f); // pause between each enemy
             unit.DoTurn();
             yield return new WaitForSeconds(0.5f); // pause between each enemy
         }
@@ -343,5 +359,36 @@ public class GameManager : MonoBehaviour
         pauseScreen.SetActive(false);
     }
 
-    
+    //Used to determine next unit to seek out
+    public Unit GetNextActiveUnit()
+    {
+        List<Unit> units = GetAllFriendlyUnits();
+
+        if (units.Count == 0) return null;
+
+        int attempts = 0;
+
+        while (attempts < units.Count)
+        {
+            //Wrap around once the current unit check goes beyond the count
+            //Logic is necessary to progress to next unit if multiple active
+            currUnit = (currUnit + 1) % units.Count;
+
+            Unit unit = units[currUnit];
+
+            // Optional: skip units that can't move / are inactive
+            if (!unit.IsActive()) // <-- replace with your actual condition if different
+            {
+                attempts++;
+                continue;
+            }
+
+            return unit;
+        }
+
+        Debug.Log("No active units found.");
+        return null;
+    }
+
+
 }
