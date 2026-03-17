@@ -314,7 +314,7 @@ MonoBehaviour:
   - {fileID: 2154588263773137457}
   - {fileID: 3082189121107058718}
   baseWidth: 128
-  digitWidth: 32
+  digitWidth: 48
   cropID: 1
 --- !u!1001 &4100195073866849323
 PrefabInstance:

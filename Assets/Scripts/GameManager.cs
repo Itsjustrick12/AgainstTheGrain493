@@ -45,6 +45,11 @@ public class GameManager : MonoBehaviour
         //actionMenu = FindFirstObjectByType<ActionMenu>();
         isPlayerTurn = true;
         SpawnStartingUnits();
+        for (int i = 0; i < 100; i++)
+        {
+            EconomyManager.Instance.AddHarvestedCrops(3);
+        }
+
     }
     
     public void BeginEnemyTurn(InputAction.CallbackContext context)
