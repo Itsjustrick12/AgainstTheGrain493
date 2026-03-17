@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Windows;
@@ -7,6 +8,8 @@ public abstract class ExpandingCounterUI : MonoBehaviour
 {
     public RectTransform counterBar;
     public TextMeshProUGUI numberText;
+
+    public UINumber[] digits;
 
     public float baseWidth = 32f;
     //For every digit, add this amount to the width to scale it up
@@ -21,21 +24,56 @@ public abstract class ExpandingCounterUI : MonoBehaviour
         UpdateCounter(GetCounterValue());
     }
 
+    //public virtual void UpdateCounter(int newValue)
+    //{
+    //    currentAmount = Mathf.Max(0, newValue);
+
+    //    int digits = currentAmount.ToString().Length;
+
+    //    //Resize the bar
+    //    Vector2 size = counterBar.sizeDelta;
+    //    //Assume base width includes a single digit
+    //    size.x = baseWidth + (digits - 1) * digitWidth;
+    //    counterBar.sizeDelta = size;
+    //    //Update text
+    //    if (numberText != null)
+    //    {
+    //        numberText.text = currentAmount.ToString();
+    //    }
+    //}
+
     public virtual void UpdateCounter(int newValue)
     {
         currentAmount = Mathf.Max(0, newValue);
 
-        int digits = currentAmount.ToString().Length;
+        string valueStr = currentAmount.ToString();
+        int digitCount = valueStr.Length;
 
-        //Resize the bar
+        // Resize the bar
         Vector2 size = counterBar.sizeDelta;
-        //Assume base width includes a single digit
-        size.x = baseWidth + (digits - 1) * digitWidth;
+        size.x = baseWidth + (digitCount - 1) * digitWidth;
         counterBar.sizeDelta = size;
-        //Update text
+
+        // Update digit sprites
+        for (int i = 0; i < digits.Length; i++)
+        {
+            if (i < digitCount)
+            {
+                digits[i].gameObject.SetActive(true);
+
+                int digit = valueStr[i] - '0';
+                digits[i].UpdateDigit(digit);
+            }
+            else
+            {
+                digits[i].gameObject.SetActive(false);
+            }
+        }
+
+        // Disable TMP text if you're using sprite digits instead
         if (numberText != null)
         {
-            numberText.text = currentAmount.ToString();
+            numberText.gameObject.SetActive(false);
         }
     }
 
