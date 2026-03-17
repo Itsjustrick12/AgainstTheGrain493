@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitInfo
   id: 2
   entityName: RedFarmer
-  baseHealth: 5
+  baseHealth: 10
   prefab: {fileID: 4935858330493278644, guid: ea129828cb21e2743b00d1d1941e01b9, type: 3}
   tile: {fileID: 11400000, guid: 750feeced661dc342a5963a174f30519, type: 2}
   sprite: {fileID: -517785369856942380, guid: 505ead9357501214e90d5b920738572e, type: 3}
