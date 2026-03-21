@@ -5,27 +5,31 @@ using UnityEngine;
 
 public class TileHelper : MonoBehaviour
 {
-    public static int X_SIZE = 16;
-    public static int Y_SIZE = 16;
+    public static TileHelper Instance { get; private set; }
+    public int X_SIZE = 16;
+    public int Y_SIZE = 16;
     TileManager tileManager;
+
+    public void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
     public void Start()
     {   
         tileManager = FindFirstObjectByType<TileManager>();
+        X_SIZE = GameConstants.MapSizeToInt(GameManager.Instance.mapSize);
+        Y_SIZE = X_SIZE;
     }
 
     //changes a 0,0 Vector3Int to the grid layout
-    public static Vector3Int ZerotoGrid(Vector3Int input)
-    {
 
-        input[0] = input[0] - (X_SIZE / 2) + 1;
-        input[1] = input[1] - (Y_SIZE / 2) + 1;
-
-        return input;
-    }
 
     //changes a grid Vector3Int to the 0,0 layout
-    public static Vector3Int GridtoZero(Vector3Int input)
+    public Vector3Int GridtoZero(Vector3Int input)
     {
 
         input[0] = input[0] + (X_SIZE / 2) - 1;
@@ -36,14 +40,14 @@ public class TileHelper : MonoBehaviour
 
     //returns if the tile is in bounds
     //TODO only for even sizes atm
-    public static bool InRange(Vector3Int vect)
+    public bool InRange(Vector3Int vect)
     {
 
-        if(vect[0] > (X_SIZE / 2) || vect[0] < (X_SIZE / 2 - X_SIZE + 1))
+        if(vect[0] > (X_SIZE / 2 - 1) || vect[0] < (X_SIZE / 2 - X_SIZE ))
         {
             return false;
         }
-        if(vect[1] > (Y_SIZE / 2) || vect[1] < (Y_SIZE / 2 - Y_SIZE + 1))
+        if(vect[1] > (Y_SIZE / 2 - 1) || vect[1] < (Y_SIZE / 2 - Y_SIZE ))
         {
             return false;
         }
@@ -396,8 +400,17 @@ public class Node
 
     public int CalcH(Vector3Int end)
     {
-        Vector3Int start = TileHelper.GridtoZero(location);
-        end = TileHelper.GridtoZero(end);
+        Vector3Int start = ZerotoGrid(location);
+        end = ZerotoGrid(end);
         return Mathf.Abs(start[0] - end[0]) + Mathf.Abs(location[1] - end[1]);
+    }
+
+    public Vector3Int ZerotoGrid(Vector3Int input)
+    {
+
+        input[0] = input[0] - (TileHelper.Instance.X_SIZE / 2) + 1;
+        input[1] = input[1] - (TileHelper.Instance.Y_SIZE / 2) + 1;
+
+        return input;
     }
 };
