@@ -25,7 +25,7 @@ public class EntityActionEvent : UnityEvent<EntityAction>
 public class UnitInteractionSystem : TileCursor
 {
     public TileManager tileManager;
-
+    [SerializeField] FeedManager feedManager;
     public Tilemap optionsMap;
     public TileBase optionTile;
     //Stores the location of the current tile selected
@@ -66,7 +66,7 @@ public class UnitInteractionSystem : TileCursor
         BarnUIMenu.OnUnitPurchased.AddListener(SetNextUnit);
         BarnUIMenu.OnPurchaseComplete.AddListener(SelectAction);
         BarnUIMenu.CancelAction.AddListener(StopAction);
-
+        feedManager = FindFirstObjectByType<FeedManager>();
         validLocations = new List<Vector3Int>();
     }
     //Restrict to only display updated tiles
@@ -367,17 +367,43 @@ public class UnitInteractionSystem : TileCursor
         }
         ShowUnitOptions(unit);
     }
+    //Likely needs to prevent further actions while deciding somehow havent implemented that yet
+    private void ShowFeedOptions(InputAction.CallbackContext context)
+    {
+        //see if theres a unit on the tile
+        selectedEntity = tileManager.GetTileDataAt(currentTile).GetOccupyingEntity();
+        if (selectedEntity == null)
+        {
+            Debug.Log("No unit to feed here");
+            return;
+        }
+
+        //get a reference to the current Unit if there is one
+        Unit unit = selectedEntity as Unit;
+
+        // Make sure we have a valid selected unit
+        if (unit == null)
+        {
+            Debug.Log("No unit to feed here");
+            return;
+        }
+
+        // Open the PickCropUI for this unit
+        feedManager.OpenFeedUI(unit);
+    }
 
     private void OnEnable()
     {
         input = new AgainstTheGrainInput();
         input.Enable();
         input.Gameplay.Select.performed += OnSelect;
+        input.Gameplay.Feed.performed += ShowFeedOptions;
     }
 
     private void OnDisable()
     {
         input.Gameplay.Select.performed -= OnSelect;
+        input.Gameplay.Feed.performed -= ShowFeedOptions;
         input.Disable();
     }
 

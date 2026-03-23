@@ -2,7 +2,12 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class ActionButton : MonoBehaviour
+public class UIButton : MonoBehaviour
+{
+
+}
+
+public class ActionButton : UIButton
 {
     [SerializeField] private TextMeshProUGUI text;
 

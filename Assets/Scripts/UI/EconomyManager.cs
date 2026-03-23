@@ -27,6 +27,10 @@ public class EconomyManager : MonoBehaviour
         }
 
         Instance = this;
+
+        AddHarvestedCrops(1);
+        AddHarvestedCrops(3);
+        AddHarvestedCrops(4);
     }
 
     public int GetCoins()
@@ -91,9 +95,33 @@ public class EconomyManager : MonoBehaviour
         return true;
     }
 
+    public bool FeedHarvestedCrops(int id)
+    {
+        if (!harvestedCrops.ContainsKey(id) || harvestedCrops[id] <= 0)
+            return false;
+
+        SetHarvestedCrops(id, harvestedCrops[id] - 1);
+        return true;
+    }
+
     public void SetHarvestedCrops(int id, int amt)
     {
         harvestedCrops[id] = Mathf.Max(0, amt);
         OnCropChanged?.Invoke(id);
+    }
+    //Used to determine if you can pull up the feed menu to prevent errors
+    public bool HasACrop()
+    {
+        foreach (var pair in harvestedCrops)
+        {
+            int cropID = pair.Key;
+            int amount = pair.Value;
+            //if any crop has a single entry, return that theres a crop
+            if (amount > 0)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

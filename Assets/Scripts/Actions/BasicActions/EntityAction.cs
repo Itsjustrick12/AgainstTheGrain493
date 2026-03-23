@@ -13,7 +13,7 @@ public abstract class EntityAction : ScriptableObject
     public abstract bool IsPossible(Entity entity);
     //Holds the logic that is excuted when the action is chosen
 
-    public abstract List<Vector3Int> GetValidTargets(Entity enity);
+    public abstract List<Vector3Int> GetValidTargets(Entity entity);
 
     public abstract bool IsAOE();
 
