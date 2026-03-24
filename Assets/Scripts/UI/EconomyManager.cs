@@ -27,10 +27,6 @@ public class EconomyManager : MonoBehaviour
         }
 
         Instance = this;
-
-        AddHarvestedCrops(1);
-        AddHarvestedCrops(3);
-        AddHarvestedCrops(4);
     }
 
     public int GetCoins()

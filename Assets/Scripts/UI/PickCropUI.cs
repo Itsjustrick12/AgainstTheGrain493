@@ -88,6 +88,10 @@ public class PickCropUI : NaviagatableUI
                 {
                     // Fire your event with the crop ID
                     OnCropSelected?.Invoke(counter.cropID);
+                    if (feeding)
+                    {
+                        OnCropCancelled?.Invoke();
+                    }
                 }
             }
             //Do event here

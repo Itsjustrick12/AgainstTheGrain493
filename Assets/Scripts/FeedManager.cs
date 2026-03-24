@@ -31,7 +31,7 @@ public class FeedManager : MonoBehaviour
         pickCropUI.StopPicking();
 
         //Apply effect to unit here
-        Debug.Log("Feed Crop with ID " + cropID + " to the " + selectedUnit.name);
+        //Debug.Log("Feed Crop with ID " + cropID + " to the " + selectedUnit.name);
         //Subtract Crop count by 1
         EconomyManager.Instance.FeedHarvestedCrops(cropID);
         SoundManager.Instance.PlaySound(feedSound);

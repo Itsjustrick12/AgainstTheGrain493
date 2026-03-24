@@ -26,6 +26,7 @@ public class UnitInteractionSystem : TileCursor
 {
     public TileManager tileManager;
     [SerializeField] FeedManager feedManager;
+    private PickCropUI cropPicker; 
     public Tilemap optionsMap;
     public TileBase optionTile;
     //Stores the location of the current tile selected
@@ -60,6 +61,7 @@ public class UnitInteractionSystem : TileCursor
     public void Awake()
     {
         tileManager = FindFirstObjectByType<TileManager>();
+        cropPicker = FindFirstObjectByType<PickCropUI>();
         //actionMenu = FindFirstObjectByType<ActionMenu>();
         actionMenu.OnActionSelected.AddListener(SelectAction);
         state = InteractionState.Selection;
@@ -67,7 +69,7 @@ public class UnitInteractionSystem : TileCursor
         BarnUIMenu.OnPurchaseComplete.AddListener(SelectAction);
         BarnUIMenu.CancelAction.AddListener(StopAction);
         feedManager = FindFirstObjectByType<FeedManager>();
-        feedManager.pickCropUI.OnCropSelected.AddListener(StopAction);
+        cropPicker.OnCropCancelled.AddListener(StopAction);
         validLocations = new List<Vector3Int>();
     }
     //Restrict to only display updated tiles
@@ -276,11 +278,7 @@ public class UnitInteractionSystem : TileCursor
         state = InteractionState.ActionSelection;
         actionMenu.ShowMenu(unit);
     }
-    public void StopAction(int throwaway)
-    {
-        ResetData();
-        state = InteractionState.Selection;
-    }
+
     public void StopAction()
     {
         ResetData();
@@ -340,19 +338,32 @@ public class UnitInteractionSystem : TileCursor
             ResetData();
             return;
         }
+        //For planting action, you must first determine which seed to plant via the UI
+        if (action is PlantAction)
+        {
+            currAction = action;
+            //Open crop pickerUI
+            cropPicker.OnCropSelected.AddListener(OnPlantSelected);
+            cropPicker.StartPicking(false);
+            return;
+            
+        }
         //Special case, requires picking an integer set by a UI (barnUI probably)
         if (action is SpawnUnitAction)
         {
-            Debug.Log("SpawnUnit found!");
+            //Debug.Log("SpawnUnit found!");
             SpawnUnitAction spawnAction = action as SpawnUnitAction;
             spawnAction.SetSpawnUnit(nextUnitID);
         }
 
         currAction = action;
 
-        //Switch to target selection phase
-        //Update the valid locations
-        validLocations = action.GetValidTargets(selectedEntity);
+        GetTargets();
+    }
+    //Get the availible targets from the current action, then switch to selecting one
+    private void GetTargets()
+    {
+        validLocations = currAction.GetValidTargets(selectedEntity);
         //Highlight the selectable locations
         foreach (Vector3Int pos in validLocations)
         {
@@ -360,6 +371,19 @@ public class UnitInteractionSystem : TileCursor
         }
         //Otherwise, perform the action on the selected tile
         state = InteractionState.TargetSelection;
+    }
+
+    //Additional picker step needed for the plant action after crop is picked from UI
+    private void OnPlantSelected(int cropID)
+    {
+        //Remove this listner now that the plant has been picked
+        cropPicker.OnCropSelected.RemoveListener(OnPlantSelected);
+        //actually set the index to plant
+        PlantAction plantAct = currAction as PlantAction;
+        plantAct.SetCropID(cropID);
+        //Debug.Log("PlantAct is linked with ID " + plantAct.cropID);
+        //Get the availible targets from the current action, then switch to selecting one
+        GetTargets();
     }
 
     private void ShowUnitOptions(Entity entity)
