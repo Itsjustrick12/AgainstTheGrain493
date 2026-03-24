@@ -107,6 +107,7 @@ public class TileData
                 cropCheck.WaterCrop();
             }
         }
+        occupyingEntity.Initialize();
     }
 
     public bool CanPlaceEntity()
