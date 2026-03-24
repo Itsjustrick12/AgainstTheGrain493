@@ -9,6 +9,7 @@ public class Unit : Entity
     [Header("General Settings")]
     public int ID;
     public bool isEnemy = false;
+    public bool canFly = false;
 
     [Header("For Targeting")]
     //added for targeting
@@ -57,13 +58,37 @@ public class Unit : Entity
         return false;
     }
 
-    public void GetHealth(int healthValue){ 
-        currentHealth = healthValue;
+    public void SetAttackRange(int temp)
+    {
+        if(temp > 0)
+        {
+            attackRange = temp;
+        }
     }
 
     public int GetAttackRange()
     {
         return attackRange;
+    }
+
+    public void SetCanFly(bool temp)
+    { 
+        canFly = temp;
+    }
+
+    public bool GetCanFly()
+    { 
+        return canFly;
+    }
+
+    public void SetIsEnemy(bool tempIsEnemy)
+    {
+        isEnemy = tempIsEnemy;
+    }
+
+    public bool GetIsEnemy()
+    {
+        return isEnemy;
     }
 
     public bool IsSameTeamAs(Unit diffUnit)
@@ -205,7 +230,7 @@ public class Unit : Entity
         foreach (Vector3Int t in targets)
         {
             //get the path for the next potential target
-            List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), t);
+            List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), t, this);
 
             // Skip paths that return no path (only 1 item in list)
             if (path.Count == 1)
@@ -232,7 +257,7 @@ public class Unit : Entity
         foreach (Vector3Int t in targets)
         {
             //get the path for the next potential target
-            List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), t);
+            List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), t, this);
 
             // Skip paths that return no path (only 1 item in list)
             if (path.Count == 1)
@@ -268,7 +293,7 @@ public class Unit : Entity
         foreach (Vector3Int t in targets)
         {
             //get the path for the next potential target
-            List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), t);
+            List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), t, this);
 
             // Skip paths that return no path (only 1 item in list)
             if (path.Count == 1)
@@ -431,8 +456,6 @@ public class Unit : Entity
 
     public void DoTurn()
     {
-        //if a target hasn't been set we find the next target
-
         //Debug.Log("Finding Target");
         this.SetTarget();
 
@@ -456,9 +479,10 @@ public class Unit : Entity
         //if we found a target we move to it
         if (target.z != -1)
         {
-            //Debug.Log("Target found at " + target);
-            List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), target);
-            if (path.Count > 2)
+            Debug.Log("Target found at " + target);
+            List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), target, this);
+            Debug.Log("Distance = " + path.Count);
+            if (path.Count > 0)
             {
                 Move(path);
             }

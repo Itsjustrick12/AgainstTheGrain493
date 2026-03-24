@@ -48,10 +48,6 @@ public class Entity : MonoBehaviour
     public SpriteRenderer shadeSprite;
 
     public static event Action<Entity> OnEntityDestroyed;
-    public Vector3Int GetGridPos()
-    {
-        return gridPos;
-    }
 
     public void InitializeActions(List<EntityAction> newActions)
     {
@@ -69,6 +65,63 @@ public class Entity : MonoBehaviour
         gridPos = pos;
         transform.position = pos+offset;
     }
+
+    public Vector3Int GetGridPos()
+    {
+        return gridPos;
+    }
+
+    public int GetHealth()
+    {
+        return currentHealth;
+    }
+    
+    public void SetCurrentHealth(int healthValue)
+    { 
+        if(healthValue > maxHealth)
+        {
+            healthValue = maxHealth;
+        }
+        currentHealth = healthValue;
+    }
+
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+
+    public void SetMaxHealth(int healthValue)
+    { 
+        if(healthValue > 0)
+        {
+            healthValue = maxHealth;
+        }
+    }
+
+    public int GetMaxHealth()
+    {
+        return maxHealth;
+    }
+    
+    public void SetHealth(int healthValue)
+    { 
+        if(healthValue > maxHealth)
+        {
+            healthValue = maxHealth;
+        }
+        currentHealth = healthValue;
+    }
+
+    public bool IsInteractable()
+    {
+        return isInteractable;
+    }
+
+    public void SetIsInteractable(bool temp)
+    {
+        isInteractable = temp;
+    }
+
     public virtual bool IsObstacle()
     {
         return isObstacle;
@@ -76,10 +129,6 @@ public class Entity : MonoBehaviour
     public void SetIsObstacle(bool obstacle)
     {
         isObstacle = obstacle;
-    }
-    public bool IsInteractable()
-    {
-        return isInteractable;
     }
     public void HideSprite()
     {
@@ -95,18 +144,9 @@ public class Entity : MonoBehaviour
         return sprite.sprite;
     }
 
-    public int GetHealth()
+    public void SetSprite(Sprite temp)
     {
-        return currentHealth;
-    }
-
-    public void SetHealth(int healthValue)
-    { 
-        if(healthValue > maxHealth)
-        {
-            healthValue = maxHealth;
-        }
-        currentHealth = healthValue;
+        sprite.sprite = temp;
     }
 
     public virtual void TakeDamage(int damage)

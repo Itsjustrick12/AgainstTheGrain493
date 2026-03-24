@@ -110,7 +110,17 @@ public class TilePainter : TileCursor
     {
 
         Debug.Log("Start Pos: " + startPoint + " | End Pos: " + endPoint);
-        List<Vector3Int> positions = pathfinder.TilePath(startPoint, endPoint);
+
+        List<Vector3Int> positions = new List<Vector3Int>();
+
+        if(tileManager.GetTileDataAt(startPoint).GetOccupyingEntity() is Unit)
+        {
+            positions = pathfinder.TilePath(startPoint, endPoint, tileManager.GetTileDataAt(startPoint).GetOccupyingEntity() as Unit);
+        }
+        else
+        {
+            positions = pathfinder.TilePath(startPoint, endPoint, null);
+        }
 
         Debug.Log("Path Of Length: " + positions.Count);
 
