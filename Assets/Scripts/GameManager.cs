@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     //Needed for pause logic
     private UnitInteractionSystem interactionSystem;
     public ActionMenu actionMenu;
+    public AIManager aiManager;
 
     //Transforms for sorting
     public Transform friendlyUnits;
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
         tileManager = FindFirstObjectByType<TileManager>();
         interactionSystem = FindFirstObjectByType<UnitInteractionSystem>();
+        aiManager = FindFirstObjectByType<AIManager>();
     }
 
     public void Start()

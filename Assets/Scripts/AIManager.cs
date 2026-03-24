@@ -40,7 +40,7 @@ public class AIManager : MonoBehaviour
         {
             Debug.Log("No Pathable Primary/Any Target found");
         }
-        Debug.Log("Test 3");
+        Debug.Log("Found Target: " + target.x + " " + target.y + " " + target.z);
         return target;
     }
 

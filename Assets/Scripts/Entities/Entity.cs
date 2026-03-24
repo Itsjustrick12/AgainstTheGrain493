@@ -25,6 +25,7 @@ public class Entity : MonoBehaviour
     protected bool isActive = true;
     protected TileManager tileManager;
     protected GameManager gameManager;
+    protected AIManager aiManager;
     [SerializeField]protected TileHelper tileHelper;
 
     [Header("Stats")]
@@ -204,6 +205,7 @@ public class Entity : MonoBehaviour
     {
         sprite = GetComponent<SpriteRenderer>();
         shadeSprite.sprite = sprite.sprite;
+        aiManager = FindFirstObjectByType<AIManager>();
         Initialize();
     }
 

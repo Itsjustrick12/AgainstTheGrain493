@@ -27,6 +27,7 @@ public class Unit : Entity
     public override void Awake()
     {
         base.Awake();
+        
     }
 
     public override void Initialize()
@@ -132,32 +133,6 @@ public class Unit : Entity
         strength = strengthValue;
     }
 
-    //gets vector3Int List for best target based on difficulty
-    public void SetTarget()
-    {
-        
-        //choose target based on iq
-        if (iq == 1)
-        {
-            target = FindEasy();
-        }
-        else if (iq < 5)
-        {
-            target = FindMedium();
-        }
-        else
-        {
-            target = FindHard();
-        }
-
-        // Still nothing, clear target
-        if (target.z == -1)
-        {
-            Debug.Log("No Pathable Primary/Any Target found");
-            return;
-        }
-    }
-
     public Vector3Int GetTarget()
     {
         return target;
@@ -165,7 +140,7 @@ public class Unit : Entity
 
     public Vector3Int SetAndReturnTarget()
     {
-        SetTarget();
+        aiManager.FindTarget(this);
         return GetTarget();
     }
 
@@ -210,174 +185,6 @@ public class Unit : Entity
         }
 
         return temp;
-    }
-
-    /*
-        targeting for "Easy" enemies
-        
-        targets clostest primary target
-
-        if there is no targetable primary target it chooses the closest unit
-    */
-    Vector3Int FindEasy()
-    {
-        //gets all primary targets
-        List<Vector3Int> targets = FindPositions(true);
-
-        Vector3Int best = new Vector3Int(0, 0, -1);
-        int bestTTR = int.MaxValue;
-
-        foreach (Vector3Int t in targets)
-        {
-            //get the path for the next potential target
-            List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), t, this);
-
-            // Skip paths that return no path (only 1 item in list)
-            if (path.Count == 1)
-                continue;
-
-            //uses turnstoreach to find the "best" target
-            int ttr = TurnsToReach(path);
-            if (ttr < bestTTR)
-            {
-                bestTTR = ttr;
-                best = t;
-            }
-        }
-
-        // if an accesible primary target was found return
-        if(best.z != -1)
-        {
-            return best;
-        }
-
-        //now we look for any target
-        targets = FindPositions(false);
-
-        foreach (Vector3Int t in targets)
-        {
-            //get the path for the next potential target
-            List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), t, this);
-
-            // Skip paths that return no path (only 1 item in list)
-            if (path.Count == 1)
-                continue;
-
-            //uses turnstoreach to find the "best" target
-            int ttr = TurnsToReach(path);
-            if (ttr < bestTTR)
-            {
-                bestTTR = ttr;
-                best = t;
-            }
-        }
-
-        return best;
-    }
-
-    /*
-        targeting for "Medium" enemies
-
-        targets closest primary target
-        or
-        secondary target that takes -1 turn to kill
-    */
-    Vector3Int FindMedium()
-    {
-        //get list of all targets
-        List<Vector3Int> targets = FindPositions(false);
-
-        Vector3Int best = new Vector3Int(0, 0, -1);
-        int bestTTK = int.MaxValue;
-
-        foreach (Vector3Int t in targets)
-        {
-            //get the path for the next potential target
-            List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), t, this);
-
-            // Skip paths that return no path (only 1 item in list)
-            if (path.Count == 1)
-                continue;
-
-            //uses turnstokill to find the "best" target
-            int ttk = TurnsToKill(path);
-
-            //if the potential target is a secondary target add 1 to the ttk
-            if(!primary.Contains(tileManager.GetTileDataAt(t).GetOccupyingEntity().GetEntityType()))
-            {
-                ttk++;
-            }
-            if (ttk < bestTTK)
-            {
-                bestTTK = ttk;
-                best = t;
-            }
-        }
-
-        return best;
-    }
-
-    //TODO
-    Vector3Int FindHard()
-    {
-        return FindMedium();
-
-    }
-
-    //calculation for amount of turn to kill a unit, used for priority
-    int TurnsToKill(List<Vector3Int> path)
-    {
-        int ttk = 0;
-
-        //turns to get(next) to target
-        ttk += TurnsToReach(path);
-
-        //checks the last spot in the path to make sure there is actually a target
-        if(tileManager.GetTileDataAt(path[path.Count - 1]).occupyingEntity != null)
-        {
-            Entity temptarget = tileManager.GetTileDataAt(path[path.Count - 1]).occupyingEntity;
-
-            //so since temptarget can be attacked on the move turn you subtrace 1 turn from
-            //the amount of turns required to kill target
-            ttk += temptarget.GetHealth() / this.GetStrength() - 1;
-
-            //if there is leftover it adds another turn
-            if(temptarget.GetHealth() % this.GetStrength() > 0)
-            {
-                ttk++;
-            }
-        }
-
-        return ttk;
-        
-    }
-
-    //turns to get(next) to target
-    int TurnsToReach(List<Vector3Int> path)
-    {
-        int ttr = 0;
-
-        if(path.Count > 2)
-        {
-            for(int i = 1; i < path.Count - 1; i++)
-            {
-                ttr += tileManager.GetTileDataAt(path[i]).movementCost;
-            }
-
-            ttr = ttr / this.movementRange + 1;
-        }
-
-        return ttr;
-    }
-
-    bool Win1v1()
-    {
-        bool ret = false;
-        /*if(tileGetTileDataAt(path[i]))
-        {
-
-        }*/
-        return ret;
     }
 
     void Move(List<Vector3Int> path)
@@ -457,7 +264,7 @@ public class Unit : Entity
     public void DoTurn()
     {
         //Debug.Log("Finding Target");
-        this.SetTarget();
+        target = aiManager.FindTarget(this);
 
         //See if our target is up to date (needed for concurrent enemy execution)
         TileData data = tileManager.GetTileDataAt(target);
@@ -466,16 +273,16 @@ public class Unit : Entity
             Unit unitCheck = data.GetOccupyingEntity() as Unit;
             if (unitCheck && IsSameTeamAs(unitCheck))
             {
-                SetTarget();
+                target = aiManager.FindTarget(this);
             }
         }
         else
         {
             //Get a new target if our old one is outdata
-            SetTarget();
+            target = aiManager.FindTarget(this);
         }
 
-
+        Debug.Log("Found Target: " + target.x + " " + target.y + " " + target.z);
         //if we found a target we move to it
         if (target.z != -1)
         {
