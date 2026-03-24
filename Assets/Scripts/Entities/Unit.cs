@@ -389,7 +389,7 @@ public class Unit : Entity
         {
             path.RemoveAt(0);
         }
-        while(tempMovement > 0 && path.Count > 1)
+        while(tempMovement > 0 && path.Count > 0)
         {
             //if there is nothing in the next tile
             if(tileManager.GetTileDataAt(path[0]).occupyingEntity == null)
