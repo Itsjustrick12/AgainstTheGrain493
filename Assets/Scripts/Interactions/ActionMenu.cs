@@ -19,6 +19,9 @@ public class NaviagatableUI : MonoBehaviour
     //for input modularity
     DefaultInputActions input;
 
+    [SerializeField] protected AudioClip navigateNoise;
+    [SerializeField] protected AudioClip reportNoise;
+
     public virtual void Navigate(InputAction.CallbackContext context)
     {
         if (gameManager != null && !gameManager.isPlayerTurn)
@@ -57,6 +60,7 @@ public class NaviagatableUI : MonoBehaviour
 
         DeselectButton(prevIndex);
         SelectButton();
+        SoundManager.Instance.PlaySound(navigateNoise);
     }
 
     public virtual void SelectButton()
@@ -66,7 +70,7 @@ public class NaviagatableUI : MonoBehaviour
 
     public virtual void ReportAction(InputAction.CallbackContext context)
     {
-
+        SoundManager.Instance.PlaySound(reportNoise);
     }
     private void OnEnable()
     {
@@ -216,6 +220,7 @@ public class ActionMenu : NaviagatableUI
     //Is used to tell the interaction system what action to do
     public override void ReportAction(InputAction.CallbackContext context)
     {
+        base.ReportAction(context);
         if (buttons.Count == 0)
             return;
 

@@ -23,6 +23,8 @@ public class Unit : Entity
     private int attackRange = 1;
     private int movementRange = 3;
 
+    private bool isFed = false;
+
     public override void Awake()
     {
         base.Awake();
@@ -37,6 +39,16 @@ public class Unit : Entity
         currentHealth = info.baseHealth;
         actions = info.actions;
         movementRange = info.moveRange;
+    }
+
+    public void SetIsFed(bool value)
+    {
+        isFed = value;
+    }
+
+    public bool GetIsFed()
+    {
+        return isFed;
     }
 
     public int GetMoveRange()
@@ -59,6 +71,12 @@ public class Unit : Entity
 
     public void GetHealth(int healthValue){ 
         currentHealth = healthValue;
+    }
+
+    public void Heal(int amount)
+    {
+        int after = currentHealth + amount;
+        currentHealth = (after) > maxHealth ? maxHealth : after;
     }
 
     public int GetAttackRange()

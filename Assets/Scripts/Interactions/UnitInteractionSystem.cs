@@ -67,6 +67,7 @@ public class UnitInteractionSystem : TileCursor
         BarnUIMenu.OnPurchaseComplete.AddListener(SelectAction);
         BarnUIMenu.CancelAction.AddListener(StopAction);
         feedManager = FindFirstObjectByType<FeedManager>();
+        feedManager.pickCropUI.OnCropSelected.AddListener(StopAction);
         validLocations = new List<Vector3Int>();
     }
     //Restrict to only display updated tiles
@@ -275,7 +276,11 @@ public class UnitInteractionSystem : TileCursor
         state = InteractionState.ActionSelection;
         actionMenu.ShowMenu(unit);
     }
-
+    public void StopAction(int throwaway)
+    {
+        ResetData();
+        state = InteractionState.Selection;
+    }
     public void StopAction()
     {
         ResetData();
@@ -390,6 +395,8 @@ public class UnitInteractionSystem : TileCursor
 
         // Open the PickCropUI for this unit
         feedManager.OpenFeedUI(unit);
+        //Prevent further input until feed is finished
+        state = InteractionState.ActionSelection;
     }
 
     private void OnEnable()

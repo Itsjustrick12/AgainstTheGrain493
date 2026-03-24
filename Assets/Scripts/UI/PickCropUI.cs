@@ -1,13 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
-
-public interface IInteractableWithCrop
-{
-    // Called when a crop needs to be picked
-    void OnCropPicked(int cropID);
-}
 
 //Event needed for both picking feed and planting crop
 [System.Serializable]
@@ -16,8 +11,15 @@ public class CropSelectedEvent : UnityEngine.Events.UnityEvent<int> { }
 public class PickCropUI : NaviagatableUI
 {
     public CropSelectedEvent OnCropSelected;
+    public UnityEvent OnCropCancelled;
     private bool picking = false;
     private bool feeding = false;
+
+    public void Start()
+    {
+        //dont enable input until told to do so
+        TurnOffInput();
+    }
     public override void Navigate(InputAction.CallbackContext context)
     {
         //if not feeding, dont do availibility skipping
@@ -70,6 +72,7 @@ public class PickCropUI : NaviagatableUI
         }
 
         SelectButton();
+        SoundManager.Instance.PlaySound(navigateNoise);
     }
 
     public override void ReportAction(InputAction.CallbackContext context)
@@ -118,6 +121,7 @@ public class PickCropUI : NaviagatableUI
     {
         if (picking)
             return;
+        TurnOnInput();
         picking = true;
         feeding = isFeeding;
 
@@ -162,6 +166,7 @@ public class PickCropUI : NaviagatableUI
             }
 
         }
+        TurnOffInput();
     }
 
 }

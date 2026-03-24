@@ -3226,6 +3226,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FeedManager
   pickCropUI: {fileID: 1839409328}
+  feedSound: {fileID: 8300000, guid: e0c726852120565438bf311496173224, type: 3}
+  thumpSound: {fileID: 8300000, guid: a41cdc33e4a986b40b6878d877bba03e, type: 3}
+  temp: 1
 --- !u!4 &747804106
 Transform:
   m_ObjectHideFlags: 0
@@ -3545,6 +3548,14 @@ PrefabInstance:
       propertyPath: baseWidth
       value: 72
       objectReference: {fileID: 0}
+    - target: {fileID: 7629294560607080280, guid: bceb8e2865d0eb2428552b0e26fb6b55, type: 3}
+      propertyPath: reportNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: 0719c9a497101d443b426e9406995ffd, type: 3}
+    - target: {fileID: 7629294560607080280, guid: bceb8e2865d0eb2428552b0e26fb6b55, type: 3}
+      propertyPath: navigateNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: 3ba7cb20db05919449170c3dc38837c5, type: 3}
     - target: {fileID: 8330368998693755339, guid: bceb8e2865d0eb2428552b0e26fb6b55, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -32
@@ -6185,6 +6196,14 @@ PrefabInstance:
       propertyPath: uiCanvas
       value: 
       objectReference: {fileID: 1170237817}
+    - target: {fileID: 3692067787822710917, guid: 836669d5dc0c8244cb1ea6597606305d, type: 3}
+      propertyPath: reportNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: 0719c9a497101d443b426e9406995ffd, type: 3}
+    - target: {fileID: 3692067787822710917, guid: 836669d5dc0c8244cb1ea6597606305d, type: 3}
+      propertyPath: navigateNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: 3ba7cb20db05919449170c3dc38837c5, type: 3}
     - target: {fileID: 4088894491635225407, guid: 836669d5dc0c8244cb1ea6597606305d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
