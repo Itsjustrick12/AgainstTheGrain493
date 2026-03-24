@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a9b0ed67a56dd4ca4ca5ef1c451fa4, type: 3}
   m_Name: PlantAction
   m_EditorClassIdentifier: Assembly-CSharp::PlantAction
-  cropID: 1
-  cropName: Wheat
+  cropID: 3

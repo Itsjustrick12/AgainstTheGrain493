@@ -69,7 +69,7 @@ public class UnitInteractionSystem : TileCursor
         BarnUIMenu.OnPurchaseComplete.AddListener(SelectAction);
         BarnUIMenu.CancelAction.AddListener(StopAction);
         feedManager = FindFirstObjectByType<FeedManager>();
-        cropPicker.OnCropCancelled.AddListener(StopAction);
+        cropPicker.OnCropCancelled.AddListener(ResumeSelection);
         validLocations = new List<Vector3Int>();
     }
     //Restrict to only display updated tiles
@@ -423,6 +423,11 @@ public class UnitInteractionSystem : TileCursor
         state = InteractionState.ActionSelection;
     }
 
+    private void ResumeSelection()
+    {
+        ResetData();
+        state = InteractionState.Selection;
+    }
     private void OnEnable()
     {
         input = new AgainstTheGrainInput();
