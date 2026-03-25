@@ -25,7 +25,8 @@ public class EntityActionEvent : UnityEvent<EntityAction>
 public class UnitInteractionSystem : TileCursor
 {
     public TileManager tileManager;
-
+    [SerializeField] FeedManager feedManager;
+    private PickCropUI cropPicker; 
     public Tilemap optionsMap;
     public TileBase optionTile;
     //Stores the location of the current tile selected
@@ -60,13 +61,15 @@ public class UnitInteractionSystem : TileCursor
     public void Awake()
     {
         tileManager = FindFirstObjectByType<TileManager>();
+        cropPicker = FindFirstObjectByType<PickCropUI>();
         //actionMenu = FindFirstObjectByType<ActionMenu>();
         actionMenu.OnActionSelected.AddListener(SelectAction);
         state = InteractionState.Selection;
         BarnUIMenu.OnUnitPurchased.AddListener(SetNextUnit);
         BarnUIMenu.OnPurchaseComplete.AddListener(SelectAction);
         BarnUIMenu.CancelAction.AddListener(StopAction);
-
+        feedManager = FindFirstObjectByType<FeedManager>();
+        cropPicker.OnCropCancelled.AddListener(ResumeSelection);
         validLocations = new List<Vector3Int>();
     }
     //Restrict to only display updated tiles
@@ -335,19 +338,32 @@ public class UnitInteractionSystem : TileCursor
             ResetData();
             return;
         }
+        //For planting action, you must first determine which seed to plant via the UI
+        if (action is PlantAction)
+        {
+            currAction = action;
+            //Open crop pickerUI
+            cropPicker.OnCropSelected.AddListener(OnPlantSelected);
+            cropPicker.StartPicking(false);
+            return;
+            
+        }
         //Special case, requires picking an integer set by a UI (barnUI probably)
         if (action is SpawnUnitAction)
         {
-            Debug.Log("SpawnUnit found!");
+            //Debug.Log("SpawnUnit found!");
             SpawnUnitAction spawnAction = action as SpawnUnitAction;
             spawnAction.SetSpawnUnit(nextUnitID);
         }
 
         currAction = action;
 
-        //Switch to target selection phase
-        //Update the valid locations
-        validLocations = action.GetValidTargets(selectedEntity);
+        GetTargets();
+    }
+    //Get the availible targets from the current action, then switch to selecting one
+    private void GetTargets()
+    {
+        validLocations = currAction.GetValidTargets(selectedEntity);
         //Highlight the selectable locations
         foreach (Vector3Int pos in validLocations)
         {
@@ -355,6 +371,19 @@ public class UnitInteractionSystem : TileCursor
         }
         //Otherwise, perform the action on the selected tile
         state = InteractionState.TargetSelection;
+    }
+
+    //Additional picker step needed for the plant action after crop is picked from UI
+    private void OnPlantSelected(int cropID)
+    {
+        //Remove this listner now that the plant has been picked
+        cropPicker.OnCropSelected.RemoveListener(OnPlantSelected);
+        //actually set the index to plant
+        PlantAction plantAct = currAction as PlantAction;
+        plantAct.SetCropID(cropID);
+        //Debug.Log("PlantAct is linked with ID " + plantAct.cropID);
+        //Get the availible targets from the current action, then switch to selecting one
+        GetTargets();
     }
 
     private void ShowUnitOptions(Entity entity)
@@ -367,17 +396,50 @@ public class UnitInteractionSystem : TileCursor
         }
         ShowUnitOptions(unit);
     }
+    //Likely needs to prevent further actions while deciding somehow havent implemented that yet
+    private void ShowFeedOptions(InputAction.CallbackContext context)
+    {
+        //see if theres a unit on the tile
+        selectedEntity = tileManager.GetTileDataAt(currentTile).GetOccupyingEntity();
+        if (selectedEntity == null)
+        {
+            Debug.Log("No unit to feed here");
+            return;
+        }
 
+        //get a reference to the current Unit if there is one
+        Unit unit = selectedEntity as Unit;
+
+        // Make sure we have a valid selected unit
+        if (unit == null)
+        {
+            Debug.Log("No unit to feed here");
+            return;
+        }
+
+        // Open the PickCropUI for this unit
+        feedManager.OpenFeedUI(unit);
+        //Prevent further input until feed is finished
+        state = InteractionState.ActionSelection;
+    }
+
+    private void ResumeSelection()
+    {
+        ResetData();
+        state = InteractionState.Selection;
+    }
     private void OnEnable()
     {
         input = new AgainstTheGrainInput();
         input.Enable();
         input.Gameplay.Select.performed += OnSelect;
+        input.Gameplay.Feed.performed += ShowFeedOptions;
     }
 
     private void OnDisable()
     {
         input.Gameplay.Select.performed -= OnSelect;
+        input.Gameplay.Feed.performed -= ShowFeedOptions;
         input.Disable();
     }
 

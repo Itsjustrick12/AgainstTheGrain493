@@ -12,10 +12,15 @@ public class Fence : Structure
 
     private Dictionary<Tuple<bool, bool, bool, bool>, int> convertToSprite;
 
-    public override void Start()
+    public override void Initialize()
     {
-        base.Start();
-        //Up Down Left Right
+        base.Initialize();
+        Activate();
+        SetUp();
+    }
+
+    public void SetUp()
+    {
         convertToSprite = new()
         {
             {new (false, true, false, true), 0 },
@@ -32,11 +37,14 @@ public class Fence : Structure
             {new (true, true, true, true), 11 }
 
         };
+        //Fences can't be deactivated
         UpdateSprite();
-
+        UpdateNeighbors();
     }
+
     public void UpdateSprite()
     {
+        tileManager = FindFirstObjectByType<TileManager>();
         Vector3Int pos = GetGridPos();
         bool up = tileManager.GetEntityOnTile(pos + Vector3Int.up) is Fence;
         bool down = tileManager.GetEntityOnTile(pos + Vector3Int.down) is Fence;
@@ -59,8 +67,8 @@ public class Fence : Structure
     public void UpdateNeighbors()
     {
         //remove from tile then update neighbors
-        tileManager.GetTileDataAt(GetGridPos()).ClearOccupant();
-
+        //tileManager.GetTileDataAt(GetGridPos()).ClearOccupant();
+        
         Vector3Int pos = GetGridPos();
         Vector3Int[] neighbors = new Vector3Int[]
         {
@@ -75,6 +83,8 @@ public class Fence : Structure
             Fence fence = tileManager.GetEntityOnTile(neighborPos) as Fence;
             if (fence != null) { fence.UpdateSprite(); }
         }
+
+        UpdateSprite();
     }
 
     public override void Die()

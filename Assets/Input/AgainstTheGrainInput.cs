@@ -217,6 +217,15 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Feed"",
+                    ""type"": ""Button"",
+                    ""id"": ""ee6684cc-047e-4317-9d70-f9bb923095c6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -384,6 +393,17 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
                     ""action"": ""Next"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fffdb431-87e7-4b06-8baa-4cc0b21cc22d"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Feed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -406,6 +426,7 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         m_Gameplay_Scrub = m_Gameplay.FindAction("Scrub", throwIfNotFound: true);
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         m_Gameplay_Next = m_Gameplay.FindAction("Next", throwIfNotFound: true);
+        m_Gameplay_Feed = m_Gameplay.FindAction("Feed", throwIfNotFound: true);
     }
 
     ~@AgainstTheGrainInput()
@@ -500,6 +521,7 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Scrub;
     private readonly InputAction m_Gameplay_Pause;
     private readonly InputAction m_Gameplay_Next;
+    private readonly InputAction m_Gameplay_Feed;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -568,6 +590,10 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Next => m_Wrapper.m_Gameplay_Next;
         /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Feed".
+        /// </summary>
+        public InputAction @Feed => m_Wrapper.m_Gameplay_Feed;
+        /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
@@ -635,6 +661,9 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
             @Next.started += instance.OnNext;
             @Next.performed += instance.OnNext;
             @Next.canceled += instance.OnNext;
+            @Feed.started += instance.OnFeed;
+            @Feed.performed += instance.OnFeed;
+            @Feed.canceled += instance.OnFeed;
         }
 
         /// <summary>
@@ -688,6 +717,9 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
             @Next.started -= instance.OnNext;
             @Next.performed -= instance.OnNext;
             @Next.canceled -= instance.OnNext;
+            @Feed.started -= instance.OnFeed;
+            @Feed.performed -= instance.OnFeed;
+            @Feed.canceled -= instance.OnFeed;
         }
 
         /// <summary>
@@ -826,5 +858,12 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnNext(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Feed" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFeed(InputAction.CallbackContext context);
     }
 }

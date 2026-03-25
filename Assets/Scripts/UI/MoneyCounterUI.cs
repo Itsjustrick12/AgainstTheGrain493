@@ -2,6 +2,7 @@ using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Windows;
+using static UnityEngine.Rendering.DebugUI;
 
 //Abstract class used by all scaling UI boxes for updating the counters via script
 public abstract class ExpandingCounterUI : MonoBehaviour
@@ -16,6 +17,7 @@ public abstract class ExpandingCounterUI : MonoBehaviour
     public float digitWidth = 32f;
 
     protected int currentAmount = 0;
+    [SerializeField] protected bool iconOnlyMode = false;
 
     protected abstract int GetCounterValue();
 
@@ -45,13 +47,21 @@ public abstract class ExpandingCounterUI : MonoBehaviour
     public virtual void UpdateCounter(int newValue)
     {
         currentAmount = Mathf.Max(0, newValue);
+        //Basically, don't show the number and shrink to just the icon
+        if (iconOnlyMode)
+        {
+            counterBar.sizeDelta = new Vector2(baseWidth, counterBar.sizeDelta.y);
+            foreach (var digit in digits) digit.gameObject.SetActive(false);
+            if (numberText != null) numberText.gameObject.SetActive(false);
+            return;
+        }
 
         string valueStr = currentAmount.ToString();
         int digitCount = valueStr.Length;
 
         // Resize the bar
         Vector2 size = counterBar.sizeDelta;
-        size.x = baseWidth + (digitCount - 1) * digitWidth;
+        size.x = baseWidth + digitCount * digitWidth;
         counterBar.sizeDelta = size;
 
         // Update digit sprites
@@ -94,6 +104,12 @@ public abstract class ExpandingCounterUI : MonoBehaviour
 
     protected abstract void SubscribeEvents();
     protected abstract void UnsubscribeEvents();
+    public void SetIconOnly(bool value)
+    {
+        iconOnlyMode = value;
+        //Hide or show the buttons
+        UpdateCounter();
+    }
 }
 //Used for tracking the coins in the economy manager
 public class MoneyCounterUI : ExpandingCounterUI

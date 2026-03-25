@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 465499869951987616}
   - component: {fileID: 7941187540243799669}
   - component: {fileID: 8533745808882360955}
+  - component: {fileID: 8576854633653516862}
   m_Layer: 0
   m_Name: Red Farmer
   m_TagString: Untagged
@@ -113,13 +114,32 @@ MonoBehaviour:
   isInteractable: 0
   shadeSprite: {fileID: 8700129053088524856}
   ID: 2
+  isEnemy: 0
   primary: 
   target: {x: 0, y: 0, z: -1}
-  isEnemy: 0
-  strength: 5
-  attackRange: 1
   iq: 1
-  movementRange: 3
+--- !u!95 &8576854633653516862
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4935858330493278644}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0698a813f3de721459f1f7b373fbbe35, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &8331469104203548412
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 465499869951987616}
   - component: {fileID: 7941187540243799669}
   - component: {fileID: 8533745808882360955}
+  - component: {fileID: 1336146497952015522}
   m_Layer: 0
   m_Name: Green Farmer
   m_TagString: Untagged
@@ -114,10 +115,31 @@ MonoBehaviour:
   shadeSprite: {fileID: 1624670681131030402}
   ID: 1
   isEnemy: 0
-  canFly: 1
   primary: 
   target: {x: 0, y: 0, z: -1}
   iq: 1
+--- !u!95 &1336146497952015522
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4935858330493278644}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 87ea1fdba831d1948985120ed28b881f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &2137449664765164358
 PrefabInstance:
   m_ObjectHideFlags: 0
