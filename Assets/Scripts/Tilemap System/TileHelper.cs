@@ -238,24 +238,33 @@ public class TileHelper : MonoBehaviour
 
     private bool CanTraverseTile(TileData tileData, Vector3Int pos, bool isEnd, int isEnemy, bool canFly)
     {
-        var occupyingEntity = tileData.GetOccupyingEntity();
-        if(!tileData.CanEnter() && occupyingEntity == null)
-        {
-            return false;
-        }
+        Entity occupyingEntity = tileData.GetOccupyingEntity();
 
-        Unit occupyingUnit = occupyingEntity as Unit;
-
-        //empty tile or occupied by not unit
-        if(occupyingUnit == null)
+        //if there is no entity
+        if(occupyingEntity == null)
         {
             return true;
         }
 
-        //flying units can fly over any unit
+        //if we can fly
         if(canFly)
         {
             return true;
+        }
+        else
+        {
+            //if the Entity is a unit
+            if(occupyingEntity is Unit)
+            {
+                Unit occupyingUnit = occupyingEntity as Unit;
+
+                int occupyingFriendly = occupyingUnit.GetIsEnemy() ? 1 : 0;
+
+                // ground units can only move through same-side units
+                return occupyingFriendly == isEnemy;
+            }
+            //if it's an entity only and we can't fly
+            return false;
         }
 
         //if no unit,no moving through occupied tiles
@@ -264,10 +273,6 @@ public class TileHelper : MonoBehaviour
             return false;
         }
 
-        int occupyingFriendly = occupyingUnit.GetIsEnemy() ? 1 : 0;
-
-        // ground units can only move through same-side units
-        return occupyingFriendly == isEnemy;
     }
 
 

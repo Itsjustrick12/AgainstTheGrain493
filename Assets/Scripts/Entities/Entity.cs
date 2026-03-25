@@ -26,7 +26,7 @@ public class Entity : MonoBehaviour
     protected TileManager tileManager;
     protected GameManager gameManager;
     protected AIManager aiManager;
-    [SerializeField]protected TileHelper tileHelper;
+    protected TileHelper tileHelper;
 
     [Header("Stats")]
     //stores the entity's max hitpoints
@@ -123,7 +123,7 @@ public class Entity : MonoBehaviour
         isInteractable = temp;
     }
 
-    public virtual bool IsObstacle()
+    public bool IsObstacle()
     {
         return isObstacle;
     }

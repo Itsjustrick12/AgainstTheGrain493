@@ -8,6 +8,10 @@ public class Unit : Entity
 {
     [Header("General Settings")]
     public int ID;
+    public int strength = 1;
+    public int attackRange = 1;
+    public int movementRange = 3;
+    public bool isFed = false;
     public bool isEnemy = false;
     public bool canFly = false;
 
@@ -17,14 +21,6 @@ public class Unit : Entity
     //no target uses a negative z value
     public Vector3Int target = new Vector3Int(0,0,-1);
     public int iq = 1;
-
-    [Header("Stats")]
-    private int strength = 1;
-    //Only increase for ranged attackers
-    private int attackRange = 1;
-    private int movementRange = 3;
-
-    private bool isFed = false;
 
     public override void Awake()
     {
@@ -130,7 +126,7 @@ public class Unit : Entity
     {
         if (entity == null)
         {
-            Debug.LogError("The passed entity is null, can't compare teams");
+            Debug.LogError("UNIT.The passed entity is null, can't compare teams");
             return false;
         }
 
@@ -232,36 +228,34 @@ public class Unit : Entity
                 }
                 else
                 {
-                    //Debug.Log("Not enough movement");
+                    Debug.Log("Not enough movement");
                     tempMovement = 0;
                 }
             }
             else
             {
-                //Debug.Log("Entity in next tile");
+                Debug.Log("Entity in next tile");
                 tempMovement = 0;
             }
         }
+
     }
 
     void Attack()
     {
         if (target.z == -1)
         {
-            Debug.Log("No target!");
+            Debug.Log("UNIT.No target!");
             return;
         }
 
 
         Vector3Int pos = GetGridPos();
-        bool isAdjacent = target == pos + Vector3Int.up ||
-                          target == pos + Vector3Int.down ||
-                          target == pos + Vector3Int.left ||
-                          target == pos + Vector3Int.right;
+        bool isAdjacent = Mathf.Abs(target.x - pos.x) + Mathf.Abs(target.y - pos.y) <= GetAttackRange();
 
         if (!isAdjacent)
         {
-            //Debug.Log("Target isn't adjacent!");
+            Debug.Log("Target isn't adjacent!");
             //Set the target a second time
             return;
         }
@@ -269,7 +263,7 @@ public class Unit : Entity
         TileData targetTile = tileManager.GetTileDataAt(target);
         if (targetTile == null || targetTile.occupyingEntity == null)
         {
-            Debug.Log("Nothing to attack!");
+            Debug.Log("UNIT.Nothing to attack!");
             return;
         }
 
@@ -300,20 +294,20 @@ public class Unit : Entity
             target = aiManager.FindTarget(this);
         }
 
-        Debug.Log("Found Target: " + target.x + " " + target.y + " " + target.z);
+        //Debug.Log("UNIT.Found Target: " + target.x + " " + target.y + " " + target.z);
         //if we found a target we move to it
         if (target.z != -1)
         {
-            Debug.Log("Target found at " + target);
+            //Debug.Log("UNIT.Target found at " + target);
             List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), target, this);
-            Debug.Log("Distance = " + path.Count);
+            //Debug.Log("UNIT.Distance = " + path.Count);
             if (path.Count > 0)
             {
                 Move(path);
             }
             else
             {
-                Debug.Log("No Need to Move!");
+                Debug.Log("UNIT.No Need to Move!");
             }
         }
 
