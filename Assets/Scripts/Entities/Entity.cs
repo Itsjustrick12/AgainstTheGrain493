@@ -28,6 +28,11 @@ public class Entity : MonoBehaviour
     protected AIManager aiManager;
     protected TileHelper tileHelper;
 
+    private bool isInitialized = false;
+
+    //near constant color used for dimming entities when they are deactivated
+    public static readonly Color DimColor = new Color(0.4f, 0.4f, 0.4f);
+
     [Header("Stats")]
     //stores the entity's max hitpoints
     [SerializeField] protected int maxHealth = 10;
@@ -44,9 +49,6 @@ public class Entity : MonoBehaviour
 
     //Hidden logic for determining what a unit is able to do, define by the unit database
     protected List<EntityAction> actions = new();
-
-    //Used for deactivating the entity
-    public SpriteRenderer shadeSprite;
 
     public static event Action<Entity> OnEntityDestroyed;
 
@@ -204,7 +206,6 @@ public class Entity : MonoBehaviour
     public virtual void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
-        shadeSprite.sprite = sprite.sprite;
         aiManager = FindFirstObjectByType<AIManager>();
         Initialize();
     }
@@ -212,22 +213,28 @@ public class Entity : MonoBehaviour
     //Used to update stats based on database
     public virtual void Initialize()
     {
+        isInitialized = true;
     }
 
-   public bool IsActive()
+    public bool GetIsInitialized()
+    {
+        return isInitialized;
+    }
+
+    public bool IsActive()
     {
         return isActive;
     }
 
     public void Deactivate()
     {
-        shadeSprite.enabled = true;
+        sprite.color = DimColor;
         isActive = false;
     }
 
     public void Activate()
     {
-        shadeSprite.enabled = false;
+        sprite.color = Color.white;
         isActive = true;
     }
 

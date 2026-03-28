@@ -14,8 +14,8 @@ public class Fence : Structure
 
     public override void Initialize()
     {
+        StructureInfo info = StructureDatabase.Instance.GetStructureInfo(ID);
         base.Initialize();
-        Activate();
         SetUp();
     }
 
@@ -37,7 +37,6 @@ public class Fence : Structure
             {new (true, true, true, true), 11 }
 
         };
-        //Fences can't be deactivated
         UpdateSprite();
         UpdateNeighbors();
     }
@@ -83,8 +82,6 @@ public class Fence : Structure
             Fence fence = tileManager.GetEntityOnTile(neighborPos) as Fence;
             if (fence != null) { fence.UpdateSprite(); }
         }
-
-        UpdateSprite();
     }
 
     public override void Die()

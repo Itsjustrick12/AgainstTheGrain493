@@ -37,6 +37,7 @@ public class Crop : Entity
 
     public override void Initialize()
     {
+        base.Initialize();
         CropInfo info = CropDatabase.Instance.GetCropInfo(id);
         if (info == null)
         {
@@ -47,15 +48,13 @@ public class Crop : Entity
 
     public void WaterCrop()
     {
-        shadeSprite.sprite = sprite.sprite;
-        shadeSprite.enabled = true;
+        sprite.color = DimColor;
         isWatered = true;
     }
 
     public void ResetWater()
     {
-        shadeSprite.sprite = sprite.sprite;
-        shadeSprite.enabled = false;
+        sprite.color = Color.white;
         isWatered = false;
     }
 

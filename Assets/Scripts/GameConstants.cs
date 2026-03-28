@@ -1,3 +1,5 @@
+using System.Drawing;
+
 public enum MapSize
 {
     TINY,

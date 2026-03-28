@@ -30,6 +30,7 @@ public class Unit : Entity
 
     public override void Initialize()
     {
+        base.Initialize();
         UnitInfo info = UnitDatabase.Instance.GetUnitInfo(ID);
         attackRange = info.attackRange;
         strength = info.strength;
