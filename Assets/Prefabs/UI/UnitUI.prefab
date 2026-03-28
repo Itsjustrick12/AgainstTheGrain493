@@ -229,7 +229,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2463012955364608972
 RectTransform:
   m_ObjectHideFlags: 0
@@ -378,13 +378,15 @@ GameObject:
   - component: {fileID: 7247201219279986856}
   - component: {fileID: 6473258541890138009}
   - component: {fileID: 2713810534598828848}
+  - component: {fileID: 6700521052339286765}
+  - component: {fileID: 4605741968769118241}
   m_Layer: 5
   m_Name: UnitDataUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1813341334713675238
 RectTransform:
   m_ObjectHideFlags: 0
@@ -472,6 +474,34 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &6700521052339286765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4089155898649510962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1d5f815750ebbb478c3dbbfab502726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitInfoPanel
+  nameText: {fileID: 1213186060966232152}
+  healthText: {fileID: 371218902038004977}
+  strengthText: {fileID: 6161419095201210648}
+  movementText: {fileID: 946763908996324065}
+--- !u!225 &4605741968769118241
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4089155898649510962}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &4107150615470710380
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,7 +514,7 @@ GameObject:
   - component: {fileID: 4849804891128912417}
   - component: {fileID: 946763908996324065}
   m_Layer: 5
-  m_Name: Movement (1)
+  m_Name: Movement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -504,10 +534,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1813341334713675238}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 158.74396, y: -240}
-  m_SizeDelta: {x: 267.4879, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4849804891128912417
 CanvasRenderer:
@@ -758,7 +788,7 @@ GameObject:
   - component: {fileID: 3100110110923937253}
   - component: {fileID: 6161419095201210648}
   m_Layer: 5
-  m_Name: Movement
+  m_Name: Strength
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -778,10 +808,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1813341334713675238}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125, y: -180}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3100110110923937253
 CanvasRenderer:
@@ -895,7 +925,7 @@ GameObject:
   - component: {fileID: 546322701899072710}
   - component: {fileID: 371218902038004977}
   m_Layer: 5
-  m_Name: Strength
+  m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -915,10 +945,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1813341334713675238}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125, y: -120}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &546322701899072710
 CanvasRenderer:
@@ -1292,10 +1322,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1d5f815750ebbb478c3dbbfab502726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitInfoPanel
-  currentHealthNum: {fileID: 0}
-  maxHealthNum: {fileID: 0}
-  strength: {fileID: 0}
-  movementRange: {fileID: 0}
+  nameText: {fileID: 0}
+  healthText: {fileID: 0}
+  strengthText: {fileID: 0}
+  movementText: {fileID: 0}
 --- !u!1 &7584830724486654804
 GameObject:
   m_ObjectHideFlags: 0
@@ -1445,7 +1475,7 @@ GameObject:
   - component: {fileID: 5953223311580262626}
   - component: {fileID: 1213186060966232152}
   m_Layer: 5
-  m_Name: Health
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1465,10 +1495,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1813341334713675238}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125, y: -60}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5953223311580262626
 CanvasRenderer:
@@ -1498,7 +1528,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Unit Name
+  m_text: 'Unit Name:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
