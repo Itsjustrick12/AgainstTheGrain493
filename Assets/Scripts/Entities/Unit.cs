@@ -8,9 +8,9 @@ public class Unit : Entity
 {
     [Header("General Settings")]
     public int ID;
-    public int strength = 1;
-    public int attackRange = 1;
-    public int movementRange = 3;
+    [SerializeField] protected int strength = 1;
+    [SerializeField] protected int attackRange = 1;
+    [SerializeField] protected int movementRange = 3;
     public bool isFed = false;
     public bool isEnemy = false;
     public bool canFly = false;
@@ -140,11 +140,32 @@ public class Unit : Entity
 
     public int GetStrength()
     {
-        return strength;
+        if (activeBuffs.Count == 0)
+            return strength;
+        
+        int baseIncrease = 0;
+        float multiplier = 1;
+
+        
+        //loop through all buffs to check for strengh buffs
+        foreach (Buff buff in activeBuffs)
+        {
+            //check for strength buffs
+            StrengthBuff sBuff = buff as StrengthBuff;
+            if (sBuff != null)
+            {
+                baseIncrease += sBuff.baseIncrease;
+                multiplier *= sBuff.multiplier;
+            }
+        }
+
+        //return the calculated stat after base increases and multiplier
+        return (int)((strength + baseIncrease) * multiplier);
     }
 
     public void SetStrength(int strengthValue)
     {
+        
         strength = strengthValue;
     }
 
@@ -327,5 +348,6 @@ public class Unit : Entity
         SoundManager.Instance.PlayEntitySound(this, SoundType.HURT);
         base.TakeDamage(damage);
     }
+
 }
 

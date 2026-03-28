@@ -17,7 +17,7 @@ public enum EntityType
 }
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class Entity : MonoBehaviour
+public class Entity : MonoBehaviour, IBuffable
 {
     protected SpriteRenderer sprite;
     //Stores the location of where this entity actually is
@@ -51,6 +51,16 @@ public class Entity : MonoBehaviour
     protected List<EntityAction> actions = new();
 
     public static event Action<Entity> OnEntityDestroyed;
+
+    //For managing buffs
+    protected List<Buff> activeBuffs = new List<Buff>();
+
+    public virtual void Start()
+    {
+        tileManager = FindFirstObjectByType<TileManager>();
+        gameManager = FindFirstObjectByType<GameManager>();
+        tileHelper = FindFirstObjectByType<TileHelper>();
+    }
 
     public void InitializeActions(List<EntityAction> newActions)
     {
@@ -238,10 +248,24 @@ public class Entity : MonoBehaviour
         isActive = true;
     }
 
-    public virtual void Start()
+    public void AddBuff(Buff buff)
     {
-        tileManager = FindFirstObjectByType<TileManager>();
-        gameManager = FindFirstObjectByType<GameManager>();
-        tileHelper = FindFirstObjectByType<TileHelper>();
+        activeBuffs.Add(buff);
+        buff.Apply(this);
+    }
+    //Is called by the buff class itself who manages the duration of itself
+    public void RemoveBuff(Buff buff)
+    {
+        if (!activeBuffs.Contains(buff))
+        {
+            //if the buff isn't here, dont do anything
+            return;
+        }
+        activeBuffs.Remove(buff);
+    }
+
+    public void ClearBuffs()
+    {
+        activeBuffs.Clear();
     }
 }

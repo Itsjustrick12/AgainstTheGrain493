@@ -37,6 +37,13 @@ public class FeedManager : MonoBehaviour
         SoundManager.Instance.PlaySound(feedSound);
         //For now, just heal the unit slightly
         selectedUnit.Heal(5);
+
+        //if pepper, do strength
+        if (cropID == 2)
+        {
+            selectedUnit.AddBuff(new StrengthBuff(3,5, 1));
+        }
+
         //Set the unit as fed
         selectedUnit.SetIsFed(true);
     }
