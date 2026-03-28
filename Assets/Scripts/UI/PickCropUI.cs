@@ -52,7 +52,7 @@ public class PickCropUI : NaviagatableUI
                 selectedChoice--;
                 if (selectedChoice < 0) selectedChoice = buttons.Count - 1;
                 attempts++;
-            } while (!buttons[selectedChoice].GetComponent<CropCounterUI>().availible && attempts <= buttons.Count);
+            } while (!buttons[selectedChoice].GetComponent<CropButton>().available && attempts <= buttons.Count);
         }
         else if (inputVector.y < 0)
         {
@@ -62,32 +62,33 @@ public class PickCropUI : NaviagatableUI
                 selectedChoice++;
                 if (selectedChoice >= buttons.Count) selectedChoice = 0;
                 attempts++;
-            } while (!buttons[selectedChoice].GetComponent<CropCounterUI>().availible && attempts <= buttons.Count);
+            } while (!buttons[selectedChoice].GetComponent<CropButton>().available && attempts <= buttons.Count);
         }
 
         // If no available button found, reset to original
-        if (!buttons[selectedChoice].GetComponent<CropCounterUI>().availible)
+        if (!buttons[selectedChoice].GetComponent<CropButton>().available)
         {
             selectedChoice = originalChoice;
         }
 
-        SelectButton();
+        SelectButton(selectedChoice);
         SoundManager.Instance.PlaySound(navigateNoise);
     }
 
-    public override void ReportAction(InputAction.CallbackContext context)
+    public override void ReportAction()
     {
+        base.ReportAction();
         if (picking)
         {
             //Report the crop id
             // Get the currently selected button
             if (selectedChoice >= 0 && selectedChoice < buttons.Count)
             {
-                CropCounterUI counter = buttons[selectedChoice].GetComponent<CropCounterUI>();
-                if (counter != null && counter.availible)
+                CropButton button = buttons[selectedChoice].GetComponent<CropButton>();
+                if (button != null && button.available)
                 {
                     // Fire your event with the crop ID
-                    OnCropSelected?.Invoke(counter.cropID);
+                    OnCropSelected?.Invoke(button.cropID);
                     if (feeding)
                     {
                         OnCropCancelled?.Invoke();
@@ -102,23 +103,15 @@ public class PickCropUI : NaviagatableUI
     public override void DeselectButton(int index)
     {
         base.DeselectButton(index);
-        CropCounterUI counter = buttons[index].GetComponent<CropCounterUI>();
-        if (counter != null)
-        {
-
-            counter.Deselect();
-        }
+        CropButton btn = buttons[index].GetComponent<CropButton>();
+        btn.SetSelected(false);
     }
 
-    public override void SelectButton()
+    public override void SelectButton(int index)
     {
-        base.SelectButton();
-        CropCounterUI counter = buttons[selectedChoice].GetComponent<CropCounterUI>();
-        if (counter != null)
-        {
-
-            counter.Select();
-        }
+        base.SelectButton(index);
+        CropButton btn = buttons[index].GetComponent<CropButton>();
+        btn.SetSelected(true);
     }
 
     public void StartPicking(bool isFeeding = false)
@@ -130,29 +123,30 @@ public class PickCropUI : NaviagatableUI
         feeding = isFeeding;
 
         selectedChoice = -1;
-        //Loop over icons and make them small and skip unavailible ones for starting index
+        //Loop over icons and make them small and skip unavailable ones for starting index
         for (int i = 0; i < buttons.Count; i++)
         {
-            CropCounterUI counter = buttons[i].GetComponent<CropCounterUI>();
-            if (counter != null)
+            CropButton button = buttons[i].GetComponent<CropButton>();
+            if (button != null)
             {
+                button.Initialize(i);
                 if (feeding)
                 {
-                    counter.UpdateAvailability();
+                    button.UpdateAvailability();
                 }
                 else
                 {
-                    counter.SetIconOnly(true);
+                    button.SetIconOnly(true);
                 }
 
-                //Set the first index if availible hasn't been found yet
-                if ((counter.availible || !feeding) && selectedChoice == -1)
+                //Set the first index if available hasn't been found yet
+                if ((button.available || !feeding) && selectedChoice == -1)
                 {
                     selectedChoice = i;
                 }
             }
         }
-        SelectButton();
+        SetSelectedIndex(selectedChoice);
     }
 
     public void StopPicking()
@@ -162,15 +156,48 @@ public class PickCropUI : NaviagatableUI
         picking = false;
         foreach (GameObject obj in buttons)
         {
-            CropCounterUI counter = obj.GetComponent<CropCounterUI>();
-            if (counter != null)
+            CropButton button = obj.GetComponent<CropButton>();
+            if (button != null)
             {
-                counter.SetIconOnly(false);
-                counter.SetAvailable();
+                button.SetIconOnly(false);
+                button.SetAvailable(true);
             }
 
         }
+
         TurnOffInput();
+    }
+
+    public override void TurnOnInput()
+    {
+        base.TurnOnInput();
+        //loop and turn on crop buttons to enable hover
+        foreach (GameObject obj in buttons)
+        {
+            CropButton button = obj.GetComponent<CropButton>();
+            if (button != null)
+            {
+                button.TurnOnInput();
+            }
+
+        }
+    }
+
+    public override void TurnOffInput()
+    {
+        base.TurnOffInput();
+        //loop and turn off crop buttons to prevent hovers during game
+        foreach (GameObject obj in buttons)
+        {
+            CropButton button = obj.GetComponent<CropButton>();
+            if (button != null)
+            {
+                button.TurnOffInput();
+            }
+
+        }
+        //hide the highlight on the current button
+        DeselectButton(selectedChoice);
     }
 
 }

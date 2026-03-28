@@ -26,24 +26,6 @@ public abstract class ExpandingCounterUI : MonoBehaviour
         UpdateCounter(GetCounterValue());
     }
 
-    //public virtual void UpdateCounter(int newValue)
-    //{
-    //    currentAmount = Mathf.Max(0, newValue);
-
-    //    int digits = currentAmount.ToString().Length;
-
-    //    //Resize the bar
-    //    Vector2 size = counterBar.sizeDelta;
-    //    //Assume base width includes a single digit
-    //    size.x = baseWidth + (digits - 1) * digitWidth;
-    //    counterBar.sizeDelta = size;
-    //    //Update text
-    //    if (numberText != null)
-    //    {
-    //        numberText.text = currentAmount.ToString();
-    //    }
-    //}
-
     public virtual void UpdateCounter(int newValue)
     {
         currentAmount = Mathf.Max(0, newValue);

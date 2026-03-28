@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 4251977726534958313}
   - component: {fileID: 1954542135616584621}
   - component: {fileID: 5811174427777832147}
+  - component: {fileID: 4655999668420541473}
   m_Layer: 5
   m_Name: CropDisplay
   m_TagString: Untagged
@@ -317,10 +318,24 @@ MonoBehaviour:
   digitWidth: 48
   iconOnlyMode: 0
   cropID: 1
+  image: {fileID: 1954542135616584621}
+--- !u!114 &4655999668420541473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5351906402903172753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6440e855a060f449063d1f15b1b707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  index: 0
+  cropID: 1
   normalSprite: {fileID: 21300000, guid: 85e41b1ca923b9948914246efc155dce, type: 3}
   highlightSprite: {fileID: 21300000, guid: ba4817ed9a9446d4790c28e2de24a0ed, type: 3}
   unavailibleSprite: {fileID: 21300000, guid: c0609d7b06fe05543ae725f232260258, type: 3}
-  image: {fileID: 1954542135616584621}
   availible: 1
 --- !u!1001 &4100195073866849323
 PrefabInstance:
