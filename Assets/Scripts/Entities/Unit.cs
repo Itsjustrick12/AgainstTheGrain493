@@ -242,12 +242,12 @@ public class Unit : Entity
 
     }
 
-    void Attack()
+    bool Attack()
     {
         if (target.z == -1)
         {
             Debug.Log("UNIT.No target!");
-            return;
+            return false;
         }
 
 
@@ -258,62 +258,76 @@ public class Unit : Entity
         {
             Debug.Log("Target isn't adjacent!");
             //Set the target a second time
-            return;
+            return false;
         }
 
         TileData targetTile = tileManager.GetTileDataAt(target);
         if (targetTile == null || targetTile.occupyingEntity == null)
         {
             Debug.Log("UNIT.Nothing to attack!");
-            return;
+            return false;
         }
 
         targetTile.occupyingEntity.TakeDamage(GetStrength());
 
         if (targetTile.occupyingEntity == null)
             target = new Vector3Int(0, 0, -1);
+
+        return true;
     }
 
     public void DoTurn()
     {
         //Debug.Log("Finding Target");
-        target = aiManager.FindTarget(this);
+        if (target.z == -1)
+        {
+            target = aiManager.FindTarget(this);
+        }
 
         //See if our target is up to date (needed for concurrent enemy execution)
         TileData data = tileManager.GetTileDataAt(target);
-        if (data != null && data.HasUnit())
+        if (data != null && !data.HasUnit())
         {
-            Unit unitCheck = data.GetOccupyingEntity() as Unit;
-            if (unitCheck && IsSameTeamAs(unitCheck))
-            {
-                target = aiManager.FindTarget(this);
-            }
-        }
-        else
-        {
-            //Get a new target if our old one is outdata
-            target = aiManager.FindTarget(this);
+           target = aiManager.FindTarget(this);
         }
 
         //Debug.Log("UNIT.Found Target: " + target.x + " " + target.y + " " + target.z);
         //if we found a target we move to it
         if (target.z != -1)
         {
-            //Debug.Log("UNIT.Target found at " + target);
-            List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), target, this);
-            //Debug.Log("UNIT.Distance = " + path.Count);
-            if (path.Count > 0)
+            //Check if the target is in the attack range
+            if (!tileHelper.IsWithinRange(GetGridPos(), target, GetAttackRange()))
             {
-                Move(path);
+
+                //Debug.Log("UNIT.Target found at " + target);
+                List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), target, this);
+                //Debug.Log("UNIT.Distance = " + path.Count);
+                if (path.Count > 0)
+                {
+                    Move(path);
+                }
+                else
+                {
+                    Debug.Log("UNIT.No Need to Move!");
+                }
             }
-            else
-            {
-                Debug.Log("UNIT.No Need to Move!");
-            }
+
         }
 
         //then we attack the target
-        Attack();
+        if (Attack())
+        {
+            //do nothing the attack worked
+        }
+        else
+        {
+            //if the attack failed on the target, we weren't in range
+            // try to attack again with temp adjacent target
+            Vector3Int temp = target;
+            target = aiManager.FindTargetInRange(this);
+            Attack();
+            target = temp;
+        }
     }
 
     public override void Die()
