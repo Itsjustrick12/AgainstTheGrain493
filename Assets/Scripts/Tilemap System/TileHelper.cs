@@ -54,6 +54,11 @@ public class TileHelper : MonoBehaviour
         return true;
     }
 
+    public bool IsWithinRange(Vector3Int a, Vector3Int b, int range)
+    {
+        return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y) <= range;
+    }
+
     //returns start to end vector of vectors
     public List<Vector3Int> TilePath(Vector3Int start, Vector3Int end, Unit unit)
     {
@@ -413,7 +418,7 @@ public class Node
     {
         Vector3Int start = ZerotoGrid(location);
         end = ZerotoGrid(end);
-        return Mathf.Abs(start[0] - end[0]) + Mathf.Abs(location[1] - end[1]);
+        return Mathf.Abs(start[0] - end[0]) + Mathf.Abs(start[1] - end[1]);
     }
 
     public Vector3Int ZerotoGrid(Vector3Int input)
