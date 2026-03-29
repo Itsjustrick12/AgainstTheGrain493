@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
+using static UnityEditor.PlayerSettings;
 
 public enum InteractionState
 {
@@ -57,6 +58,8 @@ public class UnitInteractionSystem : TileCursor
 
     public bool isInputOn = true;
 
+    public UnitInfoPanel infoPanel;
+
     public void Awake()
     {
         tileManager = FindFirstObjectByType<TileManager>();
@@ -92,6 +95,19 @@ public class UnitInteractionSystem : TileCursor
         base.Update();
         //Move the hoverSprite to the currently selected location
         hoverTransform.position = GetCurrentTile() + offset;
+
+        Vector3Int pos = GetCurrentTile();
+        Entity potentialEntity = tileManager.GetTileDataAt(pos).GetOccupyingEntity();
+        if(selectedEntity == null && potentialEntity != null)
+        {
+            Unit unit = potentialEntity as Unit;
+            infoPanel.ShowPanel(unit);
+            //Debug.Log("There is an entity Here");
+        }
+        else
+        {
+            infoPanel.HidePanel();
+        }
     }
 
     public bool AttemptSelection(Vector3Int pos)
