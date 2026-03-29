@@ -1,31 +1,37 @@
 fileFormatVersion: 2
-guid: fa40fd6a5d3977540a89227596b78efc
+guid: f907dce52e1b0224884018fc7aa3a952
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7331100944811231492
-    second: unit_farmer_reaper_action_strip8_0
+      213: 7616213866235602830
+    second: unit_farmer_reaper_action_strip10_0
   - first:
-      213: -6044204505491963776
-    second: unit_farmer_reaper_action_strip8_1
+      213: -2270050863356320178
+    second: unit_farmer_reaper_action_strip10_1
   - first:
-      213: 6840211419107237061
-    second: unit_farmer_reaper_action_strip8_2
+      213: -6635603903857870373
+    second: unit_farmer_reaper_action_strip10_2
   - first:
-      213: 4795060902834003572
-    second: unit_farmer_reaper_action_strip8_3
+      213: -2717280826176081139
+    second: unit_farmer_reaper_action_strip10_3
   - first:
-      213: 8525985359230235525
-    second: unit_farmer_reaper_action_strip8_4
+      213: -6494424895993446527
+    second: unit_farmer_reaper_action_strip10_4
   - first:
-      213: -1829433140479088
-    second: unit_farmer_reaper_action_strip8_5
+      213: 2443802182216292847
+    second: unit_farmer_reaper_action_strip10_5
   - first:
-      213: -4777573047343177125
-    second: unit_farmer_reaper_action_strip8_6
+      213: 6341313126419056200
+    second: unit_farmer_reaper_action_strip10_6
   - first:
-      213: 6633691780308200822
-    second: unit_farmer_reaper_action_strip8_7
+      213: -7950711596702448322
+    second: unit_farmer_reaper_action_strip10_7
+  - first:
+      213: -5489577714478752934
+    second: unit_farmer_reaper_action_strip10_8
+  - first:
+      213: -6531655972520518180
+    second: unit_farmer_reaper_action_strip10_9
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -121,13 +127,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: unit_farmer_reaper_action_strip8_0
+      name: unit_farmer_reaper_action_strip10_0
       rect:
         serializedVersion: 2
         x: 15
         y: 16
         width: 28
-        height: 31
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -136,14 +142,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cf6fef35882b24a90800000000000000
-      internalID: -7331100944811231492
+      spriteID: e87a06ea82a32b960800000000000000
+      internalID: 7616213866235602830
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unit_farmer_reaper_action_strip8_1
+      name: unit_farmer_reaper_action_strip10_1
       rect:
         serializedVersion: 2
         x: 78
@@ -158,14 +164,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 080065c960cae1ca0800000000000000
-      internalID: -6044204505491963776
+      spriteID: e46e39b54c82f70e0800000000000000
+      internalID: -2270050863356320178
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unit_farmer_reaper_action_strip8_2
+      name: unit_farmer_reaper_action_strip10_2
       rect:
         serializedVersion: 2
         x: 142
@@ -180,20 +186,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5cc15707b005dee50800000000000000
-      internalID: 6840211419107237061
+      spriteID: bd93b58086999e3a0800000000000000
+      internalID: -6635603903857870373
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unit_farmer_reaper_action_strip8_3
+      name: unit_farmer_reaper_action_strip10_3
       rect:
         serializedVersion: 2
         x: 198
         y: 11
         width: 36
-        height: 31
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 47ed8cd5c7a7b8240800000000000000
-      internalID: 4795060902834003572
+      spriteID: d037bc04c774a4ad0800000000000000
+      internalID: -2717280826176081139
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unit_farmer_reaper_action_strip8_4
+      name: unit_farmer_reaper_action_strip10_4
       rect:
         serializedVersion: 2
         x: 268
         y: 10
         width: 48
-        height: 39
+        height: 41
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -224,20 +230,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5837919f282625670800000000000000
-      internalID: 8525985359230235525
+      spriteID: 18f7bdd47fa2fd5a0800000000000000
+      internalID: -6494424895993446527
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unit_farmer_reaper_action_strip8_5
+      name: unit_farmer_reaper_action_strip10_5
       rect:
         serializedVersion: 2
         x: 331
-        y: 15
+        y: 16
         width: 48
-        height: 34
+        height: 35
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -246,20 +252,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 09b7587e32089fff0800000000000000
-      internalID: -1829433140479088
+      spriteID: fe9935c03212ae120800000000000000
+      internalID: 2443802182216292847
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unit_farmer_reaper_action_strip8_6
+      name: unit_farmer_reaper_action_strip10_6
       rect:
         serializedVersion: 2
         x: 396
         y: 15
         width: 32
-        height: 34
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,20 +274,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b5221a840a6a2bdb0800000000000000
-      internalID: -4777573047343177125
+      spriteID: 846cab5d0bed00850800000000000000
+      internalID: 6341313126419056200
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unit_farmer_reaper_action_strip8_7
+      name: unit_farmer_reaper_action_strip10_7
       rect:
         serializedVersion: 2
         x: 465
         y: 15
         width: 27
-        height: 34
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -290,8 +296,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 67de2b2078b9f0c50800000000000000
-      internalID: 6633691780308200822
+      spriteID: e35c8fe6de569a190800000000000000
+      internalID: -7950711596702448322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: unit_farmer_reaper_action_strip10_8
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 16
+        width: 29
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5bd799572a11d3b0800000000000000
+      internalID: -5489577714478752934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: unit_farmer_reaper_action_strip10_9
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 16
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdd1bdacf75ea55a0800000000000000
+      internalID: -6531655972520518180
       vertices: []
       indices: 
       edges: []
@@ -310,14 +360,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      unit_farmer_reaper_action_strip8_0: -7331100944811231492
-      unit_farmer_reaper_action_strip8_1: -6044204505491963776
-      unit_farmer_reaper_action_strip8_2: 6840211419107237061
-      unit_farmer_reaper_action_strip8_3: 4795060902834003572
-      unit_farmer_reaper_action_strip8_4: 8525985359230235525
-      unit_farmer_reaper_action_strip8_5: -1829433140479088
-      unit_farmer_reaper_action_strip8_6: -4777573047343177125
-      unit_farmer_reaper_action_strip8_7: 6633691780308200822
+      unit_farmer_reaper_action_strip10_0: 7616213866235602830
+      unit_farmer_reaper_action_strip10_1: -2270050863356320178
+      unit_farmer_reaper_action_strip10_2: -6635603903857870373
+      unit_farmer_reaper_action_strip10_3: -2717280826176081139
+      unit_farmer_reaper_action_strip10_4: -6494424895993446527
+      unit_farmer_reaper_action_strip10_5: 2443802182216292847
+      unit_farmer_reaper_action_strip10_6: 6341313126419056200
+      unit_farmer_reaper_action_strip10_7: -7950711596702448322
+      unit_farmer_reaper_action_strip10_8: -5489577714478752934
+      unit_farmer_reaper_action_strip10_9: -6531655972520518180
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
