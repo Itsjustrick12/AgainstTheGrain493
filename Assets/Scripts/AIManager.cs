@@ -65,7 +65,7 @@ public class AIManager : MonoBehaviour
             List<Vector3Int> path = tileHelper.TilePath(unit.GetGridPos(), t, unit);
 
             // Skip paths that return no path (only 1 item in list)
-            if (path.Count == 1)
+            if (path.Count <= 1)
                 continue;
 
             //uses turnstoreach to find the "best" target
@@ -128,11 +128,11 @@ public class AIManager : MonoBehaviour
             List<Vector3Int> path = tileHelper.TilePath(unit.GetGridPos(), t, unit);
 
             // Skip paths that return no path (only 1 item in list)
-            if (path.Count == 1)
+            if (path.Count <= 1)
                 continue;
 
             //uses turnstokill to find the "best" target
-            int ttk = TurnsToKill(path, unit);
+            int ttk = TurnsToKill(path, unit, t);
 
             //if the potential target is a secondary target add 1 to the ttk
             if(!unit.primary.Contains(tileManager.GetTileDataAt(t).GetOccupyingEntity().GetEntityType()))
@@ -156,7 +156,7 @@ public class AIManager : MonoBehaviour
     }
 
     //calculation for amount of turn to kill an entity, used for priority
-    int TurnsToKill(List<Vector3Int> path, Unit unit)
+    int TurnsToKill(List<Vector3Int> path, Unit unit, Vector3Int target)
     {
         int ttk = 0;
 
@@ -164,9 +164,9 @@ public class AIManager : MonoBehaviour
         ttk += TurnsToReach(path, unit);
 
         //checks the last spot in the path to make sure there is actually a target
-        if(tileManager.GetTileDataAt(path[path.Count - 1]).occupyingEntity != null)
+        if(tileManager.GetTileDataAt(target).occupyingEntity != null)
         {
-            Entity temptarget = tileManager.GetTileDataAt(path[path.Count - 1]).occupyingEntity;
+            Entity temptarget = tileManager.GetTileDataAt(target).occupyingEntity;
 
             //so since temptarget can be attacked on the move turn you subtrace 1 turn from
             //the amount of turns required to kill target
@@ -200,7 +200,7 @@ public class AIManager : MonoBehaviour
                 ttr += tileManager.GetTileDataAt(path[i]).movementCost;
             }
 
-            ttr = ttr / unit.GetMoveRange() + 1;
+            ttr = Mathf.Max(1, ttr / unit.GetMoveRange() + 1);
         }
 
         return ttr;
@@ -254,5 +254,44 @@ public class AIManager : MonoBehaviour
         return temp;
     }
 
-    
+    public Vector3Int FindTargetInRange(Unit unit)
+    {
+        Vector3Int pos = unit.GetGridPos();
+
+        int attackRange = unit.GetAttackRange();
+        //do loop to see if anything is in range
+        for (int x = -attackRange; x <= attackRange; x++)
+        {
+            for (int y = -attackRange; y <= attackRange; y++)
+            {
+                // Use manhattan distance to match Attack()'s adjacency check
+                if (Mathf.Abs(x) + Mathf.Abs(y) > attackRange)
+                    continue;
+
+                Vector3Int checkPos = new Vector3Int(pos.x + x, pos.y + y, 0);
+                TileData tile = tileManager.GetTileDataAt(checkPos);
+
+                if (tile == null || tile.occupyingEntity == null)
+                    continue;
+
+                Entity entity = tile.occupyingEntity;
+
+                // Make sure it's an enemy unit and not on our team
+                Unit adjacentUnit = entity as Unit;
+                if (adjacentUnit != null && !unit.IsSameTeamAs(adjacentUnit))
+                {
+                    return checkPos;
+                }
+
+                //Check if its a crop
+                if (unit.isEnemy && (entity is Crop || entity is Structure))
+                {
+                    return checkPos;
+                }
+            }
+        }
+
+        return new Vector3Int(0, 0, -1);
+    }
+
 }

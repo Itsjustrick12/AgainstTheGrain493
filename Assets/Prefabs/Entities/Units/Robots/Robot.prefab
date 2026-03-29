@@ -106,7 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a247b7d29174994c8f37eb81eb84fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Unit
-  tileHelper: {fileID: 0}
   maxHealth: 10
   type: 2
   currentHealth: 10
@@ -114,8 +113,13 @@ MonoBehaviour:
   isInteractable: 0
   shadeSprite: {fileID: 8357789075482895520}
   ID: 5
+  strength: 1
+  attackRange: 1
+  movementRange: 3
+  isFed: 0
   isEnemy: 1
-  primary: 
+  canFly: 0
+  primary: 0000000003000000
   target: {x: 0, y: 0, z: -1}
   iq: 1
 --- !u!95 &5280404989645969447
