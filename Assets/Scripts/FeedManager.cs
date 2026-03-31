@@ -35,13 +35,26 @@ public class FeedManager : MonoBehaviour
         //Subtract Crop count by 1
         EconomyManager.Instance.FeedHarvestedCrops(cropID);
         SoundManager.Instance.PlaySound(feedSound);
-        //For now, just heal the unit slightly
-        selectedUnit.Heal(5);
-
+        
+        //For basic wheat, just heal the unit slightly
+        if (cropID == 1)
+        {
+            selectedUnit.Heal(10);
+        }
         //if pepper, do strength
-        if (cropID == 2)
+        else if (cropID == 2)
         {
             selectedUnit.AddBuff(new StrengthBuff(3,5, 1));
+        }
+        //if carrot increase movement
+        else if (cropID == 3)
+        {
+            selectedUnit.AddBuff(new MovementBuff(3, 2, 1));
+        }
+        //if potato increase defense
+        else if (cropID == 4)
+        {
+            selectedUnit.AddBuff(new DefenseBuff(3, 2, 1));
         }
 
         //Set the unit as fed
