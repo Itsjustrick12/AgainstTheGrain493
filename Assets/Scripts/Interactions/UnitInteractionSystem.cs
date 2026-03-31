@@ -25,9 +25,12 @@ public class EntityActionEvent : UnityEvent<EntityAction>
 public class UnitInteractionSystem : TileCursor
 {
     public TileManager tileManager;
+    public TileHelper tileHelper;
     [SerializeField] FeedManager feedManager;
     private PickCropUI cropPicker; 
     public Tilemap optionsMap;
+    public Tilemap arrowMap;
+    public AIManager aiManager;
     public TileBase optionTile;
     //Stores the location of the current tile selected
     [SerializeField]private ActionMenu actionMenu;
@@ -40,6 +43,7 @@ public class UnitInteractionSystem : TileCursor
     //Needed for reseting movement with cancel action
     public Vector3Int prevLocation;
     public Vector3Int afterLocation;
+    public Vector3Int lastLocation;
 
     public Entity selectedEntity;
 
@@ -61,7 +65,10 @@ public class UnitInteractionSystem : TileCursor
     public void Awake()
     {
         tileManager = FindFirstObjectByType<TileManager>();
+        tileHelper = FindFirstObjectByType<TileHelper>();
+        arrowMap = FindFirstObjectByType<Tilemap>();
         cropPicker = FindFirstObjectByType<PickCropUI>();
+        aiManager = FindFirstObjectByType<AIManager>();
         //actionMenu = FindFirstObjectByType<ActionMenu>();
         actionMenu.OnActionSelected.AddListener(SelectAction);
         state = InteractionState.Selection;
@@ -94,7 +101,25 @@ public class UnitInteractionSystem : TileCursor
     {
         base.Update();
         //Move the hoverSprite to the currently selected location
-        hoverTransform.position = GetCurrentTile() + offset;
+        if(GetCurrentTile() == lastLocation && state == InteractionState.Movement)
+        {
+            SetArrow();
+            hoverTransform.position = GetCurrentTile() + offset;
+        }
+        lastLocation = GetCurrentTile();
+    }
+
+    public void SetArrow()
+    {
+        arrowMap.ClearAllTiles();
+        List<Vector3Int> path = tileHelper.TilePath(prevLocation, GetCurrentTile(), selectedEntity as Unit);
+        path.RemoveAt(path.Count - 1);
+        path.RemoveAt(0);
+        
+        for(int i = 0; i < path.Count; i++)
+        {
+
+        }
     }
 
     public bool AttemptSelection(Vector3Int pos)
@@ -111,7 +136,6 @@ public class UnitInteractionSystem : TileCursor
         selectedEntity = data.GetOccupyingEntity();
         if (selectedEntity != null && selectedEntity.IsActive())
         {
-
             return true;
         }
         return false;
