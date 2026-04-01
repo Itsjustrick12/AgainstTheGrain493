@@ -4369,8 +4369,8 @@ RectTransform:
   - {fileID: 264217085}
   - {fileID: 913191184}
   - {fileID: 1590905153}
-  - {fileID: 1686362915}
   - {fileID: 1737360683561656736}
+  - {fileID: 1686362915}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5680,17 +5680,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4747349241873896520, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
   m_PrefabInstance: {fileID: 8763678431129951220}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1686362916 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 592496715995848500, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
-  m_PrefabInstance: {fileID: 8763678431129951220}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc9498b5b1b17994ba68a76736d0dac0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!114 &1839409328 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7629294560607080280, guid: bceb8e2865d0eb2428552b0e26fb6b55, type: 3}
@@ -6389,17 +6378,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1170237818}
     m_Modifications:
+    - target: {fileID: 107830539122996193, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 107830539122996193, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 107830539122996193, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 264
+      objectReference: {fileID: 0}
+    - target: {fileID: 107830539122996193, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -112
+      objectReference: {fileID: 0}
     - target: {fileID: 701893462489017330, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 824327620209897919, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 824327620209897919, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 824327620209897919, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 264
+      objectReference: {fileID: 0}
+    - target: {fileID: 824327620209897919, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -48
+      objectReference: {fileID: 0}
     - target: {fileID: 2424873646121605172, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
       propertyPath: m_Name
       value: Shop Menu
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683066222854109714, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -120.3
       objectReference: {fileID: 0}
     - target: {fileID: 4747349241873896520, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
       propertyPath: m_Pivot.x
@@ -6480,38 +6497,6 @@ PrefabInstance:
     - target: {fileID: 4747349241873896520, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8746918554254321069, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8746918554254321069, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8746918554254321069, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1686362916}
-    - target: {fileID: 8746918554254321069, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8746918554254321069, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SellCrop
-      objectReference: {fileID: 0}
-    - target: {fileID: 8746918554254321069, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: BarnUIMenu, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8746918554254321069, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8746918554254321069, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

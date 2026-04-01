@@ -9,7 +9,7 @@ public class BarnUIMenu : MonoBehaviour
 {
     public AnimalButton[] buttons;
     public EconomyManager econManager;
-    public TextMeshProUGUI grainText;
+    //public TextMeshProUGUI grainText;
     public TextMeshProUGUI coinText;
 
     public GameObject uiPanel;
@@ -63,7 +63,7 @@ public class BarnUIMenu : MonoBehaviour
 
     public void UpdateCropText(int grainAmount)
     {
-        grainText.text = grainAmount.ToString();
+        //grainText.text = grainAmount.ToString();
     }
 
     public void UpdateCoinText(int coinAmount)
