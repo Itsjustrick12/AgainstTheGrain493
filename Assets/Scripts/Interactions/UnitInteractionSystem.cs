@@ -69,6 +69,7 @@ public class UnitInteractionSystem : TileCursor
         BarnUIMenu.OnPurchaseComplete.AddListener(SelectAction);
         BarnUIMenu.CancelAction.AddListener(StopAction);
         feedManager = FindFirstObjectByType<FeedManager>();
+        feedManager.OnFeedCancelled.AddListener(ResumeSelection);
         cropPicker.OnCropCancelled.AddListener(ResumeSelection);
         validLocations = new List<Vector3Int>();
     }

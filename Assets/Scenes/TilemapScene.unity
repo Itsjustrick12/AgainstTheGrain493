@@ -6394,6 +6394,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -112
       objectReference: {fileID: 0}
+    - target: {fileID: 592496715995848500, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
+      propertyPath: econManager
+      value: 
+      objectReference: {fileID: 1059514641}
     - target: {fileID: 701893462489017330, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
       propertyPath: m_IsActive
       value: 0
