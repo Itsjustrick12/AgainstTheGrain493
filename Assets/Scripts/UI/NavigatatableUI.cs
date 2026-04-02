@@ -33,23 +33,20 @@ public class NaviagatableUI : MonoBehaviour
             return;
 
         int newIndex = selectedChoice;
-        if (inputVector.y < 0)
+        if (inputVector.y > 0)
         {
-            // Up
+            newIndex--;
+            if (newIndex < 0)
+            {
+                newIndex = numChoices - 1;
+            }
+        }
+        else if (inputVector.y < 0)
+        {
             newIndex++;
             if (newIndex >= numChoices)
             {
                 newIndex = 0;
-            }
-
-        }
-        else if (inputVector.y > 0)
-        {
-            // Down
-            newIndex--;
-            if (newIndex < 0)
-            {
-                newIndex = numChoices-1;
             }
         }
 
@@ -100,36 +97,32 @@ public class NaviagatableUI : MonoBehaviour
     {
         input = new DefaultInputActions();
         gameManager = GameManager.Instance;
-        input.Enable();
-        input.UI.Navigate.performed += Navigate;
-        input.UI.Submit.performed += ReportAction;
+        //TurnOnInput();
 
     }
 
     private void OnDisable()
     {
+        TurnOffInput();
+    }
+
+    public virtual void TurnOffInput()
+    {
+        if (input == null) return;
         input.UI.Navigate.performed -= Navigate;
         input.UI.Submit.performed -= ReportAction;
         input.Disable();
     }
 
-    public virtual void TurnOffInput()
-    {
-        if (input == null)
-            return;
-
-        input.Disable();
-        //input.Dispose();
-
-    }
-
     public virtual void TurnOnInput()
     {
-        if (input == null)
-            return;
-
+        if (input == null) return;
+        // Unsubscribe first to prevent duplicate subscriptions
+        input.UI.Navigate.performed -= Navigate;
+        input.UI.Submit.performed -= ReportAction;
+        input.UI.Navigate.performed += Navigate;
+        input.UI.Submit.performed += ReportAction;
         input.Enable();
-
     }
 
     //Resets the options upon showing a new unit
@@ -141,5 +134,6 @@ public class NaviagatableUI : MonoBehaviour
         }
 
         buttons.Clear();
+        selectedChoice = 0;
     }
 }

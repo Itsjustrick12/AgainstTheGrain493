@@ -226,6 +226,15 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""24b39b43-03a2-4fb1-81c0-8d421f9b21db"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -404,6 +413,28 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
                     ""action"": ""Feed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4d4b24ec-ef97-465f-abb1-6d4575f98f78"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e1b85ab8-f259-4281-b2ce-66176c43d0e1"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -427,6 +458,7 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         m_Gameplay_Next = m_Gameplay.FindAction("Next", throwIfNotFound: true);
         m_Gameplay_Feed = m_Gameplay.FindAction("Feed", throwIfNotFound: true);
+        m_Gameplay_Cancel = m_Gameplay.FindAction("Cancel", throwIfNotFound: true);
     }
 
     ~@AgainstTheGrainInput()
@@ -522,6 +554,7 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Pause;
     private readonly InputAction m_Gameplay_Next;
     private readonly InputAction m_Gameplay_Feed;
+    private readonly InputAction m_Gameplay_Cancel;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -594,6 +627,10 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Feed => m_Wrapper.m_Gameplay_Feed;
         /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Cancel".
+        /// </summary>
+        public InputAction @Cancel => m_Wrapper.m_Gameplay_Cancel;
+        /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
@@ -664,6 +701,9 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
             @Feed.started += instance.OnFeed;
             @Feed.performed += instance.OnFeed;
             @Feed.canceled += instance.OnFeed;
+            @Cancel.started += instance.OnCancel;
+            @Cancel.performed += instance.OnCancel;
+            @Cancel.canceled += instance.OnCancel;
         }
 
         /// <summary>
@@ -720,6 +760,9 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
             @Feed.started -= instance.OnFeed;
             @Feed.performed -= instance.OnFeed;
             @Feed.canceled -= instance.OnFeed;
+            @Cancel.started -= instance.OnCancel;
+            @Cancel.performed -= instance.OnCancel;
+            @Cancel.canceled -= instance.OnCancel;
         }
 
         /// <summary>
@@ -865,5 +908,12 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnFeed(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Cancel" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCancel(InputAction.CallbackContext context);
     }
 }

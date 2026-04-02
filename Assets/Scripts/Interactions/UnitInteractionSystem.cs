@@ -10,6 +10,7 @@ public enum InteractionState
     Selection,
     Movement,
     ActionSelection,
+    DecisionSelection,
     TargetSelection,
     Execution
 }
@@ -60,9 +61,10 @@ public class UnitInteractionSystem : TileCursor
     [SerializeField] List<Vector3Int> validLocations;
     private EntityAction currAction;
 
-    private int nextUnitID = -1;
-
     public bool isInputOn = true;
+
+    private Stack<InteractionState> stateHistory = new Stack<InteractionState>();
+
 
     public void Awake()
     {
@@ -73,12 +75,10 @@ public class UnitInteractionSystem : TileCursor
         aiManager = FindFirstObjectByType<AIManager>();
         //actionMenu = FindFirstObjectByType<ActionMenu>();
         actionMenu.OnActionSelected.AddListener(SelectAction);
-        state = InteractionState.Selection;
-        BarnUIMenu.OnUnitPurchased.AddListener(SetNextUnit);
-        BarnUIMenu.OnPurchaseComplete.AddListener(SelectAction);
+        PushState(InteractionState.Selection);
+        BarnUIMenu.OnUnitPurchased.AddListener(OnUnitSelected);
         BarnUIMenu.CancelAction.AddListener(StopAction);
         feedManager = FindFirstObjectByType<FeedManager>();
-        cropPicker.OnCropCancelled.AddListener(ResumeSelection);
         validLocations = new List<Vector3Int>();
     }
     //Restrict to only display updated tiles
@@ -120,6 +120,13 @@ public class UnitInteractionSystem : TileCursor
         {
             arrowMap.SetTile(path[i], arrowTile);
         }
+    }
+
+    //Modify state with this to keep track of history for undo functionality
+    private void PushState(InteractionState newState)
+    {
+        stateHistory.Push(state);
+        state = newState;
     }
 
     public bool AttemptSelection(Vector3Int pos)
@@ -166,7 +173,7 @@ public class UnitInteractionSystem : TileCursor
                             optionsMap.SetTile(tile, optionTile);
                         }
                         SoundManager.Instance.PlayEntitySound(unit, SoundType.SELECT);
-                        state = InteractionState.Movement;
+                        PushState(InteractionState.Movement);
                         return;
                     }
                     else if (selectedEntity != null && selectedEntity is Structure)
@@ -180,7 +187,7 @@ public class UnitInteractionSystem : TileCursor
                         if (actions != null && actions.Count > 0)
                         {
                             currAction = actions[0]; // assumes first action is SpawnUnitAction
-                            state = InteractionState.ActionSelection;
+                            PushState(InteractionState.ActionSelection);
                             structureCheck.Interact();
                         }
                     }
@@ -287,11 +294,6 @@ public class UnitInteractionSystem : TileCursor
         hoverSprite.sprite = null;
     }
 
-    public void SetNextUnit(int id)
-    {
-        nextUnitID = id;
-    }
-
     private void ShowUnitOptions(Unit unit)
     {
         if (unit == null)
@@ -299,8 +301,82 @@ public class UnitInteractionSystem : TileCursor
             Debug.LogError("THERES NO UNIT TO SHOW OPTIONS FOR");
             return;
         }
-        state = InteractionState.ActionSelection;
+        PushState(InteractionState.ActionSelection);
         actionMenu.ShowMenu(unit);
+    }
+    //used to allow player to undo the steps in the action state machine
+    public void UndoAction(InputAction.CallbackContext context)
+    {
+        UndoAction();
+    }
+    public void UndoAction()
+    {
+        if (stateHistory.Count == 0)
+        {
+            //can't undo if there's no history
+            return;
+        }
+        //get the previous state type then do the appropriate undo action to get to that state
+        InteractionState previous = stateHistory.Pop();
+        Unit unit = selectedEntity as Unit;
+        switch (state)
+        {
+            case InteractionState.Movement:
+                //clear movement tiles and deselect the unit
+                optionsMap.ClearAllTiles();
+                validLocations.Clear();
+                ClearHoverSprite();
+                selectedEntity = null;
+                selectedPosition = new Vector3Int(0, 0, 1);
+                break;
+            case InteractionState.ActionSelection:
+                actionMenu.HideMenu();
+                if (afterLocation != prevLocation)
+                {
+                    tileManager.MoveEntity(afterLocation, prevLocation);
+                    afterLocation = prevLocation;
+                }
+                //show movement highlights
+                if (unit != null)
+                {
+                    //show movement range
+                    validLocations = unit.GetMovementRange();
+                    foreach (Vector3Int pos in validLocations)
+                    {
+                        optionsMap.SetTile(pos, optionTile);
+                    }
+                }
+                LiftHoverSprite();
+                break;
+            case InteractionState.DecisionSelection:
+                // Close whichever decision UI is open
+                if (currAction is PlantAction)
+                {
+                    cropPicker.OnCropSelected.RemoveListener(OnPlantSelected);
+                    cropPicker.CancelPicking(); // whatever your hide method is
+                }
+                else if (currAction is SpawnUnitAction)
+                {
+                    // Barn cancel is already handled via CancelAction event
+                }
+                currAction = null;
+                // Reopen action menu for the unit
+                if (unit != null) actionMenu.ShowMenu(unit);
+                break;
+            case InteractionState.TargetSelection:
+                //clear target highlights then go back to action selection
+                optionsMap.ClearAllTiles();
+                validLocations.Clear();
+                currAction = null;
+                if (unit != null)
+                {
+                    actionMenu.ShowMenu(unit);
+                }
+                break;
+            default:
+                break;
+        }
+        state = previous;
     }
 
     public void StopAction()
@@ -318,6 +394,7 @@ public class UnitInteractionSystem : TileCursor
 
     private void ResetData()
     {
+        stateHistory.Clear();
         //Clear tile highlights
         optionsMap.ClearAllTiles();
 
@@ -357,28 +434,27 @@ public class UnitInteractionSystem : TileCursor
         {
 
             //Undo the movement from the previous action and return
-            tileManager.MoveEntity(afterLocation, prevLocation);
-            state = InteractionState.Selection;
-            ResetData();
+            UndoAction();
             return;
         }
         //For planting action, you must first determine which seed to plant via the UI
         if (action is PlantAction)
         {
             currAction = action;
-            //Open crop pickerUI
+            PushState(InteractionState.DecisionSelection);
             cropPicker.OnCropSelected.AddListener(OnPlantSelected);
             cropPicker.StartPicking(false);
             return;
-            
         }
-        //Special case, requires picking an integer set by a UI (barnUI probably)
         if (action is SpawnUnitAction)
         {
-            //Debug.Log("SpawnUnit found!");
-            SpawnUnitAction spawnAction = action as SpawnUnitAction;
-            spawnAction.SetSpawnUnit(nextUnitID);
+            currAction = action;
+            PushState(InteractionState.DecisionSelection);
+            // Barn UI is already opened via structure interaction,
+            // OnPurchaseComplete fires OnDecisionComplete when done
+            return;
         }
+
 
         currAction = action;
 
@@ -394,7 +470,7 @@ public class UnitInteractionSystem : TileCursor
             optionsMap.SetTile(pos, optionTile);
         }
         //Otherwise, perform the action on the selected tile
-        state = InteractionState.TargetSelection;
+        PushState(InteractionState.TargetSelection);
     }
 
     //Additional picker step needed for the plant action after crop is picked from UI
@@ -407,6 +483,25 @@ public class UnitInteractionSystem : TileCursor
         plantAct.SetCropID(cropID);
         //Debug.Log("PlantAct is linked with ID " + plantAct.cropID);
         //Get the availible targets from the current action, then switch to selecting one
+        OnDecisionComplete();
+    }
+    private void OnUnitSelected(int unitID)
+    {
+        //actually set the index to plant
+        SpawnUnitAction spawnAct = currAction as SpawnUnitAction;
+        if (spawnAct != null)
+        {
+            spawnAct.SetSpawnUnit(unitID);
+        }
+        //Debug.Log("PlantAct is linked with ID " + plantAct.cropID);
+        //Get the availible targets from the current action, then switch to selecting one
+        OnDecisionComplete();
+    }
+
+    private void OnDecisionComplete()
+    {
+        if (stateHistory.Count > 0)
+            stateHistory.Pop(); // remove DecisionSelection from history
         GetTargets();
     }
 
@@ -444,26 +539,23 @@ public class UnitInteractionSystem : TileCursor
         // Open the PickCropUI for this unit
         feedManager.OpenFeedUI(unit);
         //Prevent further input until feed is finished
-        state = InteractionState.ActionSelection;
+        PushState(InteractionState.ActionSelection);
     }
 
-    private void ResumeSelection()
-    {
-        ResetData();
-        state = InteractionState.Selection;
-    }
     private void OnEnable()
     {
         input = new AgainstTheGrainInput();
         input.Enable();
         input.Gameplay.Select.performed += OnSelect;
         input.Gameplay.Feed.performed += ShowFeedOptions;
+        input.Gameplay.Cancel.performed += UndoAction;
     }
 
     private void OnDisable()
     {
         input.Gameplay.Select.performed -= OnSelect;
         input.Gameplay.Feed.performed -= ShowFeedOptions;
+        input.Gameplay.Cancel.performed -= UndoAction;
         input.Disable();
     }
 

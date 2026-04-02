@@ -1,16 +1,30 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 //Need to call awake to find parent Naviagatable UI
-public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
+public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
 {
-    private int index = 0;
+    protected int index = 0;
     protected NaviagatableUI parentUI;
     public bool acceptingInput = true;
+
+    public Sprite normalSprite;
+    public Sprite highlightSprite;
+    public Sprite unavailableSprite;
+
+    public bool isSelected = false;
+    public bool available = true;
+
+    protected Image image;
 
     public virtual void Awake()
     {
         parentUI = GetComponentInParent<NaviagatableUI>();
+        if (image == null)
+        {
+            image = GetComponent<Image>();
+        }
     }
 
     public virtual void Initialize(int buttonIndex)
@@ -18,7 +32,7 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandle
         index = buttonIndex;
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public virtual void OnPointerEnter(PointerEventData eventData)
     {
         if (acceptingInput)
         {
@@ -26,12 +40,16 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandle
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public virtual void OnPointerClick(PointerEventData eventData)
     {
         if (acceptingInput)
         {
             parentUI.ReportAction();
         }
+    }
+
+    public virtual void OnPointerExit(PointerEventData eventData)
+    {
     }
 
     public void SetAcceptingInput(bool value)
@@ -48,4 +66,33 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandle
     {
         acceptingInput = true;
     }
+
+    public virtual void SetSelected(bool selected)
+    {
+        isSelected = selected;
+        UpdateVisual();
+    }
+
+    public virtual void SetAvailable(bool value)
+    {
+        available = value;
+        UpdateVisual(); // default to not selected
+    }
+
+    public virtual void UpdateVisual()
+    {
+        if (isSelected)
+        {
+            image.sprite = highlightSprite;
+        }
+        else if (!available)
+        {
+            image.sprite = unavailableSprite;
+        }
+        else
+        {
+            image.sprite = normalSprite;
+        }
+    }
+
 }
