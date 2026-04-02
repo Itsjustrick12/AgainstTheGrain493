@@ -55,8 +55,6 @@ public class UnitInteractionSystem : TileCursor
     [SerializeField] List<Vector3Int> validLocations;
     private EntityAction currAction;
 
-    private int nextUnitID = -1;
-
     public bool isInputOn = true;
 
     private Stack<InteractionState> stateHistory = new Stack<InteractionState>();
