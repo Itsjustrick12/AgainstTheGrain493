@@ -89,13 +89,14 @@ GameObject:
   - component: {fileID: 6118106901358378358}
   - component: {fileID: 3282819076509550838}
   - component: {fileID: 9095065657311614971}
+  - component: {fileID: 8116969855438558830}
   m_Layer: 5
   m_Name: UI Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6118106901358378358
 RectTransform:
   m_ObjectHideFlags: 0
@@ -158,6 +159,31 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8116969855438558830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701893462489017330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc9498b5b1b17994ba68a76736d0dac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  buttons: []
+  selectedChoice: 0
+  selectionArrow: {fileID: 0}
+  navigateNoise: {fileID: 8300000, guid: ad602a1f507bc7b4890c3c46256c7b42, type: 3}
+  reportNoise: {fileID: 8300000, guid: 3ba7cb20db05919449170c3dc38837c5, type: 3}
+  econManager: {fileID: 0}
+  coinText: {fileID: 7485917332095395494}
+  uiPanel: {fileID: 701893462489017330}
+  animalButtonObj: {fileID: 4412920868690394897, guid: 06df0cd049cd48b41a19a10ca20dd78e, type: 3}
+  buttonLayout: {fileID: 2118479793182779982}
+  animalList: 0300000004000000
+  buyButton: {fileID: 6748331793764446349}
+  unitPreview: {fileID: 7822674353685870969}
 --- !u!1 &1042321753800939808
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,7 +441,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 592496715995848500}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BarnUIMenu, Assembly-CSharp
         m_MethodName: CloseMenu
         m_Mode: 1
@@ -574,7 +600,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4747349241873896520}
   - component: {fileID: 3756163276063470929}
-  - component: {fileID: 592496715995848500}
+  - component: {fileID: 2755865446911646372}
   m_Layer: 5
   m_Name: Barn UI
   m_TagString: Untagged
@@ -610,7 +636,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2424873646121605172}
   m_CullTransparentMesh: 1
---- !u!114 &592496715995848500
+--- !u!114 &2755865446911646372
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -619,22 +645,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2424873646121605172}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc9498b5b1b17994ba68a76736d0dac0, type: 3}
+  m_Script: {fileID: 11500000, guid: 73cbd8b26c0feff449f33b97e7b05438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  buttons: []
-  selectedChoice: 0
-  selectionArrow: {fileID: 0}
-  navigateNoise: {fileID: 8300000, guid: ad602a1f507bc7b4890c3c46256c7b42, type: 3}
-  reportNoise: {fileID: 8300000, guid: 3ba7cb20db05919449170c3dc38837c5, type: 3}
-  econManager: {fileID: 0}
-  coinText: {fileID: 7485917332095395494}
-  uiPanel: {fileID: 701893462489017330}
-  animalButtonObj: {fileID: 4412920868690394897, guid: 06df0cd049cd48b41a19a10ca20dd78e, type: 3}
-  buttonLayout: {fileID: 2118479793182779982}
-  animalList: 0300000004000000
-  buyButton: {fileID: 6748331793764446349}
-  unitPreview: {fileID: 7822674353685870969}
+  barnMenu: {fileID: 8116969855438558830}
 --- !u!1 &3539838684181748870
 GameObject:
   m_ObjectHideFlags: 0

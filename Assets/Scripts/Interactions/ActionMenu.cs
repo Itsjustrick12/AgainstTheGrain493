@@ -48,7 +48,6 @@ public class ActionMenu : NaviagatableUI
     //Called from the UnitInteractionSystem for getting the action the user wants
     public void ShowMenu(Unit unit)
     {
-        TurnOnInput();
         if (unit == null)
         {
             Debug.LogError("You passed a null unit to ShowMenu");
@@ -72,6 +71,7 @@ public class ActionMenu : NaviagatableUI
 
         //Select the first button
         SetSelectedIndex(0);
+        TurnOnInput();
     }
 
 

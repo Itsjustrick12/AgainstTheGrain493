@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 [System.Serializable]
 public class IntEvent : UnityEvent<int> { }
 
@@ -12,32 +13,18 @@ public class BarnUIMenu : NaviagatableUI
     //public TextMeshProUGUI grainText;
     public TextMeshProUGUI coinText;
 
-    public GameObject uiPanel;
-
     public GameObject animalButtonObj;
 
     public static IntEvent OnUnitPurchased = new IntEvent();
-    public static UnityEvent OnPurchaseComplete = new UnityEvent();
     public static UnityEvent CancelAction = new UnityEvent();
 
     public Transform buttonLayout;
     public int[] animalList;
 
     public BuyButton buyButton;
-
     public Image unitPreview;
 
-    private void OnDisable()
-    {
-        Barn.OnBarnInteraction -= ShowMenu;
-    }
-
     public void Awake()
-    {
-        Barn.OnBarnInteraction += ShowMenu;
-    }
-
-    public void Start()
     {
         econManager = EconomyManager.Instance;
         buyButton.SetAcceptingInput(false);
@@ -49,9 +36,8 @@ public class BarnUIMenu : NaviagatableUI
             AnimalButton button = obj.GetComponent<AnimalButton>();
             buttons.Add(obj);
             button.UpdateButton(id);
-            button.Initialize(buttons.Count-1);
+            button.Initialize(buttons.Count - 1);
         }
-        
     }
 
     public override void DeselectButton(int index)
@@ -71,10 +57,7 @@ public class BarnUIMenu : NaviagatableUI
 
     public void ShowMenu()
     {
-        if (uiPanel != null)
-        {
-            uiPanel.SetActive(true);
-        }
+        this.gameObject.SetActive(true);
         SetSelectedIndex(0);
         UpdateCropText(econManager.GetHarvestedCrops(1));
         UpdateCoinText(econManager.GetCoins());
@@ -86,7 +69,7 @@ public class BarnUIMenu : NaviagatableUI
     {
         TurnOffInput();
         buyButton.SetAcceptingInput(false);
-        uiPanel.SetActive(false);
+        this.gameObject.SetActive(false);
     }
 
     public void CloseMenu()
@@ -124,11 +107,9 @@ public class BarnUIMenu : NaviagatableUI
         {
             //Set the unit to spawn, close the menu, and await spawn
             UpdateCoinText(econManager.GetCoins());
+            HideMenu();
             OnUnitPurchased.Invoke(id);
             Debug.Log("Purchased unit: " + info.entityName);
-
-            OnPurchaseComplete.Invoke();
-            HideMenu();
         }
         
     }

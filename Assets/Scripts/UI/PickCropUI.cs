@@ -196,8 +196,35 @@ public class PickCropUI : NaviagatableUI
             }
 
         }
+
         //hide the highlight on the current button
-        DeselectButton(selectedChoice);
+        if (selectedChoice >= 0 && selectedChoice < buttons.Count)
+        {
+            DeselectButton(selectedChoice);
+        }
+    }
+    //Used by undo functionality to go back to action selection without breaking anything
+    public void CancelPicking()
+    {
+        if (!picking) return;
+        if (selectedChoice >= 0 && selectedChoice < buttons.Count)
+        {
+            DeselectButton(selectedChoice);
+        }
+        selectedChoice = -1;
+        picking = false;
+        feeding = false;
+        foreach (GameObject obj in buttons)
+        {
+            CropButton button = obj.GetComponent<CropButton>();
+            if (button != null)
+            {
+                button.SetIconOnly(false);
+                button.SetAvailable(true);
+            }
+        }
+        TurnOffInput();
+        OnCropCancelled?.Invoke();
     }
 
 }
