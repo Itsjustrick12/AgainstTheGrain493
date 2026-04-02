@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8533745808882360955}
   - component: {fileID: 8576854633653516862}
   m_Layer: 0
-  m_Name: Red Farmer
+  m_Name: Reaper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -517785369856942380, guid: 505ead9357501214e90d5b920738572e, type: 3}
+  m_Sprite: {fileID: -6959151710665796641, guid: 5b2bfb72d2f27214380d91959f3277e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -110,7 +110,6 @@ MonoBehaviour:
   currentHealth: 10
   isObstacle: 1
   isInteractable: 0
-  shadeSprite: {fileID: 0}
   ID: 2
   strength: 1
   attackRange: 1
@@ -131,7 +130,7 @@ Animator:
   m_GameObject: {fileID: 4935858330493278644}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0698a813f3de721459f1f7b373fbbe35, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5458a10be4adc56429d607ed44afa540, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
