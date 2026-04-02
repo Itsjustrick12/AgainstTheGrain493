@@ -272,12 +272,6 @@ public class TileHelper : MonoBehaviour
             return false;
         }
 
-        //if no unit,no moving through occupied tiles
-        if(isEnemy == -1)
-        {
-            return false;
-        }
-
     }
 
 

@@ -29,7 +29,9 @@ public class UnitInteractionSystem : TileCursor
     [SerializeField] FeedManager feedManager;
     private PickCropUI cropPicker; 
     public Tilemap optionsMap;
+
     public Tilemap arrowMap;
+    public TileBase arrowTile;
     public AIManager aiManager;
     public TileBase optionTile;
     //Stores the location of the current tile selected
@@ -112,13 +114,11 @@ public class UnitInteractionSystem : TileCursor
     public void SetArrow()
     {
         arrowMap.ClearAllTiles();
-        List<Vector3Int> path = tileHelper.TilePath(prevLocation, GetCurrentTile(), selectedEntity as Unit);
+        List<Vector3Int> path = tileHelper.TilePath(selectedEntity.GetGridPos(), GetCurrentTile(), selectedEntity as Unit);
         path.RemoveAt(path.Count - 1);
-        path.RemoveAt(0);
-        
         for(int i = 0; i < path.Count; i++)
         {
-
+            arrowMap.SetTile(path[i], arrowTile);
         }
     }
 
