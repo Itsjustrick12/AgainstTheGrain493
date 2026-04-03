@@ -11,6 +11,7 @@ public enum InteractionState
     Movement,
     ActionSelection,
     DecisionSelection,
+    FeedTargeting,
     TargetSelection,
     Execution
 }
@@ -59,6 +60,8 @@ public class UnitInteractionSystem : TileCursor
 
     private Stack<InteractionState> stateHistory = new Stack<InteractionState>();
 
+    public static event System.Action<InteractionState> OnStateChanged;
+
 
     public void Awake()
     {
@@ -69,6 +72,7 @@ public class UnitInteractionSystem : TileCursor
         PushState(InteractionState.Selection);
         BarnUIMenu.OnUnitPurchased.AddListener(OnUnitSelected);
         BarnUIMenu.CancelAction.AddListener(StopAction);
+        FeedManager.OnFeedingComplete += StopAction;
         feedManager = FindFirstObjectByType<FeedManager>();
         validLocations = new List<Vector3Int>();
     }
@@ -102,6 +106,7 @@ public class UnitInteractionSystem : TileCursor
     {
         stateHistory.Push(state);
         state = newState;
+        OnStateChanged?.Invoke(state);
     }
 
     public bool AttemptSelection(Vector3Int pos)
@@ -214,6 +219,7 @@ public class UnitInteractionSystem : TileCursor
                     //Place the unit back or just dont do anything
                     ClearHoverSprite();
                     state = InteractionState.Selection;
+                    OnStateChanged?.Invoke(state);
 
                 }
                 break;
@@ -221,7 +227,12 @@ public class UnitInteractionSystem : TileCursor
                 if (!currAction.IsAOE() && AttemptTarget(pos))
                 {
                     state = InteractionState.Selection;
+                    OnStateChanged?.Invoke(state);
                 }
+                break;
+            case InteractionState.FeedTargeting:
+                // Try to feed unit
+                TryFeedAtPosition(pos);
                 break;
             default:
                 break;
@@ -297,6 +308,7 @@ public class UnitInteractionSystem : TileCursor
         Unit unit = selectedEntity as Unit;
         switch (state)
         {
+
             case InteractionState.Movement:
                 //clear movement tiles and deselect the unit
                 optionsMap.ClearAllTiles();
@@ -349,10 +361,18 @@ public class UnitInteractionSystem : TileCursor
                     actionMenu.ShowMenu(unit);
                 }
                 break;
+            case InteractionState.FeedTargeting:
+                // Just go back, nothing to clean up
+                cropPicker.OnCropSelected.RemoveListener(OnPlantSelected);
+                feedManager.CancelFeed();
+                selectedEntity = null;
+                ResetData();
+                break;
             default:
                 break;
         }
         state = previous;
+        OnStateChanged?.Invoke(state);
     }
 
     public void StopAction()
@@ -366,6 +386,7 @@ public class UnitInteractionSystem : TileCursor
         }
 
         state = InteractionState.Selection;
+        OnStateChanged?.Invoke(InteractionState.Selection);
     }
 
     private void ResetData()
@@ -402,6 +423,7 @@ public class UnitInteractionSystem : TileCursor
         {
             //Don't do anything, consider the unit moved and don't do anything else
             state = InteractionState.Selection;
+            OnStateChanged?.Invoke(state);
             selectedEntity.Deactivate();
             ResetData();
             return;
@@ -449,6 +471,48 @@ public class UnitInteractionSystem : TileCursor
         PushState(InteractionState.TargetSelection);
     }
 
+    public void StartFeedTargeting()
+    {
+        // Reset any prior selection cleanly
+        ResetData();
+
+        validLocations = new List<Vector3Int>();
+        List<Unit> units = GameManager.Instance.GetAllFriendlyUnits(); ;
+        //get position for each friendly unit
+        foreach (Unit unit in units)
+        {
+            if (!unit.isFed)
+            {
+
+                validLocations.Add(unit.GetGridPos());
+                optionsMap.SetTile(unit.GetGridPos(), optionTile);
+            }
+        }
+
+        PushState(InteractionState.FeedTargeting);
+    }
+
+    private void TryFeedAtPosition(Vector3Int pos)
+    {
+        Entity entity = tileManager.GetTileDataAt(pos)?.GetOccupyingEntity();
+        Unit unit = entity as Unit;
+
+        if (unit == null || unit.isEnemy)
+        {
+            Debug.Log("No valid unit to feed here");
+            // Stay in FeedTargeting so the player can try again,
+            // or cancel with the undo button
+            return;
+        }
+
+        selectedEntity = unit;
+        // Pop FeedTargeting before opening feed UI so undo works cleanly
+        state = stateHistory.Count > 0 ? stateHistory.Pop() : InteractionState.Selection;
+        feedManager.OpenFeedUI(unit);
+        optionsMap.ClearAllTiles();
+        optionsMap.SetTile(unit.GetGridPos(), optionTile);
+    }
+
     //Additional picker step needed for the plant action after crop is picked from UI
     private void OnPlantSelected(int cropID)
     {
@@ -491,31 +555,11 @@ public class UnitInteractionSystem : TileCursor
         }
         ShowUnitOptions(unit);
     }
-    //Likely needs to prevent further actions while deciding somehow havent implemented that yet
+
     private void ShowFeedOptions(InputAction.CallbackContext context)
     {
-        //see if theres a unit on the tile
-        selectedEntity = tileManager.GetTileDataAt(currentTile).GetOccupyingEntity();
-        if (selectedEntity == null)
-        {
-            Debug.Log("No unit to feed here");
-            return;
-        }
-
-        //get a reference to the current Unit if there is one
-        Unit unit = selectedEntity as Unit;
-
-        // Make sure we have a valid selected unit
-        if (unit == null)
-        {
-            Debug.Log("No unit to feed here");
-            return;
-        }
-
-        // Open the PickCropUI for this unit
-        feedManager.OpenFeedUI(unit);
-        //Prevent further input until feed is finished
-        PushState(InteractionState.ActionSelection);
+        if (state != InteractionState.Selection) return;
+        StartFeedTargeting();
     }
 
     private void OnEnable()

@@ -23,7 +23,10 @@ public class SellCropButton : UIButton
 
     public override void OnPointerEnter(PointerEventData eventData)
     {
-        image.sprite = highlightSprite;
+        if (acceptingInput)
+        {
+            image.sprite = highlightSprite;
+        }
     }
 
     public override void OnPointerClick(PointerEventData eventData)
@@ -43,6 +46,9 @@ public class SellCropButton : UIButton
 
     public override void OnPointerExit(PointerEventData eventData)
     {
-        image.sprite = normalSprite;
+        if (acceptingInput)
+        {
+            image.sprite = normalSprite;
+        }
     }
 }
