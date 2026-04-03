@@ -6409,6 +6409,10 @@ PrefabInstance:
       propertyPath: econManager
       value: 
       objectReference: {fileID: 1059514641}
+    - target: {fileID: 1656098954863109757, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
+      propertyPath: cropID
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2099773052524400353, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -6416,6 +6420,10 @@ PrefabInstance:
     - target: {fileID: 2099773052524400353, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CloseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 2140100301167626750, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
+      propertyPath: cropID
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2424873646121605172, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
       propertyPath: m_Name
