@@ -58,6 +58,8 @@ public class UnitInteractionSystem : TileCursor
 
     public bool isInputOn = true;
 
+    public bool isFeeding = false;
+
     private Stack<InteractionState> stateHistory = new Stack<InteractionState>();
 
     public static event System.Action<InteractionState> OnStateChanged;
@@ -72,7 +74,7 @@ public class UnitInteractionSystem : TileCursor
         PushState(InteractionState.Selection);
         BarnUIMenu.OnUnitPurchased.AddListener(OnUnitSelected);
         BarnUIMenu.CancelAction.AddListener(StopAction);
-        FeedManager.OnFeedingComplete += StopAction;
+        FeedManager.OnFeedingComplete += StopFeeding;
         feedManager = FindFirstObjectByType<FeedManager>();
         validLocations = new List<Vector3Int>();
     }
@@ -136,6 +138,7 @@ public class UnitInteractionSystem : TileCursor
         switch (state)
         {
             case InteractionState.Selection:
+                if (isFeeding) return;
                 //Attempt to set the selected Unit on the tile
                 if (AttemptSelection(pos))
                 {
@@ -364,9 +367,12 @@ public class UnitInteractionSystem : TileCursor
             case InteractionState.FeedTargeting:
                 // Just go back, nothing to clean up
                 cropPicker.OnCropSelected.RemoveListener(OnPlantSelected);
+                cropPicker.CancelPicking();
                 feedManager.CancelFeed();
                 selectedEntity = null;
+
                 ResetData();
+                isFeeding = false;
                 break;
             default:
                 break;
@@ -377,33 +383,29 @@ public class UnitInteractionSystem : TileCursor
 
     public void StopAction()
     {
-        ResetData();
 
-        //If unit was moved but not finalized, move it back
         if (afterLocation != prevLocation && (afterLocation != null && prevLocation != null))
         {
             tileManager.MoveEntity(afterLocation, prevLocation);
         }
 
-        state = InteractionState.Selection;
-        OnStateChanged?.Invoke(InteractionState.Selection);
+        ResetData();
     }
 
     private void ResetData()
     {
         stateHistory.Clear();
-        //Clear tile highlights
         optionsMap.ClearAllTiles();
-
         validLocations.Clear();
+
+        ClearHoverSprite(); // call BEFORE nulling selectedEntity
         selectedEntity = null;
         selectedPosition = new Vector3Int(0, 0, -1);
-
-        //Clear hover
-        ClearHoverSprite();
-
-        //Reset action
         currAction = null;
+
+        // Also reset state to Selection to prevent stale state issues
+        state = InteractionState.Selection;
+        OnStateChanged?.Invoke(state);
     }
 
     public void SelectAction()
@@ -413,6 +415,8 @@ public class UnitInteractionSystem : TileCursor
 
     public void SelectAction(EntityAction action)
     {
+        if (isFeeding) return;
+
         //Check for unique UI ish actions for not doing direct things
         if (action == null)
         {
@@ -432,7 +436,7 @@ public class UnitInteractionSystem : TileCursor
         {
 
             //Undo the movement from the previous action and return
-            UndoAction();
+            StopAction();
             return;
         }
         //For planting action, you must first determine which seed to plant via the UI
@@ -490,6 +494,7 @@ public class UnitInteractionSystem : TileCursor
         }
 
         PushState(InteractionState.FeedTargeting);
+        isFeeding = true;
     }
 
     private void TryFeedAtPosition(Vector3Int pos)
@@ -505,7 +510,7 @@ public class UnitInteractionSystem : TileCursor
             return;
         }
 
-        selectedEntity = unit;
+        //selectedEntity = unit;
         // Pop FeedTargeting before opening feed UI so undo works cleanly
         state = stateHistory.Count > 0 ? stateHistory.Pop() : InteractionState.Selection;
         feedManager.OpenFeedUI(unit);
@@ -558,8 +563,15 @@ public class UnitInteractionSystem : TileCursor
 
     private void ShowFeedOptions(InputAction.CallbackContext context)
     {
+        // Already guards, but make this more explicit:
         if (state != InteractionState.Selection) return;
         StartFeedTargeting();
+    }
+
+    private void StopFeeding()
+    {
+        StopAction();
+        isFeeding = false;
     }
 
     private void OnEnable()
