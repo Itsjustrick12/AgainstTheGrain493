@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -35,12 +36,14 @@ public class ActionMenu : NaviagatableUI
 
     public override void DeselectButton(int index)
     {
+        if (index < 0 || index > buttons.Count - 1) return;
         base.DeselectButton(index);
         buttons[index].GetComponent<Image>().color = Color.white;
     }
 
     public override void SelectButton(int index)
     {
+        if (index < 0 || index > buttons.Count - 1) return;
         base.SelectButton(index);
         buttons[index].GetComponent<Image>().color = shadeColor;
     }
