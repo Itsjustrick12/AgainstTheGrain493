@@ -70,7 +70,6 @@ public class UnitInteractionSystem : TileCursor
     {
         tileManager = FindFirstObjectByType<TileManager>();
         tileHelper = FindFirstObjectByType<TileHelper>();
-        arrowMap = FindFirstObjectByType<Tilemap>();
         cropPicker = FindFirstObjectByType<PickCropUI>();
         aiManager = FindFirstObjectByType<AIManager>();
         //actionMenu = FindFirstObjectByType<ActionMenu>();
@@ -397,6 +396,7 @@ public class UnitInteractionSystem : TileCursor
         stateHistory.Clear();
         //Clear tile highlights
         optionsMap.ClearAllTiles();
+        arrowMap.ClearAllTiles();
 
         validLocations.Clear();
         selectedEntity = null;
@@ -421,6 +421,7 @@ public class UnitInteractionSystem : TileCursor
         {
             Debug.LogError("NO ACTION SELECTED!");
         }
+
         //once this is called, shift to tile selection based on target tiles
         if (action is WaitAction)
         {
@@ -454,7 +455,6 @@ public class UnitInteractionSystem : TileCursor
             // OnPurchaseComplete fires OnDecisionComplete when done
             return;
         }
-
 
         currAction = action;
 
