@@ -589,6 +589,9 @@ public class UnitInteractionSystem : TileCursor
         input.Gameplay.Feed.performed -= ShowFeedOptions;
         input.Gameplay.Cancel.performed -= UndoAction;
         input.Disable();
+
+        //prevent bugs on scene transitions
+        FeedManager.OnFeedingComplete -= StopFeeding;
     }
 
     public void DisableInputs()
