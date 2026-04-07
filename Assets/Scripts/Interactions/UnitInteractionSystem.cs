@@ -52,9 +52,6 @@ public class UnitInteractionSystem : TileCursor
 
     public Entity selectedEntity;
 
-    public Transform hoverTransform;
-    public SpriteRenderer hoverSprite;
-
     private Vector3 offset = new Vector3(0.5f, 0.75f, 0);
 
     //Change this later but for now default Unity UI interactions is good
@@ -109,11 +106,9 @@ public class UnitInteractionSystem : TileCursor
     public override void Update()
     {
         base.Update();
-        //Move the hoverSprite to the currently selected location
         if(GetCurrentTile() == lastLocation && state == InteractionState.Movement)
         {
             SetArrow();
-            hoverTransform.position = GetCurrentTile() + offset;
         }
         lastLocation = GetCurrentTile();
     }
@@ -182,7 +177,6 @@ public class UnitInteractionSystem : TileCursor
                         if (unit.isEnemy) return;
                         validLocations = unit.GetMovementRange();
                         
-                        LiftHoverSprite();
                         foreach(Vector3Int tile in validLocations)
                         {
                             optionsMap.SetTile(tile, optionTile);
@@ -223,8 +217,6 @@ public class UnitInteractionSystem : TileCursor
                     //check they if they're the same
                     if (fromData == toData)
                     {
-                        //Just place at same place and move on
-                        ClearHoverSprite();
                         //switch to interaction selection phase
                         ShowUnitOptions(toData.GetOccupyingEntity());
 
@@ -237,7 +229,6 @@ public class UnitInteractionSystem : TileCursor
                     //Only place if entity can go to new tile
                     else if (toData.CanPlaceEntity())
                     {
-                        ClearHoverSprite();
                         //tileManager.MoveEntity(selectedPosition, pos);
                         prevLocation = selectedPosition;
                         afterLocation = pos;
@@ -251,7 +242,6 @@ public class UnitInteractionSystem : TileCursor
                 else
                 {
                     //Place the unit back or just dont do anything
-                    ClearHoverSprite();
                     state = InteractionState.Selection;
                     OnStateChanged?.Invoke(state);
 
@@ -280,19 +270,9 @@ public class UnitInteractionSystem : TileCursor
 
         yield return new WaitUntil(() => !unit.isMoving);
 
+        arrowMap.ClearAllTiles();
         EnableInputs();
         ShowUnitOptions(unit);
-    }
-
-    //Call upon selected a unit in movement
-    public void LiftHoverSprite()
-    {
-        if (selectedEntity!= null)
-        {
-            selectedEntity.HideSprite();
-            hoverSprite.sprite = selectedEntity.GetSprite();
-        }
-
     }
 
     public bool IsInRange(Vector3Int pos)
@@ -314,16 +294,6 @@ public class UnitInteractionSystem : TileCursor
             return true;
         }
         return false; 
-    }
-
-    //Clear before placement
-    public void ClearHoverSprite()
-    {
-        if (selectedEntity != null)
-        {
-            selectedEntity.ShowSprite();
-        }
-        hoverSprite.sprite = null;
     }
 
     private void ShowUnitOptions(Unit unit)
@@ -358,7 +328,7 @@ public class UnitInteractionSystem : TileCursor
                 //clear movement tiles and deselect the unit
                 optionsMap.ClearAllTiles();
                 validLocations.Clear();
-                ClearHoverSprite();
+                arrowMap.ClearAllTiles();
                 selectedEntity = null;
                 selectedPosition = new Vector3Int(0, 0, 1);
                 break;
@@ -379,7 +349,6 @@ public class UnitInteractionSystem : TileCursor
                         optionsMap.SetTile(pos, optionTile);
                     }
                 }
-                LiftHoverSprite();
                 break;
             case InteractionState.DecisionSelection:
                 // Close whichever decision UI is open
@@ -455,7 +424,6 @@ public class UnitInteractionSystem : TileCursor
 
         validLocations.Clear();
 
-        ClearHoverSprite(); // call BEFORE nulling selectedEntity
         selectedEntity = null;
         selectedPosition = new Vector3Int(0, 0, -1);
         prevLocation = new Vector3Int(0, 0, -1);
