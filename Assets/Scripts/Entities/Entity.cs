@@ -17,7 +17,7 @@ public enum EntityType
 }
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class Entity : MonoBehaviour
+public class Entity : MonoBehaviour, IBuffable
 {
     protected SpriteRenderer sprite;
     //Stores the location of where this entity actually is
@@ -25,7 +25,13 @@ public class Entity : MonoBehaviour
     protected bool isActive = true;
     protected TileManager tileManager;
     protected GameManager gameManager;
-    [SerializeField]protected TileHelper tileHelper;
+    protected AIManager aiManager;
+    protected TileHelper tileHelper;
+
+    private bool isInitialized = false;
+
+    //near constant color used for dimming entities when they are deactivated
+    public static readonly Color DimColor = new Color(0.4f, 0.4f, 0.4f);
 
     [Header("Stats")]
     //stores the entity's max hitpoints
@@ -44,13 +50,16 @@ public class Entity : MonoBehaviour
     //Hidden logic for determining what a unit is able to do, define by the unit database
     protected List<EntityAction> actions = new();
 
-    //Used for deactivating the entity
-    public SpriteRenderer shadeSprite;
-
     public static event Action<Entity> OnEntityDestroyed;
-    public Vector3Int GetGridPos()
+
+    //For managing buffs
+    protected List<Buff> activeBuffs = new List<Buff>();
+
+    public virtual void Start()
     {
-        return gridPos;
+        tileManager = FindFirstObjectByType<TileManager>();
+        gameManager = FindFirstObjectByType<GameManager>();
+        tileHelper = FindFirstObjectByType<TileHelper>();
     }
 
     public void InitializeActions(List<EntityAction> newActions)
@@ -69,17 +78,70 @@ public class Entity : MonoBehaviour
         gridPos = pos;
         transform.position = pos+offset;
     }
-    public virtual bool IsObstacle()
+
+    public Vector3Int GetGridPos()
+    {
+        return gridPos;
+    }
+
+    public int GetHealth()
+    {
+        return currentHealth;
+    }
+    
+    public void SetCurrentHealth(int healthValue)
+    { 
+        if(healthValue > maxHealth)
+        {
+            healthValue = maxHealth;
+        }
+        currentHealth = healthValue;
+    }
+
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+
+    public void SetMaxHealth(int healthValue)
+    { 
+        if(healthValue > 0)
+        {
+            healthValue = maxHealth;
+        }
+    }
+
+    public int GetMaxHealth()
+    {
+        return maxHealth;
+    }
+    
+    public void SetHealth(int healthValue)
+    { 
+        if(healthValue > maxHealth)
+        {
+            healthValue = maxHealth;
+        }
+        currentHealth = healthValue;
+    }
+
+    public bool IsInteractable()
+    {
+        return isInteractable;
+    }
+
+    public void SetIsInteractable(bool temp)
+    {
+        isInteractable = temp;
+    }
+
+    public bool IsObstacle()
     {
         return isObstacle;
     }
     public void SetIsObstacle(bool obstacle)
     {
         isObstacle = obstacle;
-    }
-    public bool IsInteractable()
-    {
-        return isInteractable;
     }
     public void HideSprite()
     {
@@ -95,18 +157,9 @@ public class Entity : MonoBehaviour
         return sprite.sprite;
     }
 
-    public int GetHealth()
+    public void SetSprite(Sprite temp)
     {
-        return currentHealth;
-    }
-
-    public void SetHealth(int healthValue)
-    { 
-        if(healthValue > maxHealth)
-        {
-            healthValue = maxHealth;
-        }
-        currentHealth = healthValue;
+        sprite.sprite = temp;
     }
 
     public virtual void TakeDamage(int damage)
@@ -163,36 +216,56 @@ public class Entity : MonoBehaviour
     public virtual void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
-        shadeSprite.sprite = sprite.sprite;
+        aiManager = FindFirstObjectByType<AIManager>();
         Initialize();
     }
 
     //Used to update stats based on database
     public virtual void Initialize()
     {
+        isInitialized = true;
     }
 
-   public bool IsActive()
+    public bool GetIsInitialized()
+    {
+        return isInitialized;
+    }
+
+    public bool IsActive()
     {
         return isActive;
     }
 
     public void Deactivate()
     {
-        shadeSprite.enabled = true;
+        sprite.color = DimColor;
         isActive = false;
     }
 
-    public void Activate()
+    public virtual void Activate()
     {
-        shadeSprite.enabled = false;
+        sprite.color = Color.white;
         isActive = true;
     }
 
-    public virtual void Start()
+    public void AddBuff(Buff buff)
     {
-        tileManager = FindFirstObjectByType<TileManager>();
-        gameManager = FindFirstObjectByType<GameManager>();
-        tileHelper = FindFirstObjectByType<TileHelper>();
+        activeBuffs.Add(buff);
+        buff.Apply(this);
+    }
+    //Is called by the buff class itself who manages the duration of itself
+    public void RemoveBuff(Buff buff)
+    {
+        if (!activeBuffs.Contains(buff))
+        {
+            //if the buff isn't here, dont do anything
+            return;
+        }
+        activeBuffs.Remove(buff);
+    }
+
+    public void ClearBuffs()
+    {
+        activeBuffs.Clear();
     }
 }

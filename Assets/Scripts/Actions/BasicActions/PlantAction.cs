@@ -6,10 +6,10 @@ using UnityEngine;
 public class PlantAction : EntityAction
 {
     public int cropID = 1;
-    public string cropName = "Wheat";
+    //public string cropName = "Wheat";
     public override string GetName()
     {
-        return "Plant" + cropName;
+        return "Plant";// + cropName;
     }
 
     public void SetCropID(int id)

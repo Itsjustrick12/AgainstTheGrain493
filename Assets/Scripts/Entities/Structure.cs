@@ -15,6 +15,7 @@ public class Structure : Entity
 
     public override void Initialize()
     {
+        base.Initialize();
         StructureInfo info = StructureDatabase.Instance.GetStructureInfo(ID);
         actions = info.actions;
         maxHealth = info.baseHealth;

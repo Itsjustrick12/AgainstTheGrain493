@@ -8,7 +8,12 @@ public class Unit : Entity
 {
     [Header("General Settings")]
     public int ID;
+    [SerializeField] protected int strength = 1;
+    [SerializeField] protected int attackRange = 1;
+    [SerializeField] protected int movementRange = 3;
+    public bool isFed = false;
     public bool isEnemy = false;
+    public bool canFly = false;
 
     [Header("For Targeting")]
     //added for targeting
@@ -17,19 +22,15 @@ public class Unit : Entity
     public Vector3Int target = new Vector3Int(0,0,-1);
     public int iq = 1;
 
-    [Header("Stats")]
-    private int strength = 1;
-    //Only increase for ranged attackers
-    private int attackRange = 1;
-    private int movementRange = 3;
-
     public override void Awake()
     {
         base.Awake();
+        
     }
 
     public override void Initialize()
     {
+        base.Initialize();
         UnitInfo info = UnitDatabase.Instance.GetUnitInfo(ID);
         attackRange = info.attackRange;
         strength = info.strength;
@@ -39,9 +40,40 @@ public class Unit : Entity
         movementRange = info.moveRange;
     }
 
+    public void SetIsFed(bool value)
+    {
+        isFed = value;
+    }
+
+    public bool GetIsFed()
+    {
+        return isFed;
+    }
+
     public int GetMoveRange()
     {
-        return movementRange;
+        if (activeBuffs.Count <= 0)
+        {
+
+            return movementRange;
+        }
+        int baseIncrease = 0;
+        float multiplier = 1;
+        //otherwise, total movement buffs and return
+        //loop through all buffs to check for strengh buffs
+        foreach (Buff buff in activeBuffs)
+        {
+            //check for strength buffs
+            MovementBuff mBuff = buff as MovementBuff;
+            if (mBuff != null)
+            {
+                baseIncrease += mBuff.baseIncrease;
+                multiplier *= mBuff.multiplier;
+            }
+        }
+
+        //return the calculated stat after base increases and multiplier
+        return (int)((movementRange + baseIncrease) * multiplier);
     }
 
     //This is dumb change this later
@@ -57,13 +89,45 @@ public class Unit : Entity
         return false;
     }
 
-    public void GetHealth(int healthValue){ 
-        currentHealth = healthValue;
+    public void SetAttackRange(int temp)
+    {
+        if(temp > 0)
+        {
+            attackRange = temp;
+        }
     }
+
+    public void Heal(int amount)
+    {
+        int after = currentHealth + amount;
+        currentHealth = (after) > maxHealth ? maxHealth : after;
+    }
+
+
 
     public int GetAttackRange()
     {
         return attackRange;
+    }
+
+    public void SetCanFly(bool temp)
+    { 
+        canFly = temp;
+    }
+
+    public bool GetCanFly()
+    { 
+        return canFly;
+    }
+
+    public void SetIsEnemy(bool tempIsEnemy)
+    {
+        isEnemy = tempIsEnemy;
+    }
+
+    public bool GetIsEnemy()
+    {
+        return isEnemy;
     }
 
     public bool IsSameTeamAs(Unit diffUnit)
@@ -86,7 +150,7 @@ public class Unit : Entity
     {
         if (entity == null)
         {
-            Debug.LogError("The passed entity is null, can't compare teams");
+            Debug.LogError("UNIT.The passed entity is null, can't compare teams");
             return false;
         }
 
@@ -99,38 +163,33 @@ public class Unit : Entity
 
     public int GetStrength()
     {
-        return strength;
+        if (activeBuffs.Count == 0)
+            return strength;
+        
+        int baseIncrease = 0;
+        float multiplier = 1;
+
+        
+        //loop through all buffs to check for strengh buffs
+        foreach (Buff buff in activeBuffs)
+        {
+            //check for strength buffs
+            StrengthBuff sBuff = buff as StrengthBuff;
+            if (sBuff != null)
+            {
+                baseIncrease += sBuff.baseIncrease;
+                multiplier *= sBuff.multiplier;
+            }
+        }
+
+        //return the calculated stat after base increases and multiplier
+        return (int)((strength + baseIncrease) * multiplier);
     }
 
     public void SetStrength(int strengthValue)
     {
-        strength = strengthValue;
-    }
-
-    //gets vector3Int List for best target based on difficulty
-    public void SetTarget()
-    {
         
-        //choose target based on iq
-        if (iq == 1)
-        {
-            target = FindEasy();
-        }
-        else if (iq < 5)
-        {
-            target = FindMedium();
-        }
-        else
-        {
-            target = FindHard();
-        }
-
-        // Still nothing, clear target
-        if (target.z == -1)
-        {
-            Debug.Log("No Pathable Primary/Any Target found");
-            return;
-        }
+        strength = strengthValue;
     }
 
     public Vector3Int GetTarget()
@@ -140,7 +199,7 @@ public class Unit : Entity
 
     public Vector3Int SetAndReturnTarget()
     {
-        SetTarget();
+        aiManager.FindTarget(this);
         return GetTarget();
     }
 
@@ -187,174 +246,6 @@ public class Unit : Entity
         return temp;
     }
 
-    /*
-        targeting for "Easy" enemies
-        
-        targets clostest primary target
-
-        if there is no targetable primary target it chooses the closest unit
-    */
-    Vector3Int FindEasy()
-    {
-        //gets all primary targets
-        List<Vector3Int> targets = FindPositions(true);
-
-        Vector3Int best = new Vector3Int(0, 0, -1);
-        int bestTTR = int.MaxValue;
-
-        foreach (Vector3Int t in targets)
-        {
-            //get the path for the next potential target
-            List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), t);
-
-            // Skip paths that return no path (only 1 item in list)
-            if (path.Count == 1)
-                continue;
-
-            //uses turnstoreach to find the "best" target
-            int ttr = TurnsToReach(path);
-            if (ttr < bestTTR)
-            {
-                bestTTR = ttr;
-                best = t;
-            }
-        }
-
-        // if an accesible primary target was found return
-        if(best.z != -1)
-        {
-            return best;
-        }
-
-        //now we look for any target
-        targets = FindPositions(false);
-
-        foreach (Vector3Int t in targets)
-        {
-            //get the path for the next potential target
-            List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), t);
-
-            // Skip paths that return no path (only 1 item in list)
-            if (path.Count == 1)
-                continue;
-
-            //uses turnstoreach to find the "best" target
-            int ttr = TurnsToReach(path);
-            if (ttr < bestTTR)
-            {
-                bestTTR = ttr;
-                best = t;
-            }
-        }
-
-        return best;
-    }
-
-    /*
-        targeting for "Medium" enemies
-
-        targets closest primary target
-        or
-        secondary target that takes -1 turn to kill
-    */
-    Vector3Int FindMedium()
-    {
-        //get list of all targets
-        List<Vector3Int> targets = FindPositions(false);
-
-        Vector3Int best = new Vector3Int(0, 0, -1);
-        int bestTTK = int.MaxValue;
-
-        foreach (Vector3Int t in targets)
-        {
-            //get the path for the next potential target
-            List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), t);
-
-            // Skip paths that return no path (only 1 item in list)
-            if (path.Count == 1)
-                continue;
-
-            //uses turnstokill to find the "best" target
-            int ttk = TurnsToKill(path);
-
-            //if the potential target is a secondary target add 1 to the ttk
-            if(!primary.Contains(tileManager.GetTileDataAt(t).GetOccupyingEntity().GetEntityType()))
-            {
-                ttk++;
-            }
-            if (ttk < bestTTK)
-            {
-                bestTTK = ttk;
-                best = t;
-            }
-        }
-
-        return best;
-    }
-
-    //TODO
-    Vector3Int FindHard()
-    {
-        return FindMedium();
-
-    }
-
-    //calculation for amount of turn to kill a unit, used for priority
-    int TurnsToKill(List<Vector3Int> path)
-    {
-        int ttk = 0;
-
-        //turns to get(next) to target
-        ttk += TurnsToReach(path);
-
-        //checks the last spot in the path to make sure there is actually a target
-        if(tileManager.GetTileDataAt(path[path.Count - 1]).occupyingEntity != null)
-        {
-            Entity temptarget = tileManager.GetTileDataAt(path[path.Count - 1]).occupyingEntity;
-
-            //so since temptarget can be attacked on the move turn you subtrace 1 turn from
-            //the amount of turns required to kill target
-            ttk += temptarget.GetHealth() / this.GetStrength() - 1;
-
-            //if there is leftover it adds another turn
-            if(temptarget.GetHealth() % this.GetStrength() > 0)
-            {
-                ttk++;
-            }
-        }
-
-        return ttk;
-        
-    }
-
-    //turns to get(next) to target
-    int TurnsToReach(List<Vector3Int> path)
-    {
-        int ttr = 0;
-
-        if(path.Count > 2)
-        {
-            for(int i = 1; i < path.Count - 1; i++)
-            {
-                ttr += tileManager.GetTileDataAt(path[i]).movementCost;
-            }
-
-            ttr = ttr / this.movementRange + 1;
-        }
-
-        return ttr;
-    }
-
-    bool Win1v1()
-    {
-        bool ret = false;
-        /*if(tileGetTileDataAt(path[i]))
-        {
-
-        }*/
-        return ret;
-    }
-
     void Move(List<Vector3Int> path)
     {
         //make sure we dont pass the movement amount of the unit
@@ -364,7 +255,7 @@ public class Unit : Entity
         {
             path.RemoveAt(0);
         }
-        while(tempMovement > 0 && path.Count > 1)
+        while(tempMovement > 0 && path.Count > 0)
         {
             //if there is nothing in the next tile
             if(tileManager.GetTileDataAt(path[0]).occupyingEntity == null)
@@ -382,94 +273,105 @@ public class Unit : Entity
                 }
                 else
                 {
-                    //Debug.Log("Not enough movement");
+                    Debug.Log("Not enough movement");
                     tempMovement = 0;
                 }
             }
             else
             {
-                //Debug.Log("Entity in next tile");
+                Debug.Log("Entity in next tile");
                 tempMovement = 0;
             }
         }
+
     }
 
-    void Attack()
+    bool Attack()
     {
         if (target.z == -1)
         {
-            Debug.Log("No target!");
-            return;
+            Debug.Log("UNIT.No target!");
+            return false;
         }
 
 
         Vector3Int pos = GetGridPos();
-        bool isAdjacent = target == pos + Vector3Int.up ||
-                          target == pos + Vector3Int.down ||
-                          target == pos + Vector3Int.left ||
-                          target == pos + Vector3Int.right;
+        bool isAdjacent = Mathf.Abs(target.x - pos.x) + Mathf.Abs(target.y - pos.y) <= GetAttackRange();
 
         if (!isAdjacent)
         {
-            //Debug.Log("Target isn't adjacent!");
+            Debug.Log("Target isn't adjacent!");
             //Set the target a second time
-            return;
+            return false;
         }
 
         TileData targetTile = tileManager.GetTileDataAt(target);
         if (targetTile == null || targetTile.occupyingEntity == null)
         {
-            Debug.Log("Nothing to attack!");
-            return;
+            Debug.Log("UNIT.Nothing to attack!");
+            return false;
         }
 
         targetTile.occupyingEntity.TakeDamage(GetStrength());
 
         if (targetTile.occupyingEntity == null)
             target = new Vector3Int(0, 0, -1);
+
+        return true;
     }
 
     public void DoTurn()
     {
-        //if a target hasn't been set we find the next target
-
         //Debug.Log("Finding Target");
-        this.SetTarget();
+        if (target.z == -1)
+        {
+            target = aiManager.FindTarget(this);
+        }
 
         //See if our target is up to date (needed for concurrent enemy execution)
         TileData data = tileManager.GetTileDataAt(target);
-        if (data != null && data.HasUnit())
+        if (data != null && !data.HasUnit())
         {
-            Unit unitCheck = data.GetOccupyingEntity() as Unit;
-            if (unitCheck && IsSameTeamAs(unitCheck))
-            {
-                SetTarget();
-            }
-        }
-        else
-        {
-            //Get a new target if our old one is outdata
-            SetTarget();
+           target = aiManager.FindTarget(this);
         }
 
-
+        //Debug.Log("UNIT.Found Target: " + target.x + " " + target.y + " " + target.z);
         //if we found a target we move to it
         if (target.z != -1)
         {
-            //Debug.Log("Target found at " + target);
-            List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), target);
-            if (path.Count > 2)
+            //Check if the target is in the attack range
+            if (!tileHelper.IsWithinRange(GetGridPos(), target, GetAttackRange()))
             {
-                Move(path);
+
+                //Debug.Log("UNIT.Target found at " + target);
+                List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), target, this);
+                //Debug.Log("UNIT.Distance = " + path.Count);
+                if (path.Count > 0)
+                {
+                    Move(path);
+                }
+                else
+                {
+                    Debug.Log("UNIT.No Need to Move!");
+                }
             }
-            else
-            {
-                Debug.Log("No Need to Move!");
-            }
+
         }
 
         //then we attack the target
-        Attack();
+        if (Attack())
+        {
+            //do nothing the attack worked
+        }
+        else
+        {
+            //if the attack failed on the target, we weren't in range
+            // try to attack again with temp adjacent target
+            Vector3Int temp = target;
+            target = aiManager.FindTargetInRange(this);
+            Attack();
+            target = temp;
+        }
     }
 
     public override void Die()
@@ -481,7 +383,31 @@ public class Unit : Entity
     public override void TakeDamage(int damage)
     {
         SoundManager.Instance.PlayEntitySound(this, SoundType.HURT);
-        base.TakeDamage(damage);
+        if (activeBuffs.Count <= 0)
+        {
+            base.TakeDamage(damage);
+            return;
+        }
+        else
+        {
+            //calculate buff defense if any
+            int baseIncrease = 0;
+            float multiplier = 1;
+            foreach (Buff buff in activeBuffs)
+            {
+                //check for strength buffs
+                DefenseBuff dBuff = buff as DefenseBuff;
+                if (dBuff != null)
+                {
+                    baseIncrease += dBuff.baseIncrease;
+                    multiplier *= dBuff.multiplier;
+                }
+            }
+
+            //calculate reduction
+            int newDamage = Mathf.Max(0, (int)(damage - (baseIncrease * multiplier)));
+            base.TakeDamage(newDamage);
+        }
     }
 }
 

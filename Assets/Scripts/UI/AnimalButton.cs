@@ -1,8 +1,10 @@
+using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class AnimalButton : MonoBehaviour
+public class AnimalButton : UIButton
 {
     BarnUIMenu barnUI;
     public TextMeshProUGUI nameText;
@@ -11,9 +13,10 @@ public class AnimalButton : MonoBehaviour
 
     public int entityID;
 
-    private void Awake()
+    public override void Awake()
     {
-        barnUI = FindFirstObjectByType<BarnUIMenu>();
+        base.Awake();
+        barnUI = parentUI as BarnUIMenu;
     }
 
     public void UpdateButton(int id)
@@ -23,15 +26,21 @@ public class AnimalButton : MonoBehaviour
         unitImage.sprite = info.sprite;
         priceText.text = info.purchasePrice.ToString();
         nameText.text = info.entityName;
+        entityID = id;
     }
 
-    public void UpdateButton()
+    //Remove the click functionality of the base class
+    public override void OnPointerClick(PointerEventData eventData)
     {
-        UpdateButton(entityID);
+        if (acceptingInput)
+        {
+            parentUI.SetSelectedIndex(index);
+        }
     }
 
-    public void PurchaseEntity()
+    //Remove the hover functionality of the base class
+    public override void OnPointerEnter(PointerEventData eventData)
     {
-        barnUI.BuyUnit(entityID);
+
     }
 }
