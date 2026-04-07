@@ -5,7 +5,6 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
-using static UnityEditor.PlayerSettings;
 
 public enum InteractionState
 {
