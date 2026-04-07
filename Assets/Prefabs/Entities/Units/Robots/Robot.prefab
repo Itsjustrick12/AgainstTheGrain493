@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4674787558981635298}
   - component: {fileID: 6812441379819157092}
   - component: {fileID: 1197789032886672170}
+  - component: {fileID: 2623698599719832724}
   m_Layer: 0
   m_Name: Robot
   m_TagString: Untagged
@@ -113,13 +114,32 @@ MonoBehaviour:
   isInteractable: 0
   shadeSprite: {fileID: 8357789075482895520}
   ID: 5
+  isEnemy: 1
   primary: 
   target: {x: 0, y: 0, z: -1}
-  isEnemy: 1
-  strength: 5
-  attackRange: 1
   iq: 1
-  movementRange: 3
+--- !u!95 &2623698599719832724
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180065947808181623}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7dfd06fae688f85409ecdee5eaab76bf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &8709564363311679588
 PrefabInstance:
   m_ObjectHideFlags: 0
