@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -242,13 +243,8 @@ public class UnitInteractionSystem : TileCursor
                         afterLocation = pos;
                         Unit unitCheck = selectedEntity as Unit;
                         if (unitCheck == null) return;
-                        
-                        StartCoroutine(unitCheck.Move(tileHelper.TilePath(prevLocation, afterLocation, unitCheck)));
 
-                        //For now just switch to selection
-                        ShowUnitOptions(toData.GetOccupyingEntity());
-                        //Needed for the cancel action to work
-                        SoundManager.Instance.PlayEntitySound(selectedEntity, SoundType.PLACE);
+                        StartCoroutine(WaitForMoveAndShowOptions(unitCheck, toData));
                         return;
                     }
                 }
@@ -275,6 +271,17 @@ public class UnitInteractionSystem : TileCursor
             default:
                 break;
         }
+    }
+
+    private IEnumerator WaitForMoveAndShowOptions(Unit unit, TileData toData)
+    {
+        DisableInputs();
+        StartCoroutine(unit.Move(tileHelper.TilePath(prevLocation, afterLocation, unit)));
+
+        yield return new WaitUntil(() => !unit.isMoving);
+
+        EnableInputs();
+        ShowUnitOptions(unit);
     }
 
     //Call upon selected a unit in movement

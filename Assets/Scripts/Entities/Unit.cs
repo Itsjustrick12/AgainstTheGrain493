@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -21,6 +22,9 @@ public class Unit : Entity
     //no target uses a negative z value
     public Vector3Int target = new Vector3Int(0,0,-1);
     public int iq = 1;
+
+    //Necessary for animating
+    public bool isMoving = false;
 
     public override void Awake()
     {
@@ -248,90 +252,56 @@ public class Unit : Entity
 
     public IEnumerator Move(List<Vector3Int> path)
     {
-        //make sure we dont pass the movement amount of the unit
-        int tempMovement = movementRange;
+        if (path.Count == 0) yield break;
+        isMoving = true;
 
-        if(GetGridPos() == path[0])
-        {
+        Vector3Int startLogicalPos = GetGridPos();
+
+        // Strip starting tile if path includes current position
+        if (startLogicalPos == path[0])
             path.RemoveAt(0);
-        }
-        while(tempMovement > 0 && path.Count > 0)
+
+        if (path.Count == 0) yield break;
+
+        Vector3Int destination = path[path.Count - 1];
+
+
+        // --- VISUAL MOVE: lerp through each waypoint ---
+        Vector3 cellOffset = new Vector3(
+            tileManager.entitiesMap.cellSize.x,
+            tileManager.entitiesMap.cellSize.y, 0) * 0.5f;
+
+        for (int i = 0; i < path.Count; i++)
         {
-            //if there is nothing in the next tile
-            /*if(tileManager.GetTileDataAt(path[0]).occupyingEntity == null)
-            {*/
-                //if we have enough movement left
-                if(tempMovement >= tileManager.GetTileDataAt(path[0]).movementCost)
-                {
-                    Debug.Log("Move to " + path[0]);
-                    //set the animation
-                    if(animator != null)
-                    {
-                        if(path[0].x > GetGridPos().x)
-                        {
-                            animator.SetBool("moving", true);
-                            animator.SetBool("attacking", false);
-                            animator.SetFloat("x position", 1);
-                            animator.SetFloat("y position", 0);
-                        }
-                        else if(path[0].x < GetGridPos().x)
-                        {
-                            animator.SetBool("moving", true);
-                            animator.SetBool("attacking", false);
-                            animator.SetFloat("x position", -1);
-                            animator.SetFloat("y position", 0);
-                        }
-                        else if(path[0].y < GetGridPos().y)
-                        {
-                            animator.SetBool("moving", true);
-                            animator.SetBool("attacking", false);
-                            animator.SetFloat("x position", 0);
-                            animator.SetFloat("y position", -1);
-                        }
-                        else if(path[0].y > GetGridPos().y)
-                        {
-                            animator.SetBool("moving", true);
-                            animator.SetBool("attacking", false);
-                            animator.SetFloat("x position", 0);
-                            animator.SetFloat("y position", 1);
-                        }
-                    }
+            Vector3 startWorld = transform.position;
+            Vector3 endWorld = tileManager.entitiesMap.CellToWorld(path[i]) + cellOffset;
 
-                    //"move" to the next tile
-                    Vector3 offset = new Vector3(tileManager.entitiesMap.cellSize.x, tileManager.entitiesMap.cellSize.y, 0) * 0.5f;
-                    Vector3 startWorld = tileManager.entitiesMap.CellToWorld(GetGridPos()) + offset;
-                    Vector3 endWorld = tileManager.entitiesMap.CellToWorld(path[0]) + offset;
-                    float elapsed = 0f;
-                    while (elapsed < tileManager.stepDuration)
-                    {
-                        transform.position = Vector3.Lerp(startWorld, endWorld, elapsed / tileManager.stepDuration);
-                        elapsed += Time.deltaTime;
-                        yield return null;
-                    }
-                    transform.position = endWorld; // Snap to exact
+            // Derive direction from previous step in path (not from tile data)
+            Vector3Int prevPos = (i == 0) ? startLogicalPos : path[i - 1];
+            Vector3Int dir = path[i] - prevPos;
 
-                    // Now actually move the entity in tileManager
-                    /*if(tileManager.GetTileDataAt(path[0]).occupyingEntity == null)
-                    {*/
-                        tileManager.MoveEntity(GetGridPos(), path[0]);
-                    //}
-                    tempMovement -= tileManager.GetTileDataAt(path[0]).movementCost;
-                    path.RemoveAt(0);
-                }
-                else
-                {
-                    Debug.Log("Not enough movement");
-                    tempMovement = 0;
-                }
-            /*}
-            else
+            if (animator != null)
             {
-                Debug.Log("Entity in next tile");
-                tempMovement = 0;
-            }*/
-        }
+                animator.SetBool("moving", true);
+                animator.SetBool("attacking", false);
+                animator.SetFloat("x position", Mathf.Clamp(dir.x, -1, 1));
+                animator.SetFloat("y position", Mathf.Clamp(dir.y, -1, 1));
+            }
 
-        if(animator != null)
+            float elapsed = 0f;
+            while (elapsed < tileManager.stepDuration)
+            {
+                transform.position = Vector3.Lerp(startWorld, endWorld, elapsed / tileManager.stepDuration);
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+            transform.position = endWorld; // snap to exact position
+        }
+        // --- LOGICAL MOVE: once, start to destination only ---
+        tileManager.MoveEntity(startLogicalPos, destination);
+
+        // Reset animator to idle
+        if (animator != null)
         {
             animator.SetBool("moving", false);
             animator.SetBool("attacking", false);
@@ -339,6 +309,7 @@ public class Unit : Entity
             animator.SetFloat("y position", 0);
         }
 
+        isMoving = false;
     }
 
     bool Attack()
@@ -403,7 +374,7 @@ public class Unit : Entity
                 //Debug.Log("UNIT.Distance = " + path.Count);
                 if (path.Count > 0)
                 {
-                    StartCoroutine(Move(path));
+                    StartCoroutine(Move(DeterminePath(path)));
                 }
                 else
                 {
@@ -427,6 +398,27 @@ public class Unit : Entity
             Attack();
             target = temp;
         }
+    }
+
+    public List<Vector3Int> DeterminePath(List<Vector3Int> orig)
+    {
+        List<Vector3Int> path = orig;
+       //Reduce path to be only the segements that are moveable
+       int budget = GetMoveRange();
+        int cost = 0;
+        int steps = 0;
+        Vector3Int prev = path[0]; // first item is start, skip it
+        foreach (Vector3Int step in path.Skip(1))
+        {
+            bool isDiagonal = (step.x != prev.x) && (step.y != prev.y);
+            int tileCost = tileManager.GetTileDataAt(step).movementCost + (isDiagonal ? 1 : 0);
+            if (cost + tileCost > budget) break;
+            cost += tileCost;
+            steps++;
+            prev = step;
+        }
+        path = path.Skip(1).Take(steps).ToList();
+        return path;
     }
 
     public override void Die()
