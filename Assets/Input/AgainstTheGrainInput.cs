@@ -416,17 +416,6 @@ public partial class @AgainstTheGrainInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4d4b24ec-ef97-465f-abb1-6d4575f98f78"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""e1b85ab8-f259-4281-b2ce-66176c43d0e1"",
                     ""path"": ""<Keyboard>/backspace"",
                     ""interactions"": """",

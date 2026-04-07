@@ -8,12 +8,16 @@ public class FeedManager : MonoBehaviour
     public AudioClip feedSound;
     public AudioClip thumpSound;
     public bool temp = true;
+
+    public static event System.Action OnFeedingComplete;
+
     public void OpenFeedUI(Unit unit)
     {
         if (!EconomyManager.Instance.HasACrop() || unit.GetIsFed())
         {
             //play a sound here, no crops to feed or unit is full already
             SoundManager.Instance.PlaySound(thumpSound);
+            OnFeedingComplete?.Invoke();
             return;
         }
         selectedUnit = unit;
@@ -23,6 +27,15 @@ public class FeedManager : MonoBehaviour
         pickCropUI.StartPicking(temp);
         //Subscribe the event below for whenever the pickCropUI selects a crop
         pickCropUI.OnCropSelected.AddListener(OnCropChosen);
+    }
+
+    public void CancelFeed()
+    {
+        if (selectedUnit == null) return;
+        pickCropUI.OnCropSelected.RemoveListener(OnCropChosen);
+        pickCropUI.CancelPicking();
+        selectedUnit = null;
+        OnFeedingComplete?.Invoke();
     }
 
     private void OnCropChosen(int cropID)
@@ -59,5 +72,6 @@ public class FeedManager : MonoBehaviour
 
         //Set the unit as fed
         selectedUnit.SetIsFed(true);
+        OnFeedingComplete?.Invoke();
     }
 }
