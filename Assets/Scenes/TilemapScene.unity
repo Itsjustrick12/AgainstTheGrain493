@@ -6164,6 +6164,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3692067787822710917, guid: 836669d5dc0c8244cb1ea6597606305d, type: 3}
+      propertyPath: endTurn
+      value: 
+      objectReference: {fileID: 11400000, guid: 33d2f0fa02018df4397d1bc5b5bcea97, type: 2}
+    - target: {fileID: 3692067787822710917, guid: 836669d5dc0c8244cb1ea6597606305d, type: 3}
       propertyPath: uiCanvas
       value: 
       objectReference: {fileID: 1170237817}

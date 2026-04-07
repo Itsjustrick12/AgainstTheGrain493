@@ -183,7 +183,8 @@ public class UnitInteractionSystem : TileCursor
                 }
                 else
                 {
-                    selectedEntity = null;
+                    AskEndTurn();
+
                 }
                 break;
             case InteractionState.Movement:
@@ -459,6 +460,14 @@ public class UnitInteractionSystem : TileCursor
             StopAction();
             return;
         }
+        else if (action is EndTurnAction)
+        {
+
+            //Undo the movement from the previous action and return
+            GameManager.Instance.BeginEnemyTurn();
+            ResetData();
+            return;
+        }
         //For planting action, you must first determine which seed to plant via the UI
         if (action is PlantAction)
         {
@@ -515,6 +524,22 @@ public class UnitInteractionSystem : TileCursor
 
         PushState(InteractionState.FeedTargeting);
         isFeeding = true;
+    }
+
+    public void AskEndTurn(InputAction.CallbackContext context)
+    {
+        if (state == InteractionState.Selection)
+        {
+            AskEndTurn();
+        }
+    }
+
+    public void AskEndTurn()
+    {
+        selectedEntity = null;
+        //Add the logic for pulling up end turn
+        PushState(InteractionState.ActionSelection);
+        actionMenu.ShowDefaultMenu();
     }
 
     //This method tries to see if there is a Unit that can be fed at the current tile
@@ -607,6 +632,8 @@ public class UnitInteractionSystem : TileCursor
         input.Gameplay.Select.performed += OnSelect;
         input.Gameplay.Feed.performed += ShowFeedOptions;
         input.Gameplay.Cancel.performed += UndoAction;
+        input.Gameplay.AdvanceTurn.performed += AskEndTurn;
+
     }
 
     private void OnDisable()
@@ -614,6 +641,7 @@ public class UnitInteractionSystem : TileCursor
         input.Gameplay.Select.performed -= OnSelect;
         input.Gameplay.Feed.performed -= ShowFeedOptions;
         input.Gameplay.Cancel.performed -= UndoAction;
+        input.Gameplay.AdvanceTurn.performed -= AskEndTurn;
         input.Disable();
 
         //prevent bugs on scene transitions

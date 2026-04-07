@@ -26,6 +26,7 @@ public class ActionMenu : NaviagatableUI
     [Header("Default Actions")]
     public EntityAction wait;
     public EntityAction cancel;
+    public EntityAction endTurn;
 
     public void Awake()
     {
@@ -77,6 +78,19 @@ public class ActionMenu : NaviagatableUI
         TurnOnInput();
     }
 
+    public void ShowDefaultMenu()
+    {
+        gameObject.SetActive(true);
+        //Delete previous buttons
+        ClearButtons();
+        //Add Wait and Cancel
+        AddEmptyDefaults();
+
+        //Select the first button
+        SetSelectedIndex(0);
+        TurnOnInput();
+    }
+
 
 
     //Spawns the buttonPrefab for each action availble to the Unit
@@ -112,6 +126,12 @@ public class ActionMenu : NaviagatableUI
     public void AddDefaults()
     {
         CreateButton(wait);
+        CreateButton(cancel);
+    }
+
+    public void AddEmptyDefaults()
+    {
+        CreateButton(endTurn);
         CreateButton(cancel);
     }
 

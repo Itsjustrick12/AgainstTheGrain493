@@ -67,6 +67,11 @@ public class GameManager : MonoBehaviour
     
     public void BeginEnemyTurn(InputAction.CallbackContext context)
     {
+        BeginEnemyTurn();
+    }
+
+    public void  BeginEnemyTurn()
+    {
         StartCoroutine(EnemyTurnRoutine());
     }
 
@@ -248,7 +253,6 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         input = new AgainstTheGrainInput();
-        input.Gameplay.AdvanceTurn.performed += BeginEnemyTurn;
         Entity.OnEntityDestroyed += CheckEndState;
         input.Gameplay.Pause.performed += TogglePause;
         input.Enable();
@@ -258,7 +262,6 @@ public class GameManager : MonoBehaviour
     private void OnDisable()
     {
         Entity.OnEntityDestroyed -= CheckEndState;
-        input.Gameplay.AdvanceTurn.performed -= BeginEnemyTurn;
         input.Gameplay.Pause.performed -= TogglePause;
         input.Disable();
     }
