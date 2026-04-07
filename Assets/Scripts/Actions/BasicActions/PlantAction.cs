@@ -72,7 +72,13 @@ public class PlantAction : EntityAction
     public override void PerformAt(Entity unit, Vector3Int pos)
     {
         GameManager GM = FindFirstObjectByType<GameManager>();
-        
+
+        Unit unitCheck = unit as Unit;
+        if (unitCheck != null)
+        {
+            unitCheck.SetAnimationTrigger("plant");
+        }
+
         //TODO: Update this here when we add more crops
         GM.SpawnCropOnTile(CropDatabase.Instance.GetCropInfo(cropID), pos);
     }

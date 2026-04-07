@@ -283,7 +283,7 @@ public class Unit : Entity
             if (animator != null)
             {
                 animator.SetBool("moving", true);
-                animator.SetBool("attacking", false);
+                //animator.SetBool("attacking", false);
                 animator.SetFloat("x position", Mathf.Clamp(dir.x, -1, 1));
                 animator.SetFloat("y position", Mathf.Clamp(dir.y, -1, 1));
             }
@@ -304,7 +304,7 @@ public class Unit : Entity
         if (animator != null)
         {
             animator.SetBool("moving", false);
-            animator.SetBool("attacking", false);
+            //animator.SetBool("attacking", false);
             animator.SetFloat("x position", 0);
             animator.SetFloat("y position", 0);
         }
@@ -342,8 +342,16 @@ public class Unit : Entity
 
         if (targetTile.occupyingEntity == null)
             target = new Vector3Int(0, 0, -1);
-
+        
         return true;
+    }
+
+    public void SetAnimationTrigger(string triggerName)
+    {
+        if (animator != null)
+        {
+            animator.SetTrigger(triggerName);
+        }
     }
 
     public void DoTurn()
