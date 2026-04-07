@@ -4437,7 +4437,7 @@ MonoBehaviour:
   placeholderMap: {fileID: 713243558}
   baseDisplayMap: {fileID: 456173023}
   overlayDisplayMap: {fileID: 1440589468}
-  entitiesMap: {fileID: 0}
+  entitiesMap: {fileID: 1540370072}
   borderMap: {fileID: 2080642188}
   borderTile: {fileID: 11400000, guid: 5ea2367cb9dd0c34094f4887bc1666c9, type: 2}
   grassTile: {fileID: 11400000, guid: 0e3b1dffc54c09f408c77b596213517b, type: 2}
@@ -5686,6 +5686,7 @@ MonoBehaviour:
   hoverSprite: {fileID: 702921833}
   validLocations: []
   isInputOn: 1
+  isFeeding: 0
 --- !u!4 &1662612541
 Transform:
   m_ObjectHideFlags: 0
