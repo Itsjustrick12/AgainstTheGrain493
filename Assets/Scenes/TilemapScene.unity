@@ -5849,6 +5849,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2713810534598828848, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: m_ChildForceExpandHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: buffColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: buffColor.b
+      value: 0.38823533
+      objectReference: {fileID: 0}
+    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: buffColor.g
+      value: 0.89019614
+      objectReference: {fileID: 0}
+    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: buffColor.r
+      value: 0.7019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: debuffColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: debuffColor.b
+      value: 0.10588236
+      objectReference: {fileID: 0}
+    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: debuffColor.g
+      value: 0.2509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: debuffColor.r
+      value: 0.9725491
+      objectReference: {fileID: 0}
     - target: {fileID: 7495709860225659441, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
       propertyPath: m_Name
       value: UnitUI

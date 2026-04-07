@@ -10,6 +10,12 @@ public class UnitInfoPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI strengthText;
     [SerializeField] private TextMeshProUGUI movementText;
 
+    //[SerializeField] private Color normalColor;
+    //[SerializeField] private Color buffColor;
+    //[SerializeField] private Color debuffColor;
+
+    [SerializeField] private Vector3 offset = new Vector3(2.5f, 0, 0);
+
     public void ShowPanel(Unit currUnit)
     {
         if (currUnit == null)
@@ -17,9 +23,6 @@ public class UnitInfoPanel : MonoBehaviour
             //Debug.Log("Null Check");
             return;
         }
-
-        int offsetX = 300; //Negative goes Left, Positive Goes Right
-        int offsetY = -25; //Negative Goes Down, Positive Goes Up
 
         currentCanvas.alpha = 1;
         currentCanvas.interactable = true;
@@ -31,9 +34,8 @@ public class UnitInfoPanel : MonoBehaviour
         int strength = currUnit.GetStrength();
         int moveRange = currUnit.GetMoveRange();
 
-        Vector2 canvasPosition = Camera.main.WorldToScreenPoint(currUnit.GetGridPos());
-        canvasPosition.x += offsetX;
-        canvasPosition.y += offsetY;
+        Vector2 canvasPosition = Camera.main.WorldToScreenPoint(currUnit.GetGridPos()+offset);
+
 
         this.transform.position = canvasPosition;
 
