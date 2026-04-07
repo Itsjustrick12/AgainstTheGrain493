@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -692177023350366618, guid: 218e9496bb314c04fa5700d940abea5a, type: 3}
+  m_Sprite: {fileID: 7941836645919822687, guid: 7438646d64257a345a1178b815f7690e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
   currentHealth: 10
   isObstacle: 1
   isInteractable: 0
-  shadeSprite: {fileID: 0}
+  animator: {fileID: 0}
   ID: 5
   strength: 1
   attackRange: 1
@@ -121,6 +121,7 @@ MonoBehaviour:
   primary: 
   target: {x: 0, y: 0, z: -1}
   iq: 1
+  isMoving: 0
 --- !u!95 &5280404989645969447
 Animator:
   serializedVersion: 7
