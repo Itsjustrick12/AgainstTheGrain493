@@ -8,9 +8,9 @@ public class Unit : Entity
 {
     [Header("General Settings")]
     public int ID;
-    public int strength = 1;
-    public int attackRange = 1;
-    public int movementRange = 3;
+    [SerializeField] protected int strength = 1;
+    [SerializeField] protected int attackRange = 1;
+    [SerializeField] protected int movementRange = 3;
     public bool isFed = false;
     public bool isEnemy = false;
     public bool canFly = false;
@@ -52,7 +52,28 @@ public class Unit : Entity
 
     public int GetMoveRange()
     {
-        return movementRange;
+        if (activeBuffs.Count <= 0)
+        {
+
+            return movementRange;
+        }
+        int baseIncrease = 0;
+        float multiplier = 1;
+        //otherwise, total movement buffs and return
+        //loop through all buffs to check for strengh buffs
+        foreach (Buff buff in activeBuffs)
+        {
+            //check for strength buffs
+            MovementBuff mBuff = buff as MovementBuff;
+            if (mBuff != null)
+            {
+                baseIncrease += mBuff.baseIncrease;
+                multiplier *= mBuff.multiplier;
+            }
+        }
+
+        //return the calculated stat after base increases and multiplier
+        return (int)((movementRange + baseIncrease) * multiplier);
     }
 
     //This is dumb change this later
@@ -81,6 +102,8 @@ public class Unit : Entity
         int after = currentHealth + amount;
         currentHealth = (after) > maxHealth ? maxHealth : after;
     }
+
+
 
     public int GetAttackRange()
     {
@@ -140,11 +163,32 @@ public class Unit : Entity
 
     public int GetStrength()
     {
-        return strength;
+        if (activeBuffs.Count == 0)
+            return strength;
+        
+        int baseIncrease = 0;
+        float multiplier = 1;
+
+        
+        //loop through all buffs to check for strengh buffs
+        foreach (Buff buff in activeBuffs)
+        {
+            //check for strength buffs
+            StrengthBuff sBuff = buff as StrengthBuff;
+            if (sBuff != null)
+            {
+                baseIncrease += sBuff.baseIncrease;
+                multiplier *= sBuff.multiplier;
+            }
+        }
+
+        //return the calculated stat after base increases and multiplier
+        return (int)((strength + baseIncrease) * multiplier);
     }
 
     public void SetStrength(int strengthValue)
     {
+        
         strength = strengthValue;
     }
 
@@ -394,7 +438,31 @@ public class Unit : Entity
     public override void TakeDamage(int damage)
     {
         SoundManager.Instance.PlayEntitySound(this, SoundType.HURT);
-        base.TakeDamage(damage);
+        if (activeBuffs.Count <= 0)
+        {
+            base.TakeDamage(damage);
+            return;
+        }
+        else
+        {
+            //calculate buff defense if any
+            int baseIncrease = 0;
+            float multiplier = 1;
+            foreach (Buff buff in activeBuffs)
+            {
+                //check for strength buffs
+                DefenseBuff dBuff = buff as DefenseBuff;
+                if (dBuff != null)
+                {
+                    baseIncrease += dBuff.baseIncrease;
+                    multiplier *= dBuff.multiplier;
+                }
+            }
+
+            //calculate reduction
+            int newDamage = Mathf.Max(0, (int)(damage - (baseIncrease * multiplier)));
+            base.TakeDamage(newDamage);
+        }
     }
 }
 

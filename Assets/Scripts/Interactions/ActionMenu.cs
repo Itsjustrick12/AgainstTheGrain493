@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -25,6 +26,7 @@ public class ActionMenu : NaviagatableUI
     [Header("Default Actions")]
     public EntityAction wait;
     public EntityAction cancel;
+    public EntityAction endTurn;
 
     public void Awake()
     {
@@ -35,12 +37,14 @@ public class ActionMenu : NaviagatableUI
 
     public override void DeselectButton(int index)
     {
+        if (index < 0 || index > buttons.Count - 1) return;
         base.DeselectButton(index);
         buttons[index].GetComponent<Image>().color = Color.white;
     }
 
     public override void SelectButton(int index)
     {
+        if (index < 0 || index > buttons.Count - 1) return;
         base.SelectButton(index);
         buttons[index].GetComponent<Image>().color = shadeColor;
     }
@@ -68,6 +72,19 @@ public class ActionMenu : NaviagatableUI
         }
         //Add Wait and Cancel
         AddDefaults();
+
+        //Select the first button
+        SetSelectedIndex(0);
+        TurnOnInput();
+    }
+
+    public void ShowDefaultMenu()
+    {
+        gameObject.SetActive(true);
+        //Delete previous buttons
+        ClearButtons();
+        //Add Wait and Cancel
+        AddEmptyDefaults();
 
         //Select the first button
         SetSelectedIndex(0);
@@ -109,6 +126,12 @@ public class ActionMenu : NaviagatableUI
     public void AddDefaults()
     {
         CreateButton(wait);
+        CreateButton(cancel);
+    }
+
+    public void AddEmptyDefaults()
+    {
+        CreateButton(endTurn);
         CreateButton(cancel);
     }
 

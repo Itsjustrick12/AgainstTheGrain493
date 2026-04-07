@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public Transform enemyUnits;
     public Transform cropContainer;
     public Transform structureContainter;
+    CameraController camera;
 
     public Tilemap entityMap;
     private AgainstTheGrainInput input;
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
         tileManager = FindFirstObjectByType<TileManager>();
         interactionSystem = FindFirstObjectByType<UnitInteractionSystem>();
         aiManager = FindFirstObjectByType<AIManager>();
+        camera = FindFirstObjectByType<CameraController>();
     }
 
     public void Start()
@@ -65,12 +67,19 @@ public class GameManager : MonoBehaviour
     
     public void BeginEnemyTurn(InputAction.CallbackContext context)
     {
+        BeginEnemyTurn();
+    }
+
+    public void  BeginEnemyTurn()
+    {
         StartCoroutine(EnemyTurnRoutine());
     }
 
     public void BeginPlayerTurn()
     {
         isPlayerTurn = true;
+        interactionSystem.EnableInputs();
+
         // Call this whenever a turn/day ends
         //Debug.Log("Turn advanced!");
         List<Unit> friendlies = GetAllFriendlyUnits();
@@ -203,8 +212,8 @@ public class GameManager : MonoBehaviour
     private IEnumerator EnemyTurnRoutine()
     {
         isPlayerTurn = false;
+        interactionSystem.DisableInputs();
         List<Unit> tempunits = GetAllEnemyUnits();
-        CameraController camera = FindFirstObjectByType<CameraController>();
         foreach (Unit unit in tempunits)
         {
             //Focus on each unit with the camera
@@ -214,6 +223,8 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f); // pause between each enemy
         }
 
+        camera.FocusOnNextUnit();
+        yield return new WaitForSeconds(0.25f);
         BeginPlayerTurn();
     }
 
@@ -242,7 +253,6 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         input = new AgainstTheGrainInput();
-        input.Gameplay.AdvanceTurn.performed += BeginEnemyTurn;
         Entity.OnEntityDestroyed += CheckEndState;
         input.Gameplay.Pause.performed += TogglePause;
         input.Enable();
@@ -252,7 +262,6 @@ public class GameManager : MonoBehaviour
     private void OnDisable()
     {
         Entity.OnEntityDestroyed -= CheckEndState;
-        input.Gameplay.AdvanceTurn.performed -= BeginEnemyTurn;
         input.Gameplay.Pause.performed -= TogglePause;
         input.Disable();
     }
