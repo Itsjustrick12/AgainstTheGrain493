@@ -14,9 +14,12 @@ public class UnitInfoPanel : MonoBehaviour
     {
         if (currUnit == null)
         {
-            Debug.Log("Null Check");
+            //Debug.Log("Null Check");
             return;
         }
+
+        int offsetX = 300; //Negative goes Left, Positive Goes Right
+        int offsetY = -25; //Negative Goes Down, Positive Goes Up
 
         currentCanvas.alpha = 1;
         currentCanvas.interactable = true;
@@ -28,12 +31,20 @@ public class UnitInfoPanel : MonoBehaviour
         int strength = currUnit.GetStrength();
         int moveRange = currUnit.GetMoveRange();
 
-        nameText.text = unitName;
-        healthText.text = "Health: " + currentHealth + " / " + maxHealth;
-        strengthText.text = "Strength: " + strength;
-        movementText.text = "Movement Range: " + moveRange;
+        Vector2 canvasPosition = Camera.main.WorldToScreenPoint(currUnit.GetGridPos());
+        canvasPosition.x += offsetX;
+        canvasPosition.y += offsetY;
 
-        Debug.Log(unitName);
+        this.transform.position = canvasPosition;
+
+        nameText.text = unitName;
+        healthText.text = currentHealth.ToString() + "/" + maxHealth.ToString();
+        strengthText.text = strength.ToString();
+        movementText.text = moveRange.ToString();
+
+
+
+        //Debug.Log(unitName);
 
     }
 
