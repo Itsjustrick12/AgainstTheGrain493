@@ -54,10 +54,16 @@ public class CameraController : MonoBehaviour
     //When called, find the next active unit you can move and focus the camera on it
     public void FocusOnNextUnit(InputAction.CallbackContext context)
     {
+        FocusOnNextUnit();
+    }
+
+    public void FocusOnNextUnit()
+    {
         //get unit position and move camera to it
         Unit unit = gameManager.GetNextActiveUnit();
-        if (unit != null) {
-            StartCoroutine(FocusOnPosition(unit.GetGridPos(),0.25f));
+        if (unit != null)
+        {
+            StartCoroutine(FocusOnPosition(unit.GetGridPos(), 0.25f));
         }
     }
 

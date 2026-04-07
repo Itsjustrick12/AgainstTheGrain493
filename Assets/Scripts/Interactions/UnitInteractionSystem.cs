@@ -623,6 +623,7 @@ public class UnitInteractionSystem : TileCursor
     public void DisableInputs()
     {
         isInputOn = false;
+        hoverMap.ClearAllTiles();
         input.Disable();
     }
 
