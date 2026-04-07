@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8533745808882360955}
   - component: {fileID: 6212286091161529262}
   m_Layer: 0
-  m_Name: Green Farmer
+  m_Name: BasicFarmer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
