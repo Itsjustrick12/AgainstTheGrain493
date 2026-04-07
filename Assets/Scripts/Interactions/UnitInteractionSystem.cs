@@ -62,6 +62,7 @@ public class UnitInteractionSystem : TileCursor
 
     public bool isInputOn = true;
 
+    public UnitInfoPanel infoPanel;
     public bool isFeeding = false;
 
     private Stack<InteractionState> stateHistory = new Stack<InteractionState>();
@@ -111,6 +112,18 @@ public class UnitInteractionSystem : TileCursor
             SetArrow();
         }
         lastLocation = GetCurrentTile();
+        Vector3Int pos = GetCurrentTile();
+        Entity potentialEntity = tileManager.GetTileDataAt(pos).GetOccupyingEntity();
+        if(selectedEntity == null && potentialEntity != null)
+        {
+            Unit unit = potentialEntity as Unit;
+            infoPanel.ShowPanel(unit);
+            //Debug.Log("There is an entity Here");
+        }
+        else
+        {
+            infoPanel.HidePanel();
+        }
     }
 
     public void SetArrow()
@@ -125,6 +138,7 @@ public class UnitInteractionSystem : TileCursor
                 arrowMap.SetTile(path[i], arrowTile);
             }
         }
+
     }
 
     //Modify state with this to keep track of history for undo functionality
