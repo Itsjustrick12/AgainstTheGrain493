@@ -410,7 +410,8 @@ public class UnitInteractionSystem : TileCursor
         && afterLocation != new Vector3Int(0, 0, -1)
         && prevLocation != new Vector3Int(0, 0, -1))
         {
-            tileManager.MoveEntity(afterLocation, prevLocation);
+            //tileManager.MoveEntity(afterLocation, prevLocation);
+            StartCoroutine(tileManager.GetUnitOnTile(afterLocation).Move(tileHelper.TilePath(afterLocation, prevLocation, tileManager.GetUnitOnTile(afterLocation))));
         }
 
         ResetData();
