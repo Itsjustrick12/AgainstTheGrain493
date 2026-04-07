@@ -45,7 +45,8 @@ public class Entity : MonoBehaviour
     //Determines if this entity can be clicked on or affected in any way
     [SerializeField] private bool isInteractable;
     private Vector3 offset = new Vector3(0.5f, 0.5f, 0);
-    //Helper function for all derived entities to use to determine whether or not something is occupying the tile
+    //holds the animator
+    [SerializeField] protected Animator animator;
 
     //Hidden logic for determining what a unit is able to do, define by the unit database
     protected List<EntityAction> actions = new();

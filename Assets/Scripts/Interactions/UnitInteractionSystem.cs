@@ -114,10 +114,13 @@ public class UnitInteractionSystem : TileCursor
     {
         arrowMap.ClearAllTiles();
         List<Vector3Int> path = tileHelper.TilePath(selectedEntity.GetGridPos(), GetCurrentTile(), selectedEntity as Unit);
-        path.RemoveAt(path.Count - 1);
-        for(int i = 0; i < path.Count; i++)
+        
+        if(path.Count > 1)
         {
-            arrowMap.SetTile(path[i], arrowTile);
+            for(int i = 0; i < path.Count; i++)
+            {
+                arrowMap.SetTile(path[i], arrowTile);
+            }
         }
     }
 
@@ -221,13 +224,17 @@ public class UnitInteractionSystem : TileCursor
                     else if (toData.CanPlaceEntity())
                     {
                         ClearHoverSprite();
-                        tileManager.MoveEntity(selectedPosition, pos);
+                        //tileManager.MoveEntity(selectedPosition, pos);
+                        prevLocation = selectedPosition;
+                        afterLocation = pos;
+                        Unit unitCheck = selectedEntity as Unit;
+                        if (unitCheck == null) return;
+                        
+                        StartCoroutine(unitCheck.Move(tileHelper.TilePath(prevLocation, afterLocation, unitCheck)));
 
                         //For now just switch to selection
                         ShowUnitOptions(toData.GetOccupyingEntity());
                         //Needed for the cancel action to work
-                        prevLocation = selectedPosition;
-                        afterLocation = pos;
                         SoundManager.Instance.PlayEntitySound(selectedEntity, SoundType.PLACE);
                         return;
                     }

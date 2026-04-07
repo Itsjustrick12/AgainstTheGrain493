@@ -202,7 +202,7 @@ public class Unit : Entity
         return temp;
     }
 
-    void Move(List<Vector3Int> path)
+    public IEnumerator Move(List<Vector3Int> path)
     {
         //make sure we dont pass the movement amount of the unit
         int tempMovement = movementRange;
@@ -214,17 +214,64 @@ public class Unit : Entity
         while(tempMovement > 0 && path.Count > 0)
         {
             //if there is nothing in the next tile
-            if(tileManager.GetTileDataAt(path[0]).occupyingEntity == null)
-            {
+            /*if(tileManager.GetTileDataAt(path[0]).occupyingEntity == null)
+            {*/
                 //if we have enough movement left
                 if(tempMovement >= tileManager.GetTileDataAt(path[0]).movementCost)
                 {
-                    //Debug.Log("Move to " + path[0]);
-                    //set our grid position to the next tile
-                    tileManager.MoveEntity(GetGridPos(), path[0]);
-                    //change amount of movement left
+                    Debug.Log("Move to " + path[0]);
+                    //set the animation
+                    if(animator != null)
+                    {
+                        if(path[0].x > GetGridPos().x)
+                        {
+                            animator.SetBool("moving", true);
+                            animator.SetBool("attacking", false);
+                            animator.SetFloat("x position", 1);
+                            animator.SetFloat("y position", 0);
+                        }
+                        else if(path[0].x < GetGridPos().x)
+                        {
+                            animator.SetBool("moving", true);
+                            animator.SetBool("attacking", false);
+                            animator.SetFloat("x position", -1);
+                            animator.SetFloat("y position", 0);
+                        }
+                        else if(path[0].y < GetGridPos().y)
+                        {
+                            animator.SetBool("moving", true);
+                            animator.SetBool("attacking", false);
+                            animator.SetFloat("x position", 0);
+                            animator.SetFloat("y position", -1);
+                        }
+                        else if(path[0].y > GetGridPos().y)
+                        {
+                            animator.SetBool("moving", true);
+                            animator.SetBool("attacking", false);
+                            animator.SetFloat("x position", 0);
+                            animator.SetFloat("y position", 1);
+                        }
+                    }
+
+                    //"move" to the next tile
+                    Vector3 offset = new Vector3(tileManager.entitiesMap.cellSize.x, tileManager.entitiesMap.cellSize.y, 0) * 0.5f;
+                    Vector3 startWorld = tileManager.entitiesMap.CellToWorld(GetGridPos()) + offset;
+                    Vector3 endWorld = tileManager.entitiesMap.CellToWorld(path[0]) + offset;
+                    float elapsed = 0f;
+                    while (elapsed < tileManager.stepDuration)
+                    {
+                        transform.position = Vector3.Lerp(startWorld, endWorld, elapsed / tileManager.stepDuration);
+                        elapsed += Time.deltaTime;
+                        yield return null;
+                    }
+                    transform.position = endWorld; // Snap to exact
+
+                    // Now actually move the entity in tileManager
+                    /*if(tileManager.GetTileDataAt(path[0]).occupyingEntity == null)
+                    {*/
+                        tileManager.MoveEntity(GetGridPos(), path[0]);
+                    //}
                     tempMovement -= tileManager.GetTileDataAt(path[0]).movementCost;
-                    //remove the current tile from the path
                     path.RemoveAt(0);
                 }
                 else
@@ -232,12 +279,20 @@ public class Unit : Entity
                     Debug.Log("Not enough movement");
                     tempMovement = 0;
                 }
-            }
+            /*}
             else
             {
                 Debug.Log("Entity in next tile");
                 tempMovement = 0;
-            }
+            }*/
+        }
+
+        if(animator != null)
+        {
+            animator.SetBool("moving", false);
+            animator.SetBool("attacking", false);
+            animator.SetFloat("x position", 0);
+            animator.SetFloat("y position", 0);
         }
 
     }
@@ -304,7 +359,7 @@ public class Unit : Entity
                 //Debug.Log("UNIT.Distance = " + path.Count);
                 if (path.Count > 0)
                 {
-                    Move(path);
+                    StartCoroutine(Move(path));
                 }
                 else
                 {

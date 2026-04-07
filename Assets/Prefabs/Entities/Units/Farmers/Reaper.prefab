@@ -110,6 +110,7 @@ MonoBehaviour:
   currentHealth: 10
   isObstacle: 1
   isInteractable: 0
+  animator: {fileID: 8576854633653516862}
   ID: 2
   strength: 1
   attackRange: 1
