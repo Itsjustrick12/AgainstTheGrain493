@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.TestTools;
+using UnityEngine.UI;
 using static UnityEngine.AdaptivePerformance.Provider.AdaptivePerformanceSubsystemDescriptor;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
@@ -12,6 +13,12 @@ public class UnitInfoPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI strengthText;
     [SerializeField] private TextMeshProUGUI movementText;
+
+    [SerializeField] RectTransform healthBarMask;
+    [SerializeField] RectTransform healthBar;
+    [SerializeField] float healthBarWidth;
+
+    [SerializeField] Image unitImage;
 
     //[SerializeField] private Color normalColor;
     //[SerializeField] private Color buffColor;
@@ -123,5 +130,21 @@ public class UnitInfoPanel : MonoBehaviour
             movementText.text = moveRange.ToString();
             movementText.color = Color.black;
         }
+
+        unitImage.sprite = info.sprite;
+        UpdateHealthBar(currentHealth, maxHealth);
+    }
+
+    private void UpdateHealthBar(int currentHealth, int maxHealth)
+    {
+        if (healthBarMask == null) return;
+
+        healthBarWidth = healthBar.rect.width;
+
+        float ratio = (maxHealth > 0) ? (float)currentHealth / maxHealth : 0f;
+        ratio = Mathf.Clamp01(ratio); //Clamp so buffs don't make it stretch
+
+        // Scale the fill by adjusting its width while keeping the left edge anchored
+        healthBarMask.sizeDelta = new Vector2(healthBarWidth * ratio, healthBarMask.sizeDelta.y);
     }
 }
