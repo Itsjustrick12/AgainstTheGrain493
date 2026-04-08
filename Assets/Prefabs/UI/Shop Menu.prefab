@@ -1022,7 +1022,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 6c7af6356423bc6408c6db531ad5c23d, type: 3}
+  m_Texture: {fileID: 2800000, guid: fdfeee62f8543b5419ab860b08290aef, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1443,6 +1443,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Animal Button
       objectReference: {fileID: 0}
+    - target: {fileID: 6174549671108652048, guid: 06df0cd049cd48b41a19a10ca20dd78e, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 4d3e77d4b3d544940b245715c5a59649, type: 3}
     - target: {fileID: 7194515360593125128, guid: 06df0cd049cd48b41a19a10ca20dd78e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1523,6 +1527,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7683127964346203651, guid: 06df0cd049cd48b41a19a10ca20dd78e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 8678448789981272047, guid: be65cd5b858cdbb4188903d6a6ff1af2, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1572,6 +1580,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Animal Button
       objectReference: {fileID: 0}
+    - target: {fileID: 6174549671108652048, guid: 06df0cd049cd48b41a19a10ca20dd78e, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 4d3e77d4b3d544940b245715c5a59649, type: 3}
     - target: {fileID: 7194515360593125128, guid: 06df0cd049cd48b41a19a10ca20dd78e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1652,6 +1664,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7683127964346203651, guid: 06df0cd049cd48b41a19a10ca20dd78e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 8678448789981272047, guid: be65cd5b858cdbb4188903d6a6ff1af2, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

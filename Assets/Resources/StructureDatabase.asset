@@ -13,20 +13,5 @@ MonoBehaviour:
   m_Name: StructureDatabase
   m_EditorClassIdentifier: Assembly-CSharp::StructureDatabase
   structures:
-  - id: 1
-    entityName: Barn
-    prefab: {fileID: 4935858330493278644, guid: 1fb64ed29ebab7643b1a81c0905270c5, type: 3}
-    tile: {fileID: 11400000, guid: 3d2de26cfccd69f46915ad2ef928c7ca, type: 2}
-    sprite: {fileID: 1558526159, guid: cdfe7375b027c674fad321294e681b36, type: 3}
-    actions:
-    - {fileID: 11400000, guid: ed87d6aeb80615548a89ea604f5e3cfe, type: 2}
-    purchasePrice: -1
-    sellValue: -1
-  - id: 2
-    entityName: Fence
-    prefab: {fileID: 4935858330493278644, guid: 382b3da311946024e9b29fa5bea1c4d4, type: 3}
-    tile: {fileID: 11400000, guid: e8d46877861594d40bad8ff7f86951b4, type: 2}
-    sprite: {fileID: -4505600179052156391, guid: ab8f8f0f3a21e6f468adb99cc64d74b6, type: 3}
-    actions: []
-    purchasePrice: -1
-    sellValue: -1
+  - {fileID: 11400000, guid: 90a05064495d158458958e2f3d321d9c, type: 2}
+  - {fileID: 11400000, guid: 89d7ed3371a9e494a871ab597009693c, type: 2}

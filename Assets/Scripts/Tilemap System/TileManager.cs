@@ -20,6 +20,7 @@ public class TileManager : MonoBehaviour
     //Will be used for drawing the boarder around where tiles are placed so theres no screen edges
     public Tilemap borderMap;
     public TileBase borderTile;
+    public TileHelper tileHelper;
 
     //Used for getting nearby references of tiles
     [HideInInspector]private static Vector3Int[] NEIGHBORS = new Vector3Int[]
@@ -46,6 +47,9 @@ public class TileManager : MonoBehaviour
     public TileBase wateredDirtTile;
     public TileBase pathTile;
 
+    //speed of movement (tile per second)f
+    public float stepDuration;
+
     //Dicionary for getting quick references to the data at a given tile (occupants, terrain etc)
     private Dictionary<Vector3Int, TileData> tilePosToData;
 
@@ -55,7 +59,7 @@ public class TileManager : MonoBehaviour
     public void Awake()
     {
         tilePosToData = new Dictionary<Vector3Int, TileData>();
-        int size = 16;
+        int size = GameConstants.MapSizeToInt(GameManager.Instance.mapSize);
         for (int i = -size/2; i < size / 2; i++)
         {
             for (int j = -size / 2; j < size / 2; j++)
@@ -163,6 +167,32 @@ public class TileManager : MonoBehaviour
         }
     }
 
+    //Take the mask value and shift it to be the default layout for the 4x4 tilemap
+    //Will save time doing art
+    public int ConvertMaskIndex(int mask) {
+        
+        int[] convert = {
+        6,//grass grass grass grass
+        5, //TL dirt
+        2,//TR dirt
+        3,//TL TR dirt
+        10,//BL dirt
+        1,//TL BL dirt
+        4,//TR BL dirt
+        13, //TL TR BL dirt
+        7, //BR dirt
+        14, //TL BR dirt
+        11, //TR BR dirt
+        0,//TL TR BR dirt
+        9, //BL BR dirt
+        8, //TL BL BR dirt
+        15, //TR BL BR dirt
+        12//all dirt
+        };
+
+        return convert[mask];
+    }
+
     private TileBase CalculateBaseDisplayTile(Vector3Int pos)
     {
         TileType tR = GetTileTypeAt(pos - NEIGHBORS[0]);
@@ -180,7 +210,7 @@ public class TileManager : MonoBehaviour
         if (bL == TileType.Dirt || bL == TileType.WateredDirt) mask |= 4;   // BL
         if (bR == TileType.Dirt || bR == TileType.WateredDirt) mask |= 8;   // BR
 
-        return tiles[mask];
+        return tiles[ConvertMaskIndex(mask)];
     }
 
     private TileBase CalculateOverlayDisplayTile(Vector3Int pos)
@@ -201,7 +231,7 @@ public class TileManager : MonoBehaviour
         if (bR == TileType.WateredDirt) mask |= 8;   // BR
 
         //Return the mask shifted up to the opacity tiles
-        return tiles[mask+16];
+        return tiles[ConvertMaskIndex(mask) + 16];
     }
 
     public void PlaceEntityOnTile(Vector3Int pos, Entity entity)
@@ -244,6 +274,7 @@ public class TileManager : MonoBehaviour
 
     public void MoveEntity(Vector3Int start, Vector3Int end)
     {
+        
         TileData fromData = tilePosToData[start];
         TileData toData = tilePosToData[end];
         if (fromData == null || toData == null)
@@ -258,6 +289,7 @@ public class TileManager : MonoBehaviour
             fromData.ClearOccupant();
             PlaceEntityOnTile(end, selectedEntity);
         }
+        
         
     }
     //Need to check for unit null upon return
@@ -287,7 +319,7 @@ public class TileManager : MonoBehaviour
     public void DrawBorder(int size)
     {
         int half = size / 2;
-        int borderWidth = 2;
+        int borderWidth = 3;
 
         for (int i = -half - borderWidth; i < half + borderWidth; i++)
         {

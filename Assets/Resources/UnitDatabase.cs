@@ -3,36 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class EntityInfo
-{
-    //Basic Indentifiers
-    public int id;
-    public string entityName;
-
-    [Header("Prefab Spawned in Game")]
-    public GameObject prefab;
-
-    [Header("Level Editor / Map Preview")]
-    public TileBase tile;
-    public Sprite sprite;
-
-    [Header("Actions")]
-    public List<EntityAction> actions;
-
-    [Header("Economy Values")]
-    public int purchasePrice;
-    public int sellValue;
-}
-
-//Entries for Database system used by Level Editor and other UI
-[System.Serializable]
-public class UnitInfo : EntityInfo
-{
-    [Header("Unit Specific")]
-    public bool isEnemy;
-}
-//
-[CreateAssetMenu(fileName = "AgainstTheGrain/Unit Database", menuName = "UnitDatabase")]
+[CreateAssetMenu(fileName = "NewUnitDatabase", menuName = "AgainstTheGrain/Databases/UnitDatabase")]
 public class UnitDatabase : ScriptableObject
 {
     private static UnitDatabase instance;
