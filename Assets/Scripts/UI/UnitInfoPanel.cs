@@ -1,6 +1,9 @@
-using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine;
+using UnityEngine.TestTools;
+using static UnityEngine.AdaptivePerformance.Provider.AdaptivePerformanceSubsystemDescriptor;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class UnitInfoPanel : MonoBehaviour
 {
@@ -27,24 +30,11 @@ public class UnitInfoPanel : MonoBehaviour
         currentCanvas.alpha = 1;
         currentCanvas.interactable = true;
         currentCanvas.blocksRaycasts = true; //Prevents things from behind it being clicked
-        UnitInfo info = UnitDatabase.Instance.GetUnitInfo(currUnit.ID);
-        string unitName = info.entityName;
-        int currentHealth = currUnit.GetHealth();
-        int maxHealth = info.baseHealth;
-        int strength = currUnit.GetStrength();
-        int moveRange = currUnit.GetMoveRange();
 
-        Vector2 canvasPosition = Camera.main.WorldToScreenPoint(currUnit.GetGridPos()+offset);
-
-
+        Vector2 canvasPosition = Camera.main.WorldToScreenPoint(currUnit.GetGridPos() + offset);
         this.transform.position = canvasPosition;
 
-        nameText.text = unitName;
-        healthText.text = currentHealth.ToString() + "/" + maxHealth.ToString();
-        strengthText.text = strength.ToString();
-        movementText.text = moveRange.ToString();
-
-
+        PopulatePanel(currUnit);
 
         //Debug.Log(unitName);
 
@@ -57,4 +47,73 @@ public class UnitInfoPanel : MonoBehaviour
         currentCanvas.blocksRaycasts = false; //Prevents things from behind it being clicked
     }
 
+    public void PopulatePanel(Unit currUnit)
+    {
+
+        UnitInfo info = UnitDatabase.Instance.GetUnitInfo(currUnit.ID);
+        string unitName = info.entityName;
+        int currentHealth = currUnit.GetHealth();
+        int maxHealth = info.baseHealth;
+        int strength = currUnit.GetStrength();
+        int moveRange = currUnit.GetMoveRange();
+
+        nameText.text = unitName;
+        healthText.text = currentHealth.ToString() + "/" + maxHealth.ToString();
+        strengthText.text = strength.ToString();
+        movementText.text = moveRange.ToString();
+
+        int baseStat = 0;
+
+        baseStat = info.baseHealth;
+        if (currentHealth > baseStat)
+        {
+            int valDif = currentHealth - baseStat;
+            healthText.text = currentHealth.ToString() + " (" + valDif + ")" + "/" + maxHealth.ToString();
+        }
+        else
+        {
+            healthText.text = currentHealth.ToString() + "/" + maxHealth.ToString();
+        }
+
+        baseStat = info.strength;
+        if (strength != baseStat)
+        {
+            Debug.Log("BaseStat: " + baseStat);
+            Debug.Log("Strength: " + strength);
+            int valDif = strength - baseStat;
+            //Debug.Log("Diff: " + valDif);
+            if(valDif > 0)
+            {
+                strengthText.text = strength.ToString() + " ( +" + valDif + ")";
+            }
+            else
+            {
+                strengthText.text = strength.ToString() + " ( -" + valDif + ")";
+            }
+            
+        }
+        else
+        {
+            strengthText.text = strength.ToString();
+        }
+
+        baseStat = info.moveRange;
+        if (moveRange != baseStat)
+        {
+            int valDif = moveRange - baseStat;
+            if (valDif > 0)
+            {
+                movementText.text = moveRange.ToString() + " ( +" + valDif + ")";
+            }
+            else
+            {
+                movementText.text = moveRange.ToString() + " ( -" + valDif + ")";
+            }
+            
+        }
+        else
+        {
+            movementText.text = moveRange.ToString();
+        }
+    }
 }
