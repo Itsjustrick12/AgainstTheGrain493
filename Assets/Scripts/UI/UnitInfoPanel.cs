@@ -69,10 +69,12 @@ public class UnitInfoPanel : MonoBehaviour
         {
             int valDif = currentHealth - baseStat;
             healthText.text = currentHealth.ToString() + " (" + valDif + ")" + "/" + maxHealth.ToString();
+            healthText.color = Color.green;
         }
         else
         {
             healthText.text = currentHealth.ToString() + "/" + maxHealth.ToString();
+            healthText.color = Color.black;
         }
 
         baseStat = info.strength;
@@ -85,16 +87,19 @@ public class UnitInfoPanel : MonoBehaviour
             if(valDif > 0)
             {
                 strengthText.text = strength.ToString() + " ( +" + valDif + ")";
+                strengthText.color = Color.green;
             }
             else
             {
                 strengthText.text = strength.ToString() + " ( -" + valDif + ")";
+                strengthText.color = Color.red;
             }
             
         }
         else
         {
             strengthText.text = strength.ToString();
+            strengthText.color = Color.black;
         }
 
         baseStat = info.moveRange;
@@ -104,16 +109,19 @@ public class UnitInfoPanel : MonoBehaviour
             if (valDif > 0)
             {
                 movementText.text = moveRange.ToString() + " ( +" + valDif + ")";
+                movementText.color = Color.green;
             }
             else
             {
                 movementText.text = moveRange.ToString() + " ( -" + valDif + ")";
+                movementText.color = Color.red;
             }
             
         }
         else
         {
             movementText.text = moveRange.ToString();
+            movementText.color = Color.black;
         }
     }
 }
