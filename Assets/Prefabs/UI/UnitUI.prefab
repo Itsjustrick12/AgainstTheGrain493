@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5330278615825222902}
   - component: {fileID: 5163202042895243433}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Unit Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 136, y: -32}
-  m_SizeDelta: {x: 96, y: 96}
+  m_SizeDelta: {x: 192, y: 192}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5330278615825222902
 CanvasRenderer:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5610656108258937444, guid: 6a8d401cf1fb1a84789d375a3cf97b42, type: 3}
+  m_Sprite: {fileID: 3731043250507710055, guid: 92420b7328e8add4bb15d9f70b26714f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -205,6 +205,10 @@ MonoBehaviour:
   healthBarMask: {fileID: 4114431438138596095}
   healthBar: {fileID: 5660963292955104334}
   healthBarWidth: 0
+  unitImage: {fileID: 5163202042895243433}
+  normalColor: {r: 0, g: 0, b: 0, a: 1}
+  buffColor: {r: 0.17850478, g: 0.5169811, b: 0.2587621, a: 1}
+  debuffColor: {r: 0.6150943, g: 0.12882164, b: 0.12882164, a: 1}
   offset: {x: 2.5, y: 0, z: 0}
 --- !u!225 &4605741968769118241
 CanvasGroup:
@@ -214,7 +218,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4089155898649510962}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -803,7 +807,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &7603966737112747404
 MonoBehaviour:
   m_ObjectHideFlags: 0
