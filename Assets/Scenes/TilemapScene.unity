@@ -718,6 +718,17 @@ Sprite:
   m_Bones: []
   m_ScriptableObjects: []
   m_SpriteID: 
+--- !u!114 &402584997 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5163202042895243433, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+  m_PrefabInstance: {fileID: 1996009056}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &456173020
 GameObject:
   m_ObjectHideFlags: 0
@@ -5790,18 +5801,6 @@ PrefabInstance:
       value: 1440
       objectReference: {fileID: 0}
     - target: {fileID: 2580123651902845258, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 2580123651902845258, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 2580123651902845258, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 2580123651902845258, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -5849,49 +5848,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2713810534598828848, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
-      propertyPath: m_ChildForceExpandHeight
-      value: 1
+    - target: {fileID: 3140808925765419870, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: m_Name
+      value: Unit Image
       objectReference: {fileID: 0}
+    - target: {fileID: 5163202042895243433, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3731043250507710055, guid: 92420b7328e8add4bb15d9f70b26714f, type: 3}
     - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
-      propertyPath: buffColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
-      propertyPath: buffColor.b
-      value: 0.38823533
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
-      propertyPath: buffColor.g
-      value: 0.89019614
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
-      propertyPath: buffColor.r
-      value: 0.7019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
-      propertyPath: debuffColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
-      propertyPath: debuffColor.b
-      value: 0.10588236
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
-      propertyPath: debuffColor.g
-      value: 0.2509804
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
-      propertyPath: debuffColor.r
-      value: 0.9725491
+      propertyPath: unitImage
+      value: 
+      objectReference: {fileID: 402584997}
+    - target: {fileID: 6850974619462581591, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7495709860225659441, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
       propertyPath: m_Name
       value: UnitUI
       objectReference: {fileID: 0}
-    - target: {fileID: 7495709860225659441, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 8787820647366677973, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 192
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787820647366677973, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 192
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
