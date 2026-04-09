@@ -31,8 +31,7 @@ public class UnitInfoPanel : MonoBehaviour
         currentCanvas.interactable = true;
         currentCanvas.blocksRaycasts = true; //Prevents things from behind it being clicked
 
-        Vector2 canvasPosition = Camera.main.WorldToScreenPoint(currUnit.GetGridPos() + offset);
-        this.transform.position = canvasPosition;
+        MovePanel(currUnit); 
 
         PopulatePanel(currUnit);
 
@@ -123,5 +122,26 @@ public class UnitInfoPanel : MonoBehaviour
             movementText.text = moveRange.ToString();
             movementText.color = Color.black;
         }
+    }
+
+
+    public void MovePanel(Unit currUnit)
+    {
+        Vector2 screenPos = Camera.main.WorldToScreenPoint(currUnit.GetGridPos() + offset);
+
+        RectTransform rect = GetComponent<RectTransform>();
+        Vector2 size = rect.sizeDelta;
+        Vector2 pivot = rect.pivot;
+
+        float minX = size.x * pivot.x;
+        float maxX = Screen.width - size.x * (1 - pivot.x);
+
+        float minY = size.y * pivot.y;
+        float maxY = Screen.height - size.y * (1 - pivot.y);
+
+        screenPos.x = Mathf.Clamp(screenPos.x, minX, maxX);
+        screenPos.y = Mathf.Clamp(screenPos.y, minY, maxY);
+
+        rect.position = screenPos;
     }
 }
