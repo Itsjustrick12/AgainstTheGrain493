@@ -117,7 +117,14 @@ public class UnitInteractionSystem : TileCursor
         if(selectedEntity == null && potentialEntity != null)
         {
             Unit unit = potentialEntity as Unit;
-            infoPanel.ShowPanel(unit);
+            if (unit != null) { 
+            
+                infoPanel.ShowPanel(unit);
+            }
+            else
+            {
+                infoPanel.HidePanel();
+            }
             //Debug.Log("There is an entity Here");
         }
         else
