@@ -150,20 +150,25 @@ public class UnitInfoPanel : MonoBehaviour
 
     public void MovePanel(Unit currUnit)
     {
-        Vector2 screenPos = Camera.main.WorldToScreenPoint(currUnit.GetGridPos() + offset);
-
         RectTransform rect = GetComponent<RectTransform>();
         Vector2 size = rect.sizeDelta;
-        Vector2 pivot = rect.pivot;
 
-        float minX = size.x * pivot.x;
-        float maxX = Screen.width - size.x * (1 - pivot.x);
+        Vector3 worldPos = currUnit.GetGridPos();
 
-        float minY = size.y * pivot.y;
-        float maxY = Screen.height - size.y * (1 - pivot.y);
+        // First try with normal offset
+        Vector3 desiredWorldPos = worldPos + offset;
+        Vector2 screenPos = Camera.main.WorldToScreenPoint(desiredWorldPos);
 
-        screenPos.x = Mathf.Clamp(screenPos.x, minX, maxX);
-        screenPos.y = Mathf.Clamp(screenPos.y, minY, maxY);
+        // Check horizontal bounds
+        bool offRight = screenPos.x + size.x > Screen.width;
+        // Flip offset if going off screen
+        Vector3 finalOffset = offset;
+
+        if (offRight)
+        {
+            finalOffset = (offset * -1) + new Vector3(0.75f,0,0);
+            screenPos = Camera.main.WorldToScreenPoint(worldPos + finalOffset);
+        }
 
         rect.position = screenPos;
     }
