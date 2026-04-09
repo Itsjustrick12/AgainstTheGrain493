@@ -20,9 +20,9 @@ public class UnitInfoPanel : MonoBehaviour
 
     [SerializeField] Image unitImage;
 
-    //[SerializeField] private Color normalColor;
-    //[SerializeField] private Color buffColor;
-    //[SerializeField] private Color debuffColor;
+    [SerializeField] private Color normalColor;
+    [SerializeField] private Color buffColor;
+    [SerializeField] private Color debuffColor;
 
     [SerializeField] private Vector3 offset = new Vector3(2.5f, 0, 0);
 
@@ -75,12 +75,12 @@ public class UnitInfoPanel : MonoBehaviour
         {
             int valDif = currentHealth - baseStat;
             healthText.text = currentHealth.ToString() + " (" + valDif + ")" + "/" + maxHealth.ToString();
-            healthText.color = Color.green;
+            healthText.color = buffColor;
         }
         else
         {
             healthText.text = currentHealth.ToString() + "/" + maxHealth.ToString();
-            healthText.color = Color.black;
+            healthText.color = normalColor;
         }
 
         baseStat = info.strength;
@@ -93,19 +93,19 @@ public class UnitInfoPanel : MonoBehaviour
             if(valDif > 0)
             {
                 strengthText.text = strength.ToString() + " ( +" + valDif + ")";
-                strengthText.color = Color.green;
+                strengthText.color = buffColor;
             }
             else
             {
                 strengthText.text = strength.ToString() + " ( -" + valDif + ")";
-                strengthText.color = Color.red;
+                strengthText.color = debuffColor;
             }
             
         }
         else
         {
             strengthText.text = strength.ToString();
-            strengthText.color = Color.black;
+            strengthText.color = normalColor;
         }
 
         baseStat = info.moveRange;
@@ -115,19 +115,19 @@ public class UnitInfoPanel : MonoBehaviour
             if (valDif > 0)
             {
                 movementText.text = moveRange.ToString() + " ( +" + valDif + ")";
-                movementText.color = Color.green;
+                movementText.color = buffColor;
             }
             else
             {
                 movementText.text = moveRange.ToString() + " ( -" + valDif + ")";
-                movementText.color = Color.red;
+                movementText.color = debuffColor;
             }
             
         }
         else
         {
             movementText.text = moveRange.ToString();
-            movementText.color = Color.black;
+            movementText.color = normalColor;
         }
 
         unitImage.sprite = info.sprite;

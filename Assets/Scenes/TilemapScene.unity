@@ -5852,6 +5852,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Unit Image
       objectReference: {fileID: 0}
+    - target: {fileID: 4605741968769118241, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5163202042895243433, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -5860,6 +5864,42 @@ PrefabInstance:
       propertyPath: unitImage
       value: 
       objectReference: {fileID: 402584997}
+    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: buffColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: buffColor.b
+      value: 0.2587621
+      objectReference: {fileID: 0}
+    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: buffColor.g
+      value: 0.5169811
+      objectReference: {fileID: 0}
+    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: buffColor.r
+      value: 0.17850478
+      objectReference: {fileID: 0}
+    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: debuffColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: debuffColor.b
+      value: 0.12882164
+      objectReference: {fileID: 0}
+    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: debuffColor.g
+      value: 0.12882164
+      objectReference: {fileID: 0}
+    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: debuffColor.r
+      value: 0.6150943
+      objectReference: {fileID: 0}
+    - target: {fileID: 6700521052339286765, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
+      propertyPath: normalColor.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6850974619462581591, guid: 73a5bf95c958766499f2c8ed6cdab565, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 0
