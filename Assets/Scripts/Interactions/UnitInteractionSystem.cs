@@ -284,7 +284,7 @@ public class UnitInteractionSystem : TileCursor
     private IEnumerator WaitForMoveAndShowOptions(Unit unit, TileData toData)
     {
         DisableInputs();
-        //Debug.Log("WaitForMoveAndShowOptions");
+        Debug.Log("WaitForMoveAndShowOptions");
         isMoving = true;
         yield return StartCoroutine(unit.Move(tileHelper.TilePath(prevLocation, afterLocation, tileManager.GetUnitOnTile(afterLocation))));
 
@@ -363,7 +363,7 @@ public class UnitInteractionSystem : TileCursor
                 {
                     //tileManager.MoveEntity(afterLocation, prevLocation);
                     isMoving = true;
-                    //Debug.Log("UndoAction");
+                    Debug.Log("UndoAction");
                     StartCoroutine(unit.Move(tileHelper.TilePath(afterLocation, prevLocation, tileManager.GetUnitOnTile(afterLocation))));
                     isMoving = false;
                     afterLocation = prevLocation;
@@ -435,19 +435,35 @@ public class UnitInteractionSystem : TileCursor
         //Check tightly to ensure that there is a real unit to move
         //Stop Action is sometimes called by the feeding logic, to prevent accidental undos of locations,
         //check that the previous and after locations actually mean something
-        if (afterLocation != prevLocation
+        StartCoroutine(StopActionRoutine());
+    }
+
+    private IEnumerator StopActionRoutine()
+{
+    if (afterLocation != prevLocation
         && afterLocation != new Vector3Int(0, 0, -1)
         && prevLocation != new Vector3Int(0, 0, -1))
-        {
-            //tileManager.MoveEntity(afterLocation, prevLocation);
-            isMoving = true;
-            //Debug.Log("StopAction");
-            StartCoroutine(tileManager.GetUnitOnTile(afterLocation).Move(tileHelper.TilePath(afterLocation, prevLocation, tileManager.GetUnitOnTile(afterLocation))));
-            isMoving = false;
-        }
+    {
+        Unit unit = tileManager.GetUnitOnTile(afterLocation);
 
-        ResetData();
+        if (unit != null)
+        {
+            DisableInputs();
+            isMoving = true;
+
+            yield return StartCoroutine(
+                unit.Move(tileHelper.TilePath(afterLocation, prevLocation, unit))
+            );
+
+            yield return new WaitUntil(() => !unit.isMoving);
+
+            isMoving = false;
+            EnableInputs();
+        }
     }
+
+    ResetData();
+}
 
     private void ResetData()
     {
