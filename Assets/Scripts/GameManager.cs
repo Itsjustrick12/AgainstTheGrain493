@@ -59,6 +59,11 @@ public class GameManager : MonoBehaviour
         interactionSystem = FindFirstObjectByType<UnitInteractionSystem>();
         aiManager = FindFirstObjectByType<AIManager>();
         camera = FindFirstObjectByType<CameraController>();
+
+        if (turnChangeUI == null)
+        {
+            turnChangeUI = FindFirstObjectByType<TurnChangeUI>();
+        }
     }
 
     public void Start()
