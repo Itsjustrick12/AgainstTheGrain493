@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6a8d401cf1fb1a84789d375a3cf97b42
+guid: 78571c5d76876c24f877efffbc639fe7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5610656108258937444
-    second: unit_farmer_basic_idle_strip1_0
+      213: 7001010235570459955
+    second: basicIcon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -101,7 +101,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: unit_farmer_basic_idle_strip1_0
+      name: basicIcon_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 16
+        x: 6
+        y: 0
         width: 22
-        height: 33
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 46a46a1010e0ddd40800000000000000
-      internalID: 5610656108258937444
+      spriteID: 3351d0067b5982160800000000000000
+      internalID: 7001010235570459955
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      unit_farmer_basic_idle_strip1_0: 5610656108258937444
+      basicIcon_0: 7001010235570459955
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
