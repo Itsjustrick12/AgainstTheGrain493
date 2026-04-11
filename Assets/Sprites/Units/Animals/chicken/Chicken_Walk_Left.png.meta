@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: 3b9a850f2ab119148b19797283fceb50
+guid: ff5a478a4b2952b4987f0a3580b9d73a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8382294039849201598
-    second: Chicken_Walk_Up_0
+      213: 7543248093631297631
+    second: Chicken_Walk_Left_0
   - first:
-      213: -4658874074232099933
-    second: Chicken_Walk_Up_1
+      213: -4119314787194896228
+    second: Chicken_Walk_Left_1
   - first:
-      213: 4379761681696932595
-    second: Chicken_Walk_Up_2
+      213: 3609924622739611323
+    second: Chicken_Walk_Left_2
   - first:
-      213: -6467976051320077993
-    second: Chicken_Walk_Up_3
+      213: 8665485049316922752
+    second: Chicken_Walk_Left_3
   - first:
-      213: -3035885231948778343
-    second: Chicken_Walk_Up_4
+      213: 2165936777231656711
+    second: Chicken_Walk_Left_4
   - first:
-      213: 949019830647402415
-    second: Chicken_Walk_Up_5
+      213: 1066705406188726751
+    second: Chicken_Walk_Left_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -128,133 +128,133 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Chicken_Walk_Up_0
+      name: Chicken_Walk_Left_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 5
-        width: 16
-        height: 23
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2401ae76bfb1cab80800000000000000
-      internalID: -8382294039849201598
+      spriteID: f583981ec200fa860800000000000000
+      internalID: 7543248093631297631
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chicken_Walk_Up_1
+      name: Chicken_Walk_Left_1
       rect:
         serializedVersion: 2
-        x: 40
-        y: 6
-        width: 16
-        height: 23
+        x: 32
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3ab6e1896ba585fb0800000000000000
-      internalID: -4658874074232099933
+      spriteID: c900c3fa60145d6c0800000000000000
+      internalID: -4119314787194896228
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chicken_Walk_Up_2
+      name: Chicken_Walk_Left_2
       rect:
         serializedVersion: 2
-        x: 72
-        y: 5
-        width: 16
-        height: 23
+        x: 64
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3f2c9666b0a08cc30800000000000000
-      internalID: 4379761681696932595
+      spriteID: bbe94547157091230800000000000000
+      internalID: 3609924622739611323
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chicken_Walk_Up_3
+      name: Chicken_Walk_Left_3
       rect:
         serializedVersion: 2
-        x: 104
-        y: 5
-        width: 16
-        height: 23
+        x: 96
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7514555dc022d36a0800000000000000
-      internalID: -6467976051320077993
+      spriteID: 0855efa9dbcf14870800000000000000
+      internalID: 8665485049316922752
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chicken_Walk_Up_4
+      name: Chicken_Walk_Left_4
       rect:
         serializedVersion: 2
-        x: 136
-        y: 6
-        width: 16
-        height: 23
+        x: 128
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 994b6d2677e5ed5d0800000000000000
-      internalID: -3035885231948778343
+      spriteID: 707e8d4f504fe0e10800000000000000
+      internalID: 2165936777231656711
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chicken_Walk_Up_5
+      name: Chicken_Walk_Left_5
       rect:
         serializedVersion: 2
-        x: 168
-        y: 5
-        width: 16
-        height: 23
+        x: 160
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: faf2a8202889b2d00800000000000000
-      internalID: 949019830647402415
+      spriteID: fd92edf4ae2bdce00800000000000000
+      internalID: 1066705406188726751
       vertices: []
       indices: 
       edges: []
@@ -263,7 +263,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6622962c2fafaa042bd3008a765304cf
     internalID: 0
     vertices: []
     indices: 
@@ -271,14 +271,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Chicken_Walk_Up_0: -8382294039849201598
-      Chicken_Walk_Up_1: -4658874074232099933
-      Chicken_Walk_Up_2: 4379761681696932595
-      Chicken_Walk_Up_3: -6467976051320077993
-      Chicken_Walk_Up_4: -3035885231948778343
-      Chicken_Walk_Up_5: 949019830647402415
+      Chicken_Walk_Left_0: 7543248093631297631
+      Chicken_Walk_Left_1: -4119314787194896228
+      Chicken_Walk_Left_2: 3609924622739611323
+      Chicken_Walk_Left_3: 8665485049316922752
+      Chicken_Walk_Left_4: 2165936777231656711
+      Chicken_Walk_Left_5: 1066705406188726751
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
