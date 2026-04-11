@@ -252,6 +252,7 @@ public class Unit : Entity
 
     public IEnumerator Move(List<Vector3Int> path)
     {
+        //Debug.Log("startmove");
         if (path.Count == 0) yield break;
         isMoving = true;
 
@@ -261,8 +262,11 @@ public class Unit : Entity
         if (startLogicalPos == path[0])
             path.RemoveAt(0);
 
-        if (path.Count == 0) yield break;
-
+        if (path.Count == 0) 
+        {
+            isMoving = false;
+            yield break;
+        }
         Vector3Int destination = path[path.Count - 1];
 
 
@@ -293,6 +297,7 @@ public class Unit : Entity
             {
                 transform.position = Vector3.Lerp(startWorld, endWorld, elapsed / tileManager.stepDuration);
                 elapsed += Time.deltaTime;
+                isMoving = false;
                 yield return null;
             }
             transform.position = endWorld; // snap to exact position
@@ -316,7 +321,7 @@ public class Unit : Entity
     {
         if (target.z == -1)
         {
-            Debug.Log("UNIT.No target!");
+            //Debug.Log("UNIT.No target!");
             return false;
         }
 
@@ -326,7 +331,7 @@ public class Unit : Entity
 
         if (!isAdjacent)
         {
-            Debug.Log("Target isn't adjacent!");
+            //Debug.Log("UNIT.Target isn't adjacent!");
             //Set the target a second time
             return false;
         }
@@ -334,7 +339,7 @@ public class Unit : Entity
         TileData targetTile = tileManager.GetTileDataAt(target);
         if (targetTile == null || targetTile.occupyingEntity == null)
         {
-            Debug.Log("UNIT.Nothing to attack!");
+            //Debug.Log("UNIT.Nothing to attack!");
             return false;
         }
 
@@ -354,9 +359,8 @@ public class Unit : Entity
         }
     }
 
-    public void DoTurn()
+    public IEnumerator DoTurn()
     {
-        //Debug.Log("Finding Target");
         if (target.z == -1)
         {
             target = aiManager.FindTarget(this);
@@ -382,11 +386,11 @@ public class Unit : Entity
                 //Debug.Log("UNIT.Distance = " + path.Count);
                 if (path.Count > 0)
                 {
-                    StartCoroutine(Move(DeterminePath(path)));
+                    yield return StartCoroutine(Move(DeterminePath(path)));
                 }
                 else
                 {
-                    Debug.Log("UNIT.No Need to Move!");
+                    //Debug.Log("UNIT.No Need to Move!");
                 }
             }
 
@@ -411,11 +415,13 @@ public class Unit : Entity
     public List<Vector3Int> DeterminePath(List<Vector3Int> orig)
     {
         List<Vector3Int> path = orig;
-       //Reduce path to be only the segements that are moveable
-       int budget = GetMoveRange();
+        //Reduce path to be only the segements that are moveable
+        int budget = GetMoveRange();
         int cost = 0;
         int steps = 0;
         Vector3Int prev = path[0]; // first item is start, skip it
+
+        /*
         foreach (Vector3Int step in path.Skip(1))
         {
             bool isDiagonal = (step.x != prev.x) && (step.y != prev.y);
@@ -426,6 +432,60 @@ public class Unit : Entity
             prev = step;
         }
         path = path.Skip(1).Take(steps).ToList();
+        */
+
+        //theoretically maximum distance
+        int current = 0;
+        int temprange = movementRange;
+        while(current < path.Count() && temprange >= tileManager.GetTileDataAt(path[current]).movementCost)
+        {
+            temprange -= tileManager.GetTileDataAt(path[current]).movementCost;
+            current++;
+        }
+
+        while(current + 1 < path.Count())
+        {
+            path.RemoveAt(current + 1);
+        }
+
+        //max distance with a free tile
+        while(path.Count() > 0 && tileManager.GetEntityOnTile(path[current]) != null)
+        {
+            path.RemoveAt(current);
+            current--;
+        }
+
+        if(!GetCanFly())
+        {
+            //keep going till you hit a tile you can't cross
+            for(int i = 1; i < path.Count(); i++)
+            {
+                //if the tile has something on it
+                if(tileManager.GetEntityOnTile(path[current]) != null)
+                {
+                    //and that something isn't a unit
+                    if(tileManager.GetEntityOnTile(path[current]) as Unit == null)
+                    {
+                        //set to remove everything past it
+                        current = i;
+                        i = path.Count();
+                    }//check to see if we can pass through this unit
+                    else if((tileManager.GetEntityOnTile(path[current]) as Unit).isEnemy != isEnemy)
+                    {
+                        current = i;
+                        i = path.Count();
+                    }
+                }
+            }
+        }
+
+        while(current + 1 < path.Count())
+        {
+            path.RemoveAt(current + 1);
+        }
+
+
+
         return path;
     }
 

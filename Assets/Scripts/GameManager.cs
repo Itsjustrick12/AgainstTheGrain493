@@ -219,7 +219,7 @@ public class GameManager : MonoBehaviour
             //Focus on each unit with the camera
             camera.FocusOnTilePosition(unit.GetGridPos(),0.25f);
             yield return new WaitForSeconds(0.25f); // pause between each enemy
-            unit.DoTurn();
+            yield return StartCoroutine(unit.DoTurn());
             yield return new WaitForSeconds(0.5f); // pause between each enemy
         }
         yield return new WaitForSeconds(0.5f);
