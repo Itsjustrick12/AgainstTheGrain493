@@ -808,7 +808,6 @@ GameObject:
   - component: {fileID: 370211286}
   - component: {fileID: 370211288}
   - component: {fileID: 370211287}
-  - component: {fileID: 370211289}
   m_Layer: 5
   m_Name: TurnStateUI
   m_TagString: Untagged
@@ -871,19 +870,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &370211289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 370211285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 763ec880601ab324d9d6f853975e1640, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TurnChangeUI
-  anim: {fileID: 370211287}
 --- !u!1 &456173020
 GameObject:
   m_ObjectHideFlags: 0
@@ -4153,7 +4139,6 @@ MonoBehaviour:
   isPlayerTurn: 0
   isPaused: 0
   mapSize: 2
-  turnChangeUI: {fileID: 370211289}
 --- !u!4 &957032419
 Transform:
   m_ObjectHideFlags: 0
