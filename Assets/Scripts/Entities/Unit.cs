@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.UI.Image;
 
 public class Unit : Entity
 {
@@ -249,45 +250,55 @@ public class Unit : Entity
 
         return temp;
     }
-
+    //Animated movement logic
     public IEnumerator Move(List<Vector3Int> path)
     {
-        //Debug.Log("startmove");
         if (path.Count == 0) yield break;
+        //Pause the user from interacting with anything during desync period
         isMoving = true;
 
         Vector3Int startLogicalPos = GetGridPos();
 
-        // Strip starting tile if path includes current position
+        //Removing starting point to prevent animation from looking weird
         if (startLogicalPos == path[0])
             path.RemoveAt(0);
-
-        if (path.Count == 0) 
+        //if its the only thing in there now, check again
+        if (path.Count == 0)
         {
             isMoving = false;
             yield break;
         }
+
+        //Determine the path the unit needs to take
+        if (isEnemy)
+            path = TrimPathForEnemy(path);
+
+        //check if trimmed too much again
+        if (path.Count == 0)
+        {
+            isMoving = false;
+            yield break;
+        }
+        //get the final position for the logical move
         Vector3Int destination = path[path.Count - 1];
 
-
-        // --- VISUAL MOVE: lerp through each waypoint ---
+        // VISUAL MOVE LOOP, LOOP OVER ALL TILES IN PATH
         Vector3 cellOffset = new Vector3(
             tileManager.entitiesMap.cellSize.x,
             tileManager.entitiesMap.cellSize.y, 0) * 0.5f;
 
+        //animate through remaining path
         for (int i = 0; i < path.Count; i++)
         {
             Vector3 startWorld = transform.position;
             Vector3 endWorld = tileManager.entitiesMap.CellToWorld(path[i]) + cellOffset;
 
-            // Derive direction from previous step in path (not from tile data)
             Vector3Int prevPos = (i == 0) ? startLogicalPos : path[i - 1];
             Vector3Int dir = path[i] - prevPos;
 
             if (animator != null)
             {
                 animator.SetBool("moving", true);
-                //animator.SetBool("attacking", false);
                 animator.SetFloat("x position", Mathf.Clamp(dir.x, -1, 1));
                 animator.SetFloat("y position", Mathf.Clamp(dir.y, -1, 1));
             }
@@ -297,24 +308,51 @@ public class Unit : Entity
             {
                 transform.position = Vector3.Lerp(startWorld, endWorld, elapsed / tileManager.stepDuration);
                 elapsed += Time.deltaTime;
-                isMoving = false;
                 yield return null;
             }
-            transform.position = endWorld; // snap to exact position
+            transform.position = endWorld;
         }
-        // --- LOGICAL MOVE: once, start to destination only ---
+
+        // LOGICAL MOVE, ACTUALLY MOVE TO GRID SPACE
         tileManager.MoveEntity(startLogicalPos, destination);
 
-        // Reset animator to idle
         if (animator != null)
         {
             animator.SetBool("moving", false);
-            //animator.SetBool("attacking", false);
             animator.SetFloat("x position", 0);
             animator.SetFloat("y position", 0);
         }
-
+        //flag used to allow player input again after move anim
         isMoving = false;
+    }
+
+    private List<Vector3Int> TrimPathForEnemy(List<Vector3Int> path)
+    {
+        // Trim to movement budget
+        int budget = GetMoveRange();
+        int trimAt = 0;
+        for (int i = 0; i < path.Count; i++)
+        {
+            int cost = tileManager.GetTileDataAt(path[i]).movementCost;
+            if (budget < cost) break;
+            budget -= cost;
+            trimAt = i + 1;
+        }
+        //start working with the path that is how far the entity can walk along that path
+        path = path.GetRange(0, trimAt);
+
+        //Walk backwards, ensure the ending spot of the path is NOT on a friendly unit even it it is reachable
+        while (path.Count > 0)
+        {
+            Entity occupant = tileManager.GetEntityOnTile(path[path.Count - 1]);
+            if (occupant == null) break;
+            Unit occupantUnit = occupant as Unit;
+            // This checks if the ending tile has a unit of the same team
+            if (occupantUnit != null && occupantUnit.isEnemy != isEnemy) break;
+            path.RemoveAt(path.Count - 1);
+        }
+        //Finally return the path for the movement animation
+        return path;
     }
 
     bool Attack()
@@ -386,7 +424,7 @@ public class Unit : Entity
                 //Debug.Log("UNIT.Distance = " + path.Count);
                 if (path.Count > 0)
                 {
-                    yield return StartCoroutine(Move(DeterminePath(path)));
+                    yield return StartCoroutine(Move(path));
                 }
                 else
                 {
@@ -410,64 +448,6 @@ public class Unit : Entity
             Attack();
             target = temp;
         }
-    }
-
-    public List<Vector3Int> DeterminePath(List<Vector3Int> orig)
-    {
-        if(orig == null || orig.Count == 0)
-        return new List<Vector3Int>();
-
-    List<Vector3Int> path = new List<Vector3Int>(orig);
-
-    int current = 1;
-    int tempRange = movementRange;
-
-
-    while(current < path.Count)
-    {
-        int moveCost = tileManager.GetTileDataAt(path[current]).movementCost;
-        if(tempRange < moveCost)
-            break;
-
-        tempRange -= moveCost;
-        current++;
-    }
-
-
-    if(current < path.Count)
-    {
-        path.RemoveRange(current, path.Count - current);
-    }
-
-    // Trim blocked destination tiles from the end
-    while(path.Count > 1 && tileManager.GetEntityOnTile(path[path.Count - 1]) != null)
-    {
-        path.RemoveAt(path.Count - 1);
-    }
-
-    if(!GetCanFly())
-    {
-        for(int i = 1; i < path.Count; i++)
-        {
-            var entity = tileManager.GetEntityOnTile(path[i]);
-            if(entity == null)
-                continue;
-
-            Unit unit = entity as Unit;
-
-            // Stop at impassable object or enemy
-            if(unit == null || unit.isEnemy != isEnemy)
-            {
-                path.RemoveRange(i, path.Count - i);
-                break;
-            }
-        }
-    }
-
-    return path;
-
-
-        return path;
     }
 
     public override void Die()

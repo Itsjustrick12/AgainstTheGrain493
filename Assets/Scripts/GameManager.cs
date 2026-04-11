@@ -41,6 +41,10 @@ public class GameManager : MonoBehaviour
 
     private int currUnit = 0;
 
+    public TurnChangeUI turnChangeUI;
+    public bool isGameOver = false;
+    public bool skipTurnAnimations = false;
+
     private void Awake()
     {
         // Ensure only one instance exists
@@ -55,6 +59,11 @@ public class GameManager : MonoBehaviour
         interactionSystem = FindFirstObjectByType<UnitInteractionSystem>();
         aiManager = FindFirstObjectByType<AIManager>();
         camera = FindFirstObjectByType<CameraController>();
+
+        if (turnChangeUI == null)
+        {
+            turnChangeUI = FindFirstObjectByType<TurnChangeUI>();
+        }
     }
 
     public void Start()
@@ -62,21 +71,25 @@ public class GameManager : MonoBehaviour
         //actionMenu = FindFirstObjectByType<ActionMenu>();
         isPlayerTurn = true;
         SpawnStartingUnits();
-
-    }
-    
-    public void BeginEnemyTurn(InputAction.CallbackContext context)
-    {
-        BeginEnemyTurn();
+        interactionSystem.DisableInputs();
+        PlayPlayerTurnAnimation();
     }
 
-    public void  BeginEnemyTurn()
+    public void BeginEnemyTurn()
     {
-        StartCoroutine(EnemyTurnRoutine());
+        if (skipTurnAnimations)
+        {
+            StartCoroutine(EnemyTurnRoutine());
+            return;
+        }
+
+        TurnChangeUI.TurnAnimationEnd.AddListener(OnEnemyTurnAnimDone);
+        turnChangeUI.PlayEnemyTurn();
     }
 
     public void BeginPlayerTurn()
     {
+        camera.FocusOnNextUnit();
         isPlayerTurn = true;
         interactionSystem.EnableInputs();
 
@@ -221,11 +234,26 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(0.25f); // pause between each enemy
             yield return StartCoroutine(unit.DoTurn());
             yield return new WaitForSeconds(0.5f); // pause between each enemy
+            if (isGameOver)
+                yield break;
         }
 
-        camera.FocusOnNextUnit();
-        yield return new WaitForSeconds(0.25f);
-        BeginPlayerTurn();
+        yield return new WaitForSeconds(0.5f);
+
+        PlayPlayerTurnAnimation();
+
+    }
+
+    private void PlayPlayerTurnAnimation()
+    {
+        if (skipTurnAnimations)
+        {
+            BeginPlayerTurn();
+            return;
+        }
+
+        TurnChangeUI.TurnAnimationEnd.AddListener(OnPlayerTurnAnimDone);
+        turnChangeUI.PlayPlayerTurn();
     }
 
 
@@ -264,6 +292,19 @@ public class GameManager : MonoBehaviour
         Entity.OnEntityDestroyed -= CheckEndState;
         input.Gameplay.Pause.performed -= TogglePause;
         input.Disable();
+    }
+
+    private void OnEnemyTurnAnimDone()
+    {
+        TurnChangeUI.TurnAnimationEnd.RemoveListener(OnEnemyTurnAnimDone);
+        // Now safe to begin player turn AFTER animation finishes
+        StartCoroutine(EnemyTurnRoutine());
+    }
+
+    private void OnPlayerTurnAnimDone()
+    {
+        TurnChangeUI.TurnAnimationEnd.RemoveListener(OnPlayerTurnAnimDone);
+        BeginPlayerTurn(); // logic runs only after animation ends
     }
 
     public void TogglePause(InputAction.CallbackContext context)
@@ -320,11 +361,13 @@ public class GameManager : MonoBehaviour
     {
         if (IsEnemyDefeated())
         {
+            isGameOver = true;
             Debug.Log("You win!");
             ShowWinScreen();
         }
         else if (IsFriendlyDefeated())
         {
+            isGameOver = true;
             Debug.Log("You Lose!");
             GameOver();
         }

@@ -49,7 +49,10 @@ public class CameraController : MonoBehaviour
 
     public void Update()
     {
-        MoveCamera();   
+        if (gameManager.isPlayerTurn)
+        {
+            MoveCamera();   
+        }
     }
     //When called, find the next active unit you can move and focus the camera on it
     public void FocusOnNextUnit(InputAction.CallbackContext context)
