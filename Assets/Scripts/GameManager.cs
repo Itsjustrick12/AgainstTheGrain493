@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     public TurnChangeUI turnChangeUI;
     public bool isGameOver = false;
+    public bool skipTurnAnimations = false;
 
     private void Awake()
     {
@@ -69,8 +70,14 @@ public class GameManager : MonoBehaviour
         PlayPlayerTurnAnimation();
     }
 
-    public void  BeginEnemyTurn()
+    public void BeginEnemyTurn()
     {
+        if (skipTurnAnimations)
+        {
+            StartCoroutine(EnemyTurnRoutine());
+            return;
+        }
+
         TurnChangeUI.TurnAnimationEnd.AddListener(OnEnemyTurnAnimDone);
         turnChangeUI.PlayEnemyTurn();
     }
@@ -234,6 +241,12 @@ public class GameManager : MonoBehaviour
 
     private void PlayPlayerTurnAnimation()
     {
+        if (skipTurnAnimations)
+        {
+            BeginPlayerTurn();
+            return;
+        }
+
         TurnChangeUI.TurnAnimationEnd.AddListener(OnPlayerTurnAnimDone);
         turnChangeUI.PlayPlayerTurn();
     }

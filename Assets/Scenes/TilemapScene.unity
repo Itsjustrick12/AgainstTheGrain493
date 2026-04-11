@@ -3981,6 +3981,7 @@ MonoBehaviour:
   mapSize: 2
   turnChangeUI: {fileID: 30210318}
   isGameOver: 0
+  skipTurnAnimations: 1
 --- !u!4 &957032419
 Transform:
   m_ObjectHideFlags: 0
