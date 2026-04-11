@@ -1,0 +1,1235 @@
+fileFormatVersion: 2
+guid: 4c63fba043b26cd4497596a870ad2494
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8758677582431827912
+    second: loseUIButtonSheet_0
+  - first:
+      213: -997980025638765524
+    second: loseUIButtonSheet_1
+  - first:
+      213: -8679386226631525207
+    second: loseUIButtonSheet_2
+  - first:
+      213: 7941481025235321948
+    second: loseUIButtonSheet_3
+  - first:
+      213: -6574605003156573791
+    second: loseUIButtonSheet_4
+  - first:
+      213: 9118967957721214620
+    second: loseUIButtonSheet_5
+  - first:
+      213: 3967889611151677317
+    second: loseUIButtonSheet_6
+  - first:
+      213: -1025137710404972831
+    second: loseUIButtonSheet_7
+  - first:
+      213: 5009586213734449674
+    second: loseUIButtonSheet_8
+  - first:
+      213: -9086858479300463679
+    second: loseUIButtonSheet_9
+  - first:
+      213: -7016865311065444249
+    second: loseUIButtonSheet_10
+  - first:
+      213: -8440930295912148470
+    second: loseUIButtonSheet_11
+  - first:
+      213: -7057199258382543658
+    second: loseUIButtonSheet_12
+  - first:
+      213: 6526920087217871310
+    second: loseUIButtonSheet_13
+  - first:
+      213: 332633421797158376
+    second: loseUIButtonSheet_14
+  - first:
+      213: 1127786219841701114
+    second: loseUIButtonSheet_15
+  - first:
+      213: 2959858474725345913
+    second: loseUIButtonSheet_16
+  - first:
+      213: -6899153075477127124
+    second: loseUIButtonSheet_17
+  - first:
+      213: 8637466585048695290
+    second: loseUIButtonSheet_18
+  - first:
+      213: -8198327176566745858
+    second: loseUIButtonSheet_19
+  - first:
+      213: 1905275523968609793
+    second: loseUIButtonSheet_20
+  - first:
+      213: -1692172531216756398
+    second: loseUIButtonSheet_21
+  - first:
+      213: -858694894010031289
+    second: loseUIButtonSheet_22
+  - first:
+      213: 143514134584373245
+    second: loseUIButtonSheet_23
+  - first:
+      213: 7597511372957907104
+    second: loseUIButtonSheet_24
+  - first:
+      213: -8250062333033112794
+    second: loseUIButtonSheet_25
+  - first:
+      213: -4762999318264025432
+    second: loseUIButtonSheet_26
+  - first:
+      213: 7547087346784170617
+    second: loseUIButtonSheet_27
+  - first:
+      213: 5786656268799577774
+    second: loseUIButtonSheet_28
+  - first:
+      213: -5375517324229296134
+    second: loseUIButtonSheet_29
+  - first:
+      213: 6322531477835740327
+    second: loseUIButtonSheet_30
+  - first:
+      213: 103292966870535373
+    second: loseUIButtonSheet_31
+  - first:
+      213: 5892650269644507274
+    second: loseUIButtonSheet_32
+  - first:
+      213: 4169067049864014368
+    second: loseUIButtonSheet_33
+  - first:
+      213: 6805213128037354681
+    second: loseUIButtonSheet_34
+  - first:
+      213: 7228684638938487182
+    second: loseUIButtonSheet_35
+  - first:
+      213: -1634063464963727506
+    second: loseUIButtonSheet_36
+  - first:
+      213: -7691904975549789543
+    second: loseUIButtonSheet_37
+  - first:
+      213: -8117894716681162678
+    second: loseUIButtonSheet_38
+  - first:
+      213: -1305211030115488260
+    second: loseUIButtonSheet_39
+  - first:
+      213: 159423165137901767
+    second: loseUIButtonSheet_40
+  - first:
+      213: -2962456636581050090
+    second: loseUIButtonSheet_41
+  - first:
+      213: -5213035121155976658
+    second: loseUIButtonSheet_42
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: loseUIButtonSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 13
+        width: 66
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c7b6031bd21d8970800000000000000
+      internalID: 8758677582431827912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_1
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2cbdd644767622f0800000000000000
+      internalID: -997980025638765524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_2
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9acb5355630ac8780800000000000000
+      internalID: -8679386226631525207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_3
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5408abaaeec53e60800000000000000
+      internalID: 7941481025235321948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_4
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a1b858559f42c4a0800000000000000
+      internalID: -6574605003156573791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_5
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9e642e0b051d8e70800000000000000
+      internalID: 9118967957721214620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_6
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58798ac1496c01730800000000000000
+      internalID: 3967889611151677317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_7
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ee447d0faaf5c1f0800000000000000
+      internalID: -1025137710404972831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_8
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0206559e10a58540800000000000000
+      internalID: 5009586213734449674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_9
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c3bc097b5ef4e180800000000000000
+      internalID: -9086858479300463679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_10
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 760fe213d261f9e90800000000000000
+      internalID: -7016865311065444249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_11
+      rect:
+        serializedVersion: 2
+        x: 1055
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a02d25a2e9acbda80800000000000000
+      internalID: -8440930295912148470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_12
+      rect:
+        serializedVersion: 2
+        x: 1151
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d455f64aaacf0e90800000000000000
+      internalID: -7057199258382543658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_13
+      rect:
+        serializedVersion: 2
+        x: 1247
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec99bfbfc37449a50800000000000000
+      internalID: 6526920087217871310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_14
+      rect:
+        serializedVersion: 2
+        x: 1343
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ed64a2b550cd9400800000000000000
+      internalID: 332633421797158376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_15
+      rect:
+        serializedVersion: 2
+        x: 1439
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af4ce387793b6af00800000000000000
+      internalID: 1127786219841701114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_16
+      rect:
+        serializedVersion: 2
+        x: 1535
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97a0f6bc997831920800000000000000
+      internalID: 2959858474725345913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_17
+      rect:
+        serializedVersion: 2
+        x: 1631
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c206425c4d84140a0800000000000000
+      internalID: -6899153075477127124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_18
+      rect:
+        serializedVersion: 2
+        x: 1727
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af1422988127ed770800000000000000
+      internalID: 8637466585048695290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_19
+      rect:
+        serializedVersion: 2
+        x: 1823
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef4de489ed0b93e80800000000000000
+      internalID: -8198327176566745858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_20
+      rect:
+        serializedVersion: 2
+        x: 1919
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10e25659ef5e07a10800000000000000
+      internalID: 1905275523968609793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_21
+      rect:
+        serializedVersion: 2
+        x: 2015
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 251d6226c023488e0800000000000000
+      internalID: -1692172531216756398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_22
+      rect:
+        serializedVersion: 2
+        x: 2111
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74327102b8d4514f0800000000000000
+      internalID: -858694894010031289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_23
+      rect:
+        serializedVersion: 2
+        x: 2207
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dff2624585dddf100800000000000000
+      internalID: 143514134584373245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_24
+      rect:
+        serializedVersion: 2
+        x: 2303
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a875222758cf6960800000000000000
+      internalID: 7597511372957907104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_25
+      rect:
+        serializedVersion: 2
+        x: 2399
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62b1bb0d404e18d80800000000000000
+      internalID: -8250062333033112794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_26
+      rect:
+        serializedVersion: 2
+        x: 2495
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8aee1710b5d66edb0800000000000000
+      internalID: -4762999318264025432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_27
+      rect:
+        serializedVersion: 2
+        x: 2591
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9727ae9a4f3acb860800000000000000
+      internalID: 7547087346784170617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_28
+      rect:
+        serializedVersion: 2
+        x: 2687
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eae061ba7355e4050800000000000000
+      internalID: 5786656268799577774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_29
+      rect:
+        serializedVersion: 2
+        x: 2783
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: affba5d69735665b0800000000000000
+      internalID: -5375517324229296134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_30
+      rect:
+        serializedVersion: 2
+        x: 2879
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a4ff9181e42eb750800000000000000
+      internalID: 6322531477835740327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_31
+      rect:
+        serializedVersion: 2
+        x: 2975
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcc4d16f768fe6100800000000000000
+      internalID: 103292966870535373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_32
+      rect:
+        serializedVersion: 2
+        x: 3071
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8845cb1336e6c150800000000000000
+      internalID: 5892650269644507274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_33
+      rect:
+        serializedVersion: 2
+        x: 3167
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02a2ee7a4608bd930800000000000000
+      internalID: 4169067049864014368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_34
+      rect:
+        serializedVersion: 2
+        x: 3263
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bccd7dc849f07e50800000000000000
+      internalID: 6805213128037354681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_35
+      rect:
+        serializedVersion: 2
+        x: 3359
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8950414162715460800000000000000
+      internalID: 7228684638938487182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_36
+      rect:
+        serializedVersion: 2
+        x: 3455
+        y: 9
+        width: 74
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6f946eafe3a259e0800000000000000
+      internalID: -1634063464963727506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_37
+      rect:
+        serializedVersion: 2
+        x: 3551
+        y: 9
+        width: 74
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99a8b4e9d2dd04590800000000000000
+      internalID: -7691904975549789543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_38
+      rect:
+        serializedVersion: 2
+        x: 3647
+        y: 9
+        width: 74
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a40f23004c1775f80800000000000000
+      internalID: -8117894716681162678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_39
+      rect:
+        serializedVersion: 2
+        x: 3743
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfd6b01cb75f2ede0800000000000000
+      internalID: -1305211030115488260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_40
+      rect:
+        serializedVersion: 2
+        x: 3839
+        y: 9
+        width: 74
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c853072682663200800000000000000
+      internalID: 159423165137901767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_41
+      rect:
+        serializedVersion: 2
+        x: 3935
+        y: 13
+        width: 67
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6198612826d33e6d0800000000000000
+      internalID: -2962456636581050090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_42
+      rect:
+        serializedVersion: 2
+        x: 4031
+        y: 9
+        width: 74
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e22dcd95d2497a7b0800000000000000
+      internalID: -5213035121155976658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      loseUIButtonSheet_0: 8758677582431827912
+      loseUIButtonSheet_1: -997980025638765524
+      loseUIButtonSheet_10: -7016865311065444249
+      loseUIButtonSheet_11: -8440930295912148470
+      loseUIButtonSheet_12: -7057199258382543658
+      loseUIButtonSheet_13: 6526920087217871310
+      loseUIButtonSheet_14: 332633421797158376
+      loseUIButtonSheet_15: 1127786219841701114
+      loseUIButtonSheet_16: 2959858474725345913
+      loseUIButtonSheet_17: -6899153075477127124
+      loseUIButtonSheet_18: 8637466585048695290
+      loseUIButtonSheet_19: -8198327176566745858
+      loseUIButtonSheet_2: -8679386226631525207
+      loseUIButtonSheet_20: 1905275523968609793
+      loseUIButtonSheet_21: -1692172531216756398
+      loseUIButtonSheet_22: -858694894010031289
+      loseUIButtonSheet_23: 143514134584373245
+      loseUIButtonSheet_24: 7597511372957907104
+      loseUIButtonSheet_25: -8250062333033112794
+      loseUIButtonSheet_26: -4762999318264025432
+      loseUIButtonSheet_27: 7547087346784170617
+      loseUIButtonSheet_28: 5786656268799577774
+      loseUIButtonSheet_29: -5375517324229296134
+      loseUIButtonSheet_3: 7941481025235321948
+      loseUIButtonSheet_30: 6322531477835740327
+      loseUIButtonSheet_31: 103292966870535373
+      loseUIButtonSheet_32: 5892650269644507274
+      loseUIButtonSheet_33: 4169067049864014368
+      loseUIButtonSheet_34: 6805213128037354681
+      loseUIButtonSheet_35: 7228684638938487182
+      loseUIButtonSheet_36: -1634063464963727506
+      loseUIButtonSheet_37: -7691904975549789543
+      loseUIButtonSheet_38: -8117894716681162678
+      loseUIButtonSheet_39: -1305211030115488260
+      loseUIButtonSheet_4: -6574605003156573791
+      loseUIButtonSheet_40: 159423165137901767
+      loseUIButtonSheet_41: -2962456636581050090
+      loseUIButtonSheet_42: -5213035121155976658
+      loseUIButtonSheet_5: 9118967957721214620
+      loseUIButtonSheet_6: 3967889611151677317
+      loseUIButtonSheet_7: -1025137710404972831
+      loseUIButtonSheet_8: 5009586213734449674
+      loseUIButtonSheet_9: -9086858479300463679
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
