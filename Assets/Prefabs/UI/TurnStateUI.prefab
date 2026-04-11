@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1692458333824931321}
   - component: {fileID: 1930433119521907684}
   - component: {fileID: 5675254843839347978}
-  - component: {fileID: 893786609932827650}
+  - component: {fileID: 5767955359070352822}
   m_Layer: 5
   m_Name: TurnStateUI
   m_TagString: Untagged
@@ -74,7 +74,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &893786609932827650
+--- !u!114 &5767955359070352822
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
