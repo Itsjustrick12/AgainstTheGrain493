@@ -414,76 +414,57 @@ public class Unit : Entity
 
     public List<Vector3Int> DeterminePath(List<Vector3Int> orig)
     {
-        List<Vector3Int> path = orig;
-        //Reduce path to be only the segements that are moveable
-        int budget = GetMoveRange();
-        int cost = 0;
-        int steps = 0;
-        Vector3Int prev = path[0]; // first item is start, skip it
+        if(orig == null || orig.Count == 0)
+        return new List<Vector3Int>();
 
-        /*
-        foreach (Vector3Int step in path.Skip(1))
-        {
-            bool isDiagonal = (step.x != prev.x) && (step.y != prev.y);
-            int tileCost = tileManager.GetTileDataAt(step).movementCost + (isDiagonal ? 1 : 0);
-            if (cost + tileCost > budget) break;
-            cost += tileCost;
-            steps++;
-            prev = step;
-        }
-        path = path.Skip(1).Take(steps).ToList();
-        */
+    List<Vector3Int> path = new List<Vector3Int>(orig);
 
-        //theoretically maximum distance
-        int current = 0;
-        int temprange = movementRange;
-        while(current < path.Count() && temprange >= tileManager.GetTileDataAt(path[current]).movementCost)
-        {
-            temprange -= tileManager.GetTileDataAt(path[current]).movementCost;
-            current++;
-        }
+    int current = 1;
+    int tempRange = movementRange;
 
-        while(current + 1 < path.Count())
-        {
-            path.RemoveAt(current + 1);
-        }
 
-        //max distance with a free tile
-        while(path.Count() > 0 && tileManager.GetEntityOnTile(path[current]) != null)
-        {
-            path.RemoveAt(current);
-            current--;
-        }
+    while(current < path.Count)
+    {
+        int moveCost = tileManager.GetTileDataAt(path[current]).movementCost;
+        if(tempRange < moveCost)
+            break;
 
-        if(!GetCanFly())
+        tempRange -= moveCost;
+        current++;
+    }
+
+
+    if(current < path.Count)
+    {
+        path.RemoveRange(current, path.Count - current);
+    }
+
+    // Trim blocked destination tiles from the end
+    while(path.Count > 1 && tileManager.GetEntityOnTile(path[path.Count - 1]) != null)
+    {
+        path.RemoveAt(path.Count - 1);
+    }
+
+    if(!GetCanFly())
+    {
+        for(int i = 1; i < path.Count; i++)
         {
-            //keep going till you hit a tile you can't cross
-            for(int i = 1; i < path.Count(); i++)
+            var entity = tileManager.GetEntityOnTile(path[i]);
+            if(entity == null)
+                continue;
+
+            Unit unit = entity as Unit;
+
+            // Stop at impassable object or enemy
+            if(unit == null || unit.isEnemy != isEnemy)
             {
-                //if the tile has something on it
-                if(tileManager.GetEntityOnTile(path[current]) != null)
-                {
-                    //and that something isn't a unit
-                    if(tileManager.GetEntityOnTile(path[current]) as Unit == null)
-                    {
-                        //set to remove everything past it
-                        current = i;
-                        i = path.Count();
-                    }//check to see if we can pass through this unit
-                    else if((tileManager.GetEntityOnTile(path[current]) as Unit).isEnemy != isEnemy)
-                    {
-                        current = i;
-                        i = path.Count();
-                    }
-                }
+                path.RemoveRange(i, path.Count - i);
+                break;
             }
         }
+    }
 
-        while(current + 1 < path.Count())
-        {
-            path.RemoveAt(current + 1);
-        }
-
+    return path;
 
 
         return path;
