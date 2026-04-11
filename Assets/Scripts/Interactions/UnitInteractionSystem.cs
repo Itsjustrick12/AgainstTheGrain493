@@ -382,7 +382,7 @@ public class UnitInteractionSystem : TileCursor
                     //tileManager.MoveEntity(afterLocation, prevLocation);
                     isMoving = true;
                     Debug.Log("UndoAction");
-                    StartCoroutine(unit.Move(tileHelper.TilePath(afterLocation, prevLocation, tileManager.GetUnitOnTile(afterLocation))));
+                    tileManager.MoveEntity(afterLocation, prevLocation);
                     isMoving = false;
                     afterLocation = prevLocation;
                 }
@@ -447,41 +447,47 @@ public class UnitInteractionSystem : TileCursor
         state = previous;
         OnStateChanged?.Invoke(state);
     }
-
+    //Regular stop, just cancel the action and move if you need to
     public void StopAction()
     {
-        //Check tightly to ensure that there is a real unit to move
-        //Stop Action is sometimes called by the feeding logic, to prevent accidental undos of locations,
-        //check that the previous and after locations actually mean something
-        StartCoroutine(StopActionRoutine());
-    }
-
-    private IEnumerator StopActionRoutine()
-{
-    if (afterLocation != prevLocation
-        && afterLocation != new Vector3Int(0, 0, -1)
-        && prevLocation != new Vector3Int(0, 0, -1))
-    {
-        Unit unit = tileManager.GetUnitOnTile(afterLocation);
-
-        if (unit != null)
+        if (afterLocation != prevLocation
+            && afterLocation != new Vector3Int(0, 0, -1)
+            && prevLocation != new Vector3Int(0, 0, -1))
         {
-            DisableInputs();
-            isMoving = true;
-
-           List<Vector3Int> reversedPath = new List<Vector3Int>(lastMovePath);
-           reversedPath.Reverse();
-           yield return StartCoroutine(unit.Move(reversedPath));
-
-            yield return new WaitUntil(() => !unit.isMoving);
-
-            isMoving = false;
-            EnableInputs();
+            Unit unit = tileManager.GetUnitOnTile(afterLocation);
+            if (unit != null)
+            {
+                tileManager.MoveEntity(afterLocation, prevLocation);
+            }
         }
+        ResetData();
     }
+    //desync'd walk back undo ONLY USED by CANCEL
+    private IEnumerator StopActionRoutine()
+    {
+        if (afterLocation != prevLocation
+            && afterLocation != new Vector3Int(0, 0, -1)
+            && prevLocation != new Vector3Int(0, 0, -1))
+        {
+            Unit unit = tileManager.GetUnitOnTile(afterLocation);
 
-    ResetData();
-}
+            if (unit != null)
+            {
+                DisableInputs();
+                isMoving = true;
+                //Reverse the arrow path for consistency purposes instead of computing the path again
+                List<Vector3Int> reversedPath = new List<Vector3Int>(lastMovePath);
+                reversedPath.Reverse();
+                yield return StartCoroutine(unit.Move(reversedPath));
+                //Wait for animation to finish
+                yield return new WaitUntil(() => !unit.isMoving);
+
+                EnableInputs();
+            }
+        }//reset flag in case their is no move back
+        isMoving = false;
+        ResetData();
+    }
 
     private void ResetData()
     {
@@ -531,7 +537,8 @@ public class UnitInteractionSystem : TileCursor
         {
 
             //Undo the movement from the previous action and return
-            StopAction();
+            isMoving = true;
+            StartCoroutine(StopActionRoutine());
             return;
         }
         else if (action is EndTurnAction)
@@ -687,6 +694,9 @@ public class UnitInteractionSystem : TileCursor
 
     private void ShowFeedOptions(InputAction.CallbackContext context)
     {
+        //need economy manager to be able to feed
+        if (!EconomyManager.Instance.HasACrop()) return;
+
         // Already guards, but make this more explicit:
         if (state != InteractionState.Selection) return;
         StartFeedTargeting();

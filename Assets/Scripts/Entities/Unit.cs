@@ -250,10 +250,11 @@ public class Unit : Entity
 
         return temp;
     }
-
+    //Animated movement logic
     public IEnumerator Move(List<Vector3Int> path)
     {
         if (path.Count == 0) yield break;
+        //Pause the user from interacting with anything during desync period
         isMoving = true;
 
         Vector3Int startLogicalPos = GetGridPos();
@@ -281,7 +282,7 @@ public class Unit : Entity
         //get the final position for the logical move
         Vector3Int destination = path[path.Count - 1];
 
-        // --- VISUAL MOVE: lerp through each waypoint ---
+        // VISUAL MOVE LOOP, LOOP OVER ALL TILES IN PATH
         Vector3 cellOffset = new Vector3(
             tileManager.entitiesMap.cellSize.x,
             tileManager.entitiesMap.cellSize.y, 0) * 0.5f;
@@ -312,7 +313,7 @@ public class Unit : Entity
             transform.position = endWorld;
         }
 
-        // --- LOGICAL MOVE: once, start to destination only ---
+        // LOGICAL MOVE, ACTUALLY MOVE TO GRID SPACE
         tileManager.MoveEntity(startLogicalPos, destination);
 
         if (animator != null)
@@ -321,7 +322,7 @@ public class Unit : Entity
             animator.SetFloat("x position", 0);
             animator.SetFloat("y position", 0);
         }
-
+        //flag used to allow player input again after move anim
         isMoving = false;
     }
 
@@ -337,8 +338,20 @@ public class Unit : Entity
             budget -= cost;
             trimAt = i + 1;
         }
+        //start working with the path that is how far the entity can walk along that path
         path = path.GetRange(0, trimAt);
 
+        //Walk backwards, ensure the ending spot of the path is NOT on a friendly unit even it it is reachable
+        while (path.Count > 0)
+        {
+            Entity occupant = tileManager.GetEntityOnTile(path[path.Count - 1]);
+            if (occupant == null) break;
+            Unit occupantUnit = occupant as Unit;
+            // This checks if the ending tile has a unit of the same team
+            if (occupantUnit != null && occupantUnit.isEnemy != isEnemy) break;
+            path.RemoveAt(path.Count - 1);
+        }
+        //Finally return the path for the movement animation
         return path;
     }
 
