@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     private int currUnit = 0;
 
     public TurnChangeUI turnChangeUI;
+    public bool isGameOver = false;
 
     private void Awake()
     {
@@ -221,9 +222,14 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(0.25f); // pause between each enemy
             yield return StartCoroutine(unit.DoTurn());
             yield return new WaitForSeconds(0.5f); // pause between each enemy
+            if (isGameOver)
+                yield break;
         }
+
         yield return new WaitForSeconds(0.5f);
+
         PlayPlayerTurnAnimation();
+
     }
 
     private void PlayPlayerTurnAnimation()
@@ -335,6 +341,7 @@ public class GameManager : MonoBehaviour
 
     public void CheckEndState()
     {
+        isGameOver = true;
         if (IsEnemyDefeated())
         {
             Debug.Log("You win!");
