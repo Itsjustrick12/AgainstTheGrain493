@@ -1,88 +1,106 @@
 fileFormatVersion: 2
-guid: b59c00aab35f2f04d8cfffc38fc15042
+guid: 4164c0a5e28494831af6d2608e28100a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5623444675106616828
-    second: pauseChicken_0
+      213: 3478176032441998989
+    second: YourTurn_0
   - first:
-      213: -8562994030306304086
-    second: pauseChicken_1
+      213: 4590351330262858529
+    second: YourTurn_1
   - first:
-      213: -4240760884169643215
-    second: pauseChicken_2
+      213: -4038628079797803655
+    second: YourTurn_2
   - first:
-      213: -1564820620748345242
-    second: pauseChicken_3
+      213: 4153207626703042856
+    second: YourTurn_3
   - first:
-      213: -2292953536619362218
-    second: pauseChicken_4
+      213: 2787291600561061451
+    second: YourTurn_4
   - first:
-      213: -8060484534116115243
-    second: pauseChicken_5
+      213: 8653592041303423315
+    second: YourTurn_5
   - first:
-      213: 8038580601717387085
-    second: pauseChicken_6
+      213: -4163160388933544885
+    second: YourTurn_6
   - first:
-      213: 7502476081493048227
-    second: pauseChicken_7
+      213: -9027267197770268754
+    second: YourTurn_7
   - first:
-      213: -8812876825068577773
-    second: pauseChicken_8
+      213: -8157905079051924712
+    second: YourTurn_8
   - first:
-      213: -7675446245961794162
-    second: pauseChicken_9
+      213: 1930305848283571616
+    second: YourTurn_9
   - first:
-      213: -7695540394452161413
-    second: pauseChicken_10
+      213: -7715384170444764841
+    second: YourTurn_10
   - first:
-      213: -2095864511538874078
-    second: pauseChicken_11
+      213: -6903673250241791363
+    second: YourTurn_11
   - first:
-      213: -5884509022496242922
-    second: pauseChicken_12
+      213: 6825410318642757385
+    second: YourTurn_12
   - first:
-      213: -9089305044861029867
-    second: pauseChicken_13
+      213: 3447241499638960941
+    second: YourTurn_13
   - first:
-      213: 7773092658168751896
-    second: pauseChicken_14
+      213: -6149160375073805277
+    second: YourTurn_14
   - first:
-      213: 6897861609506856616
-    second: pauseChicken_15
+      213: 4224210909729791629
+    second: YourTurn_15
   - first:
-      213: -7306340674840737188
-    second: pauseChicken_16
+      213: -3919642131156498160
+    second: YourTurn_16
   - first:
-      213: 9015285273316626024
-    second: pauseChicken_17
+      213: 8986089211351196255
+    second: YourTurn_17
   - first:
-      213: 2937429114512889104
-    second: pauseChicken_18
+      213: -6402714410723648801
+    second: YourTurn_18
   - first:
-      213: 3120583077640761022
-    second: pauseChicken_19
+      213: 2541707550981374119
+    second: YourTurn_19
   - first:
-      213: 8975094574117567019
-    second: pauseChicken_20
+      213: 7248334986538578763
+    second: YourTurn_20
   - first:
-      213: -2921900357654558885
-    second: pauseChicken_21
+      213: -6657773597891831733
+    second: YourTurn_21
   - first:
-      213: -496264829864647060
-    second: pauseChicken_22
+      213: 3677555051662937110
+    second: YourTurn_22
   - first:
-      213: -2300365313860100608
-    second: pauseChicken_23
+      213: 3563151013038240010
+    second: YourTurn_23
   - first:
-      213: 2992318558537711267
-    second: pauseChicken_24
+      213: 4119607250831555866
+    second: YourTurn_24
   - first:
-      213: 3187921113188512872
-    second: pauseChicken_25
+      213: -126297986494969838
+    second: YourTurn_25
   - first:
-      213: -4082777488293841016
-    second: pauseChicken_26
+      213: -237695467613740935
+    second: YourTurn_26
+  - first:
+      213: -3321287678498369623
+    second: YourTurn_27
+  - first:
+      213: -3630521643002370927
+    second: YourTurn_28
+  - first:
+      213: 1541489409385942083
+    second: YourTurn_29
+  - first:
+      213: -651317329281834098
+    second: YourTurn_30
+  - first:
+      213: -7452379981452195950
+    second: YourTurn_31
+  - first:
+      213: 7207338719826897710
+    second: YourTurn_32
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -191,123 +209,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pauseChicken_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 40a453ebcd285f1b0800000000000000
-      internalID: -5623444675106616828
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pauseChicken_1
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: aaf5dc15c422a2980800000000000000
-      internalID: -8562994030306304086
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pauseChicken_2
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 13b62b1c17ac525c0800000000000000
-      internalID: -4240760884169643215
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pauseChicken_3
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 660b61bafe3a84ae0800000000000000
-      internalID: -1564820620748345242
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pauseChicken_4
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 658c35338eacd20e0800000000000000
-      internalID: -2292953536619362218
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pauseChicken_5
+      name: YourTurn_0
       rect:
         serializedVersion: 2
         x: 640
         y: 0
-        width: 128
-        height: 128
+        width: 640
+        height: 360
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -316,20 +224,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5dc9a72c508632090800000000000000
-      internalID: -8060484534116115243
+      spriteID: d8e9bff5ca6f44030800000000000000
+      internalID: 3478176032441998989
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pauseChicken_6
+      name: YourTurn_1
       rect:
         serializedVersion: 2
-        x: 768
+        x: 1278
         y: 0
-        width: 128
-        height: 128
+        width: 640
+        height: 360
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -338,196 +246,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d4fe5bf8776ce8f60800000000000000
-      internalID: 8038580601717387085
+      spriteID: 12b3f82d63434bf30800000000000000
+      internalID: 4590351330262858529
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pauseChicken_7
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3abf14d0f362e1860800000000000000
-      internalID: 7502476081493048227
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pauseChicken_8
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 31cd380683f52b580800000000000000
-      internalID: -8812876825068577773
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pauseChicken_9
-      rect:
-        serializedVersion: 2
-        x: 1152
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e8d77d83e465b7590800000000000000
-      internalID: -7675446245961794162
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pauseChicken_10
-      rect:
-        serializedVersion: 2
-        x: 1280
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b7c6202b8c2f33590800000000000000
-      internalID: -7695540394452161413
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pauseChicken_11
-      rect:
-        serializedVersion: 2
-        x: 1408
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 229b064c45ef9e2e0800000000000000
-      internalID: -2095864511538874078
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pauseChicken_12
-      rect:
-        serializedVersion: 2
-        x: 1536
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 613c784b836065ea0800000000000000
-      internalID: -5884509022496242922
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pauseChicken_13
-      rect:
-        serializedVersion: 2
-        x: 1664
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 51274e9083d4cd180800000000000000
-      internalID: -9089305044861029867
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pauseChicken_14
-      rect:
-        serializedVersion: 2
-        x: 1792
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8176858c6929fdb60800000000000000
-      internalID: 7773092658168751896
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pauseChicken_15
+      name: YourTurn_2
       rect:
         serializedVersion: 2
         x: 1920
         y: 0
-        width: 128
-        height: 128
+        width: 640
+        height: 360
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -536,108 +268,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8aed57066902abf50800000000000000
-      internalID: 6897861609506856616
+      spriteID: 975ebb3b829e3f7c0800000000000000
+      internalID: -4038628079797803655
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pauseChicken_16
-      rect:
-        serializedVersion: 2
-        x: 2048
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c5a412cedd9aa9a90800000000000000
-      internalID: -7306340674840737188
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pauseChicken_17
-      rect:
-        serializedVersion: 2
-        x: 2176
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 86e09d8e03abc1d70800000000000000
-      internalID: 9015285273316626024
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pauseChicken_18
-      rect:
-        serializedVersion: 2
-        x: 2304
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0155e6b6738d3c820800000000000000
-      internalID: 2937429114512889104
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pauseChicken_19
-      rect:
-        serializedVersion: 2
-        x: 2432
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ebe6fda86c98e4b20800000000000000
-      internalID: 3120583077640761022
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pauseChicken_20
+      name: YourTurn_3
       rect:
         serializedVersion: 2
         x: 2560
         y: 0
-        width: 128
-        height: 128
+        width: 640
+        height: 360
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -646,20 +290,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b2a30db86f0fd8c70800000000000000
-      internalID: 8975094574117567019
+      spriteID: 829f314f45823a930800000000000000
+      internalID: 4153207626703042856
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pauseChicken_21
+      name: YourTurn_4
       rect:
         serializedVersion: 2
-        x: 2688
+        x: 3200
         y: 0
-        width: 128
-        height: 128
+        width: 640
+        height: 360
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -668,8 +312,338 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b57c9e80b135377d0800000000000000
-      internalID: -2921900357654558885
+      spriteID: b4e3fd861f27ea620800000000000000
+      internalID: 2787291600561061451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: YourTurn_5
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 359b905ec1cb71870800000000000000
+      internalID: 8653592041303423315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: YourTurn_6
+      rect:
+        serializedVersion: 2
+        x: 4480
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4493a20fab7936c0800000000000000
+      internalID: -4163160388933544885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: YourTurn_7
+      rect:
+        serializedVersion: 2
+        x: 5120
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaffd58ef44b8b280800000000000000
+      internalID: -9027267197770268754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: YourTurn_8
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81b41c39d8c49ce80800000000000000
+      internalID: -8157905079051924712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: YourTurn_9
+      rect:
+        serializedVersion: 2
+        x: 6400
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a52dca11f2d9ca10800000000000000
+      internalID: 1930305848283571616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: YourTurn_10
+      rect:
+        serializedVersion: 2
+        x: 7040
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 759c7fe89f27de490800000000000000
+      internalID: -7715384170444764841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: YourTurn_11
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7ab8f191c93130a0800000000000000
+      internalID: -6903673250241791363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: YourTurn_12
+      rect:
+        serializedVersion: 2
+        x: 8320
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90fbcf0b58ab8be50800000000000000
+      internalID: 6825410318642757385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: YourTurn_13
+      rect:
+        serializedVersion: 2
+        x: 8960
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2317f031ef07df20800000000000000
+      internalID: 3447241499638960941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: YourTurn_14
+      rect:
+        serializedVersion: 2
+        x: 9600
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32c61d0f73bc9aaa0800000000000000
+      internalID: -6149160375073805277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: YourTurn_15
+      rect:
+        serializedVersion: 2
+        x: 10240
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8e16ca01796f9a30800000000000000
+      internalID: 4224210909729791629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: YourTurn_16
+      rect:
+        serializedVersion: 2
+        x: 10880
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01903c5bf32aa99c0800000000000000
+      internalID: -3919642131156498160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: YourTurn_17
+      rect:
+        serializedVersion: 2
+        x: 11520
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f52ee82078005bc70800000000000000
+      internalID: 8986089211351196255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: YourTurn_18
+      rect:
+        serializedVersion: 2
+        x: 12160
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdada8e9a2df427a0800000000000000
+      internalID: -6402714410723648801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: YourTurn_19
+      rect:
+        serializedVersion: 2
+        x: 12800
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a04c231d85f54320800000000000000
+      internalID: 2541707550981374119
       vertices: []
       indices: 
       edges: []
@@ -678,7 +652,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8705165fac81f9e4e91e1de8c52c2786
+    spriteID: c5d91214669864f449295194b8e32a53
     internalID: 0
     vertices: []
     indices: 
@@ -688,30 +662,28 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":21.0,"y":1.0},"gridSpriteSize":{"x":640.0,"y":360.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      pauseChicken_0: -5623444675106616828
-      pauseChicken_1: -8562994030306304086
-      pauseChicken_10: -7695540394452161413
-      pauseChicken_11: -2095864511538874078
-      pauseChicken_12: -5884509022496242922
-      pauseChicken_13: -9089305044861029867
-      pauseChicken_14: 7773092658168751896
-      pauseChicken_15: 6897861609506856616
-      pauseChicken_16: -7306340674840737188
-      pauseChicken_17: 9015285273316626024
-      pauseChicken_18: 2937429114512889104
-      pauseChicken_19: 3120583077640761022
-      pauseChicken_2: -4240760884169643215
-      pauseChicken_20: 8975094574117567019
-      pauseChicken_21: -2921900357654558885
-      pauseChicken_3: -1564820620748345242
-      pauseChicken_4: -2292953536619362218
-      pauseChicken_5: -8060484534116115243
-      pauseChicken_6: 8038580601717387085
-      pauseChicken_7: 7502476081493048227
-      pauseChicken_8: -8812876825068577773
-      pauseChicken_9: -7675446245961794162
+      YourTurn_0: 3478176032441998989
+      YourTurn_1: 4590351330262858529
+      YourTurn_10: -7715384170444764841
+      YourTurn_11: -6903673250241791363
+      YourTurn_12: 6825410318642757385
+      YourTurn_13: 3447241499638960941
+      YourTurn_14: -6149160375073805277
+      YourTurn_15: 4224210909729791629
+      YourTurn_16: -3919642131156498160
+      YourTurn_17: 8986089211351196255
+      YourTurn_18: -6402714410723648801
+      YourTurn_19: 2541707550981374119
+      YourTurn_2: -4038628079797803655
+      YourTurn_3: 4153207626703042856
+      YourTurn_4: 2787291600561061451
+      YourTurn_5: 8653592041303423315
+      YourTurn_6: -4163160388933544885
+      YourTurn_7: -9027267197770268754
+      YourTurn_8: -8157905079051924712
+      YourTurn_9: 1930305848283571616
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
