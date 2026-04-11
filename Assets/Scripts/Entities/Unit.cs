@@ -253,42 +253,51 @@ public class Unit : Entity
 
     public IEnumerator Move(List<Vector3Int> path)
     {
-        //Debug.Log("startmove");
         if (path.Count == 0) yield break;
         isMoving = true;
 
         Vector3Int startLogicalPos = GetGridPos();
 
-        // Strip starting tile if path includes current position
+        //Removing starting point to prevent animation from looking weird
         if (startLogicalPos == path[0])
             path.RemoveAt(0);
-
-        if (path.Count == 0) 
+        //if its the only thing in there now, check again
+        if (path.Count == 0)
         {
             isMoving = false;
             yield break;
         }
-        Vector3Int destination = path[path.Count - 1];
 
+        //Determine the path the unit needs to take
+        if (isEnemy)
+            path = TrimPathForEnemy(path);
+
+        //check if trimmed too much again
+        if (path.Count == 0)
+        {
+            isMoving = false;
+            yield break;
+        }
+        //get the final position for the logical move
+        Vector3Int destination = path[path.Count - 1];
 
         // --- VISUAL MOVE: lerp through each waypoint ---
         Vector3 cellOffset = new Vector3(
             tileManager.entitiesMap.cellSize.x,
             tileManager.entitiesMap.cellSize.y, 0) * 0.5f;
 
+        //animate through remaining path
         for (int i = 0; i < path.Count; i++)
         {
             Vector3 startWorld = transform.position;
             Vector3 endWorld = tileManager.entitiesMap.CellToWorld(path[i]) + cellOffset;
 
-            // Derive direction from previous step in path (not from tile data)
             Vector3Int prevPos = (i == 0) ? startLogicalPos : path[i - 1];
             Vector3Int dir = path[i] - prevPos;
 
             if (animator != null)
             {
                 animator.SetBool("moving", true);
-                //animator.SetBool("attacking", false);
                 animator.SetFloat("x position", Mathf.Clamp(dir.x, -1, 1));
                 animator.SetFloat("y position", Mathf.Clamp(dir.y, -1, 1));
             }
@@ -298,24 +307,39 @@ public class Unit : Entity
             {
                 transform.position = Vector3.Lerp(startWorld, endWorld, elapsed / tileManager.stepDuration);
                 elapsed += Time.deltaTime;
-                isMoving = false;
                 yield return null;
             }
-            transform.position = endWorld; // snap to exact position
+            transform.position = endWorld;
         }
+
         // --- LOGICAL MOVE: once, start to destination only ---
         tileManager.MoveEntity(startLogicalPos, destination);
 
-        // Reset animator to idle
         if (animator != null)
         {
             animator.SetBool("moving", false);
-            //animator.SetBool("attacking", false);
             animator.SetFloat("x position", 0);
             animator.SetFloat("y position", 0);
         }
 
         isMoving = false;
+    }
+
+    private List<Vector3Int> TrimPathForEnemy(List<Vector3Int> path)
+    {
+        // Trim to movement budget
+        int budget = GetMoveRange();
+        int trimAt = 0;
+        for (int i = 0; i < path.Count; i++)
+        {
+            int cost = tileManager.GetTileDataAt(path[i]).movementCost;
+            if (budget < cost) break;
+            budget -= cost;
+            trimAt = i + 1;
+        }
+        path = path.GetRange(0, trimAt);
+
+        return path;
     }
 
     bool Attack()
@@ -387,7 +411,7 @@ public class Unit : Entity
                 //Debug.Log("UNIT.Distance = " + path.Count);
                 if (path.Count > 0)
                 {
-                    yield return StartCoroutine(Move(DeterminePath(path)));
+                    yield return StartCoroutine(Move(path));
                 }
                 else
                 {
@@ -411,74 +435,6 @@ public class Unit : Entity
             Attack();
             target = temp;
         }
-    }
-
-    public List<Vector3Int> DeterminePath(List<Vector3Int> orig)
-    {
-        if (orig == null || orig.Count == 0)
-            return new List<Vector3Int>();
-
-        List<Vector3Int> path = orig;
-
-        int current = 0;
-        int temprange = movementRange;
-
-        while (current < path.Count() && temprange >= tileManager.GetTileDataAt(path[current]).movementCost)
-        {
-            temprange -= tileManager.GetTileDataAt(path[current]).movementCost;
-            current++;
-        }
-
-        if (current >= path.Count())
-            current = path.Count() - 1;
-
-        while (current + 1 < path.Count())
-        {
-            path.RemoveAt(current + 1);
-        }
-
-        while (path.Count() > 0 && current >= 0 && current < path.Count()
-              && tileManager.GetEntityOnTile(path[current]) != null)
-        {
-            path.RemoveAt(current);
-            current--;
-        }
-
-        if (current < 0)
-            current = 0;
-        if (current >= path.Count())
-            current = path.Count() - 1;
-
-        for (int i = 1; i < path.Count(); i++)
-        {
-            var entity = tileManager.GetEntityOnTile(path[i]);
-
-            if (entity != null)
-            {
-                if (entity as Unit == null)
-                {
-                    current = i;
-                    break;
-                }
-                else if ((entity as Unit).isEnemy != isEnemy)
-                {
-                    current = i;
-                    break;
-                }
-            }
-        }
-
-        if (current < 0)
-            current = 0;
-        if (current >= path.Count())
-            current = path.Count() - 1;
-
-        while (current + 1 < path.Count())
-        {
-            path.RemoveAt(current + 1);
-        }
-
-        return path;
     }
 
     public override void Die()

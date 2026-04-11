@@ -354,14 +354,15 @@ public class GameManager : MonoBehaviour
 
     public void CheckEndState()
     {
-        isGameOver = true;
         if (IsEnemyDefeated())
         {
+            isGameOver = true;
             Debug.Log("You win!");
             ShowWinScreen();
         }
         else if (IsFriendlyDefeated())
         {
+            isGameOver = true;
             Debug.Log("You Lose!");
             GameOver();
         }

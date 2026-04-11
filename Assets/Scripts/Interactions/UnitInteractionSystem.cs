@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -70,6 +71,8 @@ public class UnitInteractionSystem : TileCursor
 
     public static event System.Action<InteractionState> OnStateChanged;
 
+    //Used to reverse movement path for clean walkback
+    private List<Vector3Int> lastMovePath = new List<Vector3Int>();
 
     public void Awake()
     {
@@ -140,8 +143,14 @@ public class UnitInteractionSystem : TileCursor
 
         //Debug.Log("SetArrow");
         List<Vector3Int> path = tileHelper.TilePath(selectedEntity.GetGridPos(), GetCurrentTile(), selectedEntity as Unit);
-        
-        if(path.Count > 1)
+
+        // Prepend current position so the full path including origin is stored
+        List<Vector3Int> fullPath = new List<Vector3Int>();
+        fullPath.Add(selectedEntity.GetGridPos());
+        fullPath.AddRange(path);
+        lastMovePath = fullPath;
+
+        if (path.Count > 1)
         {
             for(int i = 0; i < path.Count; i++)
             {
@@ -293,7 +302,9 @@ public class UnitInteractionSystem : TileCursor
         DisableInputs();
         Debug.Log("WaitForMoveAndShowOptions");
         isMoving = true;
-        yield return StartCoroutine(unit.Move(tileHelper.TilePath(prevLocation, afterLocation, tileManager.GetUnitOnTile(afterLocation))));
+        //grab the path and store incase we undo
+        //move along path
+        yield return StartCoroutine(unit.Move(lastMovePath));
 
         yield return new WaitUntil(() => !unit.isMoving);
         isMoving = false;
@@ -458,9 +469,9 @@ public class UnitInteractionSystem : TileCursor
             DisableInputs();
             isMoving = true;
 
-            yield return StartCoroutine(
-                unit.Move(tileHelper.TilePath(afterLocation, prevLocation, unit))
-            );
+           List<Vector3Int> reversedPath = new List<Vector3Int>(lastMovePath);
+           reversedPath.Reverse();
+           yield return StartCoroutine(unit.Move(reversedPath));
 
             yield return new WaitUntil(() => !unit.isMoving);
 
