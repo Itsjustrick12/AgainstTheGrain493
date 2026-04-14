@@ -108,8 +108,6 @@ public class Unit : Entity
         currentHealth = (after) > maxHealth ? maxHealth : after;
     }
 
-
-
     public int GetAttackRange()
     {
         return attackRange;
@@ -385,7 +383,7 @@ public class Unit : Entity
             return false;
         }
 
-        targetTile.occupyingEntity.TakeDamage(GetStrength());
+        (targetTile.occupyingEntity as Unit).TakeDamage(GetStrength(), pos);
 
         if (targetTile.occupyingEntity == null)
             target = new Vector3Int(0, 0, -1);
@@ -460,9 +458,29 @@ public class Unit : Entity
         base.Die();
     }
 
-    public override void TakeDamage(int damage)
+    public void TakeDamage(int damage, Vector3Int position)
     {
         SoundManager.Instance.PlayEntitySound(this, SoundType.HURT);
+        int x = 0;
+        int y = 0;
+        //choose directions for the hitback
+        if(position.x < GetGridPos().x)
+        {
+            x = GetStrength();
+        }
+        else if(position.x > GetGridPos().x)
+        {
+            x = -1 * GetStrength();
+        }
+        if(position.y < GetGridPos().y)
+        {
+            y = GetStrength();
+        }
+        else if(position.y > GetGridPos().y)
+        {
+            y = -1 * GetStrength();
+        }
+        StartCoroutine(Knockback(x,y));
         if (activeBuffs.Count <= 0)
         {
             base.TakeDamage(damage);
@@ -488,6 +506,29 @@ public class Unit : Entity
             int newDamage = Mathf.Max(0, (int)(damage - (baseIncrease * multiplier)));
             base.TakeDamage(newDamage);
         }
+    }
+
+    //does the knockback animation for the unit
+    public IEnumerator Knockback(int x, int y)
+    {
+        Renderer rend = GetComponent<Renderer>();
+        Color og = rend.material.color;
+        float speed = strength * .01f;
+        if(speed > .005f) speed = .005f;
+        float elapsed = 0f;
+        float duration = 1f;
+        float time = 0;
+        
+        rend.material.color = Color.red;
+        while (time < 360)
+        {
+            time+=60;
+            transform.position += new Vector3(Mathf.Sin((time / 360f) * 2f * Mathf.PI) * speed * x, Mathf.Sin((time / 360f) * 2f * Mathf.PI) * speed * y, 0);
+
+            elapsed += Time.deltaTime;
+            yield return new WaitForSeconds(duration / 60f);
+        }
+        rend.material.color = og;
     }
 }
 
