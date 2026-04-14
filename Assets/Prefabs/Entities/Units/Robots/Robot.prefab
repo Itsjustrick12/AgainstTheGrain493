@@ -119,9 +119,9 @@ MonoBehaviour:
   isFed: 0
   isEnemy: 1
   canFly: 0
-  primary: 
+  primary: 0300000000000000
   target: {x: 0, y: 0, z: -1}
-  iq: 1
+  iq: 5
   isMoving: 0
 --- !u!95 &2623698599719832724
 Animator:

@@ -1,5 +1,6 @@
 using NUnit.Framework.Internal.Commands;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class AIManager : MonoBehaviour
@@ -134,12 +135,37 @@ public class AIManager : MonoBehaviour
             //uses turnstokill to find the "best" target
             int ttk = TurnsToKill(path, unit, t);
 
+            //Gives us information about the current entity to calculate bonuses to influence targeting
+            Entity potentialTarget = tileManager.GetTileDataAt(t).GetOccupyingEntity();
+            if (potentialTarget == null)
+                continue;
+
+            //Only consider fences if they block the path to something
+            if (potentialTarget is Structure s)
+            {
+                if (!IsStructureBlockingPath(unit, s))
+                    continue;
+            }
+
+            // finish off targets we can oneshot
+            if (potentialTarget.GetHealth() <= unit.GetStrength())
+            {
+                ttk--;
+            }
+
+            // Prefer targets already in attack range, no movement needed
+            if (tileHelper.IsWithinRange(unit.GetGridPos(), t, unit.GetAttackRange()))
+            {
+                ttk--;
+            }
+
             //if the potential target is a secondary target add 1 to the ttk
-            if(!unit.primary.Contains(tileManager.GetTileDataAt(t).GetOccupyingEntity().GetEntityType()))
+            if (!unit.primary.Contains(tileManager.GetTileDataAt(t).GetOccupyingEntity().GetEntityType()))
             {
                 ttk++;
             }
-            if (ttk < bestTTK)
+
+            if (ttk < bestTTK || ttk == bestTTK)
             {
                 bestTTK = ttk;
                 best = t;
@@ -284,14 +310,37 @@ public class AIManager : MonoBehaviour
                 }
 
                 //Check if its a crop
-                if (unit.isEnemy && (entity is Crop || entity is Structure))
-                {
+                if (unit.isEnemy && entity is Crop)
                     return checkPos;
-                }
+
+                //Check if its a structure that is blocking something
+                if (unit.isEnemy && entity is Structure s && IsStructureBlockingPath(unit, s))
+                    return checkPos;
+
             }
         }
 
         return new Vector3Int(0, 0, -1);
+    }
+
+    //Needed to allow structures to be targeted, but only when they are in the way of units
+    bool IsStructureBlockingPath(Unit unit, Structure structure)
+    {
+        List<Vector3Int> realTargets = FindPositions(false, unit);
+
+        foreach (Vector3Int targetPos in realTargets)
+        {
+            // Get the path ignoring blocking entities
+            List<Vector3Int> path = tileHelper.TilePath(unit.GetGridPos(), targetPos, unit);
+
+            // If the structure's position appears in the path, it's blocking
+            if (path.Contains(structure.GetGridPos()))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

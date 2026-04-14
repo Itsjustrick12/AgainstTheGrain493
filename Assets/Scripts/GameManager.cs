@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -227,6 +228,12 @@ public class GameManager : MonoBehaviour
         isPlayerTurn = false;
         interactionSystem.DisableInputs();
         List<Unit> tempunits = GetAllEnemyUnits();
+
+        //sort based on units that are closest to opposing units first to prevent poor team execution
+        //Basically, if you're already close, do your turn first before others so they make smarter decisions
+        tempunits = tempunits.OrderBy(unit => GetDistanceToClosestUnit(unit)).ToList();
+
+
         foreach (Unit unit in tempunits)
         {
             //Focus on each unit with the camera
@@ -355,6 +362,26 @@ public class GameManager : MonoBehaviour
             }
         }
         return true;
+    }
+
+    int GetDistanceToClosestUnit(Unit enemy)
+    {
+
+        List<Unit> friendlies = GetAllFriendlyUnits();
+
+        int bestDist = int.MaxValue;
+        //Find the closest unit
+        foreach (Unit friendly in friendlies)
+        {
+            int dist = Mathf.Abs(enemy.GetGridPos().x - friendly.GetGridPos().x)
+                     + Mathf.Abs(enemy.GetGridPos().y - friendly.GetGridPos().y);
+            if (dist < bestDist)
+            {
+                bestDist = dist;
+            }
+        }
+
+        return bestDist;
     }
 
     public void CheckEndState()

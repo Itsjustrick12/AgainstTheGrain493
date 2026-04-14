@@ -385,6 +385,13 @@ public class Unit : Entity
             return false;
         }
 
+        //Ensure attack never hits friendly unit no matter what was passed in
+        Unit targetUnit = targetTile.occupyingEntity as Unit;
+        if (targetUnit != null && IsSameTeamAs(targetUnit))
+        {
+            return false;
+        }
+
         targetTile.occupyingEntity.TakeDamage(GetStrength());
 
         if (targetTile.occupyingEntity == null)
@@ -403,55 +410,49 @@ public class Unit : Entity
 
     public IEnumerator DoTurn()
     {
-        if (target.z == -1)
+        //If something is already in range, just attack it and don't move
+        Vector3Int inRangeTarget = aiManager.FindTargetInRange(this);
+        if (inRangeTarget.z != -1)
         {
-            target = aiManager.FindTarget(this);
+            target = inRangeTarget;
+            Attack();
+            yield break;
         }
 
-        //See if our target is up to date (needed for concurrent enemy execution)
+        //If nothing is in range, find the closest and most reasonable target
+        target = aiManager.FindTarget(this);
+
+        //Sanity check that there is a target there
         TileData data = tileManager.GetTileDataAt(target);
         if (data != null && !data.HasUnit())
         {
            target = aiManager.FindTarget(this);
         }
 
-        //Debug.Log("UNIT.Found Target: " + target.x + " " + target.y + " " + target.z);
-        //if we found a target we move to it
+        //If the target is legit, move to it
         if (target.z != -1)
         {
-            //Check if the target is in the attack range
+            //As long as the path is doable, move to the unit
             if (!tileHelper.IsWithinRange(GetGridPos(), target, GetAttackRange()))
             {
-
-                //Debug.Log("UNIT.Target found at " + target);
-                List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), target, this);
-                //Debug.Log("UNIT.Distance = " + path.Count);
+                //Depending on IQ use really smart pathfinding to make them move better as a team
+                List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), target, this);// tileHelper.TilePath(GetGridPos(), target, this);
                 if (path.Count > 0)
                 {
                     yield return StartCoroutine(Move(path));
                 }
-                else
-                {
-                    //Debug.Log("UNIT.No Need to Move!");
-                }
             }
-
         }
 
-        //then we attack the target
-        if (Attack())
+        //If we moved towards our target but did not get close enough to attack it, try to hit something nearby
+        inRangeTarget = aiManager.FindTargetInRange(this);
+        if (inRangeTarget.z != -1)
         {
-            //do nothing the attack worked
+            target = inRangeTarget;
         }
-        else
-        {
-            //if the attack failed on the target, we weren't in range
-            // try to attack again with temp adjacent target
-            Vector3Int temp = target;
-            target = aiManager.FindTargetInRange(this);
-            Attack();
-            target = temp;
-        }
+
+        //Attack our current target if we have one
+        Attack();
     }
 
     public override void Die()
