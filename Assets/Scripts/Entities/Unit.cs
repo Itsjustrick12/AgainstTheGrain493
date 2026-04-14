@@ -302,6 +302,10 @@ public class Unit : Entity
                 animator.SetFloat("x position", Mathf.Clamp(dir.x, -1, 1));
                 animator.SetFloat("y position", Mathf.Clamp(dir.y, -1, 1));
             }
+            else
+            {
+                Debug.Log("No Animator");
+            }
 
             float elapsed = 0f;
             while (elapsed < tileManager.stepDuration)
