@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: newFarmer_0
+  m_Name: carpenterTile
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.Tilemaps.Tile
-  m_Sprite: {fileID: 5610656108258937444, guid: 6a8d401cf1fb1a84789d375a3cf97b42, type: 3}
+  m_Sprite: {fileID: -1697215108959001702, guid: 5fab8663ba0b04262b5b77732e51a762, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

@@ -12,11 +12,17 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 7e317ab12112a194fa408deabfd3e3f3
   - enabled: 1
-    path: Assets/Scenes/TilemapScene.unity
-    guid: 620afeb56692a7b45ba43489cc9f199e
+    path: Assets/Scenes/Level 1.unity
+    guid: e6af670256758427c9ddfb4fe238cce7
   - enabled: 1
     path: Assets/Scenes/Level 2.unity
-    guid: 5bfd9943575bfd341800da697ee4eb31
+    guid: 642d666356d664dbb849dff8ca14d5e4
+  - enabled: 1
+    path: Assets/Scenes/Level 3.unity
+    guid: a6299848b9969410487d5623ae203db3
+  - enabled: 1
+    path: Assets/Scenes/TilemapScene.unity
+    guid: 620afeb56692a7b45ba43489cc9f199e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: d109cead009eb824480eccc23d5cb78f, type: 3}
   m_UseUCBPForAssetBundles: 0

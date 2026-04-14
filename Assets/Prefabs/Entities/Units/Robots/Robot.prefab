@@ -119,9 +119,9 @@ MonoBehaviour:
   isFed: 0
   isEnemy: 1
   canFly: 0
-  primary: 
+  primary: 0300000000000000
   target: {x: 0, y: 0, z: -1}
-  iq: 1
+  iq: 5
   isMoving: 0
 --- !u!95 &2623698599719832724
 Animator:
@@ -133,7 +133,7 @@ Animator:
   m_GameObject: {fileID: 1180065947808181623}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4a71271e6fd25024ab4647bbc6ba149b, type: 2}
+  m_Controller: {fileID: 9100000, guid: b049fe4a53ea71944b682e6d88e0d2ff, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
