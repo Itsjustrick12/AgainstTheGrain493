@@ -390,7 +390,14 @@ public class Unit : Entity
             return false;
         }
 
-        targetTile.occupyingEntity.TakeDamage(GetStrength());
+        if(targetTile.occupyingEntity as Unit != null)
+        {
+            (targetTile.occupyingEntity as Unit).TakeDamage(GetStrength(), GetGridPos());
+        }
+        else
+        {
+            targetTile.occupyingEntity.TakeDamage(GetStrength());
+        }
 
         if (targetTile.occupyingEntity == null)
             target = new Vector3Int(0, 0, -1);
@@ -485,7 +492,6 @@ public class Unit : Entity
         if (activeBuffs.Count <= 0)
         {
             base.TakeDamage(damage);
-            return;
         }
         else
         {
@@ -504,9 +510,10 @@ public class Unit : Entity
             }
 
             //calculate reduction
-            int newDamage = Mathf.Max(0, (int)(damage - (baseIncrease * multiplier)));
-            base.TakeDamage(newDamage);
+            damage = Mathf.Max(0, (int)(damage - (baseIncrease * multiplier)));
+            base.TakeDamage(damage);
         }
+        ShowNumber(damage, GetGridPos(), x);
     }
 
     //does the knockback animation for the unit
@@ -514,8 +521,8 @@ public class Unit : Entity
     {
         Renderer rend = GetComponent<Renderer>();
         Color og = rend.material.color;
-        float speed = strength * .01f;
-        if(speed > .005f) speed = .005f;
+        float speed = strength * .02f;
+        if(speed > .005f) speed = .01f;
         float elapsed = 0f;
         float duration = 1f;
         float time = 0;
@@ -530,6 +537,24 @@ public class Unit : Entity
             yield return new WaitForSeconds(duration / 60f);
         }
         rend.material.color = og;
+    }
+
+    public void ShowNumber(int damage, Vector3 position, int x)
+    {
+        Debug.Log("showNumber");
+        GameObject prefab = Resources.Load<GameObject>("FloatingNum");
+
+        if (prefab == null)
+        {
+            Debug.LogError("prefab not found");
+            return;
+        }//
+
+        GameObject obj = Instantiate(prefab, position, Quaternion.identity);
+
+        FloatingNumber fn = obj.GetComponent<FloatingNumber>();
+
+        fn.StartCoroutine(fn.SetNum(x, damage, position));
     }
 }
 
