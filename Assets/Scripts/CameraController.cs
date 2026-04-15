@@ -22,13 +22,12 @@ public class CameraController : MonoBehaviour
     [SerializeField] bool clampToBox = true;
     [SerializeField] MapSize mapSize = MapSize.SMALL;
     AgainstTheGrainInput inputActions;
-    private GameManager gameManager;
+    [SerializeField] private GameManager gameManager;
 
     //needed for determining whether or not the camera can be moved due to UI freezing
 
     public void Start()
     {
-        gameManager = GameManager.Instance;
         mapSize = gameManager.mapSize;
         UpdateCameraBounds(mapSize);
 
