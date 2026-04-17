@@ -110,6 +110,11 @@ MonoBehaviour:
   - {fileID: 1080932926499218301}
   - {fileID: 5891840513144639487}
   - {fileID: 7414197715761448400}
+  mx: 1
+  b: 0.6
+  speedMult: 1
+  speedMax: 10
+  yDistance: 0.5
   baseWidth: 32
   digitWidth: 32
   iconOnlyMode: 0

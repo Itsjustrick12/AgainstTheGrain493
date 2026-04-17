@@ -392,6 +392,7 @@ public class Unit : Entity
 
         if(targetTile.occupyingEntity as Unit != null)
         {
+            ShowNumber(GetStrength(), GetGridPos(), GetGridPos().x - target.x);
             (targetTile.occupyingEntity as Unit).TakeDamage(GetStrength(), GetGridPos());
         }
         else
@@ -513,7 +514,6 @@ public class Unit : Entity
             damage = Mathf.Max(0, (int)(damage - (baseIncrease * multiplier)));
             base.TakeDamage(damage);
         }
-        ShowNumber(damage, GetGridPos(), x);
     }
 
     //does the knockback animation for the unit
@@ -550,11 +550,11 @@ public class Unit : Entity
             return;
         }//
 
-        GameObject obj = Instantiate(prefab, position, Quaternion.identity);
+        Canvas canvas = FindFirstObjectByType<Canvas>();
+        GameObject obj = Instantiate(prefab, canvas.transform, false);
 
         FloatingNumber fn = obj.GetComponent<FloatingNumber>();
-
-        fn.StartCoroutine(fn.SetNum(x, damage, position));
+        StartCoroutine(fn.SetNum(x, damage, position));
     }
 }
 
