@@ -1,10 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Unity.VisualScripting;
+using static UnityEngine.UI.Image;
 
 [RequireComponent (typeof(Image))]
 public class UINumber : MonoBehaviour
 {
-    Image sprite;
+    public Image sprite;
     public Sprite[] numberSprites;
     private void Awake()
     {
@@ -15,4 +21,5 @@ public class UINumber : MonoBehaviour
     {
         sprite.sprite = numberSprites[digit];
     }
+
 }

@@ -143,9 +143,9 @@ TextureImporter:
       name: ui_font_strip10_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 0
-        width: 15
+        width: 13
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -165,9 +165,9 @@ TextureImporter:
       name: ui_font_strip10_1
       rect:
         serializedVersion: 2
-        x: 15
+        x: 16
         y: 0
-        width: 15
+        width: 13
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -187,9 +187,9 @@ TextureImporter:
       name: ui_font_strip10_2
       rect:
         serializedVersion: 2
-        x: 30
+        x: 31
         y: 0
-        width: 15
+        width: 13
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -209,9 +209,9 @@ TextureImporter:
       name: ui_font_strip10_3
       rect:
         serializedVersion: 2
-        x: 45
+        x: 46
         y: 0
-        width: 15
+        width: 13
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -231,9 +231,9 @@ TextureImporter:
       name: ui_font_strip10_4
       rect:
         serializedVersion: 2
-        x: 60
+        x: 61
         y: 0
-        width: 15
+        width: 13
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -253,9 +253,9 @@ TextureImporter:
       name: ui_font_strip10_5
       rect:
         serializedVersion: 2
-        x: 75
+        x: 76
         y: 0
-        width: 15
+        width: 13
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -275,9 +275,9 @@ TextureImporter:
       name: ui_font_strip10_6
       rect:
         serializedVersion: 2
-        x: 90
+        x: 91
         y: 0
-        width: 15
+        width: 13
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -297,9 +297,9 @@ TextureImporter:
       name: ui_font_strip10_7
       rect:
         serializedVersion: 2
-        x: 105
+        x: 106
         y: 0
-        width: 15
+        width: 13
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -319,9 +319,9 @@ TextureImporter:
       name: ui_font_strip10_8
       rect:
         serializedVersion: 2
-        x: 120
+        x: 121
         y: 0
-        width: 15
+        width: 13
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -341,9 +341,9 @@ TextureImporter:
       name: ui_font_strip10_9
       rect:
         serializedVersion: 2
-        x: 135
+        x: 136
         y: 0
-        width: 15
+        width: 13
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -355,6 +355,50 @@ TextureImporter:
       bones: []
       spriteID: f8d90c54bee4147c0800000000000000
       internalID: -4088900214281167473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_font_strip10_10
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 5
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd8bec74b6ded4023926c9618e5927c8
+      internalID: -97395827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_font_strip10_11
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 1
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08dd890f2becd462da4d6fd7cc8ab3cd
+      internalID: -1841599817
       vertices: []
       indices: 
       edges: []
@@ -373,10 +417,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":15.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       ui_font_strip10_0: -3998771892055078564
       ui_font_strip10_1: 5656819454840468575
+      ui_font_strip10_10: -97395827
+      ui_font_strip10_11: -1841599817
       ui_font_strip10_2: 4531996848895665793
       ui_font_strip10_3: -5610018945659639784
       ui_font_strip10_4: -7313723084023215002

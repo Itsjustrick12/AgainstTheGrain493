@@ -12,33 +12,23 @@ public class FloatingNumber : MonoBehaviour
     public float moveSpeed = 1f;
     public float lifetime = 1f;
     public int number = 0;
-    public TMP_Text textMesh;
+    public UINumber[] digits;
+
+    public float baseWidth = 32f;
+    //For every digit, add this amount to the width to scale it up
+    public float digitWidth = 32f;
+
+    protected int currentAmount = 0;
+    [SerializeField] protected bool iconOnlyMode = false;
 
     void Awake()
     {
-        textMesh = GetComponent<TextMeshPro>();
     }
 
     public IEnumerator SetNum(int x, int damage, Vector3 pos)
     {
         transform.position = new Vector3(pos.x + 1, pos.y + 1, 10);
-        if(damage > 0)
-        {
-            textMesh.text = x.ToString();
-            textMesh.color = Color.red;
-        }
-        else if(damage < 0)
-        {
-            textMesh.text = "+" + x.ToString();
-            textMesh.color = Color.green;
-        }
-        else
-        {
-            textMesh.text = x.ToString();
-            textMesh.color = Color.blue;
-        }
-        textMesh.outlineWidth = 0.2f;
-        textMesh.outlineColor = Color.black;
+        UpdateCounter(damage);
         Debug.Log("showNumber");
         float speed = damage * .02f;
         if(speed > .01f) speed = .01f;
@@ -56,5 +46,76 @@ public class FloatingNumber : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    public virtual void UpdateCounter(int newValue)
+    {
+        //creates flags
+        bool isNegative = false;
+        bool isZero = false;
+        int currentAmount = Mathf.Max(0, newValue);
+
+        if(currentAmount < 0)
+        {
+            isNegative = true;
+            currentAmount = Mathf.Abs(currentAmount);
+        }
+        else if(currentAmount == 0)
+        {
+            isZero = true;
+        }
+
+        string valueStr = currentAmount.ToString();
+        int digitCount = valueStr.Length;
+
+        if(!isZero)
+        {
+            digitCount++;
+        }
+
+        int digi = 0;
+        if(!isZero)
+        {
+            digits[0].gameObject.SetActive(true);
+            if(isNegative)
+            {
+                digits[0].UpdateDigit(10);
+            }
+            else
+            {
+                digits[0].UpdateDigit(11);
+            }
+            digi++;
+        }
+        
+
+
+        // Update digit sprites
+        for (int i = digi; i < digits.Length; i++)
+        {
+            if (i < digitCount)
+            {
+                digits[i].transform.position = new Vector3(transform.position.x + digi * digitWidth, transform.position.y, transform.position.z);
+                if(isZero)
+                {
+                    digits[i].sprite.color = Color.blue;
+                }
+                else if(isNegative)
+                {
+                    digits[i].sprite.color = Color.red;
+                }
+                else
+                {
+                    digits[i].sprite.color = Color.green;
+                }
+                digits[i].gameObject.SetActive(true);
+
+                digits[i].UpdateDigit(i);
+            }
+            else
+            {
+                digits[i].gameObject.SetActive(false);
+            }
+        }
     }
 }
