@@ -392,7 +392,7 @@ public class Unit : Entity
 
         if(targetTile.occupyingEntity as Unit != null)
         {
-            ShowNumber(GetStrength(), GetGridPos(), GetGridPos().x - target.x);
+            ShowNumber(GetStrength(), target, GetGridPos().x - target.x);
             (targetTile.occupyingEntity as Unit).TakeDamage(GetStrength(), GetGridPos());
         }
         else
@@ -539,7 +539,7 @@ public class Unit : Entity
         rend.material.color = og;
     }
 
-    public void ShowNumber(int damage, Vector3 position, int x)
+    public void ShowNumber(int damage, Vector3Int position, int x)
     {
         Debug.Log("showNumber");
         GameObject prefab = Resources.Load<GameObject>("FloatingNum");

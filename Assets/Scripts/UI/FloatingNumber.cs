@@ -13,8 +13,7 @@ public class FloatingNumber : MonoBehaviour
     public float lifetime = 1f;
     public int number = 0;
     public UINumber[] digits;
-    public float mx = 1f;
-    public float b = 0.6f;
+    public float xBounce = 0.6f;
     public float speedMult = 1f;
     public float speedMax = 10f;
     public float yDistance = 0.5f;
@@ -30,9 +29,14 @@ public class FloatingNumber : MonoBehaviour
     {
     }
 
-    public IEnumerator SetNum(int x, int damage, Vector3 pos)
+    //x is which side they are being attacked by, damage is the amount of damage, and position is the position of the unit getting damaged
+    public IEnumerator SetNum(int x, int damage, Vector3Int pos)
     {
-        MovePanel(pos, x);
+        if(x == 0)
+        {
+            x = -1;
+        }
+        MovePanel(pos);
         UpdateCounter(damage);
 
         float speed = damage * speedMult;
@@ -126,14 +130,16 @@ public class FloatingNumber : MonoBehaviour
         }
     }
 
-    public void MovePanel(Vector3 pos, int x)
+    public void MovePanel(Vector3 pos)
     {
-        x = x * -1;
         Canvas canvas = GetComponentInParent<Canvas>();
         RectTransform canvasRect = canvas.GetComponent<RectTransform>();
         RectTransform rect = GetComponent<RectTransform>();
 
-        Vector3 offset = new Vector3((float)(x / Mathf.Abs(x)) * mx - b, -7f, 0f);
+        Vector3 offset = new Vector3(
+        xBounce,
+        -7f,
+        0f);
         Vector3 desiredWorldPos = pos + offset;
 
         Vector2 screenPos = Camera.main.WorldToScreenPoint(desiredWorldPos);

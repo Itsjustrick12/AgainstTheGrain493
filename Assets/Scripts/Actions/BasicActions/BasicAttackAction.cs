@@ -119,9 +119,8 @@ public class BasicAttackAction : EntityAction
         unit.SetAnimationTrigger("attack");
 
         //do a simple attack
-
         SoundManager.Instance.PlayEntitySound(entity, SoundType.ATTACK);
-        unit.ShowNumber(unit.GetStrength(), unit.GetGridPos(), unit.GetGridPos().x - targetUnit.GetGridPos().x);
+        unit.ShowNumber(unit.GetStrength(), targetUnit.GetGridPos(), unit.GetGridPos().x - targetUnit.GetGridPos().x);
         targetUnit.TakeDamage(unit.GetStrength(), unit.GetGridPos());
     }
 }

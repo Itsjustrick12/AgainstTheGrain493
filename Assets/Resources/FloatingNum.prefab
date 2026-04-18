@@ -110,8 +110,7 @@ MonoBehaviour:
   - {fileID: 1080932926499218301}
   - {fileID: 5891840513144639487}
   - {fileID: 7414197715761448400}
-  mx: 1
-  b: 0.6
+  xBounce: -0.5
   speedMult: 1
   speedMax: 10
   yDistance: 0.5
