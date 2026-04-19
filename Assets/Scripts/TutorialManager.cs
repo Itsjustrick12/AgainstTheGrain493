@@ -1,56 +1,30 @@
 using PixelCrushers.DialogueSystem;
+using static UnityEngine.CullingGroup;
+using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class TutorialManager : MonoBehaviour
 {
-    public void Start()
+    //[SerializeField] private TutorialDialogueTrigger dialogueTrigger;
+    [SerializeField] private bool tutorialEnabled = true;
+
+    private HashSet<string> completedSteps = new HashSet<string>();
+    public static TutorialManager Instance;
+
+    private void Awake()
     {
-        DialogueManager.StartConversation("Tutorial/Welcome");
+        Instance = this;
+        if (!tutorialEnabled)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
     }
 
-    public void Awake()
+    public void OnUnitClicked()
     {
-        
-    }
-
-    public void UnitSelected()
-    {
-        //when the unit is first selected, pause the game and explain stuff about the unit
-    }
-
-    public void OnPlantSelected()
-    {
-
-    }
-
-    public void CropPlanted()
-    {
-
-    }
-
-    public void CropWatered()
-    {
-
-    }
-
-    public void CropHarvested()
-    {
-
-    }
-
-    public void BarnOpened()
-    {
-
-    }
-
-    public void AnimalPurchased()
-    {
-
-    }
-
-    public void OnEnemyTurnStart()
-    {
-
+        DialogueManager.StartConversation("Tutorial/FirstUnitClick");
     }
 
 }

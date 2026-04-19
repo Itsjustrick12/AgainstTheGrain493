@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +27,9 @@ public class Unit : Entity
 
     //Necessary for animating
     public bool isMoving = false;
+
+    public static event Action OnUnitAttacked;
+    public static event Action<int> OnUnitFed;
 
     public override void Awake()
     {
