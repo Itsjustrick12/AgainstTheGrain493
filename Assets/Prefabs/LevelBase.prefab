@@ -91,15 +91,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119752541403844680, guid: d002971a67a3df64dac584c8dec69458, type: 3}
       propertyPath: m_TileColorArray.Array.data[0].m_Data.b
-      value: 0.5736556
+      value: 0.5448176
       objectReference: {fileID: 0}
     - target: {fileID: 9119752541403844680, guid: d002971a67a3df64dac584c8dec69458, type: 3}
       propertyPath: m_TileColorArray.Array.data[0].m_Data.g
-      value: 0.47312343
+      value: 0.46858093
       objectReference: {fileID: 0}
     - target: {fileID: 9119752541403844680, guid: d002971a67a3df64dac584c8dec69458, type: 3}
       propertyPath: m_TileColorArray.Array.data[0].m_Data.r
-      value: 0.8615312
+      value: 0.71602094
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -514,10 +514,19 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1340865228278535194, guid: 32327f1a5432bf645a3d4f3d99b7a60f, type: 3}
+    - {fileID: 7633259396755785052, guid: 32327f1a5432bf645a3d4f3d99b7a60f, type: 3}
+    - {fileID: 6875336552927191242, guid: 32327f1a5432bf645a3d4f3d99b7a60f, type: 3}
+    - {fileID: 4933792081025046971, guid: 32327f1a5432bf645a3d4f3d99b7a60f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32327f1a5432bf645a3d4f3d99b7a60f, type: 3}
+--- !u!223 &1839894845480518755 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 3395408254099553973, guid: 32327f1a5432bf645a3d4f3d99b7a60f, type: 3}
+  m_PrefabInstance: {fileID: 3933462494566693590}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3196227210053279402 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1931253669560444028, guid: 32327f1a5432bf645a3d4f3d99b7a60f, type: 3}
@@ -697,6 +706,22 @@ PrefabInstance:
     - target: {fileID: 2430202247452094250, guid: bf546e99ee00fc34598638c200dc8a0c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658646034626703832, guid: bf546e99ee00fc34598638c200dc8a0c, type: 3}
+      propertyPath: displaySettings.defaultCanvas
+      value: 
+      objectReference: {fileID: 1839894845480518755}
+    - target: {fileID: 4658646034626703832, guid: bf546e99ee00fc34598638c200dc8a0c, type: 3}
+      propertyPath: displaySettings.subtitleSettings.continueButton
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658646034626703832, guid: bf546e99ee00fc34598638c200dc8a0c, type: 3}
+      propertyPath: displaySettings.inputSettings.cancelConversation.key
+      value: 127
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658646034626703832, guid: bf546e99ee00fc34598638c200dc8a0c, type: 3}
+      propertyPath: displaySettings.inputSettings.alwaysForceResponseMenu
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7869176958733984238, guid: bf546e99ee00fc34598638c200dc8a0c, type: 3}
       propertyPath: borderMap
