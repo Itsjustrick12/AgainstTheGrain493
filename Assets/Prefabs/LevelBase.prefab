@@ -91,15 +91,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119752541403844680, guid: d002971a67a3df64dac584c8dec69458, type: 3}
       propertyPath: m_TileColorArray.Array.data[0].m_Data.b
-      value: 0.5736556
+      value: 0.6126727
       objectReference: {fileID: 0}
     - target: {fileID: 9119752541403844680, guid: d002971a67a3df64dac584c8dec69458, type: 3}
       propertyPath: m_TileColorArray.Array.data[0].m_Data.g
-      value: 0.47312343
+      value: 0.5501436
       objectReference: {fileID: 0}
     - target: {fileID: 9119752541403844680, guid: d002971a67a3df64dac584c8dec69458, type: 3}
       propertyPath: m_TileColorArray.Array.data[0].m_Data.r
-      value: 0.8615312
+      value: 0.8031702
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -401,6 +401,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3117526693694825075, guid: 32327f1a5432bf645a3d4f3d99b7a60f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117526693694825075, guid: 32327f1a5432bf645a3d4f3d99b7a60f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117526693694825075, guid: 32327f1a5432bf645a3d4f3d99b7a60f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3418546756529115276, guid: 32327f1a5432bf645a3d4f3d99b7a60f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -514,7 +526,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1340865228278535194, guid: 32327f1a5432bf645a3d4f3d99b7a60f, type: 3}
+    - {fileID: 7633259396755785052, guid: 32327f1a5432bf645a3d4f3d99b7a60f, type: 3}
+    - {fileID: 6875336552927191242, guid: 32327f1a5432bf645a3d4f3d99b7a60f, type: 3}
+    - {fileID: 4933792081025046971, guid: 32327f1a5432bf645a3d4f3d99b7a60f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32327f1a5432bf645a3d4f3d99b7a60f, type: 3}

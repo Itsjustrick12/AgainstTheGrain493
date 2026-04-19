@@ -13,5 +13,6 @@ public class UnitInfo : EntityInfo
     [Header("Unit Sounds")]
     public AudioClip attackSound;
     public AudioClip pickupSound;
+    public AudioClip walkSound;
     public AudioClip placeSound;
 }
