@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6dfce89fbf814ce41a491bc37a579377
+guid: f964b59961a8d5948acbdf014ceb41cb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3711868630267546444
-    second: spr_ui_hoverstats_0
+      213: 8840032072014692434
+    second: spr_ui_hoverstats_farmer_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,40 +96,27 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_ui_hoverstats_0
+      name: spr_ui_hoverstats_farmer_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
-        width: 130
-        height: 71
+        x: 0
+        y: 0
+        width: 160
+        height: 96
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c4b43085ad4338330800000000000000
-      internalID: 3711868630267546444
+      spriteID: 2500f7f355a1eaa70800000000000000
+      internalID: 8840032072014692434
       vertices: []
       indices: 
       edges: []
@@ -138,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: cb3c943441dbd124299a7d874672b09e
     internalID: 0
     vertices: []
     indices: 
@@ -146,9 +133,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":160.0,"y":96.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      spr_ui_hoverstats_0: 3711868630267546444
+      spr_ui_hoverstats_farmer_0: 8840032072014692434
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
