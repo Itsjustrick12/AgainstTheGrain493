@@ -30,4 +30,5 @@ MonoBehaviour:
   moveRange: 5
   attackSound: {fileID: 8300000, guid: ca0faf8312322b84aae4628a6edab3b1, type: 3}
   pickupSound: {fileID: 0}
+  walkSound: {fileID: 8300000, guid: 7c8bbff6ccf32d744ad306dff31f1ebe, type: 3}
   placeSound: {fileID: 0}

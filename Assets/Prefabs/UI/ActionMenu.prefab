@@ -49,17 +49,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbb477411d086dd4c8f108fb9e6a45ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  uiCanvas: {fileID: 0}
+  buttons: []
   selectedChoice: -1
+  selectionArrow: {fileID: 0}
+  navigateUp: {fileID: 8300000, guid: ff8c0902d63be5d4e832e9db218fe194, type: 3}
+  navigateDown: {fileID: 8300000, guid: 040dc8c75817a254a87c06f445b1cc0a, type: 3}
+  reportNoise: {fileID: 0}
+  uiCanvas: {fileID: 0}
   shadeColor: {r: 0.7056604, g: 0.7056604, b: 0.7056604, a: 1}
   OnActionSelected:
     m_PersistentCalls:
       m_Calls: []
   buttonContainer: {fileID: 8827235785637663248}
   actionButtonPrefab: {fileID: 2476717765363805346, guid: bd83207a216f0aa4c845309ddeaf43f1, type: 3}
-  selectionArrow: {fileID: 0}
   wait: {fileID: 11400000, guid: 866512204f1061645a7ac76bd7e8ed48, type: 2}
   cancel: {fileID: 11400000, guid: 580bd328af22c454dbf870d0a2869648, type: 2}
+  endTurn: {fileID: 0}
 --- !u!1 &4537804008970590655
 GameObject:
   m_ObjectHideFlags: 0
