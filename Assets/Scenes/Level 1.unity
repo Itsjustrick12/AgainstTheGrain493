@@ -2471,6 +2471,10 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[184].second.m_TileObjectToInstantiateIndex
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 9093557478466492049, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: displaySettings.inputSettings.alwaysForceResponseMenu
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
