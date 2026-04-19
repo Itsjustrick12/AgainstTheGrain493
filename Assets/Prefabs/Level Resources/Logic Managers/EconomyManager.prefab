@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   coins: 10
+  coinSound: {fileID: 8300000, guid: 2b1f9e684b114554bb4a637db359e6a0, type: 3}

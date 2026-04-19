@@ -124,7 +124,6 @@ public class PickCropUI : NaviagatableUI
         }
 
         SelectButton(selectedChoice);
-        SoundManager.Instance.PlaySound(navigateNoise);
     }
 
     public override void ReportAction()
