@@ -394,7 +394,12 @@ public class Unit : Entity
 
         if(targetTile.occupyingEntity as Unit != null)
         {
-            ShowNumber(GetStrength(), target, GetGridPos().x - target.x);
+
+            ShowNumber(GetStrength(), 
+            Vector3(tileManager.entitiesMap.CellToWorld(target).x,
+            tileManager.entitiesMap.CellToWorld(target).y,
+            tileManager.entitiesMap.CellToWorld(target).z
+            ), GetGridPos().x - target.x);
             (targetTile.occupyingEntity as Unit).TakeDamage(GetStrength(), GetGridPos());
         }
         else
