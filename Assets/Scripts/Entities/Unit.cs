@@ -109,6 +109,14 @@ public class Unit : Entity
         currentHealth = (after) > maxHealth ? maxHealth : after;
     }
 
+    public bool HasAnimator()
+    {
+        if(animator != null)
+        {
+            return true;
+        }
+        return false;
+    }
 
 
     public int GetAttackRange()
@@ -298,10 +306,18 @@ public class Unit : Entity
             Vector3Int dir = path[i] - prevPos;
             SoundManager.Instance.PlayEntitySound(this, SoundType.WALK);
 
-            if (animator != null)
+            if (HasAnimator())
             {
                 animator.SetBool("moving", true);
                 animator.SetFloat("x position", Mathf.Clamp(dir.x, -1, 1));
+                if(Mathf.Clamp(dir.x, -1, 1) < 0)
+                {
+                    animator.SetFloat("facing", -1f);
+                }
+                else 
+                {
+                    animator.SetFloat("facing", 1f);
+                }
                 animator.SetFloat("y position", Mathf.Clamp(dir.y, -1, 1));
             }
             else
@@ -322,11 +338,9 @@ public class Unit : Entity
         // LOGICAL MOVE, ACTUALLY MOVE TO GRID SPACE
         tileManager.MoveEntity(startLogicalPos, destination);
 
-        if (animator != null)
+        if (HasAnimator())
         {
             animator.SetBool("moving", false);
-            animator.SetFloat("x position", 0);
-            animator.SetFloat("y position", 0);
         }
         //flag used to allow player input again after move anim
         isMoving = false;

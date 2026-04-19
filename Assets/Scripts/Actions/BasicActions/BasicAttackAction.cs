@@ -116,7 +116,11 @@ public class BasicAttackAction : EntityAction
             Debug.LogError("No Unit, just an entity");
         }
 
-        unit.SetAnimationTrigger("attack");
+        if (unit.HasAnimator())
+        {
+            unit.animator.SetFloat("facing", targetUnit.GetGridPos().x - unit.GetGridPos().x);
+            unit.SetAnimationTrigger("attack");
+        }
 
         //do a simple attack
 

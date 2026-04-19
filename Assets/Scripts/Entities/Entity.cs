@@ -46,7 +46,7 @@ public class Entity : MonoBehaviour, IBuffable
     [SerializeField] private bool isInteractable;
     private Vector3 offset = new Vector3(0.5f, 0.5f, 0);
     //holds the animator
-    [SerializeField] protected Animator animator;
+    [SerializeField] public Animator animator;
 
     //Hidden logic for determining what a unit is able to do, define by the unit database
     protected List<EntityAction> actions = new();
