@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 11f0c8a0a5b87d54eb73ae0f814e1a67
+guid: add7084dd4b0de342be745c5ac1a3983
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4188374293515715769
-    second: spr_ui_crop_title_0
+      213: -5478186396298261176
+    second: spr_ui_hud_button_endturn_strip3_0
+  - first:
+      213: 6551367788676264040
+    second: spr_ui_hud_button_endturn_strip3_1
+  - first:
+      213: 4173619788223223286
+    second: spr_ui_hud_button_endturn_strip3_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,40 +102,71 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_ui_crop_title_0
+      name: spr_ui_hud_button_endturn_strip3_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 60
-        height: 18
+        width: 96
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9b4c16f9a38102a30800000000000000
-      internalID: 4188374293515715769
+      spriteID: 84dc34b4f7299f3b0800000000000000
+      internalID: -5478186396298261176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_ui_hud_button_endturn_strip3_1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8603cfc0b422bea50800000000000000
+      internalID: 6551367788676264040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_ui_hud_button_endturn_strip3_2
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f51698a51dabe930800000000000000
+      internalID: 4173619788223223286
       vertices: []
       indices: 
       edges: []
@@ -138,7 +175,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 80dc50e585c58434e8be7e35778a8abc
     internalID: 0
     vertices: []
     indices: 
@@ -146,9 +183,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":3.0,"y":1.0},"gridSpriteSize":{"x":96.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      spr_ui_crop_title_0: 4188374293515715769
+      spr_ui_hud_button_endturn_strip3_0: -5478186396298261176
+      spr_ui_hud_button_endturn_strip3_1: 6551367788676264040
+      spr_ui_hud_button_endturn_strip3_2: 4173619788223223286
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

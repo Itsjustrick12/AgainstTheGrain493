@@ -1,31 +1,10 @@
 fileFormatVersion: 2
-guid: 2df3e1eb46b9f4f1b88a617867050028
+guid: 02a7b00cc4b860a458ac847e92959a3f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1697215108959001702
-    second: carpenter_0
-  - first:
-      213: -189080007938197817
-    second: carpenter_1
-  - first:
-      213: -3227177927617533074
-    second: carpenter_2
-  - first:
-      213: -5483533074330260450
-    second: carpenter_3
-  - first:
-      213: 2976295892177632905
-    second: carpenter_4
-  - first:
-      213: -191474170301545204
-    second: carpenter_5
-  - first:
-      213: 2766941015181288619
-    second: carpenter_6
-  - first:
-      213: 1014102485386148373
-    second: carpenter_7
+      213: -7184561873426301707
+    second: spr_vfx_sparkle_strip7_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -117,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: carpenter_0
+      name: spr_vfx_sparkle_strip7_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -149,162 +115,140 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a93a213c9d74278e0800000000000000
-      internalID: -1697215108959001702
+      spriteID: 5fc3c93aa0f4b4c90800000000000000
+      internalID: -7184561873426301707
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: carpenter_1
+      name: spr_vfx_sparkle_strip7_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a889fb476dd46ca4ba419b93aaed5056
+      internalID: -2092010103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_vfx_sparkle_strip7_2
       rect:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7c637bc0cb0406df0800000000000000
-      internalID: -189080007938197817
+      spriteID: 689737132b9e09f47a14c1e6b6dbe1b6
+      internalID: -1014482684
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: carpenter_2
+      name: spr_vfx_sparkle_strip7_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95d1ea6d69b74b34da5b31c9d84b346c
+      internalID: -959400673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_vfx_sparkle_strip7_4
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e6b206de5c2c633d0800000000000000
-      internalID: -3227177927617533074
+      spriteID: 5d1255c56809d8149b5485d11e54eb85
+      internalID: -1739297973
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: carpenter_3
+      name: spr_vfx_sparkle_strip7_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7a94021544b48547bd99ce3f2631448
+      internalID: -1200456656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_vfx_sparkle_strip7_6
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e1c607ec8b396e3b0800000000000000
-      internalID: -5483533074330260450
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: carpenter_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 98eb3b7485ded4920800000000000000
-      internalID: 2976295892177632905
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: carpenter_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c05838fa14fb75df0800000000000000
-      internalID: -191474170301545204
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: carpenter_6
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ba4e6548136266620800000000000000
-      internalID: 2766941015181288619
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: carpenter_7
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 51a384766d0d21e00800000000000000
-      internalID: 1014102485386148373
+      spriteID: 0773bc7b7f4df1a4dbc38c533053452f
+      internalID: -642995603
       vertices: []
       indices: 
       edges: []
@@ -313,7 +257,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 6e718adde7686c0488aec675f30e0dd7
+    spriteID: 5625245b07e09fb42ac6b3ea9652f010
     internalID: 0
     vertices: []
     indices: 
@@ -323,16 +267,15 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      carpenter_0: -1697215108959001702
-      carpenter_1: -189080007938197817
-      carpenter_2: -3227177927617533074
-      carpenter_3: -5483533074330260450
-      carpenter_4: 2976295892177632905
-      carpenter_5: -191474170301545204
-      carpenter_6: 2766941015181288619
-      carpenter_7: 1014102485386148373
+      spr_vfx_sparkle_strip7_0: -7184561873426301707
+      spr_vfx_sparkle_strip7_1: -2092010103
+      spr_vfx_sparkle_strip7_2: -1014482684
+      spr_vfx_sparkle_strip7_3: -959400673
+      spr_vfx_sparkle_strip7_4: -1739297973
+      spr_vfx_sparkle_strip7_5: -1200456656
+      spr_vfx_sparkle_strip7_6: -642995603
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
