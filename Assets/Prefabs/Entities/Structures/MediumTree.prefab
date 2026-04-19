@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 465499869951987616}
   - component: {fileID: 7941187540243799669}
-  - component: {fileID: 8533745808882360955}
-  - component: {fileID: 7483454291732451191}
+  - component: {fileID: 217261832258251752}
   m_Layer: 0
-  m_Name: Carpenter
+  m_Name: MediumTree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,17 +82,17 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1697215108959001702, guid: 5fab8663ba0b04262b5b77732e51a762, type: 3}
+  m_Sprite: {fileID: -4772991782164839236, guid: f249ae9e84626ca43bd05f14834f3a9c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 1
---- !u!114 &8533745808882360955
+--- !u!114 &217261832258251752
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,45 +101,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4935858330493278644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a247b7d29174994c8f37eb81eb84fda, type: 3}
+  m_Script: {fileID: 11500000, guid: 14e7a28b1dd5e6e478eb3568c55de45d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Unit
-  maxHealth: 10
-  type: 3
-  currentHealth: 10
+  m_EditorClassIdentifier: Assembly-CSharp::Structure
+  maxHealth: 20
+  type: 5
+  currentHealth: 20
   isObstacle: 1
   isInteractable: 0
   animator: {fileID: 0}
-  ID: 6
-  strength: 1
-  attackRange: 1
-  movementRange: 3
-  isFed: 0
-  isEnemy: 0
-  canFly: 0
-  primary: 
-  target: {x: 0, y: 0, z: -1}
-  iq: 1
-  isMoving: 0
---- !u!95 &7483454291732451191
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4935858330493278644}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3c72d6a0c2e9ab046a3277ea33daf8bd, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  ID: 8
