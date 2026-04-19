@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 000595eef398e0f45a8e664d8f5ff3c8, type: 3}
+  m_Name: 6_Carpenter
+  m_EditorClassIdentifier: Assembly-CSharp::UnitInfo
+  id: 6
+  entityName: Carpenter
+  baseHealth: 10
+  prefab: {fileID: 4935858330493278644, guid: e3ded7e7db7648642954b21ddec6faa5, type: 3}
+  tile: {fileID: 11400000, guid: 5ccc0fd67c9299c4296ca5952bff15a3, type: 2}
+  sprite: {fileID: -1697215108959001702, guid: 5fab8663ba0b04262b5b77732e51a762, type: 3}
+  actions:
+  - {fileID: 11400000, guid: 7c13517389f0d4c4e93d63f8ee88274a, type: 2}
+  - {fileID: 11400000, guid: 56f5247d1fabbf7419f69ec99362385a, type: 2}
+  purchasePrice: -1
+  sellValue: -1
+  hurtSound: {fileID: 8300000, guid: d88985e9feca51649984a523bcd49efa, type: 3}
+  deathSound: {fileID: 8300000, guid: 1eb23301a54e4e749965a894b4d2f2fe, type: 3}
+  isEnemy: 0
+  attackRange: 1
+  strength: 5
+  moveRange: 4
+  attackSound: {fileID: 8300000, guid: ca0faf8312322b84aae4628a6edab3b1, type: 3}
+  pickupSound: {fileID: 0}
+  placeSound: {fileID: 0}

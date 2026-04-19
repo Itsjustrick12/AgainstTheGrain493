@@ -25,9 +25,9 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: 1eb23301a54e4e749965a894b4d2f2fe, type: 3}
   numStages: 3
   growthStageSprites:
-  - {fileID: 3545203897024761417, guid: 7f2d3c582f78f0f48b9992352c3dd522, type: 3}
-  - {fileID: -8876900742276911374, guid: 7f2d3c582f78f0f48b9992352c3dd522, type: 3}
-  - {fileID: -564861489, guid: 7f2d3c582f78f0f48b9992352c3dd522, type: 3}
+  - {fileID: 21300000, guid: 861355e33f5de5e4eae6dd0f1294a55d, type: 3}
+  - {fileID: 21300000, guid: 412ddd2d81807834685ef65140bbf83a, type: 3}
+  - {fileID: 21300000, guid: 34ad57fa39263fc4e9b5c72934bffd5d, type: 3}
   isMultiHarvest: 0
   onHarvestStage: -1
   barrenSprite: {fileID: 0}

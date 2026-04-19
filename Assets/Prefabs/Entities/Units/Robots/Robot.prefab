@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -692177023350366618, guid: 218e9496bb314c04fa5700d940abea5a, type: 3}
+  m_Sprite: {fileID: 7941836645919822687, guid: 0e8ec3451196ba04aa50a74322177ef3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,18 +106,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a247b7d29174994c8f37eb81eb84fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Unit
-  tileHelper: {fileID: 0}
   maxHealth: 10
   type: 2
   currentHealth: 10
   isObstacle: 1
   isInteractable: 0
-  shadeSprite: {fileID: 8357789075482895520}
+  animator: {fileID: 2623698599719832724}
   ID: 5
+  strength: 1
+  attackRange: 1
+  movementRange: 3
+  isFed: 0
   isEnemy: 1
-  primary: 
+  canFly: 0
+  primary: 0300000000000000
   target: {x: 0, y: 0, z: -1}
-  iq: 1
+  iq: 5
+  isMoving: 0
 --- !u!95 &2623698599719832724
 Animator:
   serializedVersion: 7
@@ -128,7 +133,7 @@ Animator:
   m_GameObject: {fileID: 1180065947808181623}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7dfd06fae688f85409ecdee5eaab76bf, type: 2}
+  m_Controller: {fileID: 9100000, guid: b049fe4a53ea71944b682e6d88e0d2ff, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -212,10 +217,5 @@ PrefabInstance:
 --- !u!4 &1983496350134393350 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7158574752495522402, guid: 15af7a7b2b3b6f84cb07b1b8cb8df886, type: 3}
-  m_PrefabInstance: {fileID: 8709564363311679588}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &8357789075482895520 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 802276549093256388, guid: 15af7a7b2b3b6f84cb07b1b8cb8df886, type: 3}
   m_PrefabInstance: {fileID: 8709564363311679588}
   m_PrefabAsset: {fileID: 0}

@@ -20,6 +20,7 @@ public class TileManager : MonoBehaviour
     //Will be used for drawing the boarder around where tiles are placed so theres no screen edges
     public Tilemap borderMap;
     public TileBase borderTile;
+    public TileHelper tileHelper;
 
     //Used for getting nearby references of tiles
     [HideInInspector]private static Vector3Int[] NEIGHBORS = new Vector3Int[]
@@ -45,6 +46,9 @@ public class TileManager : MonoBehaviour
     public TileBase dirtTile;
     public TileBase wateredDirtTile;
     public TileBase pathTile;
+
+    //speed of movement (tile per second)f
+    public float stepDuration;
 
     //Dicionary for getting quick references to the data at a given tile (occupants, terrain etc)
     private Dictionary<Vector3Int, TileData> tilePosToData;
@@ -270,6 +274,7 @@ public class TileManager : MonoBehaviour
 
     public void MoveEntity(Vector3Int start, Vector3Int end)
     {
+        
         TileData fromData = tilePosToData[start];
         TileData toData = tilePosToData[end];
         if (fromData == null || toData == null)
@@ -284,6 +289,7 @@ public class TileManager : MonoBehaviour
             fromData.ClearOccupant();
             PlaceEntityOnTile(end, selectedEntity);
         }
+        
         
     }
     //Need to check for unit null upon return

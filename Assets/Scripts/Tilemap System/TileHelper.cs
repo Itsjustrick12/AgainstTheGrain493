@@ -54,8 +54,32 @@ public class TileHelper : MonoBehaviour
         return true;
     }
 
+    public bool IsWithinRange(Vector3Int a, Vector3Int b, int range)
+    {
+        return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y) <= range;
+    }
+
     //returns start to end vector of vectors
-    public List<Vector3Int> TilePath(Vector3Int start, Vector3Int end)
+    public List<Vector3Int> TilePath(Vector3Int start, Vector3Int end, Unit unit)
+    {
+        int isEnemy = -1;
+        bool canFly = false;
+        if(unit != null)
+        {
+            if(unit.GetIsEnemy() == false)
+            {
+                isEnemy = 0;
+            }
+            else
+            {
+                isEnemy = 1;
+            }
+            canFly = unit.GetCanFly();
+        }
+        return TilePath(start, end, isEnemy, canFly);
+    }
+
+    public List<Vector3Int> TilePath(Vector3Int start, Vector3Int end, int isEnemy, bool canFly)
     {
         List<Vector3Int> ret = new List<Vector3Int>();
 
@@ -63,7 +87,6 @@ public class TileHelper : MonoBehaviour
         //check to make sure it's in range
         if(!InRange(start) || !InRange(end))
         {
-            ret.Add(Vector3Int.zero);
             Debug.Log("Not in range");
             return ret;
         }
@@ -76,91 +99,185 @@ public class TileHelper : MonoBehaviour
             return ret;
         }
 
-        //make the open and closed lists
-        List<Node> openList = new List<Node>();
-        HashSet<Vector3Int> closedSet = new HashSet<Vector3Int>();
-
-        //add the start node to the open list
-        Node startNode = new Node(start);
-        startNode.SetH(end);
-        startNode.SetF();
-        openList.Add(startNode);
-
-        //keep looping until the list is empty
-        while(openList.Count > 0)
+        /*
+        //can't end on unit
+        if(IsOccupied(end))
         {
-            //sort openList by f
-            openList.Sort((a, b) => a.f.CompareTo(b.f));
-            Node currentNode = openList[0];
+            ret.Add(Vector3Int.zero);
+            Debug.Log("End tile is occupied");
+            return ret;
+        }
+        */
 
-            //check if the current node is the end
-            if(currentNode.location == end)
+        List<Vector3Int> candidateEnds = new List<Vector3Int>();
+        candidateEnds.Add(end);
+        candidateEnds.Add(end + Vector3Int.up);
+        candidateEnds.Add(end + Vector3Int.down);
+        candidateEnds.Add(end + Vector3Int.left);
+        candidateEnds.Add(end + Vector3Int.right);
+
+        List<Vector3Int> bestFallbackPath = new List<Vector3Int>();
+
+        for(int c = 0; c < candidateEnds.Count; c++)
+        {
+            Vector3Int candidateEnd = candidateEnds[c];
+
+            if(!InRange(candidateEnd))
             {
-                //if it is get the return ready
-                Node node = currentNode;
-                while (node != null)
-                {
-                    ret.Insert(0, node.location);
-                    node = node.parent;
-                }
-                //Debug.Log("Path Of Length: " + ret.Count);
-                //for(int i = 0; i < ret.Count; i++)
-                //{
-                //    Debug.Log(ret[i]);
-                //}
-                return ret;
+                continue;
             }
 
-            //if it isnt send it to the closed list
-            openList.RemoveAt(0);
-            closedSet.Add(currentNode.location);
-
-            //check the 4 directions TODO diagonal?
-            Vector3Int[] neighbors = new Vector3Int[] 
+            TileData candidateTile = tileManager.GetTileDataAt(candidateEnd);
+            if(candidateTile == null || !candidateTile.CanEnter())
             {
-                currentNode.location + Vector3Int.up,
-                currentNode.location + Vector3Int.down,
-                currentNode.location + Vector3Int.left,
-                currentNode.location + Vector3Int.right
-            };
+                continue;
+            }
 
-            foreach(var neighborPos in neighbors)
+            // can't end on an occupied tile
+            if(candidateTile.GetOccupyingEntity() is Unit)
             {
-                if(!InRange(neighborPos) || closedSet.Contains(neighborPos))
+                continue;
+            }
+
+            List<Node> openList = new List<Node>();
+            HashSet<Vector3Int> closedSet = new HashSet<Vector3Int>();
+
+            Node startNode = new Node(start);
+            startNode.SetG(0);
+            startNode.SetH(candidateEnd);
+            startNode.SetF();
+            openList.Add(startNode);
+
+            while(openList.Count > 0)
+            {
+                openList.Sort((a, b) => a.f.CompareTo(b.f));
+                Node currentNode = openList[0];
+
+                if(currentNode.location == candidateEnd)
                 {
-                    continue;
+                    List<Vector3Int> path = new List<Vector3Int>();
+                    Node node = currentNode;
+                    while(node != null)
+                    {
+                        path.Insert(0, node.location);
+                        node = node.parent;
+                    }
+
+                    //exact end found, return immediately
+                    if(candidateEnd == end)
+                    {
+                        return path;
+                    }
+
+                    //otherwise keep shortest adjacent fallback
+                    if(bestFallbackPath.Count == 0 || path.Count < bestFallbackPath.Count)
+                    {
+                        bestFallbackPath = path;
+                    }
+
+                    break;
                 }
 
-                //if tile is not walkable, skip
-                var tileData = tileManager.GetTileDataAt(neighborPos);
-                if(tileData == null || (!tileData.CanEnter() && neighborPos != end))
-                {
-                    continue;
-                }
-                int gCost = currentNode.g + tileData.movementCost;
+                openList.RemoveAt(0);
+                closedSet.Add(currentNode.location);
 
-                Node existingNode = openList.Find(n => n.location == neighborPos);
+                Vector3Int[] neighbors = new Vector3Int[]
+                {
+                    currentNode.location + Vector3Int.up,
+                    currentNode.location + Vector3Int.down,
+                    currentNode.location + Vector3Int.left,
+                    currentNode.location + Vector3Int.right
+                };
 
-                if(existingNode == null)
+                foreach(var neighborPos in neighbors)
                 {
-                    Node neighborNode = new Node(neighborPos, currentNode);
-                    neighborNode.SetG(gCost);
-                    neighborNode.SetH(end);
-                    openList.Add(neighborNode);
-                }
-                else if(gCost < existingNode.g)
-                {
-                    //better path found to neighbor
-                    existingNode.parent = currentNode;
-                    existingNode.SetG(gCost);
+                    if(!InRange(neighborPos) || closedSet.Contains(neighborPos))
+                    {
+                        continue;
+                    }
+
+                    var tileData = tileManager.GetTileDataAt(neighborPos);
+                    if(tileData == null)
+                    {
+                        continue;
+                    }
+
+                    var occupyingEntity = tileData.GetOccupyingEntity();
+                    if(!tileData.CanEnter() && occupyingEntity == null)
+                    {
+                        continue;
+                    }
+
+                    bool isEndTile = (neighborPos == candidateEnd);
+
+                    if(!CanTraverseTile(tileData, neighborPos, isEndTile, isEnemy, canFly))
+                    {
+                        continue;
+                    }
+
+                    int gCost = currentNode.g + tileData.movementCost;
+
+                    Node existingNode = openList.Find(n => n.location == neighborPos);
+
+                    if(existingNode == null)
+                    {
+                        Node neighborNode = new Node(neighborPos, currentNode);
+                        neighborNode.SetG(gCost);
+                        neighborNode.SetH(candidateEnd);
+                        neighborNode.SetF();
+                        openList.Add(neighborNode);
+                    }
+                    else if(gCost < existingNode.g)
+                    {
+                        existingNode.parent = currentNode;
+                        existingNode.SetG(gCost);
+                        existingNode.SetH(candidateEnd);
+                        existingNode.SetF();
+                    }
                 }
             }
         }
 
-        // No path
-        ret.Add(Vector3Int.zero);
-        //Debug.Log("No path");
-        return ret;
+        return bestFallbackPath;
+    }
+
+    private bool CanTraverseTile(TileData tileData, Vector3Int pos, bool isEnd, int isEnemy, bool canFly)
+    {
+        Entity occupyingEntity = tileData.GetOccupyingEntity();
+
+        //if there is no entity
+        if(occupyingEntity == null)
+        {
+            return true;
+        }
+
+        //if we can fly
+        if(canFly)
+        {
+            return true;
+        }
+        else
+        {
+            //if the Entity is a unit
+            if(occupyingEntity is Unit)
+            {
+                Unit occupyingUnit = occupyingEntity as Unit;
+
+                int occupyingFriendly = occupyingUnit.GetIsEnemy() ? 1 : 0;
+
+                // ground units can only move through same-side units
+                return occupyingFriendly == isEnemy;
+            }
+            //if it's an entity only and we can't fly
+            return false;
+        }
+
+    }
+
+
+    private bool IsOccupied(Vector3Int pos)
+    {
+        return tileManager.GetTileDataAt(pos).GetOccupyingEntity() is Unit;
     }
 
     //----
@@ -196,7 +313,7 @@ public class TileHelper : MonoBehaviour
                 if (!InRange(candidateTile))
                     continue;
                 //Pathfind to each tile
-                var validPath = TilePath(currentPos, candidateTile);
+                var validPath = TilePath(currentPos, candidateTile, currentUnit);
 
                 if (validPath == null)
                     continue;
@@ -249,119 +366,12 @@ public class TileHelper : MonoBehaviour
 
                 if (!InRange(candidateTile))
                     continue;
-                //Pathfind to each tile, allowing paths with ends that have the end be a valid spot
-                var validPath = InteractionTilePath(currentPos, candidateTile);
 
-                if (validPath == null)
-                    continue;
-
-                int pathLength = validPath.Count - 1;
-                ////Don't need this check because the interactionpath returns null
-                //if (pathLength <= moveAmt && pathLength != 0)
-                //{
-                //    validPositions.Add(candidateTile);
-                //}
-
-                if (pathLength <= moveAmt && pathLength != 0)
-                {
-                    var tileData = tileManager.GetTileDataAt(candidateTile);
-                    if (tileData != null)
-                    {
-                        validPositions.Add(candidateTile);
-                    }
-                }
             }
         }
 
         return validPositions;
     }
-
-    public List<Vector3Int> InteractionTilePath(Vector3Int start, Vector3Int end)
-    {
-        List<Vector3Int> ret = new List<Vector3Int>();
-
-        if (!InRange(start) || !InRange(end))
-            return null;
-
-        if (start == end)
-        {
-            ret.Add(start);
-            return ret;
-        }
-
-        List<Node> openList = new List<Node>();
-        HashSet<Vector3Int> closedSet = new HashSet<Vector3Int>();
-
-        Node startNode = new Node(start);
-        startNode.SetH(end);
-        startNode.SetF();
-        openList.Add(startNode);
-
-        while (openList.Count > 0)
-        {
-            openList.Sort((a, b) => a.f.CompareTo(b.f));
-            Node current = openList[0];
-            openList.RemoveAt(0);
-
-            if (current.location == end)
-            {
-                //Allow reaching end even if it contains an entity
-                Node node = current;
-                while (node != null)
-                {
-                    ret.Insert(0, node.location);
-                    node = node.parent;
-                }
-                return ret;
-            }
-
-            closedSet.Add(current.location);
-
-            Vector3Int[] neighbors =
-            {
-            current.location + Vector3Int.up,
-            current.location + Vector3Int.down,
-            current.location + Vector3Int.left,
-            current.location + Vector3Int.right
-        };
-
-            foreach (var neighbor in neighbors)
-            {
-                if (!InRange(neighbor) || closedSet.Contains(neighbor))
-                    continue;
-
-                var tileData = tileManager.GetTileDataAt(neighbor);
-                if (tileData == null)
-                    continue;
-
-                //Main difference from normal TilePath:
-                // Allow walking onto the END tile even if it's occupied
-
-                if (neighbor != end && !tileData.CanEnter())
-                    continue;
-
-                int gCost = current.g + tileData.movementCost;
-
-                Node existing = openList.Find(n => n.location == neighbor);
-
-                if (existing == null)
-                {
-                    Node neighborNode = new Node(neighbor, current);
-                    neighborNode.SetG(gCost);
-                    neighborNode.SetH(end);
-                    openList.Add(neighborNode);
-                }
-                else if (gCost < existing.g)
-                {
-                    existing.parent = current;
-                    existing.SetG(gCost);
-                }
-            }
-        }
-
-        return null;
-    }
-
 };
 
 public class Node
@@ -402,7 +412,7 @@ public class Node
     {
         Vector3Int start = ZerotoGrid(location);
         end = ZerotoGrid(end);
-        return Mathf.Abs(start[0] - end[0]) + Mathf.Abs(location[1] - end[1]);
+        return Mathf.Abs(start[0] - end[0]) + Mathf.Abs(start[1] - end[1]);
     }
 
     public Vector3Int ZerotoGrid(Vector3Int input)

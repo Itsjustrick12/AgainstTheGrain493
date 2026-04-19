@@ -76,6 +76,11 @@ public class BasicHarvestAction : EntityAction
         {
             return;
         }
+        Unit unitCheck = unit as Unit;
+        if (unitCheck != null)
+        {
+            unitCheck.SetAnimationTrigger("harvest");
+        }
 
         //Water the crop at the position
         targetCrop.Harvest();

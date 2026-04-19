@@ -1,131 +1,11 @@
 using JetBrains.Annotations;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-
-
-public class NaviagatableUI : MonoBehaviour
-{
-    protected GameManager gameManager;
-
-    [SerializeField] protected List<GameObject> buttons;
-    [SerializeField] protected int selectedChoice = 0;
-    protected int numChoices => buttons.Count;
-    public GameObject selectionArrow;
-
-    //for input modularity
-    DefaultInputActions input;
-
-    [SerializeField] protected AudioClip navigateNoise;
-    [SerializeField] protected AudioClip reportNoise;
-
-    public virtual void Navigate(InputAction.CallbackContext context)
-    {
-        if (gameManager != null && !gameManager.isPlayerTurn)
-            return;
-
-        if (buttons == null || buttons.Count == 0)
-            return;
-
-        Vector2 inputVector = context.ReadValue<Vector2>();
-
-        // Prevent tiny analog drift from triggering movement
-        if (Mathf.Abs(inputVector.y) < 0.5f)
-            return;
-
-        int prevIndex = selectedChoice;
-
-        if (inputVector.y > 0)
-        {
-            // Up
-            selectedChoice--;
-            if (selectedChoice < 0)
-            {
-                selectedChoice = numChoices - 1;
-            }
-            
-        }
-        else if (inputVector.y < 0)
-        {
-            // Down
-            selectedChoice++;
-            if (selectedChoice >= numChoices)
-            {
-                selectedChoice = 0;
-            }
-        }
-
-        DeselectButton(prevIndex);
-        SelectButton();
-        SoundManager.Instance.PlaySound(navigateNoise);
-    }
-
-    public virtual void SelectButton()
-    {
-
-    }
-
-    public virtual void ReportAction(InputAction.CallbackContext context)
-    {
-        SoundManager.Instance.PlaySound(reportNoise);
-    }
-    private void OnEnable()
-    {
-        input = new DefaultInputActions();
-        gameManager = GameManager.Instance;
-        input.Enable();
-        input.UI.Navigate.performed += Navigate;
-        input.UI.Submit.performed += ReportAction;
-
-    }
-
-    private void OnDisable()
-    {
-        input.UI.Navigate.performed -= Navigate;
-        input.UI.Submit.performed -= ReportAction;
-        input.Disable();
-    }
-
-    public void TurnOffInput()
-    {
-        if (input == null)
-            return;
-
-        input.Disable();
-        //input.Dispose();
-
-    }
-
-    public virtual void DeselectButton(int index)
-    {
-        if (numChoices == 0)
-            return;
-
-        EventSystem.current.SetSelectedGameObject(null);
-    }
-    public void TurnOnInput()
-    {
-        if (input == null)
-            return;
-
-        input.Enable();
-
-    }
-
-    //Resets the options upon showing a new unit
-    protected void ClearButtons()
-    {
-        foreach (GameObject btn in buttons)
-        {
-            Destroy(btn);
-        }
-
-        buttons.Clear();
-    }
-}
 
 public class ActionMenu : NaviagatableUI
 {
@@ -146,6 +26,7 @@ public class ActionMenu : NaviagatableUI
     [Header("Default Actions")]
     public EntityAction wait;
     public EntityAction cancel;
+    public EntityAction endTurn;
 
     public void Awake()
     {
@@ -154,26 +35,23 @@ public class ActionMenu : NaviagatableUI
         buttons = new List<GameObject>();
     }
 
-    ////Used ChatGPT here for understanding Vector2 based inputs
-    //public override void Navigate(InputAction.CallbackContext context)
-    //{
-    //    base.Navigate(context);
-    //}
-
     public override void DeselectButton(int index)
     {
+        if (index < 0 || index > buttons.Count - 1) return;
+        base.DeselectButton(index);
         buttons[index].GetComponent<Image>().color = Color.white;
     }
 
-    public override void SelectButton()
+    public override void SelectButton(int index)
     {
-        buttons[selectedChoice].GetComponent<Image>().color = shadeColor;
+        if (index < 0 || index > buttons.Count - 1) return;
+        base.SelectButton(index);
+        buttons[index].GetComponent<Image>().color = shadeColor;
     }
 
     //Called from the UnitInteractionSystem for getting the action the user wants
     public void ShowMenu(Unit unit)
     {
-        TurnOnInput();
         if (unit == null)
         {
             Debug.LogError("You passed a null unit to ShowMenu");
@@ -195,8 +73,22 @@ public class ActionMenu : NaviagatableUI
         //Add Wait and Cancel
         AddDefaults();
 
-        selectedChoice = 0;
-        buttons[selectedChoice].GetComponent<Image>().color = shadeColor;
+        //Select the first button
+        SetSelectedIndex(0);
+        TurnOnInput();
+    }
+
+    public void ShowDefaultMenu()
+    {
+        gameObject.SetActive(true);
+        //Delete previous buttons
+        ClearButtons();
+        //Add Wait and Cancel
+        AddEmptyDefaults();
+
+        //Select the first button
+        SetSelectedIndex(0);
+        TurnOnInput();
     }
 
 
@@ -212,15 +104,12 @@ public class ActionMenu : NaviagatableUI
         ActionButton actionButton = buttonObj.GetComponent<ActionButton>();
 
         // Initialize with action + event callback
-        actionButton.Initialize(action);
+        actionButton.Initialize(buttons.Count-1, action);
     }
 
-
-
-    //Is used to tell the interaction system what action to do
-    public override void ReportAction(InputAction.CallbackContext context)
+    public override void ReportAction()
     {
-        base.ReportAction(context);
+        base.ReportAction();
         if (buttons.Count == 0)
             return;
 
@@ -237,6 +126,12 @@ public class ActionMenu : NaviagatableUI
     public void AddDefaults()
     {
         CreateButton(wait);
+        CreateButton(cancel);
+    }
+
+    public void AddEmptyDefaults()
+    {
+        CreateButton(endTurn);
         CreateButton(cancel);
     }
 

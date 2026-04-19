@@ -22,13 +22,12 @@ public class CameraController : MonoBehaviour
     [SerializeField] bool clampToBox = true;
     [SerializeField] MapSize mapSize = MapSize.SMALL;
     AgainstTheGrainInput inputActions;
-    private GameManager gameManager;
+    [SerializeField] private GameManager gameManager;
 
     //needed for determining whether or not the camera can be moved due to UI freezing
 
     public void Start()
     {
-        gameManager = GameManager.Instance;
         mapSize = gameManager.mapSize;
         UpdateCameraBounds(mapSize);
 
@@ -49,15 +48,24 @@ public class CameraController : MonoBehaviour
 
     public void Update()
     {
-        MoveCamera();   
+        if (gameManager.isPlayerTurn)
+        {
+            MoveCamera();   
+        }
     }
     //When called, find the next active unit you can move and focus the camera on it
     public void FocusOnNextUnit(InputAction.CallbackContext context)
     {
+        FocusOnNextUnit();
+    }
+
+    public void FocusOnNextUnit()
+    {
         //get unit position and move camera to it
         Unit unit = gameManager.GetNextActiveUnit();
-        if (unit != null) {
-            StartCoroutine(FocusOnPosition(unit.GetGridPos(),0.25f));
+        if (unit != null)
+        {
+            StartCoroutine(FocusOnPosition(unit.GetGridPos(), 0.25f));
         }
     }
 

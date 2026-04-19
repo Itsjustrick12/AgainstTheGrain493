@@ -98,14 +98,24 @@ public class TileData
 
         occupyingEntity = entity;
         occupyingEntity.SetGridPos(gridPos);
+
+        if (!occupyingEntity.GetIsInitialized())
+        {
+            occupyingEntity.Initialize();
+        }
+
         //Water if the entity is a crop and this tile is watered
         if (occupyingEntity is Crop cropCheck)
         {
-            cropCheck.Initialize();
             if (type == TileType.WateredDirt)
             {
                 cropCheck.WaterCrop();
             }
+        }
+        //Update fence images
+        if (occupyingEntity is Fence fence)
+        {
+            fence.SetUp();
         }
     }
 
