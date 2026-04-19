@@ -72,6 +72,10 @@ public class UnitInteractionSystem : TileCursor
 
     public static event System.Action<InteractionState> OnStateChanged;
 
+    //Actions for triggering tutorial statements
+    public static event Action OnUnitSelected;
+    public static event Action OnUnitMoved;
+
     //Used to reverse movement path for clean walkback
     private List<Vector3Int> lastMovePath = new List<Vector3Int>();
 
@@ -84,7 +88,7 @@ public class UnitInteractionSystem : TileCursor
         //actionMenu = FindFirstObjectByType<ActionMenu>();
         actionMenu.OnActionSelected.AddListener(SelectAction);
         PushState(InteractionState.Selection);
-        BarnUIMenu.OnUnitPurchased.AddListener(OnUnitSelected);
+        BarnUIMenu.OnUnitPurchased.AddListener(OnSelectUnit);
         BarnUIMenu.CancelAction.AddListener(StopAction);
         FeedManager.OnFeedingComplete += StopFeeding;
         feedManager = FindFirstObjectByType<FeedManager>();
@@ -184,6 +188,7 @@ public class UnitInteractionSystem : TileCursor
         selectedEntity = data.GetOccupyingEntity();
         if (selectedEntity != null && selectedEntity.IsActive())
         {
+            OnUnitSelected?.Invoke();
             return true;
         }
         return false;
@@ -313,6 +318,7 @@ public class UnitInteractionSystem : TileCursor
         arrowMap.ClearAllTiles();
         EnableInputs();
         ShowUnitOptions(unit);
+        OnUnitMoved?.Invoke();
     }
 
     public bool IsInRange(Vector3Int pos)
@@ -659,8 +665,9 @@ public class UnitInteractionSystem : TileCursor
         //Get the availible targets from the current action, then switch to selecting one
         OnDecisionComplete();
     }
-    private void OnUnitSelected(int unitID)
+    private void OnSelectUnit(int unitID)
     {
+        
         //actually set the index to plant
         SpawnUnitAction spawnAct = currAction as SpawnUnitAction;
         if (spawnAct != null)

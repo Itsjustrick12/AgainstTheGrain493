@@ -9,8 +9,13 @@ public class TutorialManager : MonoBehaviour
     //[SerializeField] private TutorialDialogueTrigger dialogueTrigger;
     [SerializeField] private bool tutorialEnabled = true;
 
-    private HashSet<string> completedSteps = new HashSet<string>();
     public static TutorialManager Instance;
+
+    private void OnEnable()
+    {
+        UnitInteractionSystem.OnUnitSelected += OnUnitClicked;
+        UnitInteractionSystem.OnUnitMoved += OnUnitClicked;
+    }
 
     private void Awake()
     {
