@@ -103,8 +103,7 @@ public class BasicAttackAction : EntityAction
     public override void PerformAt(Entity entity, Vector3Int pos)
     {
         //Execute a simple attack on the unit at the location specified
-        TileManager tileManager = FindFirstObjectByType<TileManager>();
-        Unit targetUnit = tileManager.GetUnitOnTile(pos);
+        Unit targetUnit = FindFirstObjectByType<TileManager>().GetUnitOnTile(pos);
 
         if (targetUnit == null)
         {
@@ -121,7 +120,7 @@ public class BasicAttackAction : EntityAction
 
         //do a simple attack
         SoundManager.Instance.PlayEntitySound(entity, SoundType.ATTACK);
-        unit.ShowNumber(unit.GetStrength(), tileManager.entitiesMap.CellToWorld(pos), unit.GetGridPos().x - targetUnit.GetGridPos().x);
+        unit.ShowNumber(unit.GetStrength(), targetUnit.GetGridPos(), unit.GetGridPos().x - targetUnit.GetGridPos().x);
         targetUnit.TakeDamage(unit.GetStrength(), unit.GetGridPos());
     }
 }
