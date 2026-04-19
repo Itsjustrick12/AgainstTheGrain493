@@ -4,7 +4,6 @@ public class CropCounterUI : ExpandingCounterUI
 {
     public int cropID = 1;
     public Image image;
-
     protected override int GetCounterValue()
     {
         return EconomyManager.Instance.GetHarvestedCrops(cropID);
@@ -19,6 +18,7 @@ public class CropCounterUI : ExpandingCounterUI
     {
         if (id != cropID) return;
         int amt = GetCounterValue();
+        
         base.UpdateCounter(amt);
     }
 
