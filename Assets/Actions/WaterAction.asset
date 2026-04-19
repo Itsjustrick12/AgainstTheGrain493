@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b7aaca12f9560a4f95958a9137629ab, type: 3}
   m_Name: WaterAction
   m_EditorClassIdentifier: Assembly-CSharp::BasicWaterAction
+  waterSound: {fileID: 8300000, guid: 7f9786a9043e1c7479ff596133172fe2, type: 3}

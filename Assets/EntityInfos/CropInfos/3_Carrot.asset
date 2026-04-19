@@ -15,9 +15,9 @@ MonoBehaviour:
   id: 3
   entityName: Carrot
   baseHealth: 5
-  prefab: {fileID: 8456888675781698093, guid: ce1763c47175fe54f9ec4988dabd9b58, type: 3}
+  prefab: {fileID: 5362854747147872654, guid: 7138575f886faa44ca741e59a0688e05, type: 3}
   tile: {fileID: 11400000, guid: c29170b0c627c1546821815575289594, type: 2}
-  sprite: {fileID: 21300000, guid: 433f60d5749a62240a643f8acb7ef137, type: 3}
+  sprite: {fileID: 1707642963281227592, guid: b077f7d8ca5b90746b90723385dfce96, type: 3}
   actions: []
   purchasePrice: 3
   sellValue: 5

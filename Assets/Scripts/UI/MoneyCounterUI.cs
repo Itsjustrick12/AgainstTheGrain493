@@ -32,7 +32,7 @@ public abstract class ExpandingCounterUI : MonoBehaviour
         //Basically, don't show the number and shrink to just the icon
         if (iconOnlyMode)
         {
-            counterBar.sizeDelta = new Vector2(baseWidth, counterBar.sizeDelta.y);
+            counterBar.sizeDelta = new Vector2(0, counterBar.sizeDelta.y);
             foreach (var digit in digits) digit.gameObject.SetActive(false);
             if (numberText != null) numberText.gameObject.SetActive(false);
             return;

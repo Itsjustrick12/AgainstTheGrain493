@@ -20,13 +20,17 @@ public class Crop : Entity
     private bool isBarren = false;
     private Sprite barrenSprite;
 
+    //For harvest particle
+    [SerializeField] private ParticleSystem harvestParticle;
+
+
     public void Initialize(CropInfo info)
     {
         refCrop = info;
         id = info.id;
         isWatered = false;
         currentStage = 0;
-        isHarvestable = false;
+        SetIsHarvestable(false);
         sprite.sprite = info.growthStageSprites[0];
         isMultiHarvest = info.isMultiHarvest;
         onHarvestStage = info.onHarvestStage;
@@ -52,6 +56,20 @@ public class Crop : Entity
         isWatered = true;
     }
 
+    public void SetIsHarvestable(bool value)
+    {
+        isHarvestable = value;
+
+        if (value)
+        {
+            harvestParticle.Play();
+        }
+        else
+        {
+            harvestParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
+    }
+
     public void ResetWater()
     {
         sprite.color = Color.white;
@@ -70,7 +88,7 @@ public class Crop : Entity
             {
                 //Get the last sprite index
                 sprite.sprite = refCrop.growthStageSprites[refCrop.numStages - 1];
-                isHarvestable = true;
+                SetIsHarvestable(true);
                 isBarren = false;
             }
             else
@@ -122,7 +140,7 @@ public class Crop : Entity
             {
                 currentStage = onHarvestStage;
                 sprite.sprite = barrenSprite;
-                isHarvestable = false;
+                SetIsHarvestable(false);
                 isBarren = true;
             }
             else

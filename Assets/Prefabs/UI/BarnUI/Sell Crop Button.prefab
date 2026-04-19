@@ -309,5 +309,5 @@ MonoBehaviour:
   isSelected: 0
   available: 1
   cropID: 1
-  sellSound: {fileID: 8300000, guid: e0c726852120565438bf311496173224, type: 3}
-  uiFailure: {fileID: 8300000, guid: a41cdc33e4a986b40b6878d877bba03e, type: 3}
+  sellSound: {fileID: 0}
+  uiFailure: {fileID: 8300000, guid: 50abf58dcb60ddc42aab869b87ac8c55, type: 3}

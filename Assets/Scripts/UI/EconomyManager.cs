@@ -18,6 +18,9 @@ public class EconomyManager : MonoBehaviour
     //Pass the ID with the crop that changed
     public static event Action<int> OnCropChanged;
 
+    [Header("Sounds")]
+    public AudioClip coinSound;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -52,6 +55,7 @@ public class EconomyManager : MonoBehaviour
 
     public void AddCoins(int amt)
     {
+        SoundManager.Instance.PlaySound(coinSound);
         SetCoins(coins + amt);
     }
 

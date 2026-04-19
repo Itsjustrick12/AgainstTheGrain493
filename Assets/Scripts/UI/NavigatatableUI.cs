@@ -15,7 +15,8 @@ public class NaviagatableUI : MonoBehaviour
     //for input modularity
     DefaultInputActions input;
 
-    [SerializeField] protected AudioClip navigateNoise;
+    [SerializeField] protected AudioClip navigateUp;
+    [SerializeField] protected AudioClip navigateDown;
     [SerializeField] protected AudioClip reportNoise;
 
     public virtual void Navigate(InputAction.CallbackContext context)
@@ -57,19 +58,26 @@ public class NaviagatableUI : MonoBehaviour
     {
         if (newIndex < 0 || newIndex >= numChoices)
             return;
+        
 
-        int prev = selectedChoice;
+
+            int prev = selectedChoice;
         selectedChoice = newIndex;
 
         if (prev >= 0)
+        {
             DeselectButton(prev);
+            if (prev != newIndex)
+            {
+                SoundManager.Instance.PlaySound(newIndex > prev ? navigateDown : navigateUp);
+            }
+        }
 
         SelectButton(selectedChoice);
     }
 
     public virtual void SelectButton(int index)
     {
-        SoundManager.Instance.PlaySound(navigateNoise);
     }
     public virtual void DeselectButton(int index)
     {

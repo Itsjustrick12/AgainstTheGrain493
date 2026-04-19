@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 using static UnityEngine.UI.Image;
 
 public class Unit : Entity
@@ -293,6 +294,7 @@ public class Unit : Entity
 
             Vector3Int prevPos = (i == 0) ? startLogicalPos : path[i - 1];
             Vector3Int dir = path[i] - prevPos;
+            SoundManager.Instance.PlayEntitySound(this, SoundType.WALK);
 
             if (animator != null)
             {
@@ -402,7 +404,7 @@ public class Unit : Entity
 
         if (targetTile.occupyingEntity == null)
             target = new Vector3Int(0, 0, -1);
-        
+        SoundManager.Instance.PlayEntitySound(this, SoundType.ATTACK);
         return true;
     }
 
