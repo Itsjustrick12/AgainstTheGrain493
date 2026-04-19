@@ -21,6 +21,7 @@ public class FloatingNumber : MonoBehaviour
     public float baseWidth = 16f;
     //For every digit, add this amount to the width to scale it up
     public float digitWidth = 16f;
+    public Vector3 offset = new Vector3(0.5f,7f,0);
 
     protected int currentAmount = 0;
     [SerializeField] protected bool iconOnlyMode = false;
@@ -36,7 +37,7 @@ public class FloatingNumber : MonoBehaviour
         {
             x = -1;
         }
-        MovePanel(pos);
+        MovePanel(pos, x);
         UpdateCounter(damage);
 
         float speed = damage * speedMult;
@@ -130,19 +131,16 @@ public class FloatingNumber : MonoBehaviour
         }
     }
 
-    public void MovePanel(Vector3 pos)
+    public void MovePanel(Vector3 pos, int x)
     {
         Canvas canvas = GetComponentInParent<Canvas>();
         RectTransform canvasRect = canvas.GetComponent<RectTransform>();
         RectTransform rect = GetComponent<RectTransform>();
 
-        Vector3 offset = new Vector3(
-        xBounce,
-        -7f,
-        0f);
-        Vector3 desiredWorldPos = pos + offset;
+        pos.x += offset.x;
+        pos.y += offset.y;
 
-        Vector2 screenPos = Camera.main.WorldToScreenPoint(desiredWorldPos);
+        Vector2 screenPos = Camera.main.WorldToScreenPoint(pos);
 
         Vector2 localPoint;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(

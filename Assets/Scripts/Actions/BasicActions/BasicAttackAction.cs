@@ -115,7 +115,7 @@ public class BasicAttackAction : EntityAction
         {
             Debug.LogError("No Unit, just an entity");
         }
-
+        
         unit.SetAnimationTrigger("attack");
 
         //do a simple attack

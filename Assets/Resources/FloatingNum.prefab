@@ -116,6 +116,7 @@ MonoBehaviour:
   yDistance: 0.5
   baseWidth: 32
   digitWidth: 32
+  offset: {x: -1.2, y: -9.5, z: 0}
   iconOnlyMode: 0
 --- !u!1001 &8413980384545634789
 PrefabInstance:
