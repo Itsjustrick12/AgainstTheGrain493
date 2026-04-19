@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 1_BasicFarmer
   m_EditorClassIdentifier: Assembly-CSharp::UnitInfo
   id: 1
-  entityName: BasicFarmer
+  entityName: Farmer
   baseHealth: 5
   prefab: {fileID: 4935858330493278644, guid: 1c422d24f53de6546b123d691157a9ff, type: 3}
   tile: {fileID: 11400000, guid: 25a4dcda4c7c828419a8eb5bd868605a, type: 2}

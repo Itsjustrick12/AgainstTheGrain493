@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 959c18e271bb61d49a7a894b146f7157
+guid: 6dfce89fbf814ce41a491bc37a579377
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3400077079407821517
-    second: spr_ui_moneybag_0
+      213: 3711868630267546444
+    second: spr_ui_hoverstats_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,27 +96,40 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_ui_moneybag_0
+      name: spr_ui_hoverstats_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 82
-        height: 72
+        x: 1
+        y: 1
+        width: 130
+        height: 71
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 33df2f029ef70d0d0800000000000000
-      internalID: -3400077079407821517
+      spriteID: c4b43085ad4338330800000000000000
+      internalID: 3711868630267546444
       vertices: []
       indices: 
       edges: []
@@ -125,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 2e52b7f2d6f69fc4db56ab101759c396
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -133,13 +146,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceOnImport
-        value: False
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":82.0,"y":72.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      spr_ui_moneybag_0: -3400077079407821517
+      spr_ui_hoverstats_0: 3711868630267546444
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

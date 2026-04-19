@@ -34,13 +34,14 @@ RectTransform:
   - {fileID: 3375647520606128073}
   - {fileID: 4517906473988646350}
   - {fileID: 2305946208237547337}
+  - {fileID: 3986349427704843177}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 224, y: 96}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 160, y: -1}
+  m_SizeDelta: {x: 144, y: 96}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &2347971135136416314
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -69,7 +70,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6ee319d427775ad43bc08378a7b50495, type: 3}
+  m_Sprite: {fileID: -8220578909489847872, guid: bf912c0aef989ce49a5a84197dd0582c, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -101,8 +102,9 @@ MonoBehaviour:
   - {fileID: 2472226459564030077}
   - {fileID: 8974310259935745279}
   - {fileID: 5452636021631590096}
-  baseWidth: 224
+  baseWidth: 96
   digitWidth: 48
+  iconOnlyMode: 0
 --- !u!1 &3018358281683007348
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,7 +254,7 @@ GameObject:
   - component: {fileID: 2882315477427646179}
   - component: {fileID: 4121063913437408107}
   m_Layer: 5
-  m_Name: MoneyDisplay (1)
+  m_Name: MoneyBag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -274,8 +276,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 12, y: 4}
-  m_SizeDelta: {x: 72, y: 75}
+  m_AnchoredPosition: {x: -160, y: 39}
+  m_SizeDelta: {x: 246, y: 216}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &2882315477427646179
 CanvasRenderer:
@@ -305,7 +307,82 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 840d8226dac2da147811598f4a8b9007, type: 3}
+  m_Sprite: {fileID: -3400077079407821517, guid: 959c18e271bb61d49a7a894b146f7157, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &5001894840107519291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3986349427704843177}
+  - component: {fileID: 981032776142500030}
+  - component: {fileID: 8455247031653868364}
+  m_Layer: 5
+  m_Name: Coin Icon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3986349427704843177
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5001894840107519291}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1346810549892555668}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 24, y: 0}
+  m_SizeDelta: {x: 48, y: 48}
+  m_Pivot: {x: 0, y: 0.5}
+--- !u!222 &981032776142500030
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5001894840107519291}
+  m_CullTransparentMesh: 1
+--- !u!114 &8455247031653868364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5001894840107519291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 6205768074387133479, guid: fe0d29ffcafa3464aadf3b9e75a151bd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -497,7 +574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8758104172479040940, guid: 6f206b2da1ebf0c4a97a9a65559cd3c7, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -110.6
+      value: -123.6
       objectReference: {fileID: 0}
     - target: {fileID: 8758104172479040940, guid: 6f206b2da1ebf0c4a97a9a65559cd3c7, type: 3}
       propertyPath: m_SizeDelta.y
@@ -541,11 +618,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8758104172479040940, guid: 6f206b2da1ebf0c4a97a9a65559cd3c7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 45.3
+      value: 18.199997
       objectReference: {fileID: 0}
     - target: {fileID: 8758104172479040940, guid: 6f206b2da1ebf0c4a97a9a65559cd3c7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 6.2
+      value: 0.7999878
       objectReference: {fileID: 0}
     - target: {fileID: 8758104172479040940, guid: 6f206b2da1ebf0c4a97a9a65559cd3c7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

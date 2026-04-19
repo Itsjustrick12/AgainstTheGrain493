@@ -9,6 +9,7 @@ public class CropButton : UIButton
 
     //For shrinking counter
     private CropCounterUI counter;
+    [SerializeField] private Image cropImage;
 
     public override void Awake()
     {
@@ -19,7 +20,11 @@ public class CropButton : UIButton
         }
         if (counter == null)
         {
-            counter = GetComponent<CropCounterUI>();
+            counter = GetComponentInParent<CropCounterUI>();
+        }
+        if (cropImage == null)
+        {
+            cropImage = GetComponentInChildren<Image>();
         }
         acceptingInput = false;
     }
@@ -36,5 +41,12 @@ public class CropButton : UIButton
         {
             counter.SetIconOnly(value);
         }
+    }
+
+    public void SetCropID(int id)
+    {
+        counter.cropID = id;
+        cropID = id;
+        cropImage.sprite = CropDatabase.Instance.GetIcon(id);
     }
 }

@@ -46,6 +46,10 @@ public class GameManager : MonoBehaviour
     public bool isGameOver = false;
     public bool skipTurnAnimations = false;
 
+    //Set which crops are availible to play with
+    public List<int> cropIDs = new List<int>();
+
+
     private void Awake()
     {
         // Ensure only one instance exists
@@ -469,6 +473,11 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("No active units found.");
         return null;
+    }
+
+    public List<int> GetCropIDs()
+    {
+        return cropIDs;
     }
 
 
