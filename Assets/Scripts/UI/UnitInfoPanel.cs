@@ -26,6 +26,12 @@ public class UnitInfoPanel : MonoBehaviour
 
     [SerializeField] private Vector3 offset = new Vector3(2.5f, 0, 0);
 
+    //used for swapping image to different background for each unit type
+    [SerializeField] private Sprite farmerUI;
+    [SerializeField] private Sprite animalUI;
+    [SerializeField] private Sprite robotUI;
+    [SerializeField] private Image image;
+
     public void ShowPanel(Unit currUnit)
     {
         if (currUnit == null)
@@ -37,6 +43,21 @@ public class UnitInfoPanel : MonoBehaviour
         currentCanvas.alpha = 1;
         currentCanvas.interactable = true;
         currentCanvas.blocksRaycasts = true; //Prevents things from behind it being clicked
+
+        switch (currUnit.GetEntityType())
+        {
+            case EntityType.Farmer:
+                image.sprite = farmerUI;
+                break;
+            case EntityType.Enemy:
+                image.sprite = robotUI;
+                break;
+            case EntityType.Animal:
+                image.sprite = animalUI;
+                break;
+            default:
+                break;
+        }
 
         MovePanel(currUnit); 
 
@@ -166,7 +187,7 @@ public class UnitInfoPanel : MonoBehaviour
 
         if (offRight)
         {
-            finalOffset = (offset * -1) + new Vector3(0.75f,0,0);
+            finalOffset = new Vector3(offset.x*-1+1, offset.y, 0);
             screenPos = Camera.main.WorldToScreenPoint(worldPos + finalOffset);
         }
 
