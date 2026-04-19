@@ -82,7 +82,8 @@ MonoBehaviour:
   buttons: []
   selectedChoice: 0
   selectionArrow: {fileID: 0}
-  navigateNoise: {fileID: 0}
+  navigateUp: {fileID: 8300000, guid: 040dc8c75817a254a87c06f445b1cc0a, type: 3}
+  navigateDown: {fileID: 8300000, guid: ff8c0902d63be5d4e832e9db218fe194, type: 3}
   reportNoise: {fileID: 0}
   OnCropSelected:
     m_PersistentCalls:
@@ -92,7 +93,6 @@ MonoBehaviour:
       m_Calls: []
   cropButtonPrefab: {fileID: 5351906402903172753, guid: 80d8e00db942a694aafec344f9600771, type: 3}
   buttonContainer: {fileID: 2088948661130815458}
-  cropIDs: 010000000200000003000000
 --- !u!1 &6619222893625876536
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4188374293515715769, guid: 11f0c8a0a5b87d54eb73ae0f814e1a67, type: 3}
+  m_Sprite: {fileID: -429059702, guid: 11f0c8a0a5b87d54eb73ae0f814e1a67, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -203,8 +203,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 96, y: -696}
-  m_SizeDelta: {x: 192, y: 72}
+  m_AnchoredPosition: {x: 78, y: -689.6}
+  m_SizeDelta: {x: 192, y: 96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4617848008097399518
 MonoBehaviour:
@@ -219,9 +219,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   acceptingInput: 1
-  normalSprite: {fileID: 21300000, guid: b04cf10b22a64e64a8e2d276a4f3eb75, type: 3}
-  highlightSprite: {fileID: 21300000, guid: 9f98fd6990dc0ea47b5e6bce5e49b079, type: 3}
-  unavailableSprite: {fileID: 21300000, guid: 2c0a27e03d1f2f44a8b28d2040e24d67, type: 3}
+  normalSprite: {fileID: 824844876921157896, guid: 03c6c83967cab7d47a1ea73d56b2f7f9, type: 3}
+  highlightSprite: {fileID: -2106628312820282039, guid: 03c6c83967cab7d47a1ea73d56b2f7f9, type: 3}
+  unavailableSprite: {fileID: 6660660962470412234, guid: 03c6c83967cab7d47a1ea73d56b2f7f9, type: 3}
   isSelected: 0
   available: 1
 --- !u!222 &7331443739289210713
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b04cf10b22a64e64a8e2d276a4f3eb75, type: 3}
+  m_Sprite: {fileID: 824844876921157896, guid: 03c6c83967cab7d47a1ea73d56b2f7f9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

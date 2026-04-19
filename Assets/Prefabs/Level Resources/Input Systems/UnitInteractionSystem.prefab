@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   hoverMap: {fileID: 0}
   targetMap: {fileID: 0}
-  selectTile: {fileID: 11400000, guid: 6ac496089163b1848a9c347950e63ea1, type: 2}
+  selectTile: {fileID: 11400000, guid: 43c3207df2dee1c43a14557151a57a53, type: 2}
   tileManager: {fileID: 0}
   tileHelper: {fileID: 0}
   feedManager: {fileID: 0}

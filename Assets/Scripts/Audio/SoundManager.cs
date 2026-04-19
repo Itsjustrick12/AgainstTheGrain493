@@ -8,6 +8,7 @@ public enum SoundType
     HURT,
     SELECT,
     PLACE,
+    WALK,
     DEATH
 }
 
@@ -41,9 +42,9 @@ public class SoundManager : MonoBehaviour
     public void PlayEntitySound(Entity entity, SoundType type)
     {
         Unit tempUnit = entity as Unit;
-        int unitID = tempUnit.ID;
         if(tempUnit != null)
         {
+            int unitID = tempUnit.ID;
             UnitInfo info = UnitDatabase.Instance.GetUnitInfo(unitID);
             switch (type)
             {
@@ -56,11 +57,8 @@ public class SoundManager : MonoBehaviour
                 case SoundType.ATTACK:
                     PlaySound(info.attackSound);
                     break;
-                case SoundType.SELECT:
-                    PlaySound(info.pickupSound);
-                    break;
-                case SoundType.PLACE:
-                    PlaySound(info.pickupSound);
+                case SoundType.WALK:
+                    PlaySound(info.walkSound);
                     break;
                 default:
                     break;

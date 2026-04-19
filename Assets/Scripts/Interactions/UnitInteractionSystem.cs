@@ -267,7 +267,7 @@ public class UnitInteractionSystem : TileCursor
                         return;
                     }
                     //Only place if entity can go to new tile
-                    else if (toData.CanPlaceEntity())
+                    else if (toData.CanPlaceEntity() && IsInRange(pos))
                     {
                         //tileManager.MoveEntity(selectedPosition, pos);
                         prevLocation = selectedPosition;
