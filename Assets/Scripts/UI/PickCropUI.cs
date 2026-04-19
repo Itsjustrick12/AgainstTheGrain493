@@ -15,11 +15,63 @@ public class PickCropUI : NaviagatableUI
     private bool picking = false;
     private bool feeding = false;
 
+    public GameObject cropButtonPrefab;
+    public Transform buttonContainer;
+    private List<int> cropIDs = new List<int>();
+
     public void Start()
     {
         //dont enable input until told to do so
         TurnOffInput();
+        GetCropIDs();
+        DestroyChildren();
+        SpawnCropButtons();
     }
+
+    public void GetCropIDs()
+    {
+        cropIDs = GameManager.Instance.GetCropIDs();
+    }
+
+    // Call this before Start if you want to set crop IDs programmatically
+    public void SetCropIDs(List<int> ids)
+    {
+        cropIDs = ids;
+        DestroyChildren();
+        SpawnCropButtons();
+    }
+
+    public void DestroyChildren()
+    {
+        foreach (Transform pos in buttonContainer)
+        {
+            Destroy(pos.gameObject);
+        }
+    }
+
+    private void SpawnCropButtons()
+    {
+        foreach (GameObject obj in buttons)
+            Destroy(obj);
+        buttons.Clear();
+
+        foreach (int id in cropIDs)
+        {
+            // Instantiate inactive so OnEnable doesn't fire yet
+            GameObject spawned = Instantiate(cropButtonPrefab, buttonContainer);
+            CropButton cropButton = spawned.GetComponentInChildren<CropButton>();
+            if (cropButton != null)
+                cropButton.SetCropID(id);
+                buttons.Add(cropButton.gameObject);
+
+
+        }
+
+        // All buttons configured, now safe to enable
+        foreach (GameObject obj in buttons)
+            obj.SetActive(true);
+    }
+
     public override void Navigate(InputAction.CallbackContext context)
     {
         //if not feeding, dont do availibility skipping

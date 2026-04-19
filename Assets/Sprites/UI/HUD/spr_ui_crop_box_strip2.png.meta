@@ -156,6 +156,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: spr_ui_crop_box_strip2_2
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4802950194a6434a8cd44c569712b79
+      internalID: 798814154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -174,6 +196,7 @@ TextureImporter:
     nameFileIdTable:
       spr_ui_crop_box_strip2_0: -7865734332043646511
       spr_ui_crop_box_strip2_1: 1944416669
+      spr_ui_crop_box_strip2_2: 798814154
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

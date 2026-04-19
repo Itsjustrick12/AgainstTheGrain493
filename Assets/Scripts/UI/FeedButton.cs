@@ -28,7 +28,7 @@ public class FeedButton : UIButton
 
     private void CanInteract(InteractionState newState)
     {
-        acceptingInput = (newState == InteractionState.Selection) && EconomyManager.Instance.HasACrop();
+        acceptingInput = (newState == InteractionState.Selection) && EconomyManager.Instance != null && EconomyManager.Instance.HasACrop();
         UpdateVisual();
     }
 
