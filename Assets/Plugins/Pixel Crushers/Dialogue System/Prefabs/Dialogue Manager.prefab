@@ -93,7 +93,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 960, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
@@ -173,9 +173,11 @@ MonoBehaviour:
       cancelSubtitle:
         key: 27
         buttonName: 
+        inputAction: {fileID: 0}
       cancelConversation:
         key: 27
         buttonName: 
+        inputAction: {fileID: 0}
       actorSubtitlePanelOverrides: []
     dialogueUI: {fileID: 9044394014063502672, guid: aa60653187713f64abd8bd5efe2a1b91, type: 3}
     defaultCanvas: {fileID: 22325660}
@@ -223,9 +225,11 @@ MonoBehaviour:
       cancel:
         key: 0
         buttonName: 
+        inputAction: {fileID: 0}
       cancelConversation:
         key: 0
         buttonName: 
+        inputAction: {fileID: 0}
     barkSettings:
       allowBarksDuringConversations: 1
       barkCharsPerSecond: 0

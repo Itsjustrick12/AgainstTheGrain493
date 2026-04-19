@@ -1,3 +1,4 @@
+using PixelCrushers.DialogueSystem;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -34,6 +35,10 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandle
 
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
+        if (DialogueManager.IsConversationActive)
+        {
+            return;
+        }
         if (acceptingInput)
         {
             parentUI.SetSelectedIndex(index);
@@ -42,6 +47,10 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandle
 
     public virtual void OnPointerClick(PointerEventData eventData)
     {
+        if (DialogueManager.IsConversationActive)
+        {
+            return;
+        }
         if (acceptingInput)
         {
             parentUI.ReportAction();
@@ -50,6 +59,10 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandle
 
     public virtual void OnPointerExit(PointerEventData eventData)
     {
+        if (DialogueManager.IsConversationActive)
+        {
+            return;
+        }
     }
 
     public void SetAcceptingInput(bool value)

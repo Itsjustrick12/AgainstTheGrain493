@@ -1,3 +1,4 @@
+using PixelCrushers.DialogueSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -97,6 +98,10 @@ public class UnitInteractionSystem : TileCursor
     //Restrict to only display updated tiles
     protected override void HandleCursor()
     {
+        if (DialogueManager.IsConversationActive){
+            hoverMap.ClearAllTiles();
+            return;
+        }
         if (!isInputOn) return;
 
         Vector3Int tile = GetMouseTile();
@@ -198,6 +203,10 @@ public class UnitInteractionSystem : TileCursor
     //This is called the second the user clicks their mouse, so the logic has to be really tight
     public void OnSelect(InputAction.CallbackContext context)
     {
+        if (DialogueManager.IsConversationActive)
+        {
+            return;
+        }
         Vector3Int pos = GetCurrentTile();
         if (isMoving) return;
         switch (state)
@@ -615,6 +624,10 @@ public class UnitInteractionSystem : TileCursor
 
     public void AskEndTurn(InputAction.CallbackContext context)
     {
+        if (DialogueManager.IsConversationActive)
+        {
+            return;
+        }
         if (state == InteractionState.Selection)
         {
             AskEndTurn();
