@@ -1,43 +1,43 @@
 fileFormatVersion: 2
-guid: 3cdbcf08c6249b646bef13dfe6fc1b93
+guid: ab105ff956d614644bca66eb8fe27d75
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8744936893970984102
-    second: Chicken_Attack_0
+      213: -8349762052508653002
+    second: Chicken_Attack 1_0
   - first:
-      213: 1507342317785307636
-    second: Chicken_Attack_1
+      213: -1709626095800160685
+    second: Chicken_Attack 1_1
   - first:
-      213: -3981426403263891023
-    second: Chicken_Attack_2
+      213: -5539464556378290152
+    second: Chicken_Attack 1_2
   - first:
-      213: -7036693632417249770
-    second: Chicken_Attack_3
+      213: 3301917352021569051
+    second: Chicken_Attack 1_3
   - first:
-      213: -7614215605224126012
-    second: Chicken_Attack_4
+      213: -5169411640813052338
+    second: Chicken_Attack 1_4
   - first:
-      213: 1449319258335920944
-    second: Chicken_Attack_5
+      213: -5899440341457175232
+    second: Chicken_Attack 1_5
   - first:
-      213: 3229012997370318400
-    second: Chicken_Attack_6
+      213: -2147346322363058929
+    second: Chicken_Attack 1_6
   - first:
-      213: -3517529521467554906
-    second: Chicken_Attack_7
+      213: -7176858797173472909
+    second: Chicken_Attack 1_7
   - first:
-      213: 2719871850928395911
-    second: Chicken_Attack_8
+      213: -3922244348708486133
+    second: Chicken_Attack 1_8
   - first:
-      213: 2504303470282011448
-    second: Chicken_Attack_9
+      213: 1998798857826204639
+    second: Chicken_Attack 1_9
   - first:
-      213: -6112832981897104802
-    second: Chicken_Attack_10
+      213: -6828118457577631614
+    second: Chicken_Attack 1_10
   - first:
-      213: 6949394791206152174
-    second: Chicken_Attack_11
+      213: -9113656321725599700
+    second: Chicken_Attack 1_11
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -146,7 +146,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Chicken_Attack_0
+      name: Chicken_Attack 1_0
       rect:
         serializedVersion: 2
         x: 7
@@ -161,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6ac295cb5c14c5970800000000000000
-      internalID: 8744936893970984102
+      spriteID: 63a6f25f6afaf1c80800000000000000
+      internalID: -8349762052508653002
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chicken_Attack_1
+      name: Chicken_Attack 1_1
       rect:
         serializedVersion: 2
         x: 39
@@ -183,14 +183,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4f9d18e0ad72be410800000000000000
-      internalID: 1507342317785307636
+      spriteID: 35ee715bf103648e0800000000000000
+      internalID: -1709626095800160685
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chicken_Attack_2
+      name: Chicken_Attack 1_2
       rect:
         serializedVersion: 2
         x: 71
@@ -205,14 +205,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1b9381ed7c12fb8c0800000000000000
-      internalID: -3981426403263891023
+      spriteID: 8188437d55edf13b0800000000000000
+      internalID: -5539464556378290152
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chicken_Attack_3
+      name: Chicken_Attack 1_3
       rect:
         serializedVersion: 2
         x: 103
@@ -227,14 +227,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 616448e5c64a85e90800000000000000
-      internalID: -7036693632417249770
+      spriteID: b1ea1fc5654c2dd20800000000000000
+      internalID: 3301917352021569051
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chicken_Attack_4
+      name: Chicken_Attack 1_4
       rect:
         serializedVersion: 2
         x: 135
@@ -249,14 +249,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4c94167bf3fd45690800000000000000
-      internalID: -7614215605224126012
+      spriteID: e4e919b508f8248b0800000000000000
+      internalID: -5169411640813052338
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chicken_Attack_5
+      name: Chicken_Attack 1_5
       rect:
         serializedVersion: 2
         x: 168
@@ -271,14 +271,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 033ce37cf240d1410800000000000000
-      internalID: 1449319258335920944
+      spriteID: 04df5d9144af02ea0800000000000000
+      internalID: -5899440341457175232
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chicken_Attack_6
+      name: Chicken_Attack 1_6
       rect:
         serializedVersion: 2
         x: 199
@@ -293,14 +293,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 04e806b8632cfcc20800000000000000
-      internalID: 3229012997370318400
+      spriteID: f05fecd95e71332e0800000000000000
+      internalID: -2147346322363058929
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chicken_Attack_7
+      name: Chicken_Attack 1_7
       rect:
         serializedVersion: 2
         x: 231
@@ -315,14 +315,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6a30af179893f2fc0800000000000000
-      internalID: -3517529521467554906
+      spriteID: 3718657d2fca66c90800000000000000
+      internalID: -7176858797173472909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chicken_Attack_8
+      name: Chicken_Attack 1_8
       rect:
         serializedVersion: 2
         x: 263
@@ -337,14 +337,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 786db25b90deeb520800000000000000
-      internalID: 2719871850928395911
+      spriteID: b0482f8bb836199c0800000000000000
+      internalID: -3922244348708486133
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chicken_Attack_9
+      name: Chicken_Attack 1_9
       rect:
         serializedVersion: 2
         x: 295
@@ -359,14 +359,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 833ffe3ecb211c220800000000000000
-      internalID: 2504303470282011448
+      spriteID: fdbff2a98f82dbb10800000000000000
+      internalID: 1998798857826204639
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chicken_Attack_10
+      name: Chicken_Attack 1_10
       rect:
         serializedVersion: 2
         x: 327
@@ -381,14 +381,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e523bb64acada2ba0800000000000000
-      internalID: -6112832981897104802
+      spriteID: 2801cc39076ad31a0800000000000000
+      internalID: -6828118457577631614
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chicken_Attack_11
+      name: Chicken_Attack 1_11
       rect:
         serializedVersion: 2
         x: 359
@@ -403,8 +403,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ee7eacd3eb5317060800000000000000
-      internalID: 6949394791206152174
+      spriteID: c207d829cd9c58180800000000000000
+      internalID: -9113656321725599700
       vertices: []
       indices: 
       edges: []
@@ -423,18 +423,18 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Chicken_Attack_0: 8744936893970984102
-      Chicken_Attack_1: 1507342317785307636
-      Chicken_Attack_10: -6112832981897104802
-      Chicken_Attack_11: 6949394791206152174
-      Chicken_Attack_2: -3981426403263891023
-      Chicken_Attack_3: -7036693632417249770
-      Chicken_Attack_4: -7614215605224126012
-      Chicken_Attack_5: 1449319258335920944
-      Chicken_Attack_6: 3229012997370318400
-      Chicken_Attack_7: -3517529521467554906
-      Chicken_Attack_8: 2719871850928395911
-      Chicken_Attack_9: 2504303470282011448
+      Chicken_Attack 1_0: -8349762052508653002
+      Chicken_Attack 1_1: -1709626095800160685
+      Chicken_Attack 1_10: -6828118457577631614
+      Chicken_Attack 1_11: -9113656321725599700
+      Chicken_Attack 1_2: -5539464556378290152
+      Chicken_Attack 1_3: 3301917352021569051
+      Chicken_Attack 1_4: -5169411640813052338
+      Chicken_Attack 1_5: -5899440341457175232
+      Chicken_Attack 1_6: -2147346322363058929
+      Chicken_Attack 1_7: -7176858797173472909
+      Chicken_Attack 1_8: -3922244348708486133
+      Chicken_Attack 1_9: 1998798857826204639
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
