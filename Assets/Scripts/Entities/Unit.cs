@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
+using static UnityEngine.UI.Image;
 
 public class Unit : Entity
 {
@@ -107,6 +109,14 @@ public class Unit : Entity
         currentHealth = (after) > maxHealth ? maxHealth : after;
     }
 
+    public bool HasAnimator()
+    {
+        if(animator != null)
+        {
+            return true;
+        }
+        return false;
+    }
 
 
     public int GetAttackRange()
@@ -249,43 +259,71 @@ public class Unit : Entity
 
         return temp;
     }
-
+    //Animated movement logic
     public IEnumerator Move(List<Vector3Int> path)
     {
         if (path.Count == 0) yield break;
+        //Pause the user from interacting with anything during desync period
         isMoving = true;
 
         Vector3Int startLogicalPos = GetGridPos();
 
-        // Strip starting tile if path includes current position
+        //Removing starting point to prevent animation from looking weird
         if (startLogicalPos == path[0])
             path.RemoveAt(0);
+        //if its the only thing in there now, check again
+        if (path.Count == 0)
+        {
+            isMoving = false;
+            yield break;
+        }
 
-        if (path.Count == 0) yield break;
+        //Determine the path the unit needs to take
+        if (isEnemy)
+            path = TrimPathForEnemy(path);
 
+        //check if trimmed too much again
+        if (path.Count == 0)
+        {
+            isMoving = false;
+            yield break;
+        }
+        //get the final position for the logical move
         Vector3Int destination = path[path.Count - 1];
 
-
-        // --- VISUAL MOVE: lerp through each waypoint ---
+        // VISUAL MOVE LOOP, LOOP OVER ALL TILES IN PATH
         Vector3 cellOffset = new Vector3(
             tileManager.entitiesMap.cellSize.x,
             tileManager.entitiesMap.cellSize.y, 0) * 0.5f;
 
+        //animate through remaining path
         for (int i = 0; i < path.Count; i++)
         {
             Vector3 startWorld = transform.position;
             Vector3 endWorld = tileManager.entitiesMap.CellToWorld(path[i]) + cellOffset;
 
-            // Derive direction from previous step in path (not from tile data)
             Vector3Int prevPos = (i == 0) ? startLogicalPos : path[i - 1];
             Vector3Int dir = path[i] - prevPos;
+            SoundManager.Instance.PlayEntitySound(this, SoundType.WALK);
 
-            if (animator != null)
+            if (HasAnimator())
             {
-                animator.SetBool("moving", true);
-                //animator.SetBool("attacking", false);
-                animator.SetFloat("x position", Mathf.Clamp(dir.x, -1, 1));
-                animator.SetFloat("y position", Mathf.Clamp(dir.y, -1, 1));
+                animator.SetFloat("x position", dir.x);
+                if(dir.x < 0)
+                {
+                    animator.SetFloat("facing", -1f);
+                }
+                else if(dir.x > 0)
+                {
+                    animator.SetFloat("facing", 1f);
+                }
+                animator.SetFloat("y position", dir.y);
+                //TODO basically there's a pause where only on move(not on cancel) it pauses, probably a calculation or smth
+                animator.SetBool("moving", dir.x != 0 || dir.y != 0);
+            }
+            else
+            {
+                Debug.Log("No Animator");
             }
 
             float elapsed = 0f;
@@ -295,28 +333,54 @@ public class Unit : Entity
                 elapsed += Time.deltaTime;
                 yield return null;
             }
-            transform.position = endWorld; // snap to exact position
+            transform.position = endWorld;
         }
-        // --- LOGICAL MOVE: once, start to destination only ---
+
+        // LOGICAL MOVE, ACTUALLY MOVE TO GRID SPACE
         tileManager.MoveEntity(startLogicalPos, destination);
 
-        // Reset animator to idle
-        if (animator != null)
+        if (HasAnimator())
         {
             animator.SetBool("moving", false);
-            //animator.SetBool("attacking", false);
-            animator.SetFloat("x position", 0);
-            animator.SetFloat("y position", 0);
         }
-
+        //flag used to allow player input again after move anim
         isMoving = false;
+    }
+
+    private List<Vector3Int> TrimPathForEnemy(List<Vector3Int> path)
+    {
+        // Trim to movement budget
+        int budget = GetMoveRange();
+        int trimAt = 0;
+        for (int i = 0; i < path.Count; i++)
+        {
+            int cost = tileManager.GetTileDataAt(path[i]).movementCost;
+            if (budget < cost) break;
+            budget -= cost;
+            trimAt = i + 1;
+        }
+        //start working with the path that is how far the entity can walk along that path
+        path = path.GetRange(0, trimAt);
+
+        //Walk backwards, ensure the ending spot of the path is NOT on a friendly unit even it it is reachable
+        while (path.Count > 0)
+        {
+            Entity occupant = tileManager.GetEntityOnTile(path[path.Count - 1]);
+            if (occupant == null) break;
+            Unit occupantUnit = occupant as Unit;
+            // This checks if the ending tile has a unit of the same team
+            if (occupantUnit != null && occupantUnit.isEnemy != isEnemy) break;
+            path.RemoveAt(path.Count - 1);
+        }
+        //Finally return the path for the movement animation
+        return path;
     }
 
     bool Attack()
     {
         if (target.z == -1)
         {
-            Debug.Log("UNIT.No target!");
+            //Debug.Log("UNIT.No target!");
             return false;
         }
 
@@ -326,7 +390,7 @@ public class Unit : Entity
 
         if (!isAdjacent)
         {
-            Debug.Log("Target isn't adjacent!");
+            //Debug.Log("UNIT.Target isn't adjacent!");
             //Set the target a second time
             return false;
         }
@@ -334,15 +398,30 @@ public class Unit : Entity
         TileData targetTile = tileManager.GetTileDataAt(target);
         if (targetTile == null || targetTile.occupyingEntity == null)
         {
-            Debug.Log("UNIT.Nothing to attack!");
+            //Debug.Log("UNIT.Nothing to attack!");
             return false;
         }
 
-        targetTile.occupyingEntity.TakeDamage(GetStrength());
+        //Ensure attack never hits friendly unit no matter what was passed in
+        Unit targetUnit = targetTile.occupyingEntity as Unit;
+        if (targetUnit != null && IsSameTeamAs(targetUnit))
+        {
+            return false;
+        }
+
+        if (targetTile.occupyingEntity as Unit != null)
+        {
+            ShowNumber(GetStrength(), target, GetGridPos().x - target.x);
+            (targetTile.occupyingEntity as Unit).TakeDamage(GetStrength(), GetGridPos());
+        }
+        else
+        {
+            targetTile.occupyingEntity.TakeDamage(GetStrength());
+        }
 
         if (targetTile.occupyingEntity == null)
             target = new Vector3Int(0, 0, -1);
-        
+        SoundManager.Instance.PlayEntitySound(this, SoundType.ATTACK);
         return true;
     }
 
@@ -354,79 +433,51 @@ public class Unit : Entity
         }
     }
 
-    public void DoTurn()
+    public IEnumerator DoTurn()
     {
-        //Debug.Log("Finding Target");
-        if (target.z == -1)
+        //If something is already in range, just attack it and don't move
+        Vector3Int inRangeTarget = aiManager.FindTargetInRange(this);
+        if (inRangeTarget.z != -1)
         {
-            target = aiManager.FindTarget(this);
+            target = inRangeTarget;
+            Attack();
+            yield break;
         }
 
-        //See if our target is up to date (needed for concurrent enemy execution)
+        //If nothing is in range, find the closest and most reasonable target
+        target = aiManager.FindTarget(this);
+
+        //Sanity check that there is a target there
         TileData data = tileManager.GetTileDataAt(target);
         if (data != null && !data.HasUnit())
         {
            target = aiManager.FindTarget(this);
         }
 
-        //Debug.Log("UNIT.Found Target: " + target.x + " " + target.y + " " + target.z);
-        //if we found a target we move to it
+        //If the target is legit, move to it
         if (target.z != -1)
         {
-            //Check if the target is in the attack range
+            //As long as the path is doable, move to the unit
             if (!tileHelper.IsWithinRange(GetGridPos(), target, GetAttackRange()))
             {
-
-                //Debug.Log("UNIT.Target found at " + target);
-                List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), target, this);
-                //Debug.Log("UNIT.Distance = " + path.Count);
+                //Depending on IQ use really smart pathfinding to make them move better as a team
+                List<Vector3Int> path = tileHelper.TilePath(GetGridPos(), target, this);// tileHelper.TilePath(GetGridPos(), target, this);
                 if (path.Count > 0)
                 {
-                    StartCoroutine(Move(DeterminePath(path)));
-                }
-                else
-                {
-                    Debug.Log("UNIT.No Need to Move!");
+                    yield return StartCoroutine(Move(path));
                 }
             }
-
         }
 
-        //then we attack the target
-        if (Attack())
+        //If we moved towards our target but did not get close enough to attack it, try to hit something nearby
+        inRangeTarget = aiManager.FindTargetInRange(this);
+        if (inRangeTarget.z != -1)
         {
-            //do nothing the attack worked
+            target = inRangeTarget;
         }
-        else
-        {
-            //if the attack failed on the target, we weren't in range
-            // try to attack again with temp adjacent target
-            Vector3Int temp = target;
-            target = aiManager.FindTargetInRange(this);
-            Attack();
-            target = temp;
-        }
-    }
 
-    public List<Vector3Int> DeterminePath(List<Vector3Int> orig)
-    {
-        List<Vector3Int> path = orig;
-       //Reduce path to be only the segements that are moveable
-       int budget = GetMoveRange();
-        int cost = 0;
-        int steps = 0;
-        Vector3Int prev = path[0]; // first item is start, skip it
-        foreach (Vector3Int step in path.Skip(1))
-        {
-            bool isDiagonal = (step.x != prev.x) && (step.y != prev.y);
-            int tileCost = tileManager.GetTileDataAt(step).movementCost + (isDiagonal ? 1 : 0);
-            if (cost + tileCost > budget) break;
-            cost += tileCost;
-            steps++;
-            prev = step;
-        }
-        path = path.Skip(1).Take(steps).ToList();
-        return path;
+        //Attack our current target if we have one
+        Attack();
     }
 
     public override void Die()
@@ -463,6 +514,96 @@ public class Unit : Entity
             int newDamage = Mathf.Max(0, (int)(damage - (baseIncrease * multiplier)));
             base.TakeDamage(newDamage);
         }
+    }
+
+    public void TakeDamage(int damage, Vector3Int position)
+    {
+        SoundManager.Instance.PlayEntitySound(this, SoundType.HURT);
+        int x = 0;
+        int y = 0;
+        //choose directions for the hitback
+        if (position.x < GetGridPos().x)
+        {
+            x = GetStrength();
+        }
+        else if (position.x > GetGridPos().x)
+        {
+            x = -1 * GetStrength();
+        }
+        if (position.y < GetGridPos().y)
+        {
+            y = GetStrength();
+        }
+        else if (position.y > GetGridPos().y)
+        {
+            y = -1 * GetStrength();
+        }
+        StartCoroutine(Knockback(x, y));
+        if (activeBuffs.Count <= 0)
+        {
+            base.TakeDamage(damage);
+        }
+        else
+        {
+            //calculate buff defense if any
+            int baseIncrease = 0;
+            float multiplier = 1;
+            foreach (Buff buff in activeBuffs)
+            {
+                //check for strength buffs
+                DefenseBuff dBuff = buff as DefenseBuff;
+                if (dBuff != null)
+                {
+                    baseIncrease += dBuff.baseIncrease;
+                    multiplier *= dBuff.multiplier;
+                }
+            }
+
+            //calculate reduction
+            damage = Mathf.Max(0, (int)(damage - (baseIncrease * multiplier)));
+            base.TakeDamage(damage);
+        }
+    }
+
+    //does the knockback animation for the unit
+    public IEnumerator Knockback(int x, int y)
+    {
+        Renderer rend = GetComponent<Renderer>();
+        Color og = rend.material.color;
+        float speed = strength * .02f;
+        if (speed > .005f) speed = .01f;
+        float elapsed = 0f;
+        float duration = 1f;
+        float time = 0;
+
+        rend.material.color = Color.red;
+        while (time < 360)
+        {
+            time += 60;
+            transform.position += new Vector3(Mathf.Sin((time / 360f) * 2f * Mathf.PI) * speed * x, Mathf.Sin((time / 360f) * 2f * Mathf.PI) * speed * y, 0);
+
+            elapsed += Time.deltaTime;
+            yield return new WaitForSeconds(duration / 60f);
+        }
+        rend.material.color = og;
+    }
+
+    public void ShowNumber(int damage, Vector3Int position, int x)
+    {
+        Debug.Log("showNumber");
+        GameObject prefab = Resources.Load<GameObject>("FloatingNum");
+
+        if (prefab == null)
+        {
+            Debug.LogError("prefab not found");
+            return;
+        }
+
+        Canvas canvas = FindFirstObjectByType<Canvas>();
+        GameObject obj = Instantiate(prefab, canvas.transform, false);
+
+        FloatingNumber fn = obj.GetComponent<FloatingNumber>();
+        StartCoroutine(fn.SetNum(x, damage, position));
     }
 }
 

@@ -88,6 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b489bd67176f7284a8a2653daff0f11a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  sprite: {fileID: 435957348619828012}
   numberSprites:
   - {fileID: -3998771892055078564, guid: e420cfce8dad68c489a1b07e335b52ab, type: 3}
   - {fileID: 5656819454840468575, guid: e420cfce8dad68c489a1b07e335b52ab, type: 3}
@@ -99,3 +100,5 @@ MonoBehaviour:
   - {fileID: -5818261296361822767, guid: e420cfce8dad68c489a1b07e335b52ab, type: 3}
   - {fileID: -305264965510259979, guid: e420cfce8dad68c489a1b07e335b52ab, type: 3}
   - {fileID: -4088900214281167473, guid: e420cfce8dad68c489a1b07e335b52ab, type: 3}
+  - {fileID: -97395827, guid: e420cfce8dad68c489a1b07e335b52ab, type: 3}
+  - {fileID: -1841599817, guid: e420cfce8dad68c489a1b07e335b52ab, type: 3}

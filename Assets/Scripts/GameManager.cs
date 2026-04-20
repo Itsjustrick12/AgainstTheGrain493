@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -41,6 +42,14 @@ public class GameManager : MonoBehaviour
 
     private int currUnit = 0;
 
+    public TurnChangeUI turnChangeUI;
+    public bool isGameOver = false;
+    public bool skipTurnAnimations = false;
+
+    //Set which crops are availible to play with
+    public List<int> cropIDs = new List<int>();
+
+
     private void Awake()
     {
         // Ensure only one instance exists
@@ -55,6 +64,11 @@ public class GameManager : MonoBehaviour
         interactionSystem = FindFirstObjectByType<UnitInteractionSystem>();
         aiManager = FindFirstObjectByType<AIManager>();
         camera = FindFirstObjectByType<CameraController>();
+
+        if (turnChangeUI == null)
+        {
+            turnChangeUI = FindFirstObjectByType<TurnChangeUI>();
+        }
     }
 
     public void Start()
@@ -62,21 +76,25 @@ public class GameManager : MonoBehaviour
         //actionMenu = FindFirstObjectByType<ActionMenu>();
         isPlayerTurn = true;
         SpawnStartingUnits();
-
-    }
-    
-    public void BeginEnemyTurn(InputAction.CallbackContext context)
-    {
-        BeginEnemyTurn();
+        interactionSystem.DisableInputs();
+        PlayPlayerTurnAnimation();
     }
 
-    public void  BeginEnemyTurn()
+    public void BeginEnemyTurn()
     {
-        StartCoroutine(EnemyTurnRoutine());
+        if (skipTurnAnimations)
+        {
+            StartCoroutine(EnemyTurnRoutine());
+            return;
+        }
+
+        TurnChangeUI.TurnAnimationEnd.AddListener(OnEnemyTurnAnimDone);
+        turnChangeUI.PlayEnemyTurn();
     }
 
     public void BeginPlayerTurn()
     {
+        camera.FocusOnNextUnit();
         isPlayerTurn = true;
         interactionSystem.EnableInputs();
 
@@ -214,18 +232,39 @@ public class GameManager : MonoBehaviour
         isPlayerTurn = false;
         interactionSystem.DisableInputs();
         List<Unit> tempunits = GetAllEnemyUnits();
+
+        //sort based on units that are closest to opposing units first to prevent poor team execution
+        //Basically, if you're already close, do your turn first before others so they make smarter decisions
+        tempunits = tempunits.OrderBy(unit => GetDistanceToClosestUnit(unit)).ToList();
+
+
         foreach (Unit unit in tempunits)
         {
             //Focus on each unit with the camera
             camera.FocusOnTilePosition(unit.GetGridPos(),0.25f);
             yield return new WaitForSeconds(0.25f); // pause between each enemy
-            unit.DoTurn();
+            yield return StartCoroutine(unit.DoTurn());
             yield return new WaitForSeconds(0.5f); // pause between each enemy
+            if (isGameOver)
+                yield break;
         }
 
-        camera.FocusOnNextUnit();
-        yield return new WaitForSeconds(0.25f);
-        BeginPlayerTurn();
+        yield return new WaitForSeconds(0.5f);
+
+        PlayPlayerTurnAnimation();
+
+    }
+
+    private void PlayPlayerTurnAnimation()
+    {
+        if (skipTurnAnimations)
+        {
+            BeginPlayerTurn();
+            return;
+        }
+
+        TurnChangeUI.TurnAnimationEnd.AddListener(OnPlayerTurnAnimDone);
+        turnChangeUI.PlayPlayerTurn();
     }
 
 
@@ -264,6 +303,19 @@ public class GameManager : MonoBehaviour
         Entity.OnEntityDestroyed -= CheckEndState;
         input.Gameplay.Pause.performed -= TogglePause;
         input.Disable();
+    }
+
+    private void OnEnemyTurnAnimDone()
+    {
+        TurnChangeUI.TurnAnimationEnd.RemoveListener(OnEnemyTurnAnimDone);
+        // Now safe to begin player turn AFTER animation finishes
+        StartCoroutine(EnemyTurnRoutine());
+    }
+
+    private void OnPlayerTurnAnimDone()
+    {
+        TurnChangeUI.TurnAnimationEnd.RemoveListener(OnPlayerTurnAnimDone);
+        BeginPlayerTurn(); // logic runs only after animation ends
     }
 
     public void TogglePause(InputAction.CallbackContext context)
@@ -316,15 +368,37 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
+    int GetDistanceToClosestUnit(Unit enemy)
+    {
+
+        List<Unit> friendlies = GetAllFriendlyUnits();
+
+        int bestDist = int.MaxValue;
+        //Find the closest unit
+        foreach (Unit friendly in friendlies)
+        {
+            int dist = Mathf.Abs(enemy.GetGridPos().x - friendly.GetGridPos().x)
+                     + Mathf.Abs(enemy.GetGridPos().y - friendly.GetGridPos().y);
+            if (dist < bestDist)
+            {
+                bestDist = dist;
+            }
+        }
+
+        return bestDist;
+    }
+
     public void CheckEndState()
     {
         if (IsEnemyDefeated())
         {
+            isGameOver = true;
             Debug.Log("You win!");
             ShowWinScreen();
         }
         else if (IsFriendlyDefeated())
         {
+            isGameOver = true;
             Debug.Log("You Lose!");
             GameOver();
         }
@@ -399,6 +473,11 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("No active units found.");
         return null;
+    }
+
+    public List<int> GetCropIDs()
+    {
+        return cropIDs;
     }
 
 

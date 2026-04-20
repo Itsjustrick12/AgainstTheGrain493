@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 518d8414c2a540c4695900d04ce3dc65, type: 3}
+  m_Name: 5_Rock 3
+  m_EditorClassIdentifier: Assembly-CSharp::StructureInfo
+  id: 5
+  entityName: Rock
+  baseHealth: 20
+  prefab: {fileID: 3987968686697476471, guid: 690462e9fb368544bbe46a39fe54bc7e, type: 3}
+  tile: {fileID: 11400000, guid: f28021cd64902d146be961fad0a979bd, type: 2}
+  sprite: {fileID: -9126489166950109053, guid: f249ae9e84626ca43bd05f14834f3a9c, type: 3}
+  actions: []
+  purchasePrice: 10
+  sellValue: 10
+  hurtSound: {fileID: 0}
+  deathSound: {fileID: 0}

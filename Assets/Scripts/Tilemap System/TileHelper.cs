@@ -203,7 +203,7 @@ public class TileHelper : MonoBehaviour
                     }
 
                     var occupyingEntity = tileData.GetOccupyingEntity();
-                    if(!tileData.CanEnter() && occupyingEntity == null)
+                    if(!tileData.CanEnter())
                     {
                         continue;
                     }
@@ -289,21 +289,17 @@ public class TileHelper : MonoBehaviour
     {
         Vector3Int currentPos = currentUnit.GetGridPos();
         int moveAmt = currentUnit.GetMoveRange();
-
         var validPositions = new List<Vector3Int>();
 
-        // Loop around the unit within possible movement distance +-moveamt
         for (int i = -moveAmt; i <= moveAmt; i++)
         {
             for (int j = -moveAmt; j <= moveAmt; j++)
             {
-                //Skip tiles that are unreachable via the distance
                 if (Mathf.Abs(i) + Mathf.Abs(j) > moveAmt)
                     continue;
 
-                //Get a reference to the next possible tile to pathfind to
-                Vector3Int candidateTile = new Vector3Int(currentPos.x + i, currentPos.y + j,0);
-                //Add the starting position without considering the path
+                Vector3Int candidateTile = new Vector3Int(currentPos.x + i, currentPos.y + j, 0);
+
                 if (candidateTile == currentPos)
                 {
                     validPositions.Add(candidateTile);
@@ -312,31 +308,36 @@ public class TileHelper : MonoBehaviour
 
                 if (!InRange(candidateTile))
                     continue;
-                //Pathfind to each tile
-                var validPath = TilePath(currentPos, candidateTile, currentUnit);
 
-                if (validPath == null)
-                    continue;
-
-                int pathLength = validPath.Count - 1;
-
-                //get tile data ref
                 TileData data = tileManager.GetTileDataAt(candidateTile);
                 if (data == null || data.HasOccupant())
-                {
                     continue;
+
+                var validPath = TilePath(currentPos, candidateTile, currentUnit);
+
+                // Reject null, empty, or paths that didn't actually reach candidateTile
+                if (validPath == null || validPath.Count <= 1)
+                    continue;
+                if (validPath[validPath.Count - 1] != candidateTile)
+                    continue;
+
+                // Sum actual movement cost instead of tile count
+                int totalCost = 0;
+                for (int k = 1; k < validPath.Count; k++)
+                {
+                    TileData stepData = tileManager.GetTileDataAt(validPath[k]);
+                    if (stepData != null)
+                        totalCost += stepData.movementCost;
                 }
 
-                //Don't allow the default "There's no path with size 1"
-                if (pathLength <= moveAmt && pathLength != 0)
-                {
+                if (totalCost <= moveAmt)
                     validPositions.Add(candidateTile);
-                }
             }
         }
 
         return validPositions;
     }
+
 
     //Draw interaction range
     public List<Vector3Int> GetInteractionRange(Unit currentUnit)

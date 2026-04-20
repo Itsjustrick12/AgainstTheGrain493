@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -62,12 +63,16 @@ public class UnitInteractionSystem : TileCursor
 
     public bool isInputOn = true;
 
+    public UnitInfoPanel infoPanel;
     public bool isFeeding = false;
+    public bool isMoving = false;
 
     private Stack<InteractionState> stateHistory = new Stack<InteractionState>();
 
     public static event System.Action<InteractionState> OnStateChanged;
 
+    //Used to reverse movement path for clean walkback
+    private List<Vector3Int> lastMovePath = new List<Vector3Int>();
 
     public void Awake()
     {
@@ -106,25 +111,53 @@ public class UnitInteractionSystem : TileCursor
     public override void Update()
     {
         base.Update();
-        if(GetCurrentTile() == lastLocation && state == InteractionState.Movement)
+        if(GetCurrentTile() != lastLocation && state == InteractionState.Movement)
         {
             SetArrow();
         }
         lastLocation = GetCurrentTile();
+        Vector3Int pos = GetCurrentTile();
+        Entity potentialEntity = tileManager.GetTileDataAt(pos).GetOccupyingEntity();
+        if(selectedEntity == null && potentialEntity != null)
+        {
+            Unit unit = potentialEntity as Unit;
+            if (unit != null) { 
+            
+                infoPanel.ShowPanel(unit);
+            }
+            else
+            {
+                infoPanel.HidePanel();
+            }
+            //Debug.Log("There is an entity Here");
+        }
+        else
+        {
+            infoPanel.HidePanel();
+        }
     }
 
     public void SetArrow()
     {
         arrowMap.ClearAllTiles();
+
+        //Debug.Log("SetArrow");
         List<Vector3Int> path = tileHelper.TilePath(selectedEntity.GetGridPos(), GetCurrentTile(), selectedEntity as Unit);
-        
-        if(path.Count > 1)
+
+        // Prepend current position so the full path including origin is stored
+        List<Vector3Int> fullPath = new List<Vector3Int>();
+        fullPath.Add(selectedEntity.GetGridPos());
+        fullPath.AddRange(path);
+        lastMovePath = fullPath;
+
+        if (path.Count > 1)
         {
             for(int i = 0; i < path.Count; i++)
             {
                 arrowMap.SetTile(path[i], arrowTile);
             }
         }
+
     }
 
     //Modify state with this to keep track of history for undo functionality
@@ -160,6 +193,7 @@ public class UnitInteractionSystem : TileCursor
     public void OnSelect(InputAction.CallbackContext context)
     {
         Vector3Int pos = GetCurrentTile();
+        if (isMoving) return;
         switch (state)
         {
             case InteractionState.Selection:
@@ -227,7 +261,7 @@ public class UnitInteractionSystem : TileCursor
                         return;
                     }
                     //Only place if entity can go to new tile
-                    else if (toData.CanPlaceEntity())
+                    else if (toData.CanPlaceEntity() && IsInRange(pos))
                     {
                         //tileManager.MoveEntity(selectedPosition, pos);
                         prevLocation = selectedPosition;
@@ -266,9 +300,14 @@ public class UnitInteractionSystem : TileCursor
     private IEnumerator WaitForMoveAndShowOptions(Unit unit, TileData toData)
     {
         DisableInputs();
-        StartCoroutine(unit.Move(tileHelper.TilePath(prevLocation, afterLocation, unit)));
+        Debug.Log("WaitForMoveAndShowOptions");
+        isMoving = true;
+        //grab the path and store incase we undo
+        //move along path
+        yield return StartCoroutine(unit.Move(lastMovePath));
 
         yield return new WaitUntil(() => !unit.isMoving);
+        isMoving = false;
 
         arrowMap.ClearAllTiles();
         EnableInputs();
@@ -300,7 +339,7 @@ public class UnitInteractionSystem : TileCursor
     {
         if (unit == null)
         {
-            Debug.LogError("THERES NO UNIT TO SHOW OPTIONS FOR");
+            //Debug.LogError("THERES NO UNIT TO SHOW OPTIONS FOR");
             return;
         }
         PushState(InteractionState.ActionSelection);
@@ -313,6 +352,11 @@ public class UnitInteractionSystem : TileCursor
     }
     public void UndoAction()
     {
+        Unit unit = selectedEntity as Unit;
+        if(unit != null && unit.isMoving)
+        {
+            return;
+        }
         if (stateHistory.Count == 0)
         {
             //can't undo if there's no history
@@ -320,7 +364,6 @@ public class UnitInteractionSystem : TileCursor
         }
         //get the previous state type then do the appropriate undo action to get to that state
         InteractionState previous = stateHistory.Pop();
-        Unit unit = selectedEntity as Unit;
         switch (state)
         {
 
@@ -336,7 +379,11 @@ public class UnitInteractionSystem : TileCursor
                 actionMenu.HideMenu();
                 if (afterLocation != prevLocation)
                 {
+                    //tileManager.MoveEntity(afterLocation, prevLocation);
+                    isMoving = true;
+                    Debug.Log("UndoAction");
                     tileManager.MoveEntity(afterLocation, prevLocation);
+                    isMoving = false;
                     afterLocation = prevLocation;
                 }
                 //show movement highlights
@@ -400,19 +447,45 @@ public class UnitInteractionSystem : TileCursor
         state = previous;
         OnStateChanged?.Invoke(state);
     }
-
+    //Regular stop, just cancel the action and move if you need to
     public void StopAction()
     {
-        //Check tightly to ensure that there is a real unit to move
-        //Stop Action is sometimes called by the feeding logic, to prevent accidental undos of locations,
-        //check that the previous and after locations actually mean something
         if (afterLocation != prevLocation
-        && afterLocation != new Vector3Int(0, 0, -1)
-        && prevLocation != new Vector3Int(0, 0, -1))
+            && afterLocation != new Vector3Int(0, 0, -1)
+            && prevLocation != new Vector3Int(0, 0, -1))
         {
-            tileManager.MoveEntity(afterLocation, prevLocation);
+            Unit unit = tileManager.GetUnitOnTile(afterLocation);
+            if (unit != null)
+            {
+                tileManager.MoveEntity(afterLocation, prevLocation);
+            }
         }
+        ResetData();
+    }
+    //desync'd walk back undo ONLY USED by CANCEL
+    private IEnumerator StopActionRoutine()
+    {
+        if (afterLocation != prevLocation
+            && afterLocation != new Vector3Int(0, 0, -1)
+            && prevLocation != new Vector3Int(0, 0, -1))
+        {
+            Unit unit = tileManager.GetUnitOnTile(afterLocation);
 
+            if (unit != null)
+            {
+                DisableInputs();
+                isMoving = true;
+                //Reverse the arrow path for consistency purposes instead of computing the path again
+                List<Vector3Int> reversedPath = new List<Vector3Int>(lastMovePath);
+                reversedPath.Reverse();
+                yield return StartCoroutine(unit.Move(reversedPath));
+                //Wait for animation to finish
+                yield return new WaitUntil(() => !unit.isMoving);
+
+                EnableInputs();
+            }
+        }//reset flag in case their is no move back
+        isMoving = false;
         ResetData();
     }
 
@@ -464,7 +537,8 @@ public class UnitInteractionSystem : TileCursor
         {
 
             //Undo the movement from the previous action and return
-            StopAction();
+            isMoving = true;
+            StartCoroutine(StopActionRoutine());
             return;
         }
         else if (action is EndTurnAction)
@@ -620,6 +694,9 @@ public class UnitInteractionSystem : TileCursor
 
     private void ShowFeedOptions(InputAction.CallbackContext context)
     {
+        //need economy manager to be able to feed
+        if (!EconomyManager.Instance.HasACrop()) return;
+
         // Already guards, but make this more explicit:
         if (state != InteractionState.Selection) return;
         StartFeedTargeting();

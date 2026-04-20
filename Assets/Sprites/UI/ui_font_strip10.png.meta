@@ -153,9 +153,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c598d3c86228188c0800000000000000
+      spriteID: 834074ef600a04adba6ddde25d09e60f
       internalID: -3998771892055078564
       vertices: []
       indices: 
@@ -175,9 +175,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f54f844b25f018e40800000000000000
+      spriteID: 2609db368bd8f4b25947f71a80a9767b
       internalID: 5656819454840468575
       vertices: []
       indices: 
@@ -197,9 +197,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 186ad9d5f13e4ee30800000000000000
+      spriteID: 8947c87b8bbd8467b8be1069fbe9627d
       internalID: 4531996848895665793
       vertices: []
       indices: 
@@ -219,9 +219,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 818eeb8fd753522b0800000000000000
+      spriteID: 4ba835c0055484a3389fe104708d7947
       internalID: -5610018945659639784
       vertices: []
       indices: 
@@ -241,9 +241,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 66cc837da9f608a90800000000000000
+      spriteID: a58815fae84f741afac0b134eec54f04
       internalID: -7313723084023215002
       vertices: []
       indices: 
@@ -263,9 +263,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c9102b6eaa70c75c0800000000000000
+      spriteID: c2b2656d7de6e4645817f5ccec20877e
       internalID: -4216486720529366628
       vertices: []
       indices: 
@@ -285,9 +285,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f32b05a4350c62750800000000000000
+      spriteID: 2144c24528e024df4b349e3635769916
       internalID: 6279918194376356415
       vertices: []
       indices: 
@@ -307,9 +307,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1d523fb6d22614fa0800000000000000
+      spriteID: 92bcc8681210941f18da758e6c9d836d
       internalID: -5818261296361822767
       vertices: []
       indices: 
@@ -329,9 +329,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5fa9368912b73cbf0800000000000000
+      spriteID: 828af9282b0ca4bf08bb5664927155f8
       internalID: -305264965510259979
       vertices: []
       indices: 
@@ -351,10 +351,54 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f8d90c54bee4147c0800000000000000
+      spriteID: 63ee5082612704145bb7a4ad222d4fd8
       internalID: -4088900214281167473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_font_strip10_10
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 0
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dce6cf8608f154bdd9e81ec243a1049c
+      internalID: -97395827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_font_strip10_11
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 0
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f459d7e6216ae4cdc86b2e4ad4993a9d
+      internalID: -1841599817
       vertices: []
       indices: 
       edges: []
@@ -377,6 +421,8 @@ TextureImporter:
     nameFileIdTable:
       ui_font_strip10_0: -3998771892055078564
       ui_font_strip10_1: 5656819454840468575
+      ui_font_strip10_10: -97395827
+      ui_font_strip10_11: -1841599817
       ui_font_strip10_2: 4531996848895665793
       ui_font_strip10_3: -5610018945659639784
       ui_font_strip10_4: -7313723084023215002

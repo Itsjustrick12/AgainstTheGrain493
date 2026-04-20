@@ -1,0 +1,1630 @@
+fileFormatVersion: 2
+guid: 7eb47dae89068664b9eb56a34cea09b1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1257681161435148751
+    second: winUISheet_0
+  - first:
+      213: 5310567804302537376
+    second: winUISheet_1
+  - first:
+      213: -3300438034140856667
+    second: winUISheet_2
+  - first:
+      213: 4018298272499626542
+    second: winUISheet_3
+  - first:
+      213: 3269046498980252116
+    second: winUISheet_4
+  - first:
+      213: 7991426943237784162
+    second: winUISheet_5
+  - first:
+      213: 6459101903658398772
+    second: winUISheet_6
+  - first:
+      213: -8697533741286647699
+    second: winUISheet_7
+  - first:
+      213: 1590326061987718368
+    second: winUISheet_8
+  - first:
+      213: -332624755303763258
+    second: winUISheet_9
+  - first:
+      213: -5904923420608853251
+    second: winUISheet_10
+  - first:
+      213: 5505764589347547135
+    second: winUISheet_11
+  - first:
+      213: 5576290555860762100
+    second: winUISheet_12
+  - first:
+      213: 3629072980801317374
+    second: winUISheet_13
+  - first:
+      213: -3880216525784246207
+    second: winUISheet_14
+  - first:
+      213: -4006890251419083875
+    second: winUISheet_15
+  - first:
+      213: 3633987655945384309
+    second: winUISheet_16
+  - first:
+      213: 6596074836970539276
+    second: winUISheet_17
+  - first:
+      213: 5551389302104209387
+    second: winUISheet_18
+  - first:
+      213: 7825664581220911886
+    second: winUISheet_19
+  - first:
+      213: 5963491470680665496
+    second: winUISheet_20
+  - first:
+      213: 8141616573911673445
+    second: winUISheet_21
+  - first:
+      213: -1465591457315486483
+    second: winUISheet_22
+  - first:
+      213: -6096506010442982641
+    second: winUISheet_23
+  - first:
+      213: -8086314822585928620
+    second: winUISheet_24
+  - first:
+      213: -3913861460969557246
+    second: winUISheet_25
+  - first:
+      213: 1059854933428485892
+    second: winUISheet_26
+  - first:
+      213: -6544642555599467460
+    second: winUISheet_27
+  - first:
+      213: -5402118940811507109
+    second: winUISheet_28
+  - first:
+      213: 4207886046790346271
+    second: winUISheet_29
+  - first:
+      213: 8977462099766542343
+    second: winUISheet_30
+  - first:
+      213: -6183935535500880325
+    second: winUISheet_31
+  - first:
+      213: 2135708058685304360
+    second: winUISheet_32
+  - first:
+      213: -1272224409864034756
+    second: winUISheet_33
+  - first:
+      213: 9106538850695074688
+    second: winUISheet_34
+  - first:
+      213: 2736601832100599149
+    second: winUISheet_35
+  - first:
+      213: -5448889897078353958
+    second: winUISheet_36
+  - first:
+      213: 8592386835074657791
+    second: winUISheet_37
+  - first:
+      213: -719251616907641814
+    second: winUISheet_38
+  - first:
+      213: 9134362501811472004
+    second: winUISheet_39
+  - first:
+      213: -3552365713814605089
+    second: winUISheet_40
+  - first:
+      213: 5313073727442948556
+    second: winUISheet_41
+  - first:
+      213: 8503408974755393297
+    second: winUISheet_42
+  - first:
+      213: -3876423199588143327
+    second: winUISheet_43
+  - first:
+      213: -4706281835852496469
+    second: winUISheet_44
+  - first:
+      213: -7097181612835121166
+    second: winUISheet_45
+  - first:
+      213: 7679606918042629219
+    second: winUISheet_46
+  - first:
+      213: 8898439705276250731
+    second: winUISheet_47
+  - first:
+      213: 5188626205969371218
+    second: winUISheet_48
+  - first:
+      213: 8369034222132377384
+    second: winUISheet_49
+  - first:
+      213: -2496297740512172917
+    second: winUISheet_50
+  - first:
+      213: -6588828586675215421
+    second: winUISheet_51
+  - first:
+      213: 3166562942787997751
+    second: winUISheet_52
+  - first:
+      213: -2673825478082923799
+    second: winUISheet_53
+  - first:
+      213: 5089581678305179169
+    second: winUISheet_54
+  - first:
+      213: -600551801883533921
+    second: winUISheet_55
+  - first:
+      213: 1620190395597636029
+    second: winUISheet_56
+  - first:
+      213: -3127792652943546379
+    second: winUISheet_57
+  - first:
+      213: 1941452807541244182
+    second: winUISheet_58
+  - first:
+      213: -3643930232693921793
+    second: winUISheet_59
+  - first:
+      213: -8729835282276296134
+    second: winUISheet_60
+  - first:
+      213: 7825814870904332361
+    second: winUISheet_61
+  - first:
+      213: -7593027270163713376
+    second: winUISheet_62
+  - first:
+      213: 8279284158145079189
+    second: winUISheet_63
+  - first:
+      213: -1433495183481094352
+    second: winUISheet_64
+  - first:
+      213: -4019084190453628381
+    second: winUISheet_65
+  - first:
+      213: -7448717929499655987
+    second: winUISheet_66
+  - first:
+      213: 5177904394007470692
+    second: winUISheet_67
+  - first:
+      213: -7219819272985450714
+    second: winUISheet_68
+  - first:
+      213: 2917243177473874896
+    second: winUISheet_69
+  - first:
+      213: -1384763620779386317
+    second: winUISheet_70
+  - first:
+      213: 8635042850585528345
+    second: winUISheet_71
+  - first:
+      213: 1963785789587389020
+    second: winUISheet_72
+  - first:
+      213: -205265264841407761
+    second: winUISheet_73
+  - first:
+      213: 1717238326439195090
+    second: winUISheet_74
+  - first:
+      213: 665602514364574110
+    second: winUISheet_75
+  - first:
+      213: -3783818819323075770
+    second: winUISheet_76
+  - first:
+      213: 3325794920685912275
+    second: winUISheet_77
+  - first:
+      213: 9213547275845522949
+    second: winUISheet_78
+  - first:
+      213: 996681061641245444
+    second: winUISheet_79
+  - first:
+      213: -2452942667410792078
+    second: winUISheet_80
+  - first:
+      213: -3552566777534578892
+    second: winUISheet_81
+  - first:
+      213: 2954590178603476194
+    second: winUISheet_82
+  - first:
+      213: -7259348167837326329
+    second: winUISheet_83
+  - first:
+      213: 8351634621506632731
+    second: winUISheet_84
+  - first:
+      213: -1794443445999248492
+    second: winUISheet_85
+  - first:
+      213: -8805013780002455572
+    second: winUISheet_86
+  - first:
+      213: 7295449238053539567
+    second: winUISheet_87
+  - first:
+      213: 999756950400507030
+    second: winUISheet_88
+  - first:
+      213: 4899996481689456941
+    second: winUISheet_89
+  - first:
+      213: -4646322901058473166
+    second: winUISheet_90
+  - first:
+      213: 3754309353253426920
+    second: winUISheet_91
+  - first:
+      213: 4826844789807812261
+    second: winUISheet_92
+  - first:
+      213: 8999455884078929806
+    second: winUISheet_93
+  - first:
+      213: -5148229006120190993
+    second: winUISheet_94
+  - first:
+      213: -8589578053044627965
+    second: winUISheet_95
+  - first:
+      213: 3472595394020853322
+    second: winUISheet_96
+  - first:
+      213: -2281753066730713689
+    second: winUISheet_97
+  - first:
+      213: -967543778970435049
+    second: winUISheet_98
+  - first:
+      213: -8297935007324815239
+    second: winUISheet_99
+  - first:
+      213: 2366246789469818292
+    second: winUISheet_100
+  - first:
+      213: -4882922528277909265
+    second: winUISheet_101
+  - first:
+      213: -5608486238104323760
+    second: winUISheet_102
+  - first:
+      213: 8511621740456263585
+    second: winUISheet_103
+  - first:
+      213: 8456483847517914364
+    second: winUISheet_104
+  - first:
+      213: 7743268716144131898
+    second: winUISheet_105
+  - first:
+      213: -5314315031650485231
+    second: winUISheet_106
+  - first:
+      213: -198177511375092845
+    second: winUISheet_107
+  - first:
+      213: 2741728194542605577
+    second: winUISheet_108
+  - first:
+      213: 535346264734250293
+    second: winUISheet_109
+  - first:
+      213: -7310189761101108281
+    second: winUISheet_110
+  - first:
+      213: -1014481887566941326
+    second: winUISheet_111
+  - first:
+      213: -7480868603941783709
+    second: winUISheet_112
+  - first:
+      213: -7839876262301388078
+    second: winUISheet_113
+  - first:
+      213: -6287278849765718827
+    second: winUISheet_114
+  - first:
+      213: 5647989579710005491
+    second: winUISheet_115
+  - first:
+      213: -1708779770046913887
+    second: winUISheet_116
+  - first:
+      213: 6602278507352025008
+    second: winUISheet_117
+  - first:
+      213: -1110395468626395411
+    second: winUISheet_118
+  - first:
+      213: 7464046560791857663
+    second: winUISheet_119
+  - first:
+      213: -3336186181896792260
+    second: winUISheet_120
+  - first:
+      213: -7675006925869821744
+    second: winUISheet_121
+  - first:
+      213: 2307811562390547276
+    second: winUISheet_122
+  - first:
+      213: -2751633260965289483
+    second: winUISheet_123
+  - first:
+      213: -4578233536022928775
+    second: winUISheet_124
+  - first:
+      213: -4609783562516146723
+    second: winUISheet_125
+  - first:
+      213: 4194631402137532055
+    second: winUISheet_126
+  - first:
+      213: 5098301909696687905
+    second: winUISheet_127
+  - first:
+      213: 7466950905966517533
+    second: winUISheet_128
+  - first:
+      213: -5992499504911603782
+    second: winUISheet_129
+  - first:
+      213: -5559813095224412733
+    second: winUISheet_130
+  - first:
+      213: 3475863557567042530
+    second: winUISheet_131
+  - first:
+      213: -2598184833130042095
+    second: winUISheet_132
+  - first:
+      213: 3350481171505642112
+    second: winUISheet_133
+  - first:
+      213: 4520875065240293571
+    second: winUISheet_134
+  - first:
+      213: 1448617769284268548
+    second: winUISheet_135
+  - first:
+      213: -6441483621058642078
+    second: winUISheet_136
+  - first:
+      213: -667159541770725432
+    second: winUISheet_137
+  - first:
+      213: -2401158770511109285
+    second: winUISheet_138
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: winUISheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc1fa045a5e247110800000000000000
+      internalID: 1257681161435148751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_1
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a2341b084de2b940800000000000000
+      internalID: 5310567804302537376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_2
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ae78db281d7232d0800000000000000
+      internalID: -3300438034140856667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_3
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e22f7ed2dfcd3c730800000000000000
+      internalID: 4018298272499626542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_4
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d9c3fd787cfd5d20800000000000000
+      internalID: 3269046498980252116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_5
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2628c28e67047ee60800000000000000
+      internalID: 7991426943237784162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_6
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 434bb97a5f653a950800000000000000
+      internalID: 6459101903658398772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_7
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6892a0d4272c4780800000000000000
+      internalID: -8697533741286647699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_8
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e4e2d1a029f11610800000000000000
+      internalID: 1590326061987718368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_9
+      rect:
+        serializedVersion: 2
+        x: 1728
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c23e902c87426bf0800000000000000
+      internalID: -332624755303763258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_10
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfa89b04f6f7d0ea0800000000000000
+      internalID: -5904923420608853251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_11
+      rect:
+        serializedVersion: 2
+        x: 2112
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff72cf429b7686c40800000000000000
+      internalID: 5505764589347547135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_12
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fd327257b6f26d40800000000000000
+      internalID: 5576290555860762100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_13
+      rect:
+        serializedVersion: 2
+        x: 2496
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef961acf5ae0d5230800000000000000
+      internalID: 3629072980801317374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_14
+      rect:
+        serializedVersion: 2
+        x: 2688
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1489709c0a3b62ac0800000000000000
+      internalID: -3880216525784246207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_15
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9b9036bb8aa468c0800000000000000
+      internalID: -4006890251419083875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_16
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57177c6f4848e6230800000000000000
+      internalID: 3633987655945384309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_17
+      rect:
+        serializedVersion: 2
+        x: 3264
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c098581ed17f98b50800000000000000
+      internalID: 6596074836970539276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_18
+      rect:
+        serializedVersion: 2
+        x: 3456
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be733d1682f7a0d40800000000000000
+      internalID: 5551389302104209387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_19
+      rect:
+        serializedVersion: 2
+        x: 3648
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0b470779785a9c60800000000000000
+      internalID: 7825664581220911886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_20
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89d2efa85e392c250800000000000000
+      internalID: 5963491470680665496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_21
+      rect:
+        serializedVersion: 2
+        x: 4032
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56a20794325dcf070800000000000000
+      internalID: 8141616573911673445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_22
+      rect:
+        serializedVersion: 2
+        x: 4224
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de40dd8a55c29abe0800000000000000
+      internalID: -1465591457315486483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_23
+      rect:
+        serializedVersion: 2
+        x: 4416
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0b138c851cd46ba0800000000000000
+      internalID: -6096506010442982641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_24
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4543ac11383a7cf80800000000000000
+      internalID: -8086314822585928620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_25
+      rect:
+        serializedVersion: 2
+        x: 4800
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20371dedcbb2fa9c0800000000000000
+      internalID: -3913861460969557246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_26
+      rect:
+        serializedVersion: 2
+        x: 4992
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40f3374527c55be00800000000000000
+      internalID: 1059854933428485892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_27
+      rect:
+        serializedVersion: 2
+        x: 5184
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3cc69b4542cc25a0800000000000000
+      internalID: -6544642555599467460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_28
+      rect:
+        serializedVersion: 2
+        x: 5376
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5a458ae171d705b0800000000000000
+      internalID: -5402118940811507109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_29
+      rect:
+        serializedVersion: 2
+        x: 5568
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f16e242b01a656a30800000000000000
+      internalID: 4207886046790346271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_30
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7000e11173a569c70800000000000000
+      internalID: 8977462099766542343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_31
+      rect:
+        serializedVersion: 2
+        x: 5952
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b361e84f46f3e2aa0800000000000000
+      internalID: -6183935535500880325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_32
+      rect:
+        serializedVersion: 2
+        x: 6144
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82e60e5f92f83ad10800000000000000
+      internalID: 2135708058685304360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_33
+      rect:
+        serializedVersion: 2
+        x: 6336
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c362977c3a6285ee0800000000000000
+      internalID: -1272224409864034756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_34
+      rect:
+        serializedVersion: 2
+        x: 6528
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08359f016dce06e70800000000000000
+      internalID: 9106538850695074688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_35
+      rect:
+        serializedVersion: 2
+        x: 6720
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d651a0efddc5af520800000000000000
+      internalID: 2736601832100599149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_36
+      rect:
+        serializedVersion: 2
+        x: 6912
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adf0e601287a164b0800000000000000
+      internalID: -5448889897078353958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_37
+      rect:
+        serializedVersion: 2
+        x: 7104
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffd2e555d4a4e3770800000000000000
+      internalID: 8592386835074657791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_38
+      rect:
+        serializedVersion: 2
+        x: 7296
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2c38161774b406f0800000000000000
+      internalID: -719251616907641814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_39
+      rect:
+        serializedVersion: 2
+        x: 7488
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4860f1aac46c3ce70800000000000000
+      internalID: 9134362501811472004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_40
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd2bdcb543673bec0800000000000000
+      internalID: -3552365713814605089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_41
+      rect:
+        serializedVersion: 2
+        x: 7872
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc192bdb764dbb940800000000000000
+      internalID: 5313073727442948556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_42
+      rect:
+        serializedVersion: 2
+        x: 8064
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11fe928d86d220670800000000000000
+      internalID: 8503408974755393297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_43
+      rect:
+        serializedVersion: 2
+        x: 8256
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12f277d53ad243ac0800000000000000
+      internalID: -3876423199588143327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_44
+      rect:
+        serializedVersion: 2
+        x: 8448
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba18321fa9defaeb0800000000000000
+      internalID: -4706281835852496469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_45
+      rect:
+        serializedVersion: 2
+        x: 8640
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f75784fceeb18d90800000000000000
+      internalID: -7097181612835121166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winUISheet_46
+      rect:
+        serializedVersion: 2
+        x: 8832
+        y: 0
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 364309cbdc1739a60800000000000000
+      internalID: 7679606918042629219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: e36b20ca7e04ea149b801d1d16512bd0
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":192.0,"y":96.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      winUISheet_0: 1257681161435148751
+      winUISheet_1: 5310567804302537376
+      winUISheet_10: -5904923420608853251
+      winUISheet_11: 5505764589347547135
+      winUISheet_12: 5576290555860762100
+      winUISheet_13: 3629072980801317374
+      winUISheet_14: -3880216525784246207
+      winUISheet_15: -4006890251419083875
+      winUISheet_16: 3633987655945384309
+      winUISheet_17: 6596074836970539276
+      winUISheet_18: 5551389302104209387
+      winUISheet_19: 7825664581220911886
+      winUISheet_2: -3300438034140856667
+      winUISheet_20: 5963491470680665496
+      winUISheet_21: 8141616573911673445
+      winUISheet_22: -1465591457315486483
+      winUISheet_23: -6096506010442982641
+      winUISheet_24: -8086314822585928620
+      winUISheet_25: -3913861460969557246
+      winUISheet_26: 1059854933428485892
+      winUISheet_27: -6544642555599467460
+      winUISheet_28: -5402118940811507109
+      winUISheet_29: 4207886046790346271
+      winUISheet_3: 4018298272499626542
+      winUISheet_30: 8977462099766542343
+      winUISheet_31: -6183935535500880325
+      winUISheet_32: 2135708058685304360
+      winUISheet_33: -1272224409864034756
+      winUISheet_34: 9106538850695074688
+      winUISheet_35: 2736601832100599149
+      winUISheet_36: -5448889897078353958
+      winUISheet_37: 8592386835074657791
+      winUISheet_38: -719251616907641814
+      winUISheet_39: 9134362501811472004
+      winUISheet_4: 3269046498980252116
+      winUISheet_40: -3552365713814605089
+      winUISheet_41: 5313073727442948556
+      winUISheet_42: 8503408974755393297
+      winUISheet_43: -3876423199588143327
+      winUISheet_44: -4706281835852496469
+      winUISheet_45: -7097181612835121166
+      winUISheet_46: 7679606918042629219
+      winUISheet_5: 7991426943237784162
+      winUISheet_6: 6459101903658398772
+      winUISheet_7: -8697533741286647699
+      winUISheet_8: 1590326061987718368
+      winUISheet_9: -332624755303763258
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
