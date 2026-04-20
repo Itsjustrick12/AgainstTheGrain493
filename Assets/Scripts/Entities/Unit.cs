@@ -409,7 +409,15 @@ public class Unit : Entity
             return false;
         }
 
-        targetTile.occupyingEntity.TakeDamage(GetStrength());
+        if (targetTile.occupyingEntity as Unit != null)
+        {
+            ShowNumber(GetStrength(), target, GetGridPos().x - target.x);
+            (targetTile.occupyingEntity as Unit).TakeDamage(GetStrength(), GetGridPos());
+        }
+        else
+        {
+            targetTile.occupyingEntity.TakeDamage(GetStrength());
+        }
 
         if (targetTile.occupyingEntity == null)
             target = new Vector3Int(0, 0, -1);
@@ -506,6 +514,96 @@ public class Unit : Entity
             int newDamage = Mathf.Max(0, (int)(damage - (baseIncrease * multiplier)));
             base.TakeDamage(newDamage);
         }
+    }
+
+    public void TakeDamage(int damage, Vector3Int position)
+    {
+        SoundManager.Instance.PlayEntitySound(this, SoundType.HURT);
+        int x = 0;
+        int y = 0;
+        //choose directions for the hitback
+        if (position.x < GetGridPos().x)
+        {
+            x = GetStrength();
+        }
+        else if (position.x > GetGridPos().x)
+        {
+            x = -1 * GetStrength();
+        }
+        if (position.y < GetGridPos().y)
+        {
+            y = GetStrength();
+        }
+        else if (position.y > GetGridPos().y)
+        {
+            y = -1 * GetStrength();
+        }
+        StartCoroutine(Knockback(x, y));
+        if (activeBuffs.Count <= 0)
+        {
+            base.TakeDamage(damage);
+        }
+        else
+        {
+            //calculate buff defense if any
+            int baseIncrease = 0;
+            float multiplier = 1;
+            foreach (Buff buff in activeBuffs)
+            {
+                //check for strength buffs
+                DefenseBuff dBuff = buff as DefenseBuff;
+                if (dBuff != null)
+                {
+                    baseIncrease += dBuff.baseIncrease;
+                    multiplier *= dBuff.multiplier;
+                }
+            }
+
+            //calculate reduction
+            damage = Mathf.Max(0, (int)(damage - (baseIncrease * multiplier)));
+            base.TakeDamage(damage);
+        }
+    }
+
+    //does the knockback animation for the unit
+    public IEnumerator Knockback(int x, int y)
+    {
+        Renderer rend = GetComponent<Renderer>();
+        Color og = rend.material.color;
+        float speed = strength * .02f;
+        if (speed > .005f) speed = .01f;
+        float elapsed = 0f;
+        float duration = 1f;
+        float time = 0;
+
+        rend.material.color = Color.red;
+        while (time < 360)
+        {
+            time += 60;
+            transform.position += new Vector3(Mathf.Sin((time / 360f) * 2f * Mathf.PI) * speed * x, Mathf.Sin((time / 360f) * 2f * Mathf.PI) * speed * y, 0);
+
+            elapsed += Time.deltaTime;
+            yield return new WaitForSeconds(duration / 60f);
+        }
+        rend.material.color = og;
+    }
+
+    public void ShowNumber(int damage, Vector3Int position, int x)
+    {
+        Debug.Log("showNumber");
+        GameObject prefab = Resources.Load<GameObject>("FloatingNum");
+
+        if (prefab == null)
+        {
+            Debug.LogError("prefab not found");
+            return;
+        }
+
+        Canvas canvas = FindFirstObjectByType<Canvas>();
+        GameObject obj = Instantiate(prefab, canvas.transform, false);
+
+        FloatingNumber fn = obj.GetComponent<FloatingNumber>();
+        StartCoroutine(fn.SetNum(x, damage, position));
     }
 }
 
