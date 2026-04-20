@@ -14,7 +14,7 @@ public class TutorialManager : MonoBehaviour
     private void OnEnable()
     {
         UnitInteractionSystem.OnUnitSelected += OnUnitClicked;
-        UnitInteractionSystem.OnUnitMoved += OnUnitClicked;
+        //UnitInteractionSystem.OnUnitMoved += OnUnitClicked;
     }
 
     private void Awake()
@@ -30,6 +30,7 @@ public class TutorialManager : MonoBehaviour
     public void OnUnitClicked()
     {
         DialogueManager.StartConversation("Tutorial/FirstUnitClick");
+        UnitInteractionSystem.OnUnitSelected -= OnUnitClicked;
     }
 
 }
