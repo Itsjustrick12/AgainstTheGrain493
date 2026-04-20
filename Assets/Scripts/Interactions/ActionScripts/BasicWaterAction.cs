@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Actions/Water")]
 public class BasicWaterAction : EntityAction
 {
-    public AudioClip waterSound;
+    public AudioClip[] waterSounds;
     public override string GetName()
     {
         return "Water";
@@ -82,6 +82,6 @@ public class BasicWaterAction : EntityAction
 
         //Water the crop at the position
         targetCrop.WaterCrop();
-        SoundManager.Instance.PlaySound(waterSound);
+        SoundManager.Instance.PlaySound(waterSounds[Random.Range(0, waterSounds.Length)]);
     }
 }
