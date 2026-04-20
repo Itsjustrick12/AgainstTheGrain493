@@ -34,6 +34,7 @@ public class UnitInfoPanel : MonoBehaviour
 
     public void ShowPanel(Unit currUnit)
     {
+        if (!GameManager.Instance.isPlayerTurn) return;
         if (currUnit == null)
         {
             //Debug.Log("Null Check");

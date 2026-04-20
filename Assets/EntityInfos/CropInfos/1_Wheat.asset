@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 1
   entityName: Wheat
   baseHealth: 5
-  prefab: {fileID: 8456888675781698093, guid: e99dc2731176e79468640a096b828739, type: 3}
+  prefab: {fileID: 5362854747147872654, guid: 31b5e4c4b0f085c4cb46728346f788a7, type: 3}
   tile: {fileID: 11400000, guid: 3c4fcb91cfa190e4497cba268691c126, type: 2}
   sprite: {fileID: -5959580139648495713, guid: b077f7d8ca5b90746b90723385dfce96, type: 3}
   actions: []
