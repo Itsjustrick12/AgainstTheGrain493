@@ -113,6 +113,16 @@ public class Unit : Entity
         currentHealth = (after) > maxHealth ? maxHealth : after;
     }
 
+    public bool HasAnimator()
+    {
+        if(animator != null)
+        {
+            return true;
+        }
+        return false;
+    }
+
+
     public int GetAttackRange()
     {
         return attackRange;
@@ -300,11 +310,20 @@ public class Unit : Entity
             Vector3Int dir = path[i] - prevPos;
             SoundManager.Instance.PlayEntitySound(this, SoundType.WALK);
 
-            if (animator != null)
+            if (HasAnimator())
             {
-                animator.SetBool("moving", true);
-                animator.SetFloat("x position", Mathf.Clamp(dir.x, -1, 1));
-                animator.SetFloat("y position", Mathf.Clamp(dir.y, -1, 1));
+                animator.SetFloat("x position", dir.x);
+                if(dir.x < 0)
+                {
+                    animator.SetFloat("facing", -1f);
+                }
+                else if(dir.x > 0)
+                {
+                    animator.SetFloat("facing", 1f);
+                }
+                animator.SetFloat("y position", dir.y);
+                //TODO basically there's a pause where only on move(not on cancel) it pauses, probably a calculation or smth
+                animator.SetBool("moving", dir.x != 0 || dir.y != 0);
             }
             else
             {
@@ -324,11 +343,9 @@ public class Unit : Entity
         // LOGICAL MOVE, ACTUALLY MOVE TO GRID SPACE
         tileManager.MoveEntity(startLogicalPos, destination);
 
-        if (animator != null)
+        if (HasAnimator())
         {
             animator.SetBool("moving", false);
-            animator.SetFloat("x position", 0);
-            animator.SetFloat("y position", 0);
         }
         //flag used to allow player input again after move anim
         isMoving = false;
@@ -396,7 +413,7 @@ public class Unit : Entity
             return false;
         }
 
-        if(targetTile.occupyingEntity as Unit != null)
+        if (targetTile.occupyingEntity as Unit != null)
         {
             ShowNumber(GetStrength(), target, GetGridPos().x - target.x);
             (targetTile.occupyingEntity as Unit).TakeDamage(GetStrength(), GetGridPos());
@@ -473,29 +490,59 @@ public class Unit : Entity
         base.Die();
     }
 
+    public override void TakeDamage(int damage)
+    {
+        SoundManager.Instance.PlayEntitySound(this, SoundType.HURT);
+        if (activeBuffs.Count <= 0)
+        {
+            base.TakeDamage(damage);
+            return;
+        }
+        else
+        {
+            //calculate buff defense if any
+            int baseIncrease = 0;
+            float multiplier = 1;
+            foreach (Buff buff in activeBuffs)
+            {
+                //check for strength buffs
+                DefenseBuff dBuff = buff as DefenseBuff;
+                if (dBuff != null)
+                {
+                    baseIncrease += dBuff.baseIncrease;
+                    multiplier *= dBuff.multiplier;
+                }
+            }
+
+            //calculate reduction
+            int newDamage = Mathf.Max(0, (int)(damage - (baseIncrease * multiplier)));
+            base.TakeDamage(newDamage);
+        }
+    }
+
     public void TakeDamage(int damage, Vector3Int position)
     {
         SoundManager.Instance.PlayEntitySound(this, SoundType.HURT);
         int x = 0;
         int y = 0;
         //choose directions for the hitback
-        if(position.x < GetGridPos().x)
+        if (position.x < GetGridPos().x)
         {
             x = GetStrength();
         }
-        else if(position.x > GetGridPos().x)
+        else if (position.x > GetGridPos().x)
         {
             x = -1 * GetStrength();
         }
-        if(position.y < GetGridPos().y)
+        if (position.y < GetGridPos().y)
         {
             y = GetStrength();
         }
-        else if(position.y > GetGridPos().y)
+        else if (position.y > GetGridPos().y)
         {
             y = -1 * GetStrength();
         }
-        StartCoroutine(Knockback(x,y));
+        StartCoroutine(Knockback(x, y));
         if (activeBuffs.Count <= 0)
         {
             base.TakeDamage(damage);
@@ -528,15 +575,15 @@ public class Unit : Entity
         Renderer rend = GetComponent<Renderer>();
         Color og = rend.material.color;
         float speed = strength * .02f;
-        if(speed > .005f) speed = .01f;
+        if (speed > .005f) speed = .01f;
         float elapsed = 0f;
         float duration = 1f;
         float time = 0;
-        
+
         rend.material.color = Color.red;
         while (time < 360)
         {
-            time+=60;
+            time += 60;
             transform.position += new Vector3(Mathf.Sin((time / 360f) * 2f * Mathf.PI) * speed * x, Mathf.Sin((time / 360f) * 2f * Mathf.PI) * speed * y, 0);
 
             elapsed += Time.deltaTime;
@@ -554,7 +601,7 @@ public class Unit : Entity
         {
             Debug.LogError("prefab not found");
             return;
-        }//
+        }
 
         Canvas canvas = FindFirstObjectByType<Canvas>();
         GameObject obj = Instantiate(prefab, canvas.transform, false);

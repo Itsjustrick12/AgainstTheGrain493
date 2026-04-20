@@ -74,7 +74,7 @@ public class PlantAction : EntityAction
         GameManager GM = FindFirstObjectByType<GameManager>();
 
         Unit unitCheck = unit as Unit;
-        if (unitCheck != null)
+        if (unitCheck.HasAnimator())
         {
             unitCheck.SetAnimationTrigger("plant");
         }
