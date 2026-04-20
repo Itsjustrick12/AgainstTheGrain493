@@ -1,6 +1,4 @@
-using NUnit.Framework.Internal.Commands;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class AIManager : MonoBehaviour
