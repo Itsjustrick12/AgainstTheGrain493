@@ -30,8 +30,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2609189447912913809}
-  - {fileID: 8002962850062110739}
-  - {fileID: 8827235785637663248}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -64,9 +62,14 @@ MonoBehaviour:
       m_Calls: []
   buttonContainer: {fileID: 8827235785637663248}
   actionButtonPrefab: {fileID: 2476717765363805346, guid: bd83207a216f0aa4c845309ddeaf43f1, type: 3}
+  topText: {fileID: 3990004352164970529}
   wait: {fileID: 11400000, guid: 866512204f1061645a7ac76bd7e8ed48, type: 2}
   cancel: {fileID: 11400000, guid: 580bd328af22c454dbf870d0a2869648, type: 2}
   endTurn: {fileID: 0}
+  menuPanel: {fileID: 2609189447912913809}
+  baseHeight: 90
+  buttonHeight: 60
+  offset: {x: 2, y: 1, z: 0}
 --- !u!1 &3238057987194422603
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,13 +99,15 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8002962850062110739}
+  - {fileID: 8827235785637663248}
   m_Father: {fileID: 4088894491635225407}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 192, y: 228}
+  m_SizeDelta: {x: 192, y: 214}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4725241490405508669
 CanvasRenderer:
@@ -167,17 +172,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4537804008970590655}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4088894491635225407}
+  m_Father: {fileID: 2609189447912913809}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -64}
-  m_SizeDelta: {x: 120, y: 138}
+  m_AnchoredPosition: {x: 0, y: -64.5}
+  m_SizeDelta: {x: 120, y: 124}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &6134604669223256459
 CanvasRenderer:
@@ -205,7 +210,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 1
-  m_Spacing: 0
+  m_Spacing: -4.3875
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -243,7 +248,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4088894491635225407}
+  m_Father: {fileID: 2609189447912913809}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
