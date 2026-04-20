@@ -1,46 +1,43 @@
 fileFormatVersion: 2
-guid: 2cf85edd413379d41929d87696235b69
+guid: ee21f3dad00a14889b38e54288ce3dc5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2728362978396763385
-    second: unit_animal_cow_idle_left_strip13_0
+      213: 1225867100158427330
+    second: unit_cow_attack_left_regular_0
   - first:
-      213: -4229002182823431903
-    second: unit_animal_cow_idle_left_strip13_1
+      213: 8815426785617377532
+    second: unit_cow_attack_left_regular_1
   - first:
-      213: 5893522743432730504
-    second: unit_animal_cow_idle_left_strip13_2
+      213: -8498940555754624767
+    second: unit_cow_attack_left_regular_2
   - first:
-      213: -1886066748800025966
-    second: unit_animal_cow_idle_left_strip13_3
+      213: 3929790417408934762
+    second: unit_cow_attack_left_regular_3
   - first:
-      213: 9143333138831377947
-    second: unit_animal_cow_idle_left_strip13_4
+      213: -2961355776947055500
+    second: unit_cow_attack_left_regular_4
   - first:
-      213: 8048809695550816030
-    second: unit_animal_cow_idle_left_strip13_5
+      213: -6242466162639974033
+    second: unit_cow_attack_left_regular_5
   - first:
-      213: 323634774138567783
-    second: unit_animal_cow_idle_left_strip13_6
+      213: -5585156201635824468
+    second: unit_cow_attack_left_regular_6
   - first:
-      213: 3387670934385615081
-    second: unit_animal_cow_idle_left_strip13_7
+      213: 225646037088198836
+    second: unit_cow_attack_left_regular_7
   - first:
-      213: -6216768406485567465
-    second: unit_animal_cow_idle_left_strip13_8
+      213: -8422800414189815570
+    second: unit_cow_attack_left_regular_8
   - first:
-      213: 8616396280561140437
-    second: unit_animal_cow_idle_left_strip13_9
+      213: 3067529868322274855
+    second: unit_cow_attack_left_regular_9
   - first:
-      213: 3427706651763644826
-    second: unit_animal_cow_idle_left_strip13_10
+      213: -4431222169269354673
+    second: unit_cow_attack_left_regular_10
   - first:
-      213: -2921907908875033984
-    second: unit_animal_cow_idle_left_strip13_11
-  - first:
-      213: 8053982739755952876
-    second: unit_animal_cow_idle_left_strip13_12
+      213: 2252764329685582119
+    second: unit_cow_attack_left_regular_11
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -136,7 +133,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: unit_animal_cow_idle_left_strip13_0
+      name: unit_cow_attack_left_regular_0
       rect:
         serializedVersion: 2
         x: 0
@@ -151,14 +148,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 70b855e9358e22ad0800000000000000
-      internalID: -2728362978396763385
+      spriteID: 2c008c6f1a7230110800000000000000
+      internalID: 1225867100158427330
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unit_animal_cow_idle_left_strip13_1
+      name: unit_cow_attack_left_regular_1
       rect:
         serializedVersion: 2
         x: 64
@@ -173,14 +170,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1213572cbe09f45c0800000000000000
-      internalID: -4229002182823431903
+      spriteID: cf8ff2494ffa65a70800000000000000
+      internalID: 8815426785617377532
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unit_animal_cow_idle_left_strip13_2
+      name: unit_cow_attack_left_regular_2
       rect:
         serializedVersion: 2
         x: 128
@@ -195,14 +192,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8875efdb5bff9c150800000000000000
-      internalID: 5893522743432730504
+      spriteID: 109a5170892bd0a80800000000000000
+      internalID: -8498940555754624767
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unit_animal_cow_idle_left_strip13_3
+      name: unit_cow_attack_left_regular_3
       rect:
         serializedVersion: 2
         x: 192
@@ -217,14 +214,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 29a3917e84853d5e0800000000000000
-      internalID: -1886066748800025966
+      spriteID: a63c46f409b698630800000000000000
+      internalID: 3929790417408934762
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unit_animal_cow_idle_left_strip13_4
+      name: unit_cow_attack_left_regular_4
       rect:
         serializedVersion: 2
         x: 256
@@ -239,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b160a1bdb05a3ee70800000000000000
-      internalID: 9143333138831377947
+      spriteID: 474158d5c9627e6d0800000000000000
+      internalID: -2961355776947055500
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unit_animal_cow_idle_left_strip13_5
+      name: unit_cow_attack_left_regular_5
       rect:
         serializedVersion: 2
         x: 320
@@ -261,14 +258,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e1fb60016cd13bf60800000000000000
-      internalID: 8048809695550816030
+      spriteID: f61d27d591e4e59a0800000000000000
+      internalID: -6242466162639974033
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unit_animal_cow_idle_left_strip13_6
+      name: unit_cow_attack_left_regular_6
       rect:
         serializedVersion: 2
         x: 384
@@ -283,14 +280,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 76c3e75cc18cd7400800000000000000
-      internalID: 323634774138567783
+      spriteID: cac3d6aa60a8d72b0800000000000000
+      internalID: -5585156201635824468
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unit_animal_cow_idle_left_strip13_7
+      name: unit_cow_attack_left_regular_7
       rect:
         serializedVersion: 2
         x: 448
@@ -305,14 +302,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9e068f324cc630f20800000000000000
-      internalID: 3387670934385615081
+      spriteID: 4b0ed9d00e7a12300800000000000000
+      internalID: 225646037088198836
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unit_animal_cow_idle_left_strip13_8
+      name: unit_cow_attack_left_regular_8
       rect:
         serializedVersion: 2
         x: 512
@@ -327,14 +324,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7187e88721a99b9a0800000000000000
-      internalID: -6216768406485567465
+      spriteID: ee8f33236a33c1b80800000000000000
+      internalID: -8422800414189815570
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unit_animal_cow_idle_left_strip13_9
+      name: unit_cow_attack_left_regular_9
       rect:
         serializedVersion: 2
         x: 576
@@ -349,14 +346,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5d208daf3c6939770800000000000000
-      internalID: 8616396280561140437
+      spriteID: 72eff3ba92e029a20800000000000000
+      internalID: 3067529868322274855
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unit_animal_cow_idle_left_strip13_10
+      name: unit_cow_attack_left_regular_10
       rect:
         serializedVersion: 2
         x: 640
@@ -371,52 +368,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a999d9cf909a19f20800000000000000
-      internalID: 3427706651763644826
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: unit_animal_cow_idle_left_strip13_11
-      rect:
-        serializedVersion: 2
-        x: 704
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0826911ec3c4377d0800000000000000
-      internalID: -2921907908875033984
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: unit_animal_cow_idle_left_strip13_12
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ceae74641ae75cf60800000000000000
-      internalID: 8053982739755952876
+      spriteID: f4f3dd72ae22182c0800000000000000
+      internalID: -4431222169269354673
       vertices: []
       indices: 
       edges: []
@@ -425,7 +378,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c6f70e8786713488eaf9bb0550b42a5f
+    spriteID: 34fa715f1536948e2ae80087ea0a36d9
     internalID: 0
     vertices: []
     indices: 
@@ -437,19 +390,17 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      unit_animal_cow_idle_left_strip13_0: -2728362978396763385
-      unit_animal_cow_idle_left_strip13_1: -4229002182823431903
-      unit_animal_cow_idle_left_strip13_10: 3427706651763644826
-      unit_animal_cow_idle_left_strip13_11: -2921907908875033984
-      unit_animal_cow_idle_left_strip13_12: 8053982739755952876
-      unit_animal_cow_idle_left_strip13_2: 5893522743432730504
-      unit_animal_cow_idle_left_strip13_3: -1886066748800025966
-      unit_animal_cow_idle_left_strip13_4: 9143333138831377947
-      unit_animal_cow_idle_left_strip13_5: 8048809695550816030
-      unit_animal_cow_idle_left_strip13_6: 323634774138567783
-      unit_animal_cow_idle_left_strip13_7: 3387670934385615081
-      unit_animal_cow_idle_left_strip13_8: -6216768406485567465
-      unit_animal_cow_idle_left_strip13_9: 8616396280561140437
+      unit_cow_attack_left_regular_0: 1225867100158427330
+      unit_cow_attack_left_regular_1: 8815426785617377532
+      unit_cow_attack_left_regular_10: -4431222169269354673
+      unit_cow_attack_left_regular_2: -8498940555754624767
+      unit_cow_attack_left_regular_3: 3929790417408934762
+      unit_cow_attack_left_regular_4: -2961355776947055500
+      unit_cow_attack_left_regular_5: -6242466162639974033
+      unit_cow_attack_left_regular_6: -5585156201635824468
+      unit_cow_attack_left_regular_7: 225646037088198836
+      unit_cow_attack_left_regular_8: -8422800414189815570
+      unit_cow_attack_left_regular_9: 3067529868322274855
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

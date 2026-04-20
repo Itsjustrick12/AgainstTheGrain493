@@ -118,7 +118,10 @@ public class BasicAttackAction : EntityAction
 
         if (unit.HasAnimator())
         {
-            unit.animator.SetFloat("facing", targetUnit.GetGridPos().x - unit.GetGridPos().x);
+            if(targetUnit.GetGridPos().x - unit.GetGridPos().x != 0)
+            {
+                unit.animator.SetFloat("facing", targetUnit.GetGridPos().x - unit.GetGridPos().x);
+            }
             unit.SetAnimationTrigger("attack");
         }
 

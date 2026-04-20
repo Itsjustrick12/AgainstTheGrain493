@@ -314,7 +314,7 @@ public class Unit : Entity
                 {
                     animator.SetFloat("facing", -1f);
                 }
-                else 
+                else if(Mathf.Clamp(dir.x, -1, 1) > 0)
                 {
                     animator.SetFloat("facing", 1f);
                 }
