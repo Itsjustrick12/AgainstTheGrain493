@@ -308,17 +308,18 @@ public class Unit : Entity
 
             if (HasAnimator())
             {
-                animator.SetBool("moving", true);
-                animator.SetFloat("x position", Mathf.Clamp(dir.x, -1, 1));
-                if(Mathf.Clamp(dir.x, -1, 1) < 0)
+                animator.SetFloat("x position", dir.x);
+                if(dir.x < 0)
                 {
                     animator.SetFloat("facing", -1f);
                 }
-                else if(Mathf.Clamp(dir.x, -1, 1) > 0)
+                else if(dir.x > 0)
                 {
                     animator.SetFloat("facing", 1f);
                 }
-                animator.SetFloat("y position", Mathf.Clamp(dir.y, -1, 1));
+                animator.SetFloat("y position", dir.y);
+                //TODO basically there's a pause where only on move(not on cancel) it pauses, probably a calculation or smth
+                animator.SetBool("moving", dir.x != 0 || dir.y != 0);
             }
             else
             {
