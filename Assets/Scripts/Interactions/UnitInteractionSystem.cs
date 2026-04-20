@@ -120,6 +120,10 @@ public class UnitInteractionSystem : TileCursor
 
     public override void Update()
     {
+        if (DialogueManager.isConversationActive)
+        {
+            return;
+        }
         base.Update();
         if(GetCurrentTile() != lastLocation && state == InteractionState.Movement)
         {
