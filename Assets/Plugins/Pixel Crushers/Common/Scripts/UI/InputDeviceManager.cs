@@ -809,7 +809,7 @@ namespace PixelCrushers
                 default: return false;
             }
 #else
-            return Input.GetMouseButtgenonDown(buttonNumber);
+            return Input.GetMouseButtonDown(buttonNumber);
 #endif
         }
 
