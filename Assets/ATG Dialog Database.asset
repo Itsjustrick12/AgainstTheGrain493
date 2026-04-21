@@ -905,7 +905,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: SendMessage(PanToNextUnit,  , MainCamera)@{{start}};
+        value: SendMessage(PanToNextUnit,  , MainCamera);
         type: 0
         typeString: 
       conversationID: 4
@@ -944,11 +944,11 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 4
+        value: 5
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 5
+        value: 1
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -960,6 +960,10 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
+        value: SendMessage(PanToNextUnit,  , MainCamera);
+        type: 0
+        typeString: 
+      - title: Response Menu Sequence
         value: 
         type: 0
         typeString: 
@@ -999,11 +1003,11 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 5
+        value: 4
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 4
+        value: 5
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -1074,7 +1078,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 
+        value: SendMessage(PanToNextUnit,  , MainCamera);
         type: 0
         typeString: 
       conversationID: 4
@@ -1129,7 +1133,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 
+        value: SendMessage(PanToNextUnit,  , MainCamera);
         type: 0
         typeString: 
       conversationID: 4
@@ -1184,7 +1188,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 
+        value: SendMessage(PanToNextUnit,  , MainCamera);
         type: 0
         typeString: 
       conversationID: 4
@@ -1223,11 +1227,11 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 4
+        value: 5
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 5
+        value: 1
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -1278,11 +1282,11 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 5
+        value: 4
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 4
+        value: 5
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -1294,7 +1298,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 
+        value: SendMessage(PanToNextUnit,  , MainCamera);
         type: 0
         typeString: 
       conversationID: 4
@@ -1404,7 +1408,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 
+        value: SendMessage(PanToNextUnit,  , MainCamera);
         type: 0
         typeString: 
       conversationID: 4
@@ -1443,11 +1447,11 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 4
+        value: 5
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 5
+        value: 4
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -1473,7 +1477,7 @@ MonoBehaviour:
       - originConversationID: 4
         originDialogueID: 12
         destinationConversationID: 4
-        destinationDialogueID: 13
+        destinationDialogueID: 15
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -1487,71 +1491,16 @@ MonoBehaviour:
         y: 631
         width: 160
         height: 30
-    - id: 13
+    - id: 15
       fields:
       - title: Title
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Description
         value: 
         type: 0
-        typeString: 
-      - title: Actor
-        value: 5
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 4
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: 
-      - title: Dialogue Text
-        value: "That\u2019s perfect! You plant, I\u2019ll water."
-        type: 0
-        typeString: 
-      - title: Sequence
-        value: 
-        type: 0
-        typeString: 
-      conversationID: 4
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks:
-      - originConversationID: 4
-        originDialogueID: 13
-        destinationConversationID: 4
-        destinationDialogueID: 14
-        isConnector: 0
-        priority: 2
-      conditionsString: 
-      userScript: 
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 160
-        y: 681
-        width: 160
-        height: 30
-    - id: 14
-      fields:
-      - title: Title
-        value: 
-        type: 0
-        typeString: 
-      - title: Description
-        value: 
-        type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Actor
         value: 4
         type: 5
@@ -1563,15 +1512,15 @@ MonoBehaviour:
       - title: Menu Text
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: 
+        value: Perfect! You plant, I'll water.
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SendMessage(PanToNextUnit,  , MainCamera);
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       conversationID: 4
       isRoot: 0
       isGroup: 0
@@ -1588,12 +1537,12 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 160
-        y: 731
+        y: 681
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 82.230675, y: 23.751392}
-    canvasZoom: 0.7900002
+    canvasScrollPosition: {x: 185.70778, y: 236.10272}
+    canvasZoom: 0.4195
   syncInfo:
     syncActors: 0
     syncItems: 0
