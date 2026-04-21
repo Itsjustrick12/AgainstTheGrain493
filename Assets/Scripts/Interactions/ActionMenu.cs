@@ -40,6 +40,8 @@ public class ActionMenu : NaviagatableUI
     [SerializeField] private Vector3 offset = new Vector3(2.5f, 0, 0);
     private Vector3 anchoredWorldPos;
 
+    bool isDefaultMenu = false;
+
     public void Awake()
     {
         tileManager = FindFirstObjectByType<TileManager>();
@@ -68,7 +70,7 @@ public class ActionMenu : NaviagatableUI
         {
             Debug.LogError("You passed a null unit to ShowMenu");
         }
-
+        isDefaultMenu = false;
         gameObject.SetActive(true);
         //Delete previous buttons
         ClearButtons();
@@ -98,12 +100,20 @@ public class ActionMenu : NaviagatableUI
     {
         if (!gameObject.activeSelf) return;
 
-        Vector2 screenPos = Camera.main.WorldToScreenPoint(anchoredWorldPos);
-        transform.position = screenPos;
+        if (isDefaultMenu)
+        {
+            transform.position = new Vector2(Screen.width / 2f, Screen.height / 2f);
+        }
+        else
+        {
+            Vector2 screenPos = Camera.main.WorldToScreenPoint(anchoredWorldPos);
+            transform.position = screenPos;
+        }
     }
 
     public void ShowDefaultMenu()
     {
+        isDefaultMenu = true;
         gameObject.SetActive(true);
         //Delete previous buttons
         ClearButtons();
