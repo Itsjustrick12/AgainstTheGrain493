@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -38,6 +39,16 @@ public class BarnUIMenu : NaviagatableUI
             button.UpdateButton(id);
             button.Initialize(buttons.Count - 1);
         }
+    }
+
+    public void OnEnable()
+    {
+        EconomyManager.OnCoinsChanged += UpdateCoinText;
+    }
+
+    public void OnDisable()
+    {
+        EconomyManager.OnCoinsChanged -= UpdateCoinText;
     }
 
     public override void DeselectButton(int index)

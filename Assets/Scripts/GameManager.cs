@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
         isPlayerTurn = true;
         SpawnStartingUnits();
         interactionSystem.DisableInputs();
+        SoundManager.Instance.PlayMusic(MusicTrack.BATTLE);
         PlayPlayerTurnAnimation();
     }
 

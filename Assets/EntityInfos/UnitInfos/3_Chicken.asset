@@ -20,8 +20,8 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: eae7e2c5a5926814d883db1cab0010a7, type: 3}
   actions:
   - {fileID: 11400000, guid: 7c13517389f0d4c4e93d63f8ee88274a, type: 2}
-  purchasePrice: 5
-  sellValue: 5
+  purchasePrice: 10
+  sellValue: 10
   hurtSound: {fileID: 8300000, guid: d88985e9feca51649984a523bcd49efa, type: 3}
   deathSound: {fileID: 8300000, guid: 1eb23301a54e4e749965a894b4d2f2fe, type: 3}
   isEnemy: 0
