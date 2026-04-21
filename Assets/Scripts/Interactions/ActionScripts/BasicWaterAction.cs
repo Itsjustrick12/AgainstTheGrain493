@@ -80,6 +80,16 @@ public class BasicWaterAction : EntityAction
             return;
         }
 
+        Unit unituse = unit as Unit;
+        if (unituse != null && unituse.HasAnimator())
+        {
+            if(pos.x - unituse.GetGridPos().x != 0)
+            {
+                unituse.animator.SetFloat("facing", pos.x - unituse.GetGridPos().x);
+            }
+            unituse.SetAnimationTrigger("harvest");
+        }
+
         manager.SetTile(pos, TileType.WateredDirt);
 
         //Water the crop at the position
