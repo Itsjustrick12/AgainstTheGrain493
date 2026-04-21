@@ -8,7 +8,7 @@ public class CropButton : UIButton
     public int cropID = 1;
 
     //For shrinking counter
-    private CropCounterUI counter;
+    [SerializeField]private CropCounterUI counter;
     [SerializeField] private Image cropImage;
 
     public override void Awake()
@@ -17,10 +17,6 @@ public class CropButton : UIButton
         if (parentUI == null)
         {
             parentUI = FindFirstObjectByType<PickCropUI>();
-        }
-        if (counter == null)
-        {
-            counter = GetComponentInParent<CropCounterUI>();
         }
         if (cropImage == null)
         {

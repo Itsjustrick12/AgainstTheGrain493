@@ -2,13 +2,15 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class FeedButton : UIButton
+public class EndTurnButton : UIButton
 {
     private UnitInteractionSystem interactionSystem;
+    private GameManager gameManager;
 
     public override void Awake()
     {
         image = GetComponent<Image>();
+        gameManager = FindFirstObjectByType<GameManager>();
         interactionSystem = FindFirstObjectByType<UnitInteractionSystem>();
     }
 
@@ -16,37 +18,27 @@ public class FeedButton : UIButton
     {
         isSelected = false;
         UnitInteractionSystem.OnStateChanged += CanInteract;
-        EconomyManager.OnCropChanged += DetermineAvailability;
         GameManager.StartEnemyTurn += CanInteract;
         GameManager.StartPlayerTurn += CanInteract;
-        CanInteract(interactionSystem.state);
+        UpdateVisual();
     }
 
     private void OnDisable()
     {
         UnitInteractionSystem.OnStateChanged -= CanInteract;
-        EconomyManager.OnCropChanged -= DetermineAvailability;
         GameManager.StartEnemyTurn -= CanInteract;
         GameManager.StartPlayerTurn -= CanInteract;
     }
 
     private void CanInteract()
     {
-        acceptingInput = interactionSystem.state == InteractionState.Selection
-            && GameManager.Instance.isPlayerTurn
-            && EconomyManager.Instance.HasACrop();
+        acceptingInput = interactionSystem.state == InteractionState.Selection && gameManager.isPlayerTurn;
         UpdateVisual();
     }
 
     private void CanInteract(InteractionState newState)
     {
-        acceptingInput = (newState == InteractionState.Selection) && EconomyManager.Instance != null && EconomyManager.Instance.HasACrop();
-        UpdateVisual();
-    }
-
-    private void DetermineAvailability(int cropID)
-    {
-        acceptingInput = EconomyManager.Instance.HasACrop();
+        acceptingInput = newState == InteractionState.Selection && gameManager.isPlayerTurn;
         UpdateVisual();
     }
 
@@ -57,22 +49,21 @@ public class FeedButton : UIButton
 
     public override void OnPointerEnter(PointerEventData eventData)
     {
+        base.OnPointerEnter(eventData);
         if (acceptingInput)
             image.sprite = highlightSprite;
     }
 
     public override void OnPointerClick(PointerEventData eventData)
     {
+        base.OnPointerClick(eventData);
         if (acceptingInput)
-            interactionSystem.StartFeedTargeting();
+            interactionSystem.AskEndTurn();
     }
 
     public override void OnPointerExit(PointerEventData eventData)
     {
-        if (acceptingInput)
-            image.sprite = normalSprite;
-        else
-            image.sprite = unavailableSprite;
+        base.OnPointerExit(eventData);
+        image.sprite = acceptingInput ? normalSprite : unavailableSprite;
     }
 }
-
