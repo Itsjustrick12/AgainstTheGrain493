@@ -1,0 +1,453 @@
+fileFormatVersion: 2
+guid: 8eaaa1a48fb73446daae5542df07ee97
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8758677582431827912
+    second: loseUIButtonSheet_0
+  - first:
+      213: -997980025638765524
+    second: loseUIButtonSheet_1
+  - first:
+      213: -8679386226631525207
+    second: loseUIButtonSheet_2
+  - first:
+      213: 7941481025235321948
+    second: loseUIButtonSheet_3
+  - first:
+      213: -6574605003156573791
+    second: loseUIButtonSheet_4
+  - first:
+      213: 9118967957721214620
+    second: loseUIButtonSheet_5
+  - first:
+      213: 3967889611151677317
+    second: loseUIButtonSheet_6
+  - first:
+      213: -1025137710404972831
+    second: loseUIButtonSheet_7
+  - first:
+      213: 5009586213734449674
+    second: loseUIButtonSheet_8
+  - first:
+      213: -9086858479300463679
+    second: loseUIButtonSheet_9
+  - first:
+      213: -7016865311065444249
+    second: loseUIButtonSheet_10
+  - first:
+      213: -8440930295912148470
+    second: loseUIButtonSheet_11
+  - first:
+      213: -7057199258382543658
+    second: loseUIButtonSheet_12
+  - first:
+      213: 6526920087217871310
+    second: loseUIButtonSheet_13
+  - first:
+      213: 332633421797158376
+    second: loseUIButtonSheet_14
+  - first:
+      213: 1127786219841701114
+    second: loseUIButtonSheet_15
+  - first:
+      213: 2959858474725345913
+    second: loseUIButtonSheet_16
+  - first:
+      213: -6899153075477127124
+    second: loseUIButtonSheet_17
+  - first:
+      213: 8637466585048695290
+    second: loseUIButtonSheet_18
+  - first:
+      213: -8198327176566745858
+    second: loseUIButtonSheet_19
+  - first:
+      213: 1905275523968609793
+    second: loseUIButtonSheet_20
+  - first:
+      213: -1692172531216756398
+    second: loseUIButtonSheet_21
+  - first:
+      213: -858694894010031289
+    second: loseUIButtonSheet_22
+  - first:
+      213: 143514134584373245
+    second: loseUIButtonSheet_23
+  - first:
+      213: 7597511372957907104
+    second: loseUIButtonSheet_24
+  - first:
+      213: -8250062333033112794
+    second: loseUIButtonSheet_25
+  - first:
+      213: -4762999318264025432
+    second: loseUIButtonSheet_26
+  - first:
+      213: 7547087346784170617
+    second: loseUIButtonSheet_27
+  - first:
+      213: 5786656268799577774
+    second: loseUIButtonSheet_28
+  - first:
+      213: -5375517324229296134
+    second: loseUIButtonSheet_29
+  - first:
+      213: 6322531477835740327
+    second: loseUIButtonSheet_30
+  - first:
+      213: 103292966870535373
+    second: loseUIButtonSheet_31
+  - first:
+      213: 5892650269644507274
+    second: loseUIButtonSheet_32
+  - first:
+      213: 4169067049864014368
+    second: loseUIButtonSheet_33
+  - first:
+      213: 6805213128037354681
+    second: loseUIButtonSheet_34
+  - first:
+      213: 7228684638938487182
+    second: loseUIButtonSheet_35
+  - first:
+      213: -1634063464963727506
+    second: loseUIButtonSheet_36
+  - first:
+      213: -7691904975549789543
+    second: loseUIButtonSheet_37
+  - first:
+      213: -8117894716681162678
+    second: loseUIButtonSheet_38
+  - first:
+      213: -1305211030115488260
+    second: loseUIButtonSheet_39
+  - first:
+      213: 159423165137901767
+    second: loseUIButtonSheet_40
+  - first:
+      213: -2962456636581050090
+    second: loseUIButtonSheet_41
+  - first:
+      213: -5213035121155976658
+    second: loseUIButtonSheet_42
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: loseUIButtonSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -32, y: -2}
+        - {x: 33, y: -2}
+        - {x: 33, y: 16}
+        - {x: -32, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c7b6031bd21d8970800000000000000
+      internalID: 8758677582431827912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -28, y: -4}
+        - {x: 35, y: -4}
+        - {x: 35, y: 12}
+        - {x: -28, y: 12}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2cbdd644767622f0800000000000000
+      internalID: -997980025638765524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_2
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9acb5355630ac8780800000000000000
+      internalID: -8679386226631525207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_3
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5408abaaeec53e60800000000000000
+      internalID: 7941481025235321948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_4
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a1b858559f42c4a0800000000000000
+      internalID: -6574605003156573791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_5
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9e642e0b051d8e70800000000000000
+      internalID: 9118967957721214620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_6
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58798ac1496c01730800000000000000
+      internalID: 3967889611151677317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIButtonSheet_7
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ee447d0faaf5c1f0800000000000000
+      internalID: -1025137710404972831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: c87fcf1affa6f5649b352e6e6d0f3a1a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":96.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      loseUIButtonSheet_0: 8758677582431827912
+      loseUIButtonSheet_1: -997980025638765524
+      loseUIButtonSheet_2: -8679386226631525207
+      loseUIButtonSheet_3: 7941481025235321948
+      loseUIButtonSheet_4: -6574605003156573791
+      loseUIButtonSheet_5: 9118967957721214620
+      loseUIButtonSheet_6: 3967889611151677317
+      loseUIButtonSheet_7: -1025137710404972831
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

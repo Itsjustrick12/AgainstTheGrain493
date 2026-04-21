@@ -203,7 +203,7 @@ public class TileHelper : MonoBehaviour
                     }
 
                     var occupyingEntity = tileData.GetOccupyingEntity();
-                    if(!tileData.CanEnter())
+                    if(!tileData.CanEnter() && occupyingEntity == null)
                     {
                         continue;
                     }
