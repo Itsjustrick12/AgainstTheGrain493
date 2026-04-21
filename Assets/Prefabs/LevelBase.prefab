@@ -903,6 +903,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4658646034626703832, guid: bf546e99ee00fc34598638c200dc8a0c, type: 3}
+      propertyPath: displaySettings.cameraSettings.sequencerCamera
+      value: 
+      objectReference: {fileID: 6466584891221517505}
+    - target: {fileID: 4658646034626703832, guid: bf546e99ee00fc34598638c200dc8a0c, type: 3}
       propertyPath: displaySettings.subtitleSettings.continueButton
       value: 1
       objectReference: {fileID: 0}
@@ -1067,6 +1071,11 @@ PrefabInstance:
 --- !u!4 &2978787349655587011 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9057871760576644082, guid: 727d6b8d68957fd4abc358467e7eaa46, type: 3}
+  m_PrefabInstance: {fileID: 6116663654945426225}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &6466584891221517505 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 963539000780009456, guid: 727d6b8d68957fd4abc358467e7eaa46, type: 3}
   m_PrefabInstance: {fileID: 6116663654945426225}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8441384290681554655
