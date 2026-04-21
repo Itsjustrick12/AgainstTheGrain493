@@ -34,6 +34,7 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandle
 
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
+        if (parentUI == null) return;
         if (acceptingInput)
         {
             parentUI.SetSelectedIndex(index);
@@ -42,6 +43,7 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandle
 
     public virtual void OnPointerClick(PointerEventData eventData)
     {
+        if (parentUI == null) return;
         if (acceptingInput)
         {
             parentUI.ReportAction();

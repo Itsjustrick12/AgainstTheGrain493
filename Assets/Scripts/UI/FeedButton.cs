@@ -17,13 +17,25 @@ public class FeedButton : UIButton
         isSelected = false;
         UnitInteractionSystem.OnStateChanged += CanInteract;
         EconomyManager.OnCropChanged += DetermineAvailability;
-        UpdateVisual(); // sync on enable in case state already changed
+        GameManager.StartEnemyTurn += CanInteract;
+        GameManager.StartPlayerTurn += CanInteract;
+        CanInteract(interactionSystem.state);
     }
 
     private void OnDisable()
     {
         UnitInteractionSystem.OnStateChanged -= CanInteract;
         EconomyManager.OnCropChanged -= DetermineAvailability;
+        GameManager.StartEnemyTurn -= CanInteract;
+        GameManager.StartPlayerTurn -= CanInteract;
+    }
+
+    private void CanInteract()
+    {
+        acceptingInput = interactionSystem.state == InteractionState.Selection
+            && GameManager.Instance.isPlayerTurn
+            && EconomyManager.Instance.HasACrop();
+        UpdateVisual();
     }
 
     private void CanInteract(InteractionState newState)

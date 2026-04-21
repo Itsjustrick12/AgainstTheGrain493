@@ -235,11 +235,6 @@ public class UnitInteractionSystem : TileCursor
                         }
                     }
                 }
-                else
-                {
-                    AskEndTurn();
-
-                }
                 break;
             case InteractionState.Movement:
                 TileData fromData = tileManager.GetTileDataAt(selectedPosition);

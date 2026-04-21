@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: PlantAction
   m_EditorClassIdentifier: Assembly-CSharp::PlantAction
   cropID: 3
+  plantSound: {fileID: 8300000, guid: f5e2ee5de7e1056448a06fc4e67435c1, type: 3}

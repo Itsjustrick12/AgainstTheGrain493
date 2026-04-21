@@ -12,22 +12,50 @@ public enum SoundType
     DEATH
 }
 
-[RequireComponent(typeof(AudioSource))]
+public enum MusicTrack
+{
+    NONE,
+    MAIN_MENU, //1
+    BATTLE, //2
+    VICTORY, //3
+    GAME_OVER //4
+}
+
 public class SoundManager : MonoBehaviour
 {
     //[SerializeField] private AudioClip[] soundList;
     public static SoundManager Instance;
-    private AudioSource audioSource;
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioSource musicSource;
+
+    private bool sfxMuted = false;
+    private bool musicMuted = false;
+
+    [SerializeField] private AudioClip[] musicTracks;
 
     private void Awake()
     {
         Instance = this;
     }
 
-    private void Start()
+    public void SetSFXMuted(bool muted)
     {
-        audioSource = GetComponent<AudioSource>();
+        sfxMuted = muted;
     }
+
+    public bool IsSFXMuted() => sfxMuted;
+
+    public void SetMusicMuted(bool muted)
+    {
+        musicMuted = muted;
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        sfxSource.volume = Mathf.Clamp01(volume);
+    }
+
+    public bool IsMusicMuted() => musicMuted;
 
     public void PlaySound(AudioClip clip)
     {
@@ -36,7 +64,11 @@ public class SoundManager : MonoBehaviour
             Debug.Log("No Sound for that type!");
             return;
         }
-        audioSource.PlayOneShot(clip);
+        if (sfxMuted)
+        {
+            return;
+        }
+        sfxSource.PlayOneShot(clip);
     }
 
     public void PlayEntitySound(Entity entity, SoundType type)
@@ -66,10 +98,36 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    /*
-    public static void PlaySound(SoundType sound , float volume = 1)
+    public void PlayMusic(MusicTrack track)
     {
-        instance.audioSource.PlayOneShot(instance.soundList[(int)sound], volume);
+        if (track == MusicTrack.NONE)
+        {
+            StopMusic();
+            return;
+        }
+
+        if (musicMuted)
+        {
+            return;
+        }
+
+        AudioClip clip = musicTracks[(int)track - 1]; // -1 to skip NONE
+        if (clip == null) return;
+
+        // Don't restart if already playing the same track
+        if (musicSource.clip == clip && musicSource.isPlaying) return;
+
+        musicSource.clip = clip;
+        musicSource.Play();
     }
-    */
+
+    public void StopMusic()
+    {
+        musicSource.Stop();
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        musicSource.volume = Mathf.Clamp01(volume);
+    }
 }
