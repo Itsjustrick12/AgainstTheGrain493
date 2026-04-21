@@ -350,6 +350,7 @@ public class Unit : Entity
     private List<Vector3Int> TrimPathForEnemy(List<Vector3Int> path)
     {
         // Trim to movement budget
+        Debug.Log("Path: " + path);
         int budget = GetMoveRange();
         int trimAt = 0;
         for (int i = 0; i < path.Count; i++)
@@ -422,6 +423,14 @@ public class Unit : Entity
         if (targetTile.occupyingEntity == null)
             target = new Vector3Int(0, 0, -1);
         SoundManager.Instance.PlayEntitySound(this, SoundType.ATTACK);
+        if (HasAnimator())
+        {
+            if(targetUnit.GetGridPos().x - GetGridPos().x != 0)
+            {
+                animator.SetFloat("facing", targetUnit.GetGridPos().x - GetGridPos().x);
+            }
+            animator.SetTrigger("attack");
+        }
         return true;
     }
 

@@ -143,243 +143,243 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Robot_Attack_0
+      name: Robot_Attack_Right_0
       rect:
         serializedVersion: 2
-        x: 8
+        x: 0
         y: 0
-        width: 17
+        width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0254e61402c075b40800000000000000
-      internalID: 5428821208494654752
+      spriteID: 2d98a8c6b0eee414592b6df69ff2a64d
+      internalID: -368167391
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot_Attack_1
+      name: Robot_Attack_Right_1
       rect:
         serializedVersion: 2
-        x: 37
+        x: 32
         y: 0
-        width: 20
-        height: 31
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 626c4aca0f0de8820800000000000000
-      internalID: 2922502940317238822
+      spriteID: d9510e228d8764632877f022eb94bb53
+      internalID: -1402594467
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot_Attack_2
+      name: Robot_Attack_Right_2
       rect:
         serializedVersion: 2
-        x: 66
+        x: 64
         y: 0
-        width: 23
-        height: 31
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f26fd2efe0ab2aa80800000000000000
-      internalID: -8456992576691636689
+      spriteID: 76dda7a3cc89c43fbb3bf1ac68c6b24e
+      internalID: -1418430986
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot_Attack_3
+      name: Robot_Attack_Right_3
       rect:
         serializedVersion: 2
-        x: 98
+        x: 96
         y: 0
-        width: 23
-        height: 31
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f42610a0780077ba0800000000000000
-      internalID: -6091399391006858673
+      spriteID: c2f5d5d7f406841f2b219dd975d27e96
+      internalID: 588639094
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot_Attack_4
+      name: Robot_Attack_Right_4
       rect:
         serializedVersion: 2
-        x: 129
+        x: 128
         y: 0
-        width: 23
-        height: 31
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: aa4b8b56e5a44ed60800000000000000
-      internalID: 7918535814118159530
+      spriteID: 8daeb2c20b2fe492b8222e7affae63e0
+      internalID: 1545916344
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot_Attack_5
+      name: Robot_Attack_Right_5
       rect:
         serializedVersion: 2
-        x: 161
+        x: 160
         y: 0
-        width: 26
-        height: 31
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b0997e9c5f31afce0800000000000000
-      internalID: -1370761190205581045
+      spriteID: b42462ef13a2b47dd92cf6389d19ff6e
+      internalID: -2084239386
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot_Attack_6
+      name: Robot_Attack_Right_6
       rect:
         serializedVersion: 2
         x: 192
         y: 0
-        width: 30
-        height: 31
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dbc480e3872b1c910800000000000000
-      internalID: 1855960750959905981
+      spriteID: a58dffb9f26404ec59b979a93cc07d66
+      internalID: 1823047391
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot_Attack_7
+      name: Robot_Attack_Right_7
       rect:
         serializedVersion: 2
         x: 224
         y: 0
         width: 32
-        height: 31
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fde1baf7afed139b0800000000000000
-      internalID: -5102051735368950049
+      spriteID: 511d583378cae43cc913073d4c5fe80d
+      internalID: 245221982
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot_Attack_8
+      name: Robot_Attack_Right_8
       rect:
         serializedVersion: 2
-        x: 265
+        x: 256
         y: 0
-        width: 24
-        height: 30
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7ed9d7b68c61b6ff0800000000000000
-      internalID: -41914721477222937
+      spriteID: 60d7bb69315f6422b993ac2b819fdec0
+      internalID: -1724781534
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot_Attack_9
+      name: Robot_Attack_Right_9
       rect:
         serializedVersion: 2
-        x: 297
+        x: 288
         y: 0
-        width: 24
-        height: 30
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 434443f8db1928fc0800000000000000
-      internalID: -3494070117548669900
+      spriteID: 64484f103d2c6419c9fada7d663dcd24
+      internalID: 1187459975
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot_Attack_10
+      name: Robot_Attack_Right_10
       rect:
         serializedVersion: 2
-        x: 329
+        x: 320
         y: 0
-        width: 23
-        height: 30
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ee46eabd430f0ad50800000000000000
-      internalID: 6746656351615608046
+      spriteID: 43f5ff885dcd0457db3976c8e7c1728c
+      internalID: -2032672770
       vertices: []
       indices: 
       edges: []
@@ -388,7 +388,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: cc67aa8c6406b4a24a36c8d5830516f2
     internalID: 0
     vertices: []
     indices: 
@@ -396,19 +396,21 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Robot_Attack_0: 5428821208494654752
-      Robot_Attack_1: 2922502940317238822
-      Robot_Attack_10: 6746656351615608046
-      Robot_Attack_2: -8456992576691636689
-      Robot_Attack_3: -6091399391006858673
-      Robot_Attack_4: 7918535814118159530
-      Robot_Attack_5: -1370761190205581045
-      Robot_Attack_6: 1855960750959905981
-      Robot_Attack_7: -5102051735368950049
-      Robot_Attack_8: -41914721477222937
-      Robot_Attack_9: -3494070117548669900
+      Robot_Attack_Right_0: -368167391
+      Robot_Attack_Right_1: -1402594467
+      Robot_Attack_Right_10: -2032672770
+      Robot_Attack_Right_2: -1418430986
+      Robot_Attack_Right_3: 588639094
+      Robot_Attack_Right_4: 1545916344
+      Robot_Attack_Right_5: -2084239386
+      Robot_Attack_Right_6: 1823047391
+      Robot_Attack_Right_7: 245221982
+      Robot_Attack_Right_8: -1724781534
+      Robot_Attack_Right_9: 1187459975
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
