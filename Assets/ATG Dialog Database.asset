@@ -3229,7 +3229,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=1]Wheat should take 2 turns to grow.'
+        value: '[pic=1]Wheat should take 2 days total to grow.'
         type: 0
         typeString: 
       - title: Sequence
@@ -3281,7 +3281,7 @@ MonoBehaviour:
         typeString: CustomFieldType_Actor
       - title: Menu Text
         value: '[pic=1]Looks like we''ll need to water it again, then wait one more
-          turn before we can harvest it.'
+          day before we can harvest it.'
         type: 0
         typeString: 
       - title: Dialogue Text
