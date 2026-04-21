@@ -489,11 +489,6 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 3
   m_ColliderType: 1
---- !u!20 &1054491487 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 6466584891221517505, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
-  m_PrefabInstance: {fileID: 1620141878}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1620141878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7922,10 +7917,6 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[260].second.m_TileObjectToInstantiateIndex
       value: 65535
       objectReference: {fileID: 0}
-    - target: {fileID: 9093557478466492049, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
-      propertyPath: displaySettings.cameraSettings.sequencerCamera
-      value: 
-      objectReference: {fileID: 1054491487}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5366342611582556845, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
