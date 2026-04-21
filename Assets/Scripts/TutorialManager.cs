@@ -11,6 +11,8 @@ public class TutorialManager : MonoBehaviour
 
     public static TutorialManager Instance;
 
+    private bool robotMoved = false;
+
     private void OnEnable()
     {
         UnitInteractionSystem.OnUnitSelected += OnUnitClicked;
@@ -31,6 +33,12 @@ public class TutorialManager : MonoBehaviour
     {
         DialogueManager.StartConversation("Tutorial/FirstUnitClick");
         UnitInteractionSystem.OnUnitSelected -= OnUnitClicked;
+    }
+
+    public void OnRobotMove()
+    {
+        robotMoved = true;
+        DialogueManager.StartConversation("Tutorial/RobotMove");
     }
 
 }
