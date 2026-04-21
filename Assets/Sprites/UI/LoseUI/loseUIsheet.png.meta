@@ -1,0 +1,555 @@
+fileFormatVersion: 2
+guid: 440ae85247e43415faa59d710767bf10
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4746720087333834614
+    second: loseUIsheet_0
+  - first:
+      213: 3204475809109902448
+    second: loseUIsheet_1
+  - first:
+      213: 3520601134354613741
+    second: loseUIsheet_2
+  - first:
+      213: 4028404205897609125
+    second: loseUIsheet_3
+  - first:
+      213: 2501230660057611349
+    second: loseUIsheet_4
+  - first:
+      213: 2171751566536292354
+    second: loseUIsheet_5
+  - first:
+      213: -3020858633002215657
+    second: loseUIsheet_6
+  - first:
+      213: 3139302009308087472
+    second: loseUIsheet_7
+  - first:
+      213: 5037448413806104316
+    second: loseUIsheet_8
+  - first:
+      213: 411144316131739538
+    second: loseUIsheet_9
+  - first:
+      213: -5267208948779962525
+    second: loseUIsheet_10
+  - first:
+      213: -5591145472374376840
+    second: loseUIsheet_11
+  - first:
+      213: -5347182970024930279
+    second: loseUIsheet_12
+  - first:
+      213: 3023603742024429189
+    second: loseUIsheet_13
+  - first:
+      213: 295356403780348822
+    second: loseUIsheet_14
+  - first:
+      213: 9078127502865162710
+    second: loseUIsheet_15
+  - first:
+      213: 9222326342452503978
+    second: loseUIsheet_16
+  - first:
+      213: 7052385946295142663
+    second: loseUIsheet_17
+  - first:
+      213: 7676447309203639539
+    second: loseUIsheet_18
+  - first:
+      213: 3441502031404873651
+    second: loseUIsheet_19
+  - first:
+      213: -6616319377185857260
+    second: loseUIsheet_20
+  - first:
+      213: 7706696987196181896
+    second: loseUIsheet_21
+  - first:
+      213: 4236925417375735326
+    second: loseUIsheet_22
+  - first:
+      213: -5111648075572893568
+    second: loseUIsheet_23
+  - first:
+      213: 7290227271589359002
+    second: loseUIsheet_24
+  - first:
+      213: -3102000621859199407
+    second: loseUIsheet_25
+  - first:
+      213: -7251348030673891857
+    second: loseUIsheet_26
+  - first:
+      213: 2436461504699322789
+    second: loseUIsheet_27
+  - first:
+      213: 6554266555498012695
+    second: loseUIsheet_28
+  - first:
+      213: -7746919372817930554
+    second: loseUIsheet_29
+  - first:
+      213: -2375644747208614849
+    second: loseUIsheet_30
+  - first:
+      213: -4944626261985692470
+    second: loseUIsheet_31
+  - first:
+      213: 5802403650168373266
+    second: loseUIsheet_32
+  - first:
+      213: -8678855517041802937
+    second: loseUIsheet_33
+  - first:
+      213: -7489710929371072668
+    second: loseUIsheet_34
+  - first:
+      213: -8267440917552906667
+    second: loseUIsheet_35
+  - first:
+      213: 5606903516088272927
+    second: loseUIsheet_36
+  - first:
+      213: -4031586394927852736
+    second: loseUIsheet_37
+  - first:
+      213: -2812421625439069838
+    second: loseUIsheet_38
+  - first:
+      213: -9008388587241431597
+    second: loseUIsheet_39
+  - first:
+      213: -3302363721640601694
+    second: loseUIsheet_40
+  - first:
+      213: 1692573125543264993
+    second: loseUIsheet_41
+  - first:
+      213: 7338504605576297344
+    second: loseUIsheet_42
+  - first:
+      213: 7051334649860520139
+    second: loseUIsheet_43
+  - first:
+      213: -8649425939494505774
+    second: loseUIsheet_44
+  - first:
+      213: -5774232988011636054
+    second: loseUIsheet_45
+  - first:
+      213: -4839293517840952610
+    second: loseUIsheet_46
+  - first:
+      213: -7140884800842195266
+    second: loseUIsheet_47
+  - first:
+      213: 6454463873348922528
+    second: loseUIsheet_48
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: loseUIsheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 448
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a807142da33402eb0800000000000000
+      internalID: -4746720087333834614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIsheet_1
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 448
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 074045535c5987c20800000000000000
+      internalID: 3204475809109902448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIsheet_2
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 448
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de54b092410bbd030800000000000000
+      internalID: 3520601134354613741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIsheet_3
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 0
+        width: 448
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5af67382844c7e730800000000000000
+      internalID: 4028404205897609125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIsheet_4
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 448
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55cbc02880826b220800000000000000
+      internalID: 2501230660057611349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIsheet_5
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 0
+        width: 448
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2083bc71b8c932e10800000000000000
+      internalID: 2171751566536292354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIsheet_6
+      rect:
+        serializedVersion: 2
+        x: 2688
+        y: 0
+        width: 448
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7171b371411c316d0800000000000000
+      internalID: -3020858633002215657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIsheet_7
+      rect:
+        serializedVersion: 2
+        x: 3136
+        y: 0
+        width: 448
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b48a737b8a019b20800000000000000
+      internalID: 3139302009308087472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIsheet_8
+      rect:
+        serializedVersion: 2
+        x: 3584
+        y: 0
+        width: 448
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfe844f84ac98e540800000000000000
+      internalID: 5037448413806104316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIsheet_9
+      rect:
+        serializedVersion: 2
+        x: 4032
+        y: 0
+        width: 448
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2970472c39da4b500800000000000000
+      internalID: 411144316131739538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIsheet_10
+      rect:
+        serializedVersion: 2
+        x: 4480
+        y: 0
+        width: 448
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36f26323e5d17e6b0800000000000000
+      internalID: -5267208948779962525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loseUIsheet_11
+      rect:
+        serializedVersion: 2
+        x: 4928
+        y: 0
+        width: 448
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8767797e0d24862b0800000000000000
+      internalID: -5591145472374376840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: a95fdbc54b4aada4093296bb5caa8c2f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":448.0,"y":320.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      loseUIsheet_0: -4746720087333834614
+      loseUIsheet_1: 3204475809109902448
+      loseUIsheet_10: -5267208948779962525
+      loseUIsheet_11: -5591145472374376840
+      loseUIsheet_2: 3520601134354613741
+      loseUIsheet_3: 4028404205897609125
+      loseUIsheet_4: 2501230660057611349
+      loseUIsheet_5: 2171751566536292354
+      loseUIsheet_6: -3020858633002215657
+      loseUIsheet_7: 3139302009308087472
+      loseUIsheet_8: 5037448413806104316
+      loseUIsheet_9: 411144316131739538
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
