@@ -97,7 +97,6 @@ public class GameManager : MonoBehaviour
 
     public void BeginPlayerTurn()
     {
-        camera.FocusOnNextUnit();
         isPlayerTurn = true;
         interactionSystem.EnableInputs();
 
@@ -115,6 +114,7 @@ public class GameManager : MonoBehaviour
         {
             structure.Activate();
         }
+        camera.FocusOnNextUnit();
         StartPlayerTurn?.Invoke();
     }
 

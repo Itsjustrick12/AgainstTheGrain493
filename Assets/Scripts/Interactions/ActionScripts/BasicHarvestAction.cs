@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu(menuName = "Actions/Harvest")]
 public class BasicHarvestAction : EntityAction
 {
+    public static Action onHarvest;
     public override string GetName()
     {
         return "Harvest";
@@ -84,5 +86,6 @@ public class BasicHarvestAction : EntityAction
 
         //Water the crop at the position
         targetCrop.Harvest();
+        onHarvest?.Invoke();
     }
 }

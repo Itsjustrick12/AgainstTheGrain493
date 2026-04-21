@@ -1,3 +1,4 @@
+using PixelCrushers.DialogueSystem;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -23,6 +24,11 @@ public class NaviagatableUI : MonoBehaviour
     {
         if (gameManager != null && !gameManager.isPlayerTurn)
             return;
+
+        if (DialogueManager.IsConversationActive)
+        {
+            return;
+        }
 
         if (buttons == null || buttons.Count == 0)
             return;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -27,6 +28,13 @@ public class Unit : Entity
 
     //Necessary for animating
     public bool isMoving = false;
+
+    public static event Action OnUnitAttacked;
+    public static event Action<int> OnUnitFed;
+
+    public static event Action OnEnemyHit;
+    public static event Action OnAnimalDie;
+    public static event Action OnFriendlyDie;
 
     public override void Awake()
     {
@@ -492,12 +500,24 @@ public class Unit : Entity
     public override void Die()
     {
         SoundManager.Instance.PlayEntitySound(this, SoundType.DEATH);
+        if (!isEnemy)
+        {
+            if (GetEntityType() == EntityType.Animal)
+            {
+                OnAnimalDie?.Invoke();
+            }
+            else if (GetEntityType() == EntityType.Farmer)
+            {
+                OnFriendlyDie?.Invoke();
+            }
+        }
         base.Die();
     }
 
     public override void TakeDamage(int damage)
     {
         SoundManager.Instance.PlayEntitySound(this, SoundType.HURT);
+
         if (activeBuffs.Count <= 0)
         {
             base.TakeDamage(damage);
@@ -523,10 +543,18 @@ public class Unit : Entity
             int newDamage = Mathf.Max(0, (int)(damage - (baseIncrease * multiplier)));
             base.TakeDamage(newDamage);
         }
+        if (isEnemy)
+        {
+            OnEnemyHit?.Invoke();
+        }
     }
 
     public void TakeDamage(int damage, Vector3Int position)
     {
+        if (isEnemy)
+        {
+            OnEnemyHit?.Invoke();
+        }
         SoundManager.Instance.PlayEntitySound(this, SoundType.HURT);
         int x = 0;
         int y = 0;

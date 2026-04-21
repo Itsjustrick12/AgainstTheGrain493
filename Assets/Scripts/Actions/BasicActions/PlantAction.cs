@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class PlantAction : EntityAction
 {
     public int cropID = 1;
     public AudioClip plantSound;
+    public static Action onPlant;
     //public string cropName = "Wheat";
     public override string GetName()
     {
@@ -83,5 +85,6 @@ public class PlantAction : EntityAction
         //TODO: Update this here when we add more crops
         GM.SpawnCropOnTile(CropDatabase.Instance.GetCropInfo(cropID), pos);
         SoundManager.Instance.PlaySound(plantSound);
+        onPlant?.Invoke();
     }
 }

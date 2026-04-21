@@ -1,3 +1,5 @@
+using PixelCrushers.DialogueSystem;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -71,6 +73,10 @@ public class UnitInteractionSystem : TileCursor
 
     public static event System.Action<InteractionState> OnStateChanged;
 
+    //Actions for triggering tutorial statements
+    public static event Action OnUnitSelected;
+    public static event Action OnUnitMoved;
+
     //Used to reverse movement path for clean walkback
     private List<Vector3Int> lastMovePath = new List<Vector3Int>();
 
@@ -83,7 +89,7 @@ public class UnitInteractionSystem : TileCursor
         //actionMenu = FindFirstObjectByType<ActionMenu>();
         actionMenu.OnActionSelected.AddListener(SelectAction);
         PushState(InteractionState.Selection);
-        BarnUIMenu.OnUnitPurchased.AddListener(OnUnitSelected);
+        BarnUIMenu.OnUnitPurchased.AddListener(OnSelectUnit);
         BarnUIMenu.CancelAction.AddListener(StopAction);
         FeedManager.OnFeedingComplete += StopFeeding;
         feedManager = FindFirstObjectByType<FeedManager>();
@@ -92,6 +98,10 @@ public class UnitInteractionSystem : TileCursor
     //Restrict to only display updated tiles
     protected override void HandleCursor()
     {
+        if (DialogueManager.IsConversationActive){
+            hoverMap.ClearAllTiles();
+            return;
+        }
         if (!isInputOn) return;
 
         Vector3Int tile = GetMouseTile();
@@ -110,6 +120,10 @@ public class UnitInteractionSystem : TileCursor
 
     public override void Update()
     {
+        if (DialogueManager.isConversationActive)
+        {
+            return;
+        }
         base.Update();
         if(GetCurrentTile() != lastLocation && state == InteractionState.Movement)
         {
@@ -117,7 +131,12 @@ public class UnitInteractionSystem : TileCursor
         }
         lastLocation = GetCurrentTile();
         Vector3Int pos = GetCurrentTile();
-        Entity potentialEntity = tileManager.GetTileDataAt(pos).GetOccupyingEntity();
+        Entity potentialEntity = null;
+        TileData data = tileManager.GetTileDataAt(pos);
+        if (data != null)
+        {
+            potentialEntity = data.GetOccupyingEntity();
+        }
         if(selectedEntity == null && potentialEntity != null)
         {
             Unit unit = potentialEntity as Unit;
@@ -183,6 +202,10 @@ public class UnitInteractionSystem : TileCursor
         selectedEntity = data.GetOccupyingEntity();
         if (selectedEntity != null && selectedEntity.IsActive())
         {
+            if (selectedEntity.GetEntityType() == EntityType.Farmer)
+            {
+                OnUnitSelected?.Invoke();
+            }
             return true;
         }
         return false;
@@ -192,6 +215,10 @@ public class UnitInteractionSystem : TileCursor
     //This is called the second the user clicks their mouse, so the logic has to be really tight
     public void OnSelect(InputAction.CallbackContext context)
     {
+        if (DialogueManager.IsConversationActive)
+        {
+            return;
+        }
         Vector3Int pos = GetCurrentTile();
         if (isMoving) return;
         switch (state)
@@ -307,6 +334,7 @@ public class UnitInteractionSystem : TileCursor
         arrowMap.ClearAllTiles();
         EnableInputs();
         ShowUnitOptions(unit);
+        OnUnitMoved?.Invoke();
     }
 
     public bool IsInRange(Vector3Int pos)
@@ -603,6 +631,10 @@ public class UnitInteractionSystem : TileCursor
 
     public void AskEndTurn(InputAction.CallbackContext context)
     {
+        if (DialogueManager.IsConversationActive)
+        {
+            return;
+        }
         if (state == InteractionState.Selection)
         {
             AskEndTurn();
@@ -653,8 +685,9 @@ public class UnitInteractionSystem : TileCursor
         //Get the availible targets from the current action, then switch to selecting one
         OnDecisionComplete();
     }
-    private void OnUnitSelected(int unitID)
+    private void OnSelectUnit(int unitID)
     {
+        
         //actually set the index to plant
         SpawnUnitAction spawnAct = currAction as SpawnUnitAction;
         if (spawnAct != null)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
@@ -6,7 +7,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 public class SpawnUnitAction : EntityAction
 {
     public int unitID = 1;
-
+    public static Action OnSpawn;
     public override string GetName()
     {
         return "SpawnUnit";
@@ -86,6 +87,7 @@ public class SpawnUnitAction : EntityAction
         gameManager.SpawnUnitOnTile(info, pos);
         //Deactivate that unit
         data.GetOccupyingEntity().Deactivate();
+        OnSpawn?.Invoke();
 
     }
 

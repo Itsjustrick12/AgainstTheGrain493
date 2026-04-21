@@ -1,3 +1,4 @@
+using PixelCrushers.DialogueSystem;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -83,6 +84,10 @@ public class PickCropUI : NaviagatableUI
 
     public override void Navigate(InputAction.CallbackContext context)
     {
+        if (DialogueManager.IsConversationActive)
+        {
+            return;
+        }
         //if not feeding, dont do availibility skipping
         if (!feeding)
         {
