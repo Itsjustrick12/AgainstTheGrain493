@@ -202,7 +202,10 @@ public class UnitInteractionSystem : TileCursor
         selectedEntity = data.GetOccupyingEntity();
         if (selectedEntity != null && selectedEntity.IsActive())
         {
-            OnUnitSelected?.Invoke();
+            if (selectedEntity.GetEntityType() == EntityType.Farmer)
+            {
+                OnUnitSelected?.Invoke();
+            }
             return true;
         }
         return false;
