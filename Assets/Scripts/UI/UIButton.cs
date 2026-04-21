@@ -39,6 +39,7 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandle
         {
             return;
         }
+        if (parentUI == null) return;
         if (acceptingInput)
         {
             parentUI.SetSelectedIndex(index);
@@ -51,6 +52,7 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandle
         {
             return;
         }
+        if (parentUI == null) return;
         if (acceptingInput)
         {
             parentUI.ReportAction();

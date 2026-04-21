@@ -20,6 +20,10 @@ public class PickCropUI : NaviagatableUI
     public Transform buttonContainer;
     private List<int> cropIDs = new List<int>();
 
+    [Header("Other Buttons")]
+    public RectTransform feedButton;
+    public RectTransform endTurnButton;
+
     public void Start()
     {
         //dont enable input until told to do so
@@ -46,6 +50,7 @@ public class PickCropUI : NaviagatableUI
     {
         foreach (Transform pos in buttonContainer)
         {
+            if (pos == feedButton || pos == endTurnButton) continue;
             Destroy(pos.gameObject);
         }
     }
@@ -71,6 +76,10 @@ public class PickCropUI : NaviagatableUI
         // All buttons configured, now safe to enable
         foreach (GameObject obj in buttons)
             obj.SetActive(true);
+        if (feedButton != null)
+            feedButton.SetAsLastSibling();
+        if (endTurnButton != null)
+            endTurnButton.SetAsLastSibling();
     }
 
     public override void Navigate(InputAction.CallbackContext context)
@@ -282,5 +291,4 @@ public class PickCropUI : NaviagatableUI
         TurnOffInput();
         OnCropCancelled?.Invoke();
     }
-
 }

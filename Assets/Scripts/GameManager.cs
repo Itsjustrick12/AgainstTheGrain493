@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     private AgainstTheGrainInput input;
 
     public static event Action StartPlayerTurn;
+    public static event Action StartEnemyTurn;
 
     public GameObject pauseScreen;
     public GameObject winScreen;
@@ -77,11 +78,13 @@ public class GameManager : MonoBehaviour
         isPlayerTurn = true;
         SpawnStartingUnits();
         interactionSystem.DisableInputs();
+        SoundManager.Instance.PlayMusic(MusicTrack.BATTLE);
         PlayPlayerTurnAnimation();
     }
 
     public void BeginEnemyTurn()
     {
+        StartEnemyTurn?.Invoke();
         if (skipTurnAnimations)
         {
             StartCoroutine(EnemyTurnRoutine());
