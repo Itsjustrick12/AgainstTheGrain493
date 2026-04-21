@@ -131,7 +131,12 @@ public class UnitInteractionSystem : TileCursor
         }
         lastLocation = GetCurrentTile();
         Vector3Int pos = GetCurrentTile();
-        Entity potentialEntity = tileManager.GetTileDataAt(pos).GetOccupyingEntity();
+        Entity potentialEntity = null;
+        TileData data = tileManager.GetTileDataAt(pos);
+        if (data != null)
+        {
+            potentialEntity = data.GetOccupyingEntity();
+        }
         if(selectedEntity == null && potentialEntity != null)
         {
             Unit unit = potentialEntity as Unit;
