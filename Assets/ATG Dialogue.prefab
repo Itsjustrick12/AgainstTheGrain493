@@ -222,6 +222,7 @@ MonoBehaviour:
   pcImage: {fileID: 8129942568159501406}
   pcName:
     m_uiText: {fileID: 0}
+    m_textMeshProUGUI: {fileID: 0}
   usePortraitNativeSize: 0
   timerSlider: {fileID: 771518222991782191}
   buttonAlignment: 0
@@ -419,6 +420,7 @@ MonoBehaviour:
   button: {fileID: 2058088372570037152}
   label:
     m_uiText: {fileID: 4472512372319062752}
+    m_textMeshProUGUI: {fileID: 0}
   setLabelColor: 1
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &452869152457027502
@@ -661,6 +663,7 @@ MonoBehaviour:
   button: {fileID: 3425650613233722232}
   label:
     m_uiText: {fileID: 4276543146430014342}
+    m_textMeshProUGUI: {fileID: 0}
   setLabelColor: 1
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &6920106232948861462
@@ -1163,8 +1166,10 @@ MonoBehaviour:
   portraitImage: {fileID: 8129942568159501406}
   portraitName:
     m_uiText: {fileID: 0}
+    m_textMeshProUGUI: {fileID: 4967536473818804292}
   subtitleText:
     m_uiText: {fileID: 5818408759948967539}
+    m_textMeshProUGUI: {fileID: 0}
   addSpeakerName: 0
   addSpeakerNameFormat: '{0}: {1}'
   accumulateText: 0
@@ -1628,6 +1633,7 @@ MonoBehaviour:
   pcImage: {fileID: 0}
   pcName:
     m_uiText: {fileID: 0}
+    m_textMeshProUGUI: {fileID: 0}
   usePortraitNativeSize: 0
   timerSlider: {fileID: 3037746676781933794}
   buttonAlignment: 0
@@ -1874,7 +1880,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 978d291e0b47ca540b049093af5a76a2, type: 3}
+    m_Font: {fileID: 12800000, guid: a48879024645d4543a63d6bc2c8830ac, type: 3}
     m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
@@ -4263,8 +4269,10 @@ MonoBehaviour:
   portraitImage: {fileID: 7858152817914256639}
   portraitName:
     m_uiText: {fileID: 1020649446841436107}
+    m_textMeshProUGUI: {fileID: 0}
   subtitleText:
     m_uiText: {fileID: 5812755947463816594}
+    m_textMeshProUGUI: {fileID: 0}
   addSpeakerName: 0
   addSpeakerNameFormat: '{0}: {1}'
   accumulateText: 0
@@ -4601,8 +4609,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: REAPER
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9dd7a537ca476c443b699c630deef055, type: 2}
-  m_sharedMaterial: {fileID: 9004034280314502922, guid: 9dd7a537ca476c443b699c630deef055, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 68f7419993f11b24a84e3e821e18a0d1, type: 2}
+  m_sharedMaterial: {fileID: 3769680725080982169, guid: 68f7419993f11b24a84e3e821e18a0d1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6102,8 +6110,10 @@ MonoBehaviour:
   panel: {fileID: 6954665520861222713}
   label:
     m_uiText: {fileID: 8283170216750725771}
+    m_textMeshProUGUI: {fileID: 0}
   inputField:
     m_uiInputField: {fileID: 2201204159004514036}
+    m_textMeshProInputField: {fileID: 0}
   acceptKey: 13
   acceptButton: 
   cancelKey: 27
@@ -6190,8 +6200,10 @@ MonoBehaviour:
   portraitImage: {fileID: 8129942568159501406}
   portraitName:
     m_uiText: {fileID: 0}
+    m_textMeshProUGUI: {fileID: 0}
   subtitleText:
     m_uiText: {fileID: 5818408759948967539}
+    m_textMeshProUGUI: {fileID: 0}
   addSpeakerName: 0
   addSpeakerNameFormat: '{0}: {1}'
   accumulateText: 0
@@ -6274,6 +6286,7 @@ MonoBehaviour:
     panel: {fileID: 248639987101366227}
     alertText:
       m_uiText: {fileID: 4253055433040323130}
+      m_textMeshProUGUI: {fileID: 0}
     queueAlerts: 1
     dontQueueDuplicates: 0
     waitForHideAnimation: 1

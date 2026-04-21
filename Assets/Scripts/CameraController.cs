@@ -1,3 +1,4 @@
+using PixelCrushers.DialogueSystem;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -69,6 +70,11 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    public void PanToNextUnit()
+    {
+        FocusOnNextUnit();
+    }
+
     public void FocusOnTilePosition(Vector3Int pos, float time = 0.5f)
     {
         StartCoroutine(FocusOnPosition(pos, time));
@@ -125,6 +131,23 @@ public class CameraController : MonoBehaviour
             minY = Mathf.Abs(boxSize - camYSize) / -2;
             maxY = Mathf.Abs(boxSize - camYSize) / 2;
         }
+    }
+
+    public void FocusOnRobot()
+    {
+        Unit robot = gameManager.GetAllEnemyUnits()[0]; // however you get your robot
+        if (robot != null)
+        {
+            StartCoroutine(FocusOnPosition(robot.GetGridPos(), 0.5f));
+        }
+    }
+
+    public void PanToPosition(string coords)
+    {
+        Debug.Log("PanToPosition called with: " + coords);
+        var parts = coords.Split('|');
+        var pos = new Vector3Int(int.Parse(parts[0]), int.Parse(parts[1]), int.Parse(parts[2]));
+        FocusOnTilePosition(pos, 0.5f);
     }
 
     public void MoveToPosition(Vector3 pos)
