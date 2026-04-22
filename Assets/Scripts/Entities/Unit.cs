@@ -433,9 +433,9 @@ public class Unit : Entity
         SoundManager.Instance.PlayEntitySound(this, SoundType.ATTACK);
         if (HasAnimator())
         {
-            if(targetUnit.GetGridPos().x - GetGridPos().x != 0)
+            if(targetTile.gridPos.x - GetGridPos().x != 0)
             {
-                animator.SetFloat("facing", targetUnit.GetGridPos().x - GetGridPos().x);
+                animator.SetFloat("facing", targetTile.gridPos.x - GetGridPos().x);
             }
             animator.SetTrigger("attack");
         }
