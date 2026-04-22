@@ -1072,7 +1072,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL SELECT
+  m_text: LEVEL ONE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 68f7419993f11b24a84e3e821e18a0d1, type: 2}
   m_sharedMaterial: {fileID: 3769680725080982169, guid: 68f7419993f11b24a84e3e821e18a0d1, type: 2}
@@ -1204,7 +1204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6326cc3f6a2ef4992911f3ccfd3ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToScene
-  SceneNumber: 1
+  SceneNumber: 2
 --- !u!114 &1204453277
 MonoBehaviour:
   m_ObjectHideFlags: 0
