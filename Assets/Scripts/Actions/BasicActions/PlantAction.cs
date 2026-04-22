@@ -79,6 +79,10 @@ public class PlantAction : EntityAction
         Unit unitCheck = unit as Unit;
         if (unitCheck.HasAnimator())
         {
+            if(pos.x - unitCheck.GetGridPos().x != 0)
+            {
+                unit.animator.SetFloat("facing", pos.x - unitCheck.GetGridPos().x);
+            }
             unitCheck.SetAnimationTrigger("plant");
         }
 

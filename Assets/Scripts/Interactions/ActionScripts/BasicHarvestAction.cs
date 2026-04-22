@@ -79,8 +79,12 @@ public class BasicHarvestAction : EntityAction
             return;
         }
         Unit unitCheck = unit as Unit;
-        if (unitCheck != null)
+        if (unitCheck != null && unitCheck.HasAnimator())
         {
+            if(pos.x - unitCheck.GetGridPos().x != 0)
+            {
+                unitCheck.animator.SetFloat("facing", pos.x - unitCheck.GetGridPos().x);
+            }
             unitCheck.SetAnimationTrigger("harvest");
         }
 
