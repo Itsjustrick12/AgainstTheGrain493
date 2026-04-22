@@ -260,8 +260,8 @@ public class GameManager : MonoBehaviour
 
         if(cropIDs.Count() > 1 && turnsOfEnemies > 0)
         {
-            SpawnUnitOnTile(robotPrefab, new Vector3Int(15,UnityEngine.Random.Range(-5, 0),0));
-            SpawnUnitOnTile(robotPrefab, new Vector3Int(15,UnityEngine.Random.Range(0, 5),0));
+            SpawnUnitOnTile(UnitDatabase.Instance.GetUnitInfo(5), new Vector3Int(15,UnityEngine.Random.Range(-5, 0),0));
+            SpawnUnitOnTile(UnitDatabase.Instance.GetUnitInfo(7), new Vector3Int(15,UnityEngine.Random.Range(0, 5),0));
             turnsOfEnemies--;
         }
 
