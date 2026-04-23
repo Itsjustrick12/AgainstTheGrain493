@@ -659,6 +659,10 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[29].second.m_TileObjectToInstantiateIndex
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 815349785944811144, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2055440212220092173, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -699,6 +703,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2810320700795022510, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835134062612249832, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 2560
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835134062612249832, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1440
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835134062612249832, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000045776
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835134062612249832, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000061035
+      objectReference: {fileID: 0}
     - target: {fileID: 3990174900072192225, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -723,9 +747,33 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4376640420011101329, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4745311966347517567, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
       propertyPath: m_Name
       value: LevelBase
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921386382496835586, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 640
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921386382496835586, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921386382496835586, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000061035156
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921386382496835586, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000061035156
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709973634126201613, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7886313078854884394, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
       propertyPath: m_AnchorMax.y
@@ -759,6 +807,18 @@ PrefabInstance:
       propertyPath: m_TileSpriteArray.Array.data[0].m_Data
       value: 
       objectReference: {fileID: 358887573}
+    - target: {fileID: 8849223099549947510, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_TileColorArray.Array.data[0].m_Data.b
+      value: 0.6126727
+      objectReference: {fileID: 0}
+    - target: {fileID: 8849223099549947510, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_TileColorArray.Array.data[0].m_Data.g
+      value: 0.5501436
+      objectReference: {fileID: 0}
+    - target: {fileID: 8849223099549947510, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_TileColorArray.Array.data[0].m_Data.r
+      value: 0.8031702
+      objectReference: {fileID: 0}
     - target: {fileID: 9046662594354184104, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
       propertyPath: m_Volume
       value: 0.919
