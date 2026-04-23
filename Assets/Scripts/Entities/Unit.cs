@@ -453,6 +453,7 @@ public class Unit : Entity
     public IEnumerator DoTurn()
     {
         //If something is already in range, just attack it and don't move
+        /*
         Vector3Int inRangeTarget = aiManager.FindTargetInRange(this);
         if (inRangeTarget.z != -1)
         {
@@ -460,6 +461,7 @@ public class Unit : Entity
             Attack();
             yield break;
         }
+        */
 
         //If nothing is in range, find the closest and most reasonable target
         target = aiManager.FindTarget(this);
@@ -487,7 +489,7 @@ public class Unit : Entity
         }
 
         //If we moved towards our target but did not get close enough to attack it, try to hit something nearby
-        inRangeTarget = aiManager.FindTargetInRange(this);
+        Vector3Int inRangeTarget = aiManager.FindTargetInRange(this);
         if (inRangeTarget.z != -1)
         {
             target = inRangeTarget;
@@ -636,7 +638,7 @@ public class Unit : Entity
             return;
         }
 
-        Canvas canvas = FindFirstObjectByType<Canvas>();
+        GameObject canvas = GameObject.Find("HUD");
         GameObject obj = Instantiate(prefab, canvas.transform, false);
 
         FloatingNumber fn = obj.GetComponent<FloatingNumber>();

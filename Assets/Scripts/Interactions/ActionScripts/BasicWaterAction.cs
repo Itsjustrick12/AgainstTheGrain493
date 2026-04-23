@@ -87,7 +87,7 @@ public class BasicWaterAction : EntityAction
             {
                 unituse.animator.SetFloat("facing", pos.x - unituse.GetGridPos().x);
             }
-            unituse.SetAnimationTrigger("harvest");
+            unituse.SetAnimationTrigger("water");
         }
 
         manager.SetTile(pos, TileType.WateredDirt);
