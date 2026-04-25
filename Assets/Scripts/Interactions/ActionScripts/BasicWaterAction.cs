@@ -87,6 +87,7 @@ public class BasicWaterAction : EntityAction
             {
                 unituse.animator.SetFloat("facing", pos.x - unituse.GetGridPos().x);
             }
+            
             unituse.SetAnimationTrigger("water");
         }
 

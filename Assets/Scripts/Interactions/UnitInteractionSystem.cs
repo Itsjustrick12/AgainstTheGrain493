@@ -594,6 +594,7 @@ public class UnitInteractionSystem : TileCursor
         //Determine where the user needs to click
         GetTargets();
     }
+    
     //Get the availible targets from the current action, then switch to selecting one
     private void GetTargets()
     {
@@ -685,6 +686,7 @@ public class UnitInteractionSystem : TileCursor
         //Get the availible targets from the current action, then switch to selecting one
         OnDecisionComplete();
     }
+
     private void OnSelectUnit(int unitID)
     {
         
