@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd97c3728e3e0c4dbd0794c51d49fc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Credits
-  scrollSpeed: 40
+  scrollSpeed: 80
 --- !u!114 &493681720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,7 +607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd97c3728e3e0c4dbd0794c51d49fc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Credits
-  scrollSpeed: 40
+  scrollSpeed: 80
 --- !u!114 &1301151514
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -748,7 +748,27 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4376640420011101329, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376640420011101329, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_Color.b
+      value: 0.233
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376640420011101329, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_Color.g
+      value: 0.1361089
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376640420011101329, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_Color.r
+      value: 0.01384158
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376640420011101329, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
       propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4432311807043391356, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: skipTurnAnimations
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4745311966347517567, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
@@ -798,6 +818,10 @@ PrefabInstance:
     - target: {fileID: 8016565621345408862, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8286865565409167476, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: targetAlpha
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 8849223099549947510, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
       propertyPath: m_TileAssetArray.Array.data[1].m_Data
