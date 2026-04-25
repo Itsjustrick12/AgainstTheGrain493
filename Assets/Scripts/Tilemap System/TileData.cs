@@ -141,6 +141,19 @@ public class TileData
         return false;
     }
 
+    public bool HasEnemyUnit()
+    {
+        if (occupyingEntity != null)
+        {
+            Unit unitCheck = occupyingEntity as Unit;
+            if (unitCheck != null)
+            {
+                return unitCheck.GetIsEnemy();
+            }
+        }
+        return false;
+    }
+
     public bool IsPlantable()
     {
         return (occupyingEntity == null) && (type == TileType.Dirt || type == TileType.WateredDirt);

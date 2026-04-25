@@ -39,7 +39,10 @@ public class UnitInteractionSystem : TileCursor
     public Tilemap arrowMap;
     public TileBase arrowTile;
     public AIManager aiManager;
-    public TileBase optionTile;
+    public TileBase WhiteInfoTile;
+    public TileBase RedInfoTile;
+    public TileBase GreenInfoTile;
+    public TileBase BlueInfoTile;
     //Stores the location of the current tile selected
     [SerializeField]private ActionMenu actionMenu;
 
@@ -240,7 +243,7 @@ public class UnitInteractionSystem : TileCursor
                         
                         foreach(Vector3Int tile in validLocations)
                         {
-                            optionsMap.SetTile(tile, optionTile);
+                            optionsMap.SetTile(tile, WhiteInfoTile);
                         }
                         SoundManager.Instance.PlayEntitySound(unit, SoundType.SELECT);
                         PushState(InteractionState.Movement);
@@ -416,7 +419,7 @@ public class UnitInteractionSystem : TileCursor
                     validLocations = unit.GetMovementRange();
                     foreach (Vector3Int pos in validLocations)
                     {
-                        optionsMap.SetTile(pos, optionTile);
+                        optionsMap.SetTile(pos, WhiteInfoTile);
                     }
                 }
                 break;
@@ -594,7 +597,7 @@ public class UnitInteractionSystem : TileCursor
         //Determine where the user needs to click
         GetTargets();
     }
-    
+
     //Get the availible targets from the current action, then switch to selecting one
     private void GetTargets()
     {
@@ -602,7 +605,28 @@ public class UnitInteractionSystem : TileCursor
         //Highlight the selectable locations
         foreach (Vector3Int pos in validLocations)
         {
-            optionsMap.SetTile(pos, optionTile);
+            //chooses what color tile to be put on the position
+            //if the tile has an enemy
+            if(tileManager.GetTileDataAt(pos).HasEnemyUnit())
+            {
+                optionsMap.SetTile(pos, RedInfoTile);
+            }//if the tile has a crop
+            else if(tileManager.GetTileDataAt(pos).GetOccupyingEntity() as Crop != null)
+            {
+                //if the crop is ready to be harvested
+                if((tileManager.GetTileDataAt(pos).GetOccupyingEntity() as Crop).CanBeHarvested())
+                {
+                    optionsMap.SetTile(pos, GreenInfoTile);
+                }//if the tile is not ready to be harvested
+                else
+                {
+                    optionsMap.SetTile(pos, BlueInfoTile);
+                }
+            }//if it has nothing on it
+            else
+            {
+                optionsMap.SetTile(pos, WhiteInfoTile);
+            }
         }
         //Otherwise, perform the action on the selected tile
         PushState(InteractionState.TargetSelection);
@@ -622,7 +646,7 @@ public class UnitInteractionSystem : TileCursor
             {
 
                 validLocations.Add(unit.GetGridPos());
-                optionsMap.SetTile(unit.GetGridPos(), optionTile);
+                optionsMap.SetTile(unit.GetGridPos(), WhiteInfoTile);
             }
         }
 
@@ -668,7 +692,7 @@ public class UnitInteractionSystem : TileCursor
 
         //Show only the newly selected Unit using the selection tiles.
         optionsMap.ClearAllTiles();
-        optionsMap.SetTile(unit.GetGridPos(), optionTile);
+        optionsMap.SetTile(unit.GetGridPos(), WhiteInfoTile);
 
         // Push so undo can cancel out of the crop picker during feeding
         PushState(InteractionState.DecisionSelection);

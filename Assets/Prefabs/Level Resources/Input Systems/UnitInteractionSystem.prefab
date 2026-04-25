@@ -54,7 +54,10 @@ MonoBehaviour:
   arrowMap: {fileID: 0}
   arrowTile: {fileID: 11400000, guid: f5587689633574c64b1cf3b74d28135c, type: 2}
   aiManager: {fileID: 0}
-  optionTile: {fileID: 11400000, guid: e5091c83003c5a14ba2ac5bd6049d005, type: 2}
+  WhiteInfoTile: {fileID: 11400000, guid: e5091c83003c5a14ba2ac5bd6049d005, type: 2}
+  RedInfoTile: {fileID: 11400000, guid: 17e14ac5d8250c04cb9f353563383d46, type: 2}
+  GreenInfoTile: {fileID: 11400000, guid: 97f030867e19fc54a82d83f8d74efd4d, type: 2}
+  BlueInfoTile: {fileID: 11400000, guid: 9b186661a530d4a6d9299727e1160fd4, type: 2}
   actionMenu: {fileID: 0}
   state: 0
   selectedPosition: {x: 0, y: 0, z: 0}
