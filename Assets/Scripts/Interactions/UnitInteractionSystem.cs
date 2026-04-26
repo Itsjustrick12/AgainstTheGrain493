@@ -190,6 +190,7 @@ public class UnitInteractionSystem : TileCursor
         state = newState;
         OnStateChanged?.Invoke(state);
     }
+
     //Attempt to find an entity on the current tile
     public bool AttemptSelection(Vector3Int pos)
     {
@@ -244,6 +245,12 @@ public class UnitInteractionSystem : TileCursor
                         foreach(Vector3Int tile in validLocations)
                         {
                             optionsMap.SetTile(tile, WhiteInfoTile);
+                            //TODO add the extra locations based on the unit's avalible actions
+                            /*if(tileManager.GetEntityOnTile(tile.x + 1, tile.y, tile.z) != null)
+                            {
+
+                            }*/
+                            
                         }
                         SoundManager.Instance.PlayEntitySound(unit, SoundType.SELECT);
                         PushState(InteractionState.Movement);
@@ -342,7 +349,7 @@ public class UnitInteractionSystem : TileCursor
 
     public bool IsInRange(Vector3Int pos)
     {
-        return validLocations.Contains(pos);
+        return validLocations.Contains(pos);  
     }
 
     public bool AttemptTarget(Vector3Int pos)
