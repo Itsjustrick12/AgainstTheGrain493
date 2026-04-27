@@ -263,7 +263,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -1287}
-  m_SizeDelta: {x: 847.5, y: 0}
+  m_SizeDelta: {x: 907.7, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &677264795
 MonoBehaviour:
@@ -298,7 +298,10 @@ MonoBehaviour:
     Space
 
 
-    Feed Unit: F'
+    Feed Unit: F
+
+
+    Navigate:  Up and Down Keys'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 68f7419993f11b24a84e3e821e18a0d1, type: 2}
   m_sharedMaterial: {fileID: 3769680725080982169, guid: 68f7419993f11b24a84e3e821e18a0d1, type: 2}
