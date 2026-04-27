@@ -46,6 +46,11 @@ public abstract class Buff
 
     protected virtual void OnApply() { }
     protected virtual void OnTurnTick() { }
-    public virtual void OnExpire() { }
+    public virtual void OnExpire() {
+        if (target is Unit unit)
+        {
+            unit.SetIsFed(false);
+        }
+    }
 
 }

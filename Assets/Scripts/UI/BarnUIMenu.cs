@@ -25,6 +25,8 @@ public class BarnUIMenu : NaviagatableUI
     public BuyButton buyButton;
     public Image unitPreview;
 
+    [SerializeField] private StatDisplay[] stats;
+
     public void Awake()
     {
         econManager = EconomyManager.Instance;
@@ -63,13 +65,38 @@ public class BarnUIMenu : NaviagatableUI
         base.SelectButton(index);
         AnimalButton btn = buttons[index].GetComponent<AnimalButton>();
         unitPreview.sprite = UnitDatabase.Instance.GetSprite(btn.entityID);
-        btn.SetSelected(true);
+
+        //Set the UI info based on the unit's stats
+
+        UnitInfo info = UnitDatabase.Instance.GetUnitInfo(btn.entityID);
+
+        if (info != null)
+        {
+            foreach (StatDisplay display in stats)
+            {
+                display.gameObject.SetActive(true);
+            }
+            //fill in stat info
+            stats[0].SetText(info.strength);
+            stats[1].SetText(info.moveRange);
+            stats[2].SetText(info.baseHealth);
+        }
+        else
+        {
+            foreach (StatDisplay display in stats)
+            {
+                display.gameObject.SetActive(false);
+            }
+        }
+
+            btn.SetSelected(true);
     }
 
     public void ShowMenu()
     {
         this.gameObject.SetActive(true);
         SetSelectedIndex(0);
+
         UpdateCropText(econManager.GetHarvestedCrops(1));
         UpdateCoinText(econManager.GetCoins());
         TurnOnInput();

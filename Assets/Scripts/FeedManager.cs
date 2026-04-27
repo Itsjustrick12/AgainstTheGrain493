@@ -71,7 +71,10 @@ public class FeedManager : MonoBehaviour
         }
 
         //Set the unit as fed
-        selectedUnit.SetIsFed(true);
+        if (cropID != 1)
+        {
+            selectedUnit.SetIsFed(true);
+        }
         OnFeedingComplete?.Invoke();
     }
 }
