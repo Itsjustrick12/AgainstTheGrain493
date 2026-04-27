@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 518d8414c2a540c4695900d04ce3dc65, type: 3}
-  m_Name: 8_MediumTree
+  m_Name: 9_MediumTree 2
   m_EditorClassIdentifier: Assembly-CSharp::StructureInfo
-  id: 8
+  id: 9
   entityName: MediumTree
   baseHealth: 20
-  prefab: {fileID: 4935858330493278644, guid: 0ff33a26bc7ed45438b6428775b5a154, type: 3}
-  tile: {fileID: 11400000, guid: fb70ea7d62c4c6f4b89b3b1e9ce2f916, type: 2}
-  sprite: {fileID: -4772991782164839236, guid: f249ae9e84626ca43bd05f14834f3a9c, type: 3}
+  prefab: {fileID: 1517621937336559572, guid: feaeda4c4d1405242b29c2a7eeb75389, type: 3}
+  tile: {fileID: 11400000, guid: 9d1ade62271674d449d0006c986b0b07, type: 2}
+  sprite: {fileID: -1785618073, guid: 35b6f60f61b44a048abd5508ccd3b331, type: 3}
   actions: []
   purchasePrice: 10
   sellValue: 10
