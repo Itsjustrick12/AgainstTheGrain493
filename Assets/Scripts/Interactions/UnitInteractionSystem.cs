@@ -1,3 +1,4 @@
+using Language.Lua;
 using PixelCrushers.DialogueSystem;
 using System;
 using System.Collections;
@@ -20,6 +21,15 @@ public enum InteractionState
     Execution
 }
 
+public enum TileColor
+{
+    White,
+    Red,
+    Green,
+    Blue,
+    Yellow
+}
+
 //This is needed to call events and recieve callbacks from UI buttons
 [System.Serializable]
 public class EntityActionEvent : UnityEvent<EntityAction>
@@ -33,16 +43,21 @@ public class UnitInteractionSystem : TileCursor
     public TileManager tileManager;
     public TileHelper tileHelper;
     [SerializeField] FeedManager feedManager;
-    private PickCropUI cropPicker; 
+    private PickCropUI cropPicker;
+    
     public Tilemap optionsMap;
+    public Tilemap extensionsMap;
 
     public Tilemap arrowMap;
     public TileBase arrowTile;
     public AIManager aiManager;
-    public TileBase WhiteInfoTile;
-    public TileBase RedInfoTile;
-    public TileBase GreenInfoTile;
-    public TileBase BlueInfoTile;
+
+    //Used for color coding actionable areas
+    public TileBase[] infoTiles;
+    public TileBase[] extensionTiles;
+    public TileBase GetInfoTile(TileColor color) => infoTiles[(int)color];
+    public TileBase GetExtensionTile(TileColor color) => extensionTiles[(int)color];
+
     //Stores the location of the current tile selected
     [SerializeField]private ActionMenu actionMenu;
 
@@ -117,6 +132,18 @@ public class UnitInteractionSystem : TileCursor
                 DeselectLast();
                 currentTile = tile;
                 SelectCurrent(tile);
+            }
+        }
+
+        if (state == InteractionState.TargetSelection && currAction.IsAOE())
+        {
+            Vector3Int hovered = GetCurrentTile();
+            extensionsMap.ClearAllTiles();
+
+            if (validLocations.Contains(hovered))
+            {
+                List<Vector3Int> extensions = currAction.GetExtensionTiles(hovered, selectedEntity.GetGridPos());
+                DrawExtensionTiles(extensions);
             }
         }
     }
@@ -244,7 +271,7 @@ public class UnitInteractionSystem : TileCursor
                         
                         foreach(Vector3Int tile in validLocations)
                         {
-                            optionsMap.SetTile(tile, WhiteInfoTile);
+                            optionsMap.SetTile(tile, GetInfoTile(TileColor.White));
                             //TODO add the extra locations based on the unit's avalible actions
                             /*if(tileManager.GetEntityOnTile(tile.x + 1, tile.y, tile.z) != null)
                             {
@@ -280,6 +307,7 @@ public class UnitInteractionSystem : TileCursor
                 if (selectedEntity != null && toData != null)
                 {
                     optionsMap.ClearAllTiles();
+                    extensionsMap.ClearAllTiles();
                     //check they if they're the same
                     if (fromData == toData)
                     {
@@ -314,7 +342,7 @@ public class UnitInteractionSystem : TileCursor
                 }
                 break;
             case InteractionState.TargetSelection:
-                if (!currAction.IsAOE() && AttemptTarget(pos))
+                if (AttemptTarget(pos))
                 {
                     state = InteractionState.Selection;
                     OnStateChanged?.Invoke(state);
@@ -426,7 +454,7 @@ public class UnitInteractionSystem : TileCursor
                     validLocations = unit.GetMovementRange();
                     foreach (Vector3Int pos in validLocations)
                     {
-                        optionsMap.SetTile(pos, WhiteInfoTile);
+                        optionsMap.SetTile(pos, GetInfoTile(TileColor.White));
                     }
                 }
                 break;
@@ -458,6 +486,7 @@ public class UnitInteractionSystem : TileCursor
             case InteractionState.TargetSelection:
                 //clear target highlights then go back to action selection
                 optionsMap.ClearAllTiles();
+                extensionsMap.ClearAllTiles();
                 validLocations.Clear();
                 currAction = null;
                 if (unit != null)
@@ -527,7 +556,7 @@ public class UnitInteractionSystem : TileCursor
         stateHistory.Clear();
         optionsMap.ClearAllTiles();
         arrowMap.ClearAllTiles();
-
+        extensionsMap.ClearAllTiles();
         validLocations.Clear();
 
         selectedEntity = null;
@@ -610,33 +639,77 @@ public class UnitInteractionSystem : TileCursor
     {
         validLocations = currAction.GetValidTargets(selectedEntity);
         //Highlight the selectable locations
-        foreach (Vector3Int pos in validLocations)
+        ColorTiles(validLocations);
+
+        //Otherwise, perform the action on the selected tile
+        PushState(InteractionState.TargetSelection);
+    }
+
+    //color the spaces for whats there:
+    public void ColorTiles(List<Vector3Int> locations)
+    {
+        foreach (Vector3Int pos in locations)
         {
             //chooses what color tile to be put on the position
             //if the tile has an enemy
-            if(tileManager.GetTileDataAt(pos).HasEnemyUnit())
+            if (tileManager.GetTileDataAt(pos).HasEnemyUnit())
             {
-                optionsMap.SetTile(pos, RedInfoTile);
+                optionsMap.SetTile(pos, GetInfoTile(TileColor.Red));
             }//if the tile has a crop
-            else if(tileManager.GetTileDataAt(pos).GetOccupyingEntity() as Crop != null)
+
+            else if (tileManager.GetTileDataAt(pos).GetOccupyingEntity() as Crop != null)
             {
+                Crop cropCheck = tileManager.GetTileDataAt(pos).GetOccupyingEntity() as Crop;
                 //if the crop is ready to be harvested
-                if((tileManager.GetTileDataAt(pos).GetOccupyingEntity() as Crop).CanBeHarvested())
+                if (cropCheck.CanBeHarvested())
                 {
-                    optionsMap.SetTile(pos, GreenInfoTile);
-                }//if the tile is not ready to be harvested
+                    optionsMap.SetTile(pos, GetInfoTile(TileColor.Yellow));
+                }//if the tile is not ready to be harvested and needs to be watered
+                else if (!cropCheck.CanBeHarvested() && !cropCheck.IsWatered())
+                {
+                    optionsMap.SetTile(pos, GetInfoTile(TileColor.Blue));
+                }
                 else
                 {
-                    optionsMap.SetTile(pos, BlueInfoTile);
+                    optionsMap.SetTile(pos, GetInfoTile(TileColor.Green));
                 }
             }//if it has nothing on it
             else
             {
-                optionsMap.SetTile(pos, WhiteInfoTile);
+                optionsMap.SetTile(pos, GetInfoTile(TileColor.White));
             }
         }
-        //Otherwise, perform the action on the selected tile
-        PushState(InteractionState.TargetSelection);
+    }
+
+    public void DrawExtensionTiles(List<Vector3Int> locations)
+    {
+        foreach (Vector3Int pos in locations)
+        {
+            if (tileManager.GetTileDataAt(pos).HasEnemyUnit())
+            {
+                extensionsMap.SetTile(pos, GetExtensionTile(TileColor.Red));
+            }//if the tile has a crop
+            else if (tileManager.GetTileDataAt(pos).GetOccupyingEntity() as Crop != null)
+            {
+                Crop cropCheck = tileManager.GetTileDataAt(pos).GetOccupyingEntity() as Crop;
+                //if the crop is ready to be harvested
+                if (cropCheck.CanBeHarvested())
+                {
+                    extensionsMap.SetTile(pos, GetExtensionTile(TileColor.Yellow));
+                }//if the tile is not ready to be harvested and needs to be watered
+                else if (!cropCheck.CanBeHarvested() && !cropCheck.IsWatered())
+                {
+                    extensionsMap.SetTile(pos, GetExtensionTile(TileColor.Blue));
+                }
+                else
+                {
+                    extensionsMap.SetTile(pos, GetExtensionTile(TileColor.Green));
+                }
+            }
+            else {
+                extensionsMap.SetTile(pos, GetExtensionTile(TileColor.White));
+            }
+        }
     }
 
     public void StartFeedTargeting()
@@ -653,7 +726,7 @@ public class UnitInteractionSystem : TileCursor
             {
 
                 validLocations.Add(unit.GetGridPos());
-                optionsMap.SetTile(unit.GetGridPos(), WhiteInfoTile);
+                optionsMap.SetTile(unit.GetGridPos(), GetInfoTile(TileColor.White));
             }
         }
 
@@ -699,7 +772,8 @@ public class UnitInteractionSystem : TileCursor
 
         //Show only the newly selected Unit using the selection tiles.
         optionsMap.ClearAllTiles();
-        optionsMap.SetTile(unit.GetGridPos(), WhiteInfoTile);
+        extensionsMap.ClearAllTiles();
+        optionsMap.SetTile(unit.GetGridPos(), GetInfoTile(TileColor.White));
 
         // Push so undo can cancel out of the crop picker during feeding
         PushState(InteractionState.DecisionSelection);

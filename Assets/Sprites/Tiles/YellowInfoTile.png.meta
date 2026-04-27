@@ -1,19 +1,7 @@
 fileFormatVersion: 2
-guid: 733420c2c16ec4c20b562e4e2229169c
+guid: 28a13dc46ba6f784c93a9b6956bd602f
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -4346244404228752641
-    second: Arrow_0
-  - first:
-      213: -6662812116773042688
-    second: Arrow_1
-  - first:
-      213: -2292719611878453243
-    second: Arrow_2
-  - first:
-      213: 5946551882310926714
-    second: Arrow_3
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -110,7 +98,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,7 +110,95 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Arrow_0
+      name: YellowInfoTile_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6368d561ffc50f94cb6fd77c08daf8dc
+      internalID: 914543549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: YellowInfoTile_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcd7d4ac740eded41a78e58ce2a2d6cc
+      internalID: -1835864805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: YellowInfoTile_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50266cdb33a17714a8fcae43bece6802
+      internalID: 565084715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: YellowInfoTile_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d7da620715f077459cf698a626f21da
+      internalID: 341551757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: YellowInfoTile_4
       rect:
         serializedVersion: 2
         x: 0
@@ -135,16 +211,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ffa7ae2edb90fa3c0800000000000000
-      internalID: -4346244404228752641
+      spriteID: df1a85d828a8b4841873ae7373004a40
+      internalID: -2111460431
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arrow_1
+      name: YellowInfoTile_5
       rect:
         serializedVersion: 2
         x: 32
@@ -157,16 +233,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 006039e4eafe883a0800000000000000
-      internalID: -6662812116773042688
+      spriteID: b2976d4973deada42aa3267738a57cfd
+      internalID: 39799249
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arrow_2
+      name: YellowInfoTile_6
       rect:
         serializedVersion: 2
         x: 64
@@ -179,16 +255,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 500d96c09af9e20e0800000000000000
-      internalID: -2292719611878453243
+      spriteID: a992352c999b6c24aa5bdae343dbd0fc
+      internalID: 972498709
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arrow_3
+      name: YellowInfoTile_7
       rect:
         serializedVersion: 2
         x: 96
@@ -201,16 +277,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a71c2974e65668250800000000000000
-      internalID: 5946551882310926714
+      spriteID: 82e3750a5efdbe64086312734c0d83d3
+      internalID: -2001054415
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arrow_4
+      name: YellowInfoTile_8
       rect:
         serializedVersion: 2
         x: 0
@@ -225,20 +301,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de51c9bb363684736b0bfaa824e58c1a
-      internalID: 789057798
+      spriteID: 9b4f9b097129a91419996de31222e86f
+      internalID: 958774206
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arrow_5
+      name: YellowInfoTile_9
       rect:
         serializedVersion: 2
-        x: 33
-        y: 35
-        width: 28
-        height: 24
+        x: 32
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,14 +323,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2cf0adb4ec9c4424592a968ba077fe76
-      internalID: 1807791319
+      spriteID: f047d74d1fd4f8e419b042840b23b86a
+      internalID: -1598830609
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arrow_6
+      name: YellowInfoTile_10
       rect:
         serializedVersion: 2
         x: 64
@@ -269,14 +345,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e08f1fd787e0943399e0d3b368458042
-      internalID: 2112392741
+      spriteID: 6de55716d2f064c4d89a1283ffcf2475
+      internalID: -716338579
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arrow_7
+      name: YellowInfoTile_11
       rect:
         serializedVersion: 2
         x: 96
@@ -291,14 +367,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8df5731cd709d449b898982525263100
-      internalID: -1408634608
+      spriteID: 0936c6269344a1748a6552511ca54b7f
+      internalID: -1614800616
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arrow_8
+      name: YellowInfoTile_12
       rect:
         serializedVersion: 2
         x: 0
@@ -313,14 +389,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55d1c46b894e94023a58f391f22a0d03
-      internalID: -346945871
+      spriteID: cf47d9ee2211c1f4e8c3c10b17c42eb9
+      internalID: 1670630345
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arrow_9
+      name: YellowInfoTile_13
       rect:
         serializedVersion: 2
         x: 32
@@ -335,14 +411,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33ccba07f79c5462eac400a7dd919da1
-      internalID: -1111632269
+      spriteID: 13e95ab0e6c034241b043f5b8b18d1d1
+      internalID: -2110678730
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arrow_10
+      name: YellowInfoTile_14
       rect:
         serializedVersion: 2
         x: 64
@@ -357,14 +433,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6983dffc8f9c342ec8c442f8a553281e
-      internalID: -416941216
+      spriteID: fdbd4f378fd35d3468e7c8b6a9d54ce7
+      internalID: 1772553487
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arrow_11
+      name: YellowInfoTile_15
       rect:
         serializedVersion: 2
         x: 96
@@ -379,8 +455,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c56d4bade5cd2422b8bb746180480cbb
-      internalID: -818556091
+      spriteID: ffc3efb08e043284b88874da853be7fb
+      internalID: 1312869532
       vertices: []
       indices: 
       edges: []
@@ -389,7 +465,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 05e7950a4614745848246463338b240d
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -401,18 +477,22 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Arrow_0: -4346244404228752641
-      Arrow_1: -6662812116773042688
-      Arrow_10: -416941216
-      Arrow_11: -818556091
-      Arrow_2: -2292719611878453243
-      Arrow_3: 5946551882310926714
-      Arrow_4: 789057798
-      Arrow_5: 1807791319
-      Arrow_6: 2112392741
-      Arrow_7: -1408634608
-      Arrow_8: -346945871
-      Arrow_9: -1111632269
+      YellowInfoTile_0: 914543549
+      YellowInfoTile_1: -1835864805
+      YellowInfoTile_10: -716338579
+      YellowInfoTile_11: -1614800616
+      YellowInfoTile_12: 1670630345
+      YellowInfoTile_13: -2110678730
+      YellowInfoTile_14: 1772553487
+      YellowInfoTile_15: 1312869532
+      YellowInfoTile_2: 565084715
+      YellowInfoTile_3: 341551757
+      YellowInfoTile_4: -2111460431
+      YellowInfoTile_5: 39799249
+      YellowInfoTile_6: 972498709
+      YellowInfoTile_7: -2001054415
+      YellowInfoTile_8: 958774206
+      YellowInfoTile_9: -1598830609
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

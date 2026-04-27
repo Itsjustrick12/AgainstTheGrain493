@@ -21,4 +21,9 @@ public abstract class EntityAction : ScriptableObject
     public abstract void PerformAt(Entity entity, List<Vector3Int> positions);
     //The unit here is the unit performing the action
     public abstract void PerformAt(Entity entity, Vector3Int pos);
+    //Used for AOE functions
+    public virtual List<Vector3Int> GetExtensionTiles(Vector3Int target, Vector3Int casterPos)
+    {
+        return new List<Vector3Int>();
+    }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Actions/AdvancedHarvest")]
 public class AdvancedHarvestAction : BasicHarvestAction
 {
-
+    //
     public override List<Vector3Int> GetValidTargets(Entity unit)
     {
         List<Vector3Int> targets = new List<Vector3Int>();
@@ -103,6 +103,11 @@ public class AdvancedHarvestAction : BasicHarvestAction
         return true;
     }
 
+    public override bool IsAOE()
+    {
+        return true;
+    }
+
     public override void PerformAt(Entity unit, Vector3Int pos)
     {
         Unit unitCheck = unit as Unit;
@@ -146,5 +151,15 @@ public class AdvancedHarvestAction : BasicHarvestAction
         if(targetCrop != null) targetCrop.Harvest();
         */
         onHarvest?.Invoke();
+    }
+
+    public override List<Vector3Int> GetExtensionTiles(Vector3Int target, Vector3Int casterPos)
+    {
+        Vector3Int dir = new Vector3Int(
+            Math.Sign(target.x - casterPos.x),
+            Math.Sign(target.y - casterPos.y), 0);
+        Vector3Int perp = new Vector3Int(dir.y, dir.x, 0);
+
+        return new List<Vector3Int> { target - perp, target + perp };
     }
 }
