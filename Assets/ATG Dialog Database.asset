@@ -133,6 +133,8 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 4fd08bce8d3754f7ea1c8558342f36fa, type: 3}
     - {fileID: 21300000, guid: 017b2f50e2f7a45c18624b4d6ec90865, type: 3}
     - {fileID: 21300000, guid: b7bf7973833774b08aa8cc190dd5b107, type: 3}
+    - {fileID: 21300000, guid: 091ef03b340aa435aba6b846a7149a59, type: 3}
+    - {fileID: 21300000, guid: ff30bf2fe81f54bed8b7d81b50ed08a1, type: 3}
   - id: 5
     fields:
     - title: Name
@@ -163,6 +165,8 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 4fd08bce8d3754f7ea1c8558342f36fa, type: 3}
     - {fileID: 21300000, guid: 017b2f50e2f7a45c18624b4d6ec90865, type: 3}
     - {fileID: 21300000, guid: b7bf7973833774b08aa8cc190dd5b107, type: 3}
+    - {fileID: 21300000, guid: 091ef03b340aa435aba6b846a7149a59, type: 3}
+    - {fileID: 21300000, guid: ff30bf2fe81f54bed8b7d81b50ed08a1, type: 3}
   - id: 6
     fields:
     - title: Name
@@ -1309,7 +1313,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: "[pic=1]Hmm\u2026"
+        value: "[pic=7]Hmm\u2026"
         type: 0
         typeString: 
       - title: Sequence
@@ -1338,7 +1342,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 158.4375
-        y: 481
+        y: 482.26575
         width: 160
         height: 30
     - id: 10
@@ -1556,8 +1560,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 209.61555, y: 212.7491}
-    canvasZoom: 0.58000004
+    canvasScrollPosition: {x: 54.53137, y: 365.7157}
+    canvasZoom: 0.8199998
   - id: 5
     fields:
     - title: Title
@@ -3653,7 +3657,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: That damn clanker!
+        value: '[pic=6]That damn clanker!'
         type: 0
         typeString: 
       - title: Sequence
@@ -3809,7 +3813,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=3]OUR CHICKEN!'
+        value: '[pic=6]OUR CHICKEN!'
         type: 0
         typeString: 
       - title: Sequence
