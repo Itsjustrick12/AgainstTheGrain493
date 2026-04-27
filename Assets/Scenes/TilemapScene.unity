@@ -759,6 +759,18 @@ PrefabInstance:
       propertyPath: m_TileSpriteArray.Array.data[0].m_Data
       value: 
       objectReference: {fileID: 358887573}
+    - target: {fileID: 8849223099549947510, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_TileColorArray.Array.data[0].m_Data.b
+      value: 0.6126727
+      objectReference: {fileID: 0}
+    - target: {fileID: 8849223099549947510, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_TileColorArray.Array.data[0].m_Data.g
+      value: 0.5501436
+      objectReference: {fileID: 0}
+    - target: {fileID: 8849223099549947510, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_TileColorArray.Array.data[0].m_Data.r
+      value: 0.8031702
+      objectReference: {fileID: 0}
     - target: {fileID: 9046662594354184104, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
       propertyPath: m_Volume
       value: 0.919
