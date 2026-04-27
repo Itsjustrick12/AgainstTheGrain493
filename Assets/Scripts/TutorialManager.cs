@@ -1,26 +1,47 @@
 using PixelCrushers.DialogueSystem;
-using static UnityEngine.CullingGroup;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
 
 public class TutorialManager : MonoBehaviour
 {
-    //[SerializeField] private TutorialDialogueTrigger dialogueTrigger;
-    [SerializeField] private bool tutorialEnabled = true;
-
     public static TutorialManager Instance;
 
-    private bool robotMoved = false;
+    [SerializeField] private bool tutorialEnabled = true;
 
+    [Header("Conversation Keys")]
+    [SerializeField] private string onUnitClickedConversation = "Tutorial/FirstUnitClick";
+    [SerializeField] private string onRobotMoveConversation = "Tutorial/OnRobotMove";
+    [SerializeField] private string onCropPlantedConversation = "Tutorial/OnPlant";
+    [SerializeField] private string onCropGrowConversation = "Tutorial/OnCropGrow";
+    [SerializeField] private string onCropWateredConversation = "Tutorial/OnWater";
+    [SerializeField] private string onCropHarvestedConversation = "Tutorial/OnHarvest";
+    [SerializeField] private string onChickenPurchasedConversation = "Tutorial/OnChickenPurchased";
+    [SerializeField] private string onEnemyHitConversation = "Tutorial/EnemyHit";
+    [SerializeField] private string onFriendlyDieConversation = "Tutorial/OnFriendlyDie";
+    [SerializeField] private string onAnimalDieConversation = "Tutorial/OnAnimalDie";
+
+    [Header("Trigger Conditions")]
+    [SerializeField] private bool requireCropGrownBeforeRobotMove = true;
+    [SerializeField] private bool requireCropWateredBeforeGrow = true;
+
+    private bool robotMoved = false;
     private bool cropPlanted = false;
     private bool cropWatered = false;
     private bool cropGrown = false;
     private bool cropHarvested = false;
-
     private bool cropSold = false;
     private bool chickenPurchased = false;
     private bool enemyHit = false;
+
+    private void Awake()
+    {
+        Instance = this;
+        if (!tutorialEnabled)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+    }
 
     private void OnEnable()
     {
@@ -29,10 +50,8 @@ public class TutorialManager : MonoBehaviour
         BasicWaterAction.onWater += OnCropWatered;
         PlantAction.onPlant += OnCropPlanted;
         GameManager.StartPlayerTurn += OnCropGrow;
-        //UnitInteractionSystem.OnUnitMoved += OnUnitClicked;
         SpawnUnitAction.OnSpawn += OnChickenPurchased;
         GameManager.StartEnemyTurn += OnRobotMove;
-
         Unit.OnFriendlyDie += OnFriendlyDie;
         Unit.OnAnimalDie += OnAnimalDie;
         Unit.OnEnemyHit += OnEnemyHit;
@@ -45,96 +64,85 @@ public class TutorialManager : MonoBehaviour
         BasicWaterAction.onWater -= OnCropWatered;
         PlantAction.onPlant -= OnCropPlanted;
         GameManager.StartPlayerTurn -= OnCropGrow;
-        //UnitInteractionSystem.OnUnitMoved += OnUnitClicked;
         SpawnUnitAction.OnSpawn -= OnChickenPurchased;
         GameManager.StartEnemyTurn -= OnRobotMove;
-
         Unit.OnFriendlyDie -= OnFriendlyDie;
         Unit.OnAnimalDie -= OnAnimalDie;
         Unit.OnEnemyHit -= OnEnemyHit;
     }
 
-    private void Awake()
+    private void TryStartConversation(string key)
     {
-        Instance = this;
-        if (!tutorialEnabled)
-        {
-            gameObject.SetActive(false);
-            return;
-        }
+        if (!string.IsNullOrEmpty(key))
+            DialogueManager.StartConversation(key);
     }
 
     public void OnUnitClicked()
     {
-        DialogueManager.StartConversation("Tutorial/FirstUnitClick");
+        TryStartConversation(onUnitClickedConversation);
         UnitInteractionSystem.OnUnitSelected -= OnUnitClicked;
     }
 
     public void OnRobotMove()
     {
-        if (cropGrown)
-        {
-            robotMoved = true;
-            DialogueManager.StartConversation("Tutorial/OnRobotMove");
-            GameManager.StartEnemyTurn -= OnRobotMove;
-        }
+        if (requireCropGrownBeforeRobotMove && !cropGrown) return;
+        robotMoved = true;
+        TryStartConversation(onRobotMoveConversation);
+        GameManager.StartEnemyTurn -= OnRobotMove;
     }
 
     public void OnCropPlanted()
     {
         cropPlanted = true;
-        DialogueManager.StartConversation("Tutorial/OnPlant");
+        TryStartConversation(onCropPlantedConversation);
         PlantAction.onPlant -= OnCropPlanted;
     }
 
     public void OnCropGrow()
     {
-        if (cropWatered)
-        {
-            cropGrown = true;
-            DialogueManager.StartConversation("Tutorial/OnCropGrow");
-            GameManager.StartPlayerTurn -= OnCropGrow;
-        }
+        if (requireCropWateredBeforeGrow && !cropWatered) return;
+        cropGrown = true;
+        TryStartConversation(onCropGrowConversation);
+        GameManager.StartPlayerTurn -= OnCropGrow;
     }
 
     public void OnCropWatered()
     {
         cropWatered = true;
-        DialogueManager.StartConversation("Tutorial/OnWater");
+        TryStartConversation(onCropWateredConversation);
         BasicWaterAction.onWater -= OnCropWatered;
     }
 
     public void OnCropHarvested()
     {
         cropHarvested = true;
-        DialogueManager.StartConversation("Tutorial/OnHarvest");
+        TryStartConversation(onCropHarvestedConversation);
         BasicHarvestAction.onHarvest -= OnCropHarvested;
     }
 
     public void OnChickenPurchased()
     {
         chickenPurchased = true;
-        DialogueManager.StartConversation("Tutorial/OnChickenPurchased");
+        TryStartConversation(onChickenPurchasedConversation);
         SpawnUnitAction.OnSpawn -= OnChickenPurchased;
     }
 
     public void OnEnemyHit()
     {
         enemyHit = true;
-        DialogueManager.StartConversation("Tutorial/EnemyHit");
+        TryStartConversation(onEnemyHitConversation);
         Unit.OnEnemyHit -= OnEnemyHit;
     }
 
     public void OnFriendlyDie()
     {
-        DialogueManager.StartConversation("Tutorial/OnFriendlyDie");
+        TryStartConversation(onFriendlyDieConversation);
         Unit.OnFriendlyDie -= OnFriendlyDie;
     }
 
     public void OnAnimalDie()
     {
-        DialogueManager.StartConversation("Tutorial/OnAnimalDie");
+        TryStartConversation(onAnimalDieConversation);
         Unit.OnAnimalDie -= OnAnimalDie;
     }
-
 }

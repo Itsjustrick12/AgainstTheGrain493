@@ -28,7 +28,7 @@ MonoBehaviour:
   isEnemy: 0
   attackRange: 1
   strength: 5
-  moveRange: 3
+  moveRange: 4
   attackSound: {fileID: 8300000, guid: e16332a5543c49a46b7df1cc944aff25, type: 3}
   pickupSound: {fileID: 0}
   walkSound: {fileID: 8300000, guid: 7c8bbff6ccf32d744ad306dff31f1ebe, type: 3}
