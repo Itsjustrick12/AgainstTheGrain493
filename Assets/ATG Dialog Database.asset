@@ -2801,7 +2801,7 @@ MonoBehaviour:
         typeString: 
       - title: Dialogue Text
         value: '[pic=1]We need to make sure we keep the chicken safe until it can
-          attack the clanker.'
+          attack the robot.'
         type: 0
         typeString: 
       - title: Sequence
@@ -2911,7 +2911,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=1] The chicken does five damage, we''ll need to hit the clanker
+        value: '[pic=1] The chicken does five damage, we''ll need to hit the robot
           twice.'
         type: 0
         typeString: 
@@ -3049,8 +3049,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 1
+    canvasScrollPosition: {x: 58.293087, y: 37.27802}
+    canvasZoom: 0.9100001
   - id: 11
     fields:
     - title: Title
