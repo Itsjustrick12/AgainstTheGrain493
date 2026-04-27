@@ -324,6 +324,12 @@ public class AIManager : MonoBehaviour
     //Needed to allow structures to be targeted, but only when they are in the way of units
     bool IsStructureBlockingPath(Unit unit, Structure structure)
     {
+        //Structures don't block paths for flying units
+        if (unit.GetCanFly())
+        {
+            return false;
+        }
+
         List<Vector3Int> realTargets = FindPositions(false, unit);
 
         foreach (Vector3Int targetPos in realTargets)
