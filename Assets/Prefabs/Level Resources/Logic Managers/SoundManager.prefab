@@ -307,7 +307,7 @@ MonoBehaviour:
   sfxSource: {fileID: 3625453938645472883}
   musicSource: {fileID: 1756657541241727489}
   musicTracks:
+  - {fileID: 8300000, guid: d23504f896547824eb35f7dcbad62b43, type: 3}
   - {fileID: 8300000, guid: dc4ec813065d00f4b80e150eed848c84, type: 3}
-  - {fileID: 8300000, guid: dc4ec813065d00f4b80e150eed848c84, type: 3}
-  - {fileID: 8300000, guid: dc4ec813065d00f4b80e150eed848c84, type: 3}
-  - {fileID: 8300000, guid: dc4ec813065d00f4b80e150eed848c84, type: 3}
+  - {fileID: 8300000, guid: d23504f896547824eb35f7dcbad62b43, type: 3}
+  - {fileID: 8300000, guid: d23504f896547824eb35f7dcbad62b43, type: 3}

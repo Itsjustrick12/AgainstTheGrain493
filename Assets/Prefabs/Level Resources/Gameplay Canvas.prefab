@@ -354,22 +354,6 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5174844775153851421, guid: 6ba3e2f4d6a6bd54889241b6a47a6f68, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5174844775153851421, guid: 6ba3e2f4d6a6bd54889241b6a47a6f68, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5174844775153851421, guid: 6ba3e2f4d6a6bd54889241b6a47a6f68, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 325
-      objectReference: {fileID: 0}
-    - target: {fileID: 5174844775153851421, guid: 6ba3e2f4d6a6bd54889241b6a47a6f68, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -383.255
-      objectReference: {fileID: 0}
     - target: {fileID: 6945124717809225716, guid: 6ba3e2f4d6a6bd54889241b6a47a6f68, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

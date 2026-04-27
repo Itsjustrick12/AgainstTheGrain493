@@ -54,7 +54,7 @@ public class FeedManager : MonoBehaviour
         {
             selectedUnit.Heal(10);
         }
-        //if pepper, do strength
+        //if pepper, do strengthed
         else if (cropID == 2)
         {
             selectedUnit.AddBuff(new StrengthBuff(3,5, 1));

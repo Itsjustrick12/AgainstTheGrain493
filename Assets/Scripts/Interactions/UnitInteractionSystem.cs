@@ -766,6 +766,12 @@ public class UnitInteractionSystem : TileCursor
             Debug.Log("No valid unit to feed here");
             return;
         }
+
+        if (unit.GetIsFed())
+        {
+            SoundManager.Instance.PlaySound(feedManager.thumpSound);
+            return;
+        }
         //necessary boolean logic to get previous state or selection if there is no history
         state = stateHistory.Count > 0 ? stateHistory.Pop() : InteractionState.Selection;
         feedManager.OpenFeedUI(unit);

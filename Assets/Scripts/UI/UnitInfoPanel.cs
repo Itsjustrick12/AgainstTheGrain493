@@ -32,6 +32,16 @@ public class UnitInfoPanel : MonoBehaviour
     [SerializeField] private Sprite robotUI;
     [SerializeField] private Image image;
 
+    private void OnEnable()
+    {
+        GameManager.StartEnemyTurn += HidePanel;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.StartEnemyTurn -= HidePanel;
+    }
+
     public void ShowPanel(Unit currUnit)
     {
         if (!GameManager.Instance.isPlayerTurn) return;
