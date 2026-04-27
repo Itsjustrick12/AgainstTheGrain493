@@ -51,13 +51,22 @@ MonoBehaviour:
   tileHelper: {fileID: 0}
   feedManager: {fileID: 0}
   optionsMap: {fileID: 0}
+  extensionsMap: {fileID: 0}
   arrowMap: {fileID: 0}
   arrowTile: {fileID: 11400000, guid: f5587689633574c64b1cf3b74d28135c, type: 2}
   aiManager: {fileID: 0}
-  WhiteInfoTile: {fileID: 11400000, guid: e5091c83003c5a14ba2ac5bd6049d005, type: 2}
-  RedInfoTile: {fileID: 11400000, guid: 17e14ac5d8250c04cb9f353563383d46, type: 2}
-  GreenInfoTile: {fileID: 11400000, guid: 97f030867e19fc54a82d83f8d74efd4d, type: 2}
-  BlueInfoTile: {fileID: 11400000, guid: 9b186661a530d4a6d9299727e1160fd4, type: 2}
+  infoTiles:
+  - {fileID: 11400000, guid: e5091c83003c5a14ba2ac5bd6049d005, type: 2}
+  - {fileID: 11400000, guid: 17e14ac5d8250c04cb9f353563383d46, type: 2}
+  - {fileID: 11400000, guid: 97f030867e19fc54a82d83f8d74efd4d, type: 2}
+  - {fileID: 11400000, guid: 9b186661a530d4a6d9299727e1160fd4, type: 2}
+  - {fileID: 11400000, guid: 7df8b5cd9c0176b48a497be8c99f4886, type: 2}
+  extensionTiles:
+  - {fileID: 11400000, guid: 3bcf246b9142b1c48aed5361652c0f32, type: 2}
+  - {fileID: 11400000, guid: 73fd268fa792d3b48bdfc24ae5a28ac0, type: 2}
+  - {fileID: 11400000, guid: 7805e929502c91a449b326efbd864b8f, type: 2}
+  - {fileID: 11400000, guid: 48d94b040e2b3d64f8c65c753840566d, type: 2}
+  - {fileID: 11400000, guid: 76afa184333343144ba8ea0e662d0167, type: 2}
   actionMenu: {fileID: 0}
   state: 0
   selectedPosition: {x: 0, y: 0, z: 0}
