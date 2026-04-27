@@ -19,8 +19,6 @@ MonoBehaviour:
   tile: {fileID: 11400000, guid: 750feeced661dc342a5963a174f30519, type: 2}
   sprite: {fileID: 21300000, guid: c6c4bd6087f821249843ad8167bcf45e, type: 3}
   actions:
-  - {fileID: 11400000, guid: 63aa91d086f14cd4ba1090386205ecbd, type: 2}
-  - {fileID: 11400000, guid: 5f0c03dba52164544948dc40d7fe64b0, type: 2}
   - {fileID: 11400000, guid: cf46fd05dc4c94b3fa1e2aafa9565bfd, type: 2}
   - {fileID: 11400000, guid: 7c13517389f0d4c4e93d63f8ee88274a, type: 2}
   purchasePrice: 5
