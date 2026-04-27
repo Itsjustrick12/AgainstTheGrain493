@@ -31,8 +31,6 @@ public class GameManager : MonoBehaviour
 
     public static event Action StartPlayerTurn;
     public static event Action StartEnemyTurn;
-    public UnitInfo robotPrefab;
-    public int turnsOfEnemies = 2;
 
     public GameObject pauseScreen;
     public GameObject winScreen;
@@ -257,13 +255,6 @@ public class GameManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.5f);
-
-        if(cropIDs.Count() > 1 && turnsOfEnemies > 0)
-        {
-            SpawnUnitOnTile(UnitDatabase.Instance.GetUnitInfo(5), new Vector3Int(15,UnityEngine.Random.Range(-5, 0),0));
-            SpawnUnitOnTile(UnitDatabase.Instance.GetUnitInfo(7), new Vector3Int(15,UnityEngine.Random.Range(0, 5),0));
-            turnsOfEnemies--;
-        }
 
         PlayPlayerTurnAnimation();
 

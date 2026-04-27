@@ -304,6 +304,11 @@ Tilemap:
   m_CorrespondingSourceObject: {fileID: 1897289752868205606, guid: d002971a67a3df64dac584c8dec69458, type: 3}
   m_PrefabInstance: {fileID: 306560438501148222}
   m_PrefabAsset: {fileID: 0}
+--- !u!1839735485 &3169147348027135765 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 3439076249904599339, guid: d002971a67a3df64dac584c8dec69458, type: 3}
+  m_PrefabInstance: {fileID: 306560438501148222}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1839735485 &4091863524094654895 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: 4361779301390401425, guid: d002971a67a3df64dac584c8dec69458, type: 3}
@@ -391,6 +396,10 @@ PrefabInstance:
       propertyPath: tileManager
       value: 
       objectReference: {fileID: 6026086206975264423}
+    - target: {fileID: 8014607607617140877, guid: 1d82a2232b86d6947809a3a08d66e343, type: 3}
+      propertyPath: extensionsMap
+      value: 
+      objectReference: {fileID: 3169147348027135765}
     - target: {fileID: 8537503120771774310, guid: 1d82a2232b86d6947809a3a08d66e343, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
