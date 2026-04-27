@@ -79,8 +79,12 @@ MonoBehaviour:
     spritePortrait: {fileID: 21300000, guid: f6939fe0466734465b2e89fea82ac573, type: 3}
     alternatePortraits:
     - {fileID: 2800000, guid: f371a31a66a134f7fb2a73f55f5526e6, type: 3}
+    - {fileID: 2800000, guid: 7427826b07caeb2479c6b3878f7ec2f9, type: 3}
+    - {fileID: 2800000, guid: 9480f2db4f1819a49b38ab27af865468, type: 3}
     spritePortraits:
     - {fileID: 21300000, guid: f371a31a66a134f7fb2a73f55f5526e6, type: 3}
+    - {fileID: 21300000, guid: 7427826b07caeb2479c6b3878f7ec2f9, type: 3}
+    - {fileID: 21300000, guid: 9480f2db4f1819a49b38ab27af865468, type: 3}
   - id: 3
     fields:
     - title: Name
@@ -706,7 +710,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: Howdy! You finally ready to get to growin'?
+        value: Howdy! You ready to get to growin'?
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -735,7 +739,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 81
-        y: 137
+        y: 139
         width: 160
         height: 30
     - id: 3
@@ -761,8 +765,8 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: Put me next to some <color=brown>dirt</color> and I can plant some
-          seeds for you!
+        value: Put me next to some <color=#845750>dirt</color> and I can <color=#148568>plant</color>
+          some seeds for you!
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -785,7 +789,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 185
-        y: 223
+        y: 224
         width: 160
         height: 30
     entryGroups: []
@@ -1396,7 +1400,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 160
+        x: 158.78049
         y: 532.2658
         width: 160
         height: 30
@@ -1507,7 +1511,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 160
-        y: 631
+        y: 632.2195
         width: 160
         height: 30
     - id: 15
@@ -1533,7 +1537,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: '[pic=4]Perfect! You plant, I''ll water.'
+        value: '[pic=4]Perfect! You <color=#148568>plant</color>, I''ll <color=#668faf>water</color>.'
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -1556,7 +1560,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 160
-        y: 682.06384
+        y: 683.2834
         width: 160
         height: 30
     entryGroups: []
@@ -1855,7 +1859,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Just focus on planting so we can get some chickens.
+        value: Just focus on <color=#148568>planting</color> so we can get some chickens.
         type: 0
         typeString: 
       - title: Sequence
@@ -2011,7 +2015,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=1]Great! Now let me come over there and water that.'
+        value: '[pic=1]Great! Now let me come over there and <color=#668faf>water</color>
+          that.'
         type: 0
         typeString: 
       - title: Sequence
@@ -2167,7 +2172,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=1]Great, now we just need to wait for this to grow between turns!'
+        value: '[pic=1]Great, now we just need to wait for this to grow through the
+          night!'
         type: 0
         typeString: 
       - title: Sequence
@@ -2323,7 +2329,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=5] Finally! Our first harvest.'
+        value: '[pic=5] Finally! Our first <color=#eb8f48>harvest</color>.'
         type: 0
         typeString: 
       - title: Sequence
@@ -2378,7 +2384,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=1]We can sell this at the barn, and then buy our first chicken!'
+        value: '[pic=1]We can sell this at the <color=#7c122b>barn</color>, and then
+          buy our first chicken!'
         type: 0
         typeString: 
       - title: Sequence
@@ -2401,7 +2408,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 160
-        y: 130
+        y: 131
         width: 160
         height: 30
     entryGroups: []
@@ -2830,7 +2837,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 160
-        y: 182
+        y: 183.49255
         width: 160
         height: 30
     - id: 4
@@ -2967,7 +2974,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=1] Let''s harvest some more wheat so we can get another chicken.'
+        value: '[pic=1] Let''s <color=#eb8f48>harvest</color> some more wheat so
+          we can get another chicken.'
         type: 0
         typeString: 
       - title: Sequence
@@ -3049,8 +3057,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 58.293087, y: 37.27802}
-    canvasZoom: 0.9100001
+    canvasScrollPosition: {x: 59.98867, y: 34.44309}
+    canvasZoom: 0.6700003
   - id: 11
     fields:
     - title: Title
@@ -3284,8 +3292,9 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
-        value: '[pic=1]Looks like we''ll need to water it again, then wait one more
-          day before we can harvest it.'
+        value: '[pic=1]Looks like we''ll need to <color=#668faf>water</color> it
+          again, then wait one more day before we can <color=#eb8f48>harvest</color>
+          it.'
         type: 0
         typeString: 
       - title: Dialogue Text
@@ -3515,6 +3524,61 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 12
+        originDialogueID: 2
+        destinationConversationID: 12
+        destinationDialogueID: 3
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 158.61292
+        y: 129.3871
+        width: 160
+        height: 30
+    - id: 3
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 3
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 5
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: Bok bok!
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 12
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
       userScript: 
@@ -3524,12 +3588,12 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 157
-        y: 131
+        y: 181
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 42.674152, y: 15.100036}
-    canvasZoom: 1.3899996
+    canvasScrollPosition: {x: 29.92482, y: 14.469137}
+    canvasZoom: 1.2399998
   - id: 13
     fields:
     - title: Title
@@ -3837,6 +3901,439 @@ MonoBehaviour:
         serializedVersion: 2
         x: 159
         y: 76
+        width: 160
+        height: 30
+    entryGroups: []
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 1
+  - id: 15
+    fields:
+    - title: Title
+      value: Level2/Intro
+      type: 0
+      typeString: 
+    - title: Description
+      value: 
+      type: 0
+      typeString: 
+    - title: Actor
+      value: 1
+      type: 5
+      typeString: CustomFieldType_Actor
+    - title: Conversant
+      value: 2
+      type: 5
+      typeString: CustomFieldType_Actor
+    overrideSettings:
+      useOverrides: 0
+      overrideSubtitleSettings: 0
+      showNPCSubtitlesDuringLine: 1
+      showNPCSubtitlesWithResponses: 1
+      showPCSubtitlesDuringLine: 0
+      skipPCSubtitleAfterResponseMenu: 0
+      subtitleCharsPerSecond: 30
+      minSubtitleSeconds: 2
+      continueButton: 0
+      overrideSequenceSettings: 0
+      defaultSequence: 
+      defaultPlayerSequence: 
+      defaultResponseMenuSequence: 
+      overrideInputSettings: 0
+      alwaysForceResponseMenu: 1
+      includeInvalidEntries: 0
+      responseTimeout: 0
+      emTagForOldResponses: 0
+      emTagForInvalidResponses: 0
+      cancelSubtitle:
+        key: 27
+        buttonName: 
+        inputAction: {fileID: 0}
+      cancelConversation:
+        key: 27
+        buttonName: 
+        inputAction: {fileID: 0}
+      actorSubtitlePanelOverrides: []
+    nodeColor: 
+    dialogueEntries:
+    - id: 0
+      fields:
+      - title: Title
+        value: START
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: None()
+        type: 0
+        typeString: 
+      conversationID: 15
+      isRoot: 1
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 15
+        originDialogueID: 0
+        destinationConversationID: 15
+        destinationDialogueID: 1
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 160
+        y: 30
+        width: 160
+        height: 30
+    - id: 1
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: '[pic=2]Woah! That''s a lot of bots!'
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 15
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 15
+        originDialogueID: 1
+        destinationConversationID: 15
+        destinationDialogueID: 2
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 160
+        y: 82
+        width: 160
+        height: 30
+    - id: 2
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: '[pic=2]They even brought out the drones!'
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 15
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 15
+        originDialogueID: 2
+        destinationConversationID: 15
+        destinationDialogueID: 3
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 160
+        y: 134
+        width: 160
+        height: 30
+    - id: 3
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: '[pic=3]Good thing the drones are weak. One good hit should take them
+          out!'
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 15
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 15
+        originDialogueID: 3
+        destinationConversationID: 15
+        destinationDialogueID: 4
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 160
+        y: 184
+        width: 160
+        height: 30
+    - id: 4
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: Can you guys focus on getting us some back up?
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 15
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 15
+        originDialogueID: 4
+        destinationConversationID: 15
+        destinationDialogueID: 5
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 160
+        y: 234
+        width: 160
+        height: 30
+    - id: 5
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: We can help yall <color=#eb8f48>harvest</color>, but you'll have to
+          do the planting and watering.
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 15
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 15
+        originDialogueID: 5
+        destinationConversationID: 15
+        destinationDialogueID: 6
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 160
+        y: 285
+        width: 160
+        height: 30
+    - id: 6
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 4
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: Sounds Good!
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 15
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 160
+        y: 334
         width: 160
         height: 30
     entryGroups: []

@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937c756d30fe4d1458bb2a2e1d6caaff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialManager
-  tutorialEnabled: 0
+  tutorialEnabled: 1
   onUnitClickedConversation: Tutorial/FirstUnitClick
   onRobotMoveConversation: Tutorial/OnRobotMove
   onCropPlantedConversation: Tutorial/OnPlant
@@ -228,7 +228,7 @@ MonoBehaviour:
   allowBarksDuringConversations: 0
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
-  conversation: Tutorial/Intro
+  conversation: Level2/Intro
   conversationConversant: {fileID: 0}
   conversationActor: {fileID: 0}
   startConversationEntryID: -1
