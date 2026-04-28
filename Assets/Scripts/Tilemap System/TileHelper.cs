@@ -119,10 +119,10 @@ public class TileHelper : MonoBehaviour
 
         List<Vector3Int> candidateEnds = new List<Vector3Int>();
         candidateEnds.Add(end);
-        candidateEnds.Add(end + Vector3Int.up);
-        candidateEnds.Add(end + Vector3Int.down);
         candidateEnds.Add(end + Vector3Int.left);
         candidateEnds.Add(end + Vector3Int.right);
+        candidateEnds.Add(end + Vector3Int.up);
+        candidateEnds.Add(end + Vector3Int.down);
 
         List<Vector3Int> bestFallbackPath = new List<Vector3Int>();
 
