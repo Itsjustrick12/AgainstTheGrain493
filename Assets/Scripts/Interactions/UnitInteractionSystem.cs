@@ -172,27 +172,21 @@ public class UnitInteractionSystem : TileCursor
             {
                 potentialEntity = data.GetOccupyingEntity();
             }
-
             Unit unit = potentialEntity as Unit;
-
             if (unit != null)
             {
                 if (unit != lastHoveredUnit)
                 {
                     optionsMap.ClearAllTiles();
-
                     infoPanel.ShowPanel(unit);
-
                     if (unit.GetIsEnemy())
                     {
                         hoverLocations = unit.GetMovementRange();
-
                         foreach (Vector3Int locations in hoverLocations)
                         {
                             optionsMap.SetTile(locations, GetInfoTile(TileColor.White));
                         }
                     }
-
                     lastHoveredUnit = unit;
                 }
             }
@@ -274,7 +268,6 @@ public class UnitInteractionSystem : TileCursor
             return;
         }
         Vector3Int pos = GetCurrentTile();
-        infoPanel.HidePanel();
         if (isMoving) return;
         switch (state)
         {
@@ -290,7 +283,13 @@ public class UnitInteractionSystem : TileCursor
                     if (selectedEntity != null && selectedEntity is Unit)
                     {
                         Unit unit = selectedEntity as Unit;
-                        if (unit.isEnemy) return;
+                        if (unit.isEnemy)
+                        {
+                            selectedEntity = null;
+                            //selectedPosition = new Vector3Int(0, 0, -1); // reset to your default
+                            return;
+                        }
+                        infoPanel.HidePanel();
                         validLocations = unit.GetMovementRange();
                         
                         foreach(Vector3Int tile in validLocations)
