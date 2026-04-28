@@ -99,6 +99,14 @@ public class TileHelper : MonoBehaviour
             return ret;
         }
 
+        //if start is directly next to end, allow pathing
+        if(Mathf.Abs(start.x - end.x) + Mathf.Abs(start.y - end.y) == 1)
+        {
+            ret.Add(start);
+            ret.Add(end);
+            return ret;
+        }
+
         /*
         //can't end on unit
         if(IsOccupied(end))
@@ -133,8 +141,8 @@ public class TileHelper : MonoBehaviour
                 continue;
             }
 
-            // can't end on an occupied tile
-            if(candidateTile.GetOccupyingEntity() is Unit)
+            // can't end on any occupied tile
+            if(candidateTile.GetOccupyingEntity() != null)
             {
                 continue;
             }
@@ -332,6 +340,160 @@ public class TileHelper : MonoBehaviour
 
                 if (totalCost <= moveAmt)
                     validPositions.Add(candidateTile);
+            }
+        }
+
+        return validPositions;
+    }
+
+    /*
+        GetQuickActionRange finds the list of all actions avalible to the unit
+        these actions are sent in the list as different z coordinates
+            0 = movement action
+            1 = move + attack action
+            2 = move + water action
+            3 = move + harvest action
+
+        
+    */
+    public List<Vector3Int> GetQuickActionRange(Unit currentUnit)
+    {
+        Vector3Int currentPos = currentUnit.GetGridPos();
+        int moveAmt = currentUnit.GetMoveRange();
+        int atkAmt = currentUnit.GetAttackRange();
+        var validPositions = new List<Vector3Int>();
+
+        //check all tiles within movement + attack range
+        for (int i = -moveAmt - atkAmt; i <= moveAmt + atkAmt; i++)
+        {
+            for (int j = -moveAmt - atkAmt; j <= moveAmt + atkAmt; j++)
+            {
+                //set up the candidate tile use in other functions
+                Vector3Int candidateTile = new Vector3Int(currentPos.x + i, currentPos.y + j, 0);
+                //set up the return tile for actually returning, with -1 being an invalid tile
+                Vector3Int returnTile = new Vector3Int(currentPos.x + i, currentPos.y + j, -1);
+                //daa at candidatetile location
+                TileData data = tileManager.GetTileDataAt(candidateTile);
+
+                //make sure the tile is on the board
+                if (!InRange(candidateTile))
+                {
+
+                }//check to see if the position is the current position
+                else if(i == 0 && j == 0)
+                {
+                    //if so, return the current position as a movement action
+                    returnTile.z = 0;
+
+                }//check to see if the tile is in movement range AND the tile can be occupied
+                else if(Mathf.Abs(i) + Mathf.Abs(j) <= moveAmt && !data.HasOccupant())
+                {
+                    //get the path to the current position
+                    var validPath = TilePath(currentPos, candidateTile, currentUnit);
+                    if(validPath == null || validPath.Count <= 1 || validPath[validPath.Count - 1] != candidateTile)
+                    {
+                        continue;
+                    }
+                    //get the cost of moving to the tile  
+                    int totalCost = 0;
+                    for (int k = 1; k < validPath.Count; k++)
+                    {
+                        TileData stepData = tileManager.GetTileDataAt(validPath[k]);
+                        if (stepData != null)
+                            totalCost += stepData.movementCost;
+                    }
+
+                    //if the cost isn't to great, we return the tile as a valid movement tile
+                    if (totalCost <= moveAmt)
+                    {
+                        returnTile.z = 0;
+                    }
+
+                }//check to see if the tile is in action range AND has an occupant
+                else if(Mathf.Abs(i) + Mathf.Abs(j) <= moveAmt + atkAmt && data.HasOccupant())
+                {
+                    //get the path to the current position
+                    var validPath = TilePath(currentPos, candidateTile, currentUnit);
+
+                    //remove the occupant tile
+                    if(validPath.Count > 0)
+                    {
+                        validPath.RemoveAt(validPath.Count -1);
+                    }
+                    
+                    //get the cost of moving to the tile
+                    int totalCost = 0;
+                    for (int k = 1; k < validPath.Count; k++)
+                    {
+                        TileData stepData = tileManager.GetTileDataAt(validPath[k]);
+                        if (stepData != null)
+                            totalCost += stepData.movementCost;
+                    }
+
+                    //if the cost isn't to great, we look at the occupant
+                    if (totalCost <= moveAmt)
+                    {
+                        //if the occupying entity is a unit
+                        if(data.GetOccupyingEntity() as Unit != null)
+                        {
+                            if((data.GetOccupyingEntity() as Unit).GetIsEnemy())
+                            {
+                                returnTile.z = 1;
+                            }
+                        }//if the occupying tile is a crop
+                        else if(data.GetOccupyingEntity() as Crop != null)
+                        {
+                            //if the crop can be harvested
+                            if((data.GetOccupyingEntity() as Crop).CanBeHarvested())
+                            {
+                                returnTile.z = 3;
+                            }//if the crop can be watered
+                            else if(!(data.GetOccupyingEntity() as Crop).IsWatered())
+                            {
+                                returnTile.z = 2;
+                            }
+                        }
+                    }
+                    
+                }
+
+                if (returnTile.z != -1)
+                        validPositions.Add(returnTile);
+                
+                
+                
+                
+                
+                
+
+                /*if (candidateTile == currentPos)
+                {
+                    validPositions.Add(candidateTile);
+                    continue;
+                }
+
+                if (data == null || data.HasOccupant())
+                    continue;
+
+                var validPath = TilePath(currentPos, candidateTile, currentUnit);
+
+                // Reject null, empty, or paths that didn't actually reach candidateTile
+                if (validPath == null || validPath.Count <= 1)
+                    continue;
+                if (validPath[validPath.Count - 1] != candidateTile)
+                    continue;
+
+                // Sum actual movement cosvt instead of tile count
+                int totalCost = 0;
+                for (int k = 1; k < validPath.Count; k++)
+                {
+                    TileData stepData = tileManager.GetTileDataAt(validPath[k]);
+                    if (stepData != null)
+                        totalCost += stepData.movementCost;
+                }
+
+                if (totalCost <= moveAmt)
+                    validPositions.Add(candidateTile);*/
             }
         }
 

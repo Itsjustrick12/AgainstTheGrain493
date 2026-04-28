@@ -193,6 +193,12 @@ public class UnitInteractionSystem : TileCursor
         //Debug.Log("SetArrow");
         List<Vector3Int> path = tileHelper.TilePath(selectedEntity.GetGridPos(), GetCurrentTile(), selectedEntity as Unit);
 
+        //checks the end of the path
+        if(tileManager.GetTileDataAt(path[path.Count - 1]).HasOccupant() && path.Count > 1)
+        {
+            path.RemoveAt(path.Count - 1);
+        }
+
         // Prepend current position so the full path including origin is stored
         List<Vector3Int> fullPath = new List<Vector3Int>();
         fullPath.Add(selectedEntity.GetGridPos());
@@ -267,18 +273,39 @@ public class UnitInteractionSystem : TileCursor
                     {
                         Unit unit = selectedEntity as Unit;
                         if (unit.isEnemy) return;
-                        validLocations = unit.GetMovementRange();
+                        List<Vector3Int> valid = tileHelper.GetQuickActionRange(unit);
+                        List<EntityAction> actions = unit.GetAllActions();
                         
-                        foreach(Vector3Int tile in validLocations)
+                        for(int i = 0; i < valid.Count; i++)
                         {
-                            optionsMap.SetTile(tile, GetInfoTile(TileColor.White));
-                            //TODO add the extra locations based on the unit's avalible actions
-                            /*if(tileManager.GetEntityOnTile(tile.x + 1, tile.y, tile.z) != null)
+                            //make a temp tile so we can place it on the optionsMap
+                            if(valid[i].z == 0)
                             {
-
-                            }*/
-                            
+                                    //movement tile
+                                    valid[i] = new Vector3Int(valid[i].x, valid[i].y, 0);
+                                    optionsMap.SetTile(valid[i], GetInfoTile(TileColor.White));
+                            }
+                            else if(valid[i].z == 1 && HasAction(actions, "Attack"))
+                            {
+                                    //attack tile
+                                    valid[i] = new Vector3Int(valid[i].x, valid[i].y, 0);
+                                    optionsMap.SetTile(valid[i], GetInfoTile(TileColor.Red));
+                            }
+                            else if(valid[i].z == 2 && HasAction(actions, "Water"))
+                            {
+                                    //water tile
+                                    valid[i] = new Vector3Int(valid[i].x, valid[i].y, 0);
+                                    optionsMap.SetTile(valid[i], GetInfoTile(TileColor.Blue));
+                            }
+                            else if(valid[i].z == 3 && HasAction(actions, "Harvest"))
+                            {
+                                    //harvest tile
+                                    valid[i] = new Vector3Int(valid[i].x, valid[i].y, 0);
+                                    optionsMap.SetTile(valid[i], GetInfoTile(TileColor.Yellow));
+                            }
                         }
+
+                        validLocations = valid;
                         SoundManager.Instance.PlayEntitySound(unit, SoundType.SELECT);
                         PushState(InteractionState.Movement);
                         return;
@@ -306,6 +333,8 @@ public class UnitInteractionSystem : TileCursor
                 //if selected tile, try to place the unit at the current location to see if it works
                 if (selectedEntity != null && toData != null)
                 {
+                    //grab what's at the position before clearing
+                    TileBase end = optionsMap.GetTile(pos);
                     optionsMap.ClearAllTiles();
                     extensionsMap.ClearAllTiles();
                     //check they if they're the same
@@ -318,20 +347,31 @@ public class UnitInteractionSystem : TileCursor
                         prevLocation = selectedPosition;
                         afterLocation = pos;
                         SoundManager.Instance.PlayEntitySound(selectedEntity, SoundType.PLACE);
-                        return;
                     }
                     //Only place if entity can go to new tile
-                    else if (toData.CanPlaceEntity() && IsInRange(pos))
+                    else if (IsInRange(pos))
                     {
                         //tileManager.MoveEntity(selectedPosition, pos);
                         prevLocation = selectedPosition;
                         afterLocation = pos;
                         Unit unitCheck = selectedEntity as Unit;
                         if (unitCheck == null) return;
+                        //what happens depends on the tile at the position
+                        //TODO
+                        if(end == GetInfoTile(TileColor.White))
+                        {
+                            Debug.Log("MoveTile");
+                            StartCoroutine(WaitForMoveAndShowOptions(unitCheck, toData));
+                        }
+                        else
+                        {
+                            Debug.Log("QuickAction");
+                            StartCoroutine(QuickAction(unitCheck, toData));
+                        }
 
-                        StartCoroutine(WaitForMoveAndShowOptions(unitCheck, toData));
-                        return;
                     }
+
+                    return;
                 }
                 else
                 {
@@ -360,7 +400,7 @@ public class UnitInteractionSystem : TileCursor
     private IEnumerator WaitForMoveAndShowOptions(Unit unit, TileData toData)
     {
         DisableInputs();
-        Debug.Log("WaitForMoveAndShowOptions");
+        //Debug.Log("WaitForMoveAndShowOptions");
         isMoving = true;
         //grab the path and store incase we undo
         //move along path
@@ -375,14 +415,86 @@ public class UnitInteractionSystem : TileCursor
         OnUnitMoved?.Invoke();
     }
 
+    private IEnumerator QuickAction(Unit unit, TileData toData)
+    {
+        DisableInputs();
+        //Debug.Log("QuickAction");
+        isMoving = true;
+        //grab the path and store incase we undo
+        //move along path
+        Vector3Int end = afterLocation;
+        yield return StartCoroutine(unit.Move(lastMovePath));
+
+        yield return new WaitUntil(() => !unit.isMoving);
+        isMoving = false;
+
+        arrowMap.ClearAllTiles();
+        EnableInputs();
+        //ShowUnitOptions(unit);
+
+        //find the correct action
+        string tempAction = "";
+        Vector3Int pos = unit.GetGridPos();
+        List<EntityAction> actions = unit.GetAllActions();
+
+        //if the final tile has an enemy
+        if(tileManager.GetTileDataAt(end).HasEnemyUnit())
+        {
+            tempAction = "Attack";
+        }//if the tile has a crop
+        else if (tileManager.GetTileDataAt(end).GetOccupyingEntity() as Crop != null)
+        {
+            Crop cropCheck = tileManager.GetTileDataAt(end).GetOccupyingEntity() as Crop;
+            //if the crop is ready to be harvested
+            if (cropCheck.CanBeHarvested())
+            {
+                tempAction = "Harvest";
+            }//if the tile is not ready to be harvested and needs to be watered
+            else if (!cropCheck.CanBeHarvested() && !cropCheck.IsWatered())
+            {
+                tempAction = "Water";
+            }
+        }
+
+        if(tempAction != "")
+        {
+            foreach(EntityAction act in actions)
+            {
+                if(act.GetName() == tempAction)
+                {
+                    currAction = act;
+                }
+            }
+        }
+
+        if (AttemptTarget(end))
+        {
+            state = InteractionState.Selection;
+            OnStateChanged?.Invoke(state);
+        }
+
+    }
+
     public bool IsInRange(Vector3Int pos)
     {
-        return validLocations.Contains(pos);  
+        for(int i = 0; i < validLocations.Count; i++)
+        {
+            if(validLocations[i].x == pos.x && validLocations[i].y == pos.y)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public bool AttemptTarget(Vector3Int pos)
     {
-        if (currAction == null) return false;
+        if (currAction == null)
+        {
+            Debug.Log("No Current Action");
+            return false;
+        }
+
         //Check that the position you clicked is a valid target
         if (validLocations.Count > 0 && validLocations.Contains(pos))
         {
@@ -393,6 +505,7 @@ public class UnitInteractionSystem : TileCursor
             ResetData();
             return true;
         }
+        Debug.Log("Invalid location");
         return false; 
     }
 
@@ -451,11 +564,36 @@ public class UnitInteractionSystem : TileCursor
                 if (unit != null)
                 {
                     //show movement range
-                    validLocations = unit.GetMovementRange();
-                    foreach (Vector3Int pos in validLocations)
-                    {
-                        optionsMap.SetTile(pos, GetInfoTile(TileColor.White));
-                    }
+                        validLocations = tileHelper.GetQuickActionRange(unit);
+                        List<EntityAction> actions = unit.GetAllActions();
+                        
+                        foreach(Vector3Int tile in validLocations)
+                        {
+                            //make a temp tile so we can place it on the optionsMap
+                            Vector3Int temp = tile;
+                            temp.z = 0;
+                            if(tile.z == 0)
+                            {
+                                    //movement tile
+                                    optionsMap.SetTile(temp, GetInfoTile(TileColor.White));
+                            }
+                            else if(tile.z == 1 && HasAction(actions, "Attack"))
+                            {
+                                    //attack tile
+                                    optionsMap.SetTile(temp, GetInfoTile(TileColor.Red));
+                            }
+                            else if(tile.z == 2 && HasAction(actions, "Water"))
+                            {
+                                    //water tile
+                                    optionsMap.SetTile(temp, GetInfoTile(TileColor.Blue));
+                            }
+                            else if(tile.z == 3 && HasAction(actions, "Harvest"))
+                            {
+                                    //harvest tile
+                                    optionsMap.SetTile(temp, GetInfoTile(TileColor.Yellow));
+                            }
+                            
+                        }
                 }
                 break;
             case InteractionState.DecisionSelection:
@@ -843,6 +981,11 @@ public class UnitInteractionSystem : TileCursor
         StartFeedTargeting();
     }
 
+    private void QuickAction()
+    {
+
+    }
+
     private void StopFeeding()
     {
         StopAction();
@@ -883,5 +1026,18 @@ public class UnitInteractionSystem : TileCursor
     {
         isInputOn = true;
         input.Enable();
+    }
+
+    //checks to see if the provided list has the requested action
+    public bool HasAction(List<EntityAction> actions, string name)
+    {
+        for(int i = 0; i < actions.Count; i++)
+        {
+            if(actions[i].GetName() == name)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
