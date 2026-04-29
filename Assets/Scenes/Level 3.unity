@@ -3462,10 +3462,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 730113126678982393, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
-      propertyPath: m_Name
-      value: Barn Menu
-      objectReference: {fileID: 0}
     - target: {fileID: 1432400595709243524, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
       propertyPath: m_IsActive
       value: 1

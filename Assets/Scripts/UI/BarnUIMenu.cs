@@ -47,12 +47,22 @@ public class BarnUIMenu : NaviagatableUI
             button.Initialize(buttons.Count - 1);
         }
         sellCropButtons = new List<SellCropButton>();
+        List<int> crops = GameManager.Instance.GetCropIDs();
         foreach (Transform child in sellButtonLayout)
         {
             SellCropButton button = child.gameObject.GetComponent<SellCropButton>();
             if ( button != null)
             {
-                sellCropButtons.Add(button);
+                if (crops.Contains(button.cropID))
+                {
+                    button.gameObject.SetActive(true);
+                    sellCropButtons.Add(button);
+                }
+                //Hide the buttons if the crop isn't in the level
+                else
+                {
+                    button.gameObject.SetActive(false);
+                }
             }
         }
     }

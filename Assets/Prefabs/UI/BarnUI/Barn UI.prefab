@@ -1343,8 +1343,8 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: -512
-  m_ChildForceExpandWidth: 1
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
@@ -2361,7 +2361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1812280046939909520, guid: 1f67107bef7f05946b9d802a3b37a0a2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 309.6482
+      value: 288
       objectReference: {fileID: 0}
     - target: {fileID: 1812280046939909520, guid: 1f67107bef7f05946b9d802a3b37a0a2, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2471,7 +2471,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1812280046939909520, guid: 1f67107bef7f05946b9d802a3b37a0a2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 523.2964
+      value: 480
       objectReference: {fileID: 0}
     - target: {fileID: 1812280046939909520, guid: 1f67107bef7f05946b9d802a3b37a0a2, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2577,7 +2577,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1812280046939909520, guid: 1f67107bef7f05946b9d802a3b37a0a2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 736.9446
+      value: 672
       objectReference: {fileID: 0}
     - target: {fileID: 1812280046939909520, guid: 1f67107bef7f05946b9d802a3b37a0a2, type: 3}
       propertyPath: m_AnchoredPosition.y
