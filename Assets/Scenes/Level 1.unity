@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1839735485 &228520232 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 2167807993414824472, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+  m_PrefabInstance: {fileID: 1620141878}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &315333019
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,6 +167,8 @@ MonoBehaviour:
   onAnimalDieConversation: Tutorial/OnAnimalDie
   requireCropGrownBeforeRobotMove: 1
   requireCropWateredBeforeGrow: 1
+  hoverMap: {fileID: 228520232}
+  hoverTile: {fileID: 11400000, guid: 43c3207df2dee1c43a14557151a57a53, type: 2}
 --- !u!4 &315333021
 Transform:
   m_ObjectHideFlags: 0

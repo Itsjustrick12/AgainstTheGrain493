@@ -179,6 +179,18 @@ public class CameraController : MonoBehaviour
         cam.transform.position = end;
     }
 
+    //Used by dialogue system
+    //Pass the coordinates as "-2|3"
+    public void PanToWorldPosition(string coords)
+    {
+        var parts = coords.Split('|');
+        if (parts.Length < 2) return;
+        float x = float.Parse(parts[0]);
+        float y = float.Parse(parts[1]);
+        Vector3Int tilePos = new Vector3Int(Mathf.RoundToInt(x), Mathf.RoundToInt(y), 0);
+        FocusOnTilePosition(tilePos, 0.5f);
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
