@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 143.177, y: 61.5}
+  m_AnchoredPosition: {x: -20.595, y: -0.00011307001}
+  m_SizeDelta: {x: 101.99, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6986153574070189769
 CanvasRenderer:
@@ -74,8 +74,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283721095
-  m_fontColor: {r: 0.5294118, g: 0.39607844, b: 0.32941177, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -13.046684, y: 4.0280704, z: 38.70874, w: 0.3083477}
+  m_margin: {x: 0, y: 3, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -171,7 +171,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 54.4, y: 0}
+  m_AnchoredPosition: {x: 52, y: 0}
   m_SizeDelta: {x: 48, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1381268314493534298
@@ -280,7 +280,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9bb1d713c09ed144d96ea64b6a458230, type: 3}
+  m_Sprite: {fileID: -154921924, guid: 4443aafebaaa76d4b83274bf260cb591, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -303,9 +303,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   acceptingInput: 1
-  normalSprite: {fileID: 21300000, guid: 9bb1d713c09ed144d96ea64b6a458230, type: 3}
-  highlightSprite: {fileID: 21300000, guid: 4473d22a9eabbb0488ec2300d56d3048, type: 3}
-  unavailableSprite: {fileID: 0}
+  normalSprite: {fileID: -154921924, guid: 4443aafebaaa76d4b83274bf260cb591, type: 3}
+  highlightSprite: {fileID: 360880264, guid: 4443aafebaaa76d4b83274bf260cb591, type: 3}
+  unavailableSprite: {fileID: 1527607433, guid: 4443aafebaaa76d4b83274bf260cb591, type: 3}
   isSelected: 0
   available: 1
   cropID: 1

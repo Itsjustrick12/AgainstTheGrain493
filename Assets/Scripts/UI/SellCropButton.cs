@@ -19,6 +19,31 @@ public class SellCropButton : UIButton
     {
         isSelected = false;
         image.sprite = normalSprite;
+        EconomyManager.OnCropChanged += UpdateVisual;
+    }
+
+    private void OnDisable()
+    {
+        EconomyManager.OnCropChanged -= UpdateVisual;
+    }
+
+    //Wrapper function
+    public void UpdateVisual(int id)
+    {
+        if (id == cropID)
+        {
+            UpdateVisual();
+        }
+    }
+
+    public override void UpdateVisual()
+    {
+        //Check if we have a crop to sell
+        bool hasCrop = economyManager.GetHarvestedCrops(cropID) > 0;
+        
+        acceptingInput = hasCrop;
+
+        image.sprite = hasCrop ? normalSprite : unavailableSprite;
     }
 
     public override void OnPointerEnter(PointerEventData eventData)

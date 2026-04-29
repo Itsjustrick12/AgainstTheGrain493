@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -22,6 +24,9 @@ public class BarnUIMenu : NaviagatableUI
     public Transform buttonLayout;
     public int[] animalList;
 
+    public Transform sellButtonLayout;
+    public List<SellCropButton> sellCropButtons;
+
     public BuyButton buyButton;
     public Image unitPreview;
 
@@ -41,16 +46,25 @@ public class BarnUIMenu : NaviagatableUI
             button.UpdateButton(id);
             button.Initialize(buttons.Count - 1);
         }
+        sellCropButtons = new List<SellCropButton>();
+        foreach (Transform child in sellButtonLayout)
+        {
+            SellCropButton button = child.gameObject.GetComponent<SellCropButton>();
+            if ( button != null)
+            {
+                sellCropButtons.Add(button);
+            }
+        }
     }
 
     public void OnEnable()
     {
-        EconomyManager.OnCoinsChanged += UpdateCoinText;
+        EconomyManager.OnCoinsChanged += RefreshVisuals;
     }
 
     public void OnDisable()
     {
-        EconomyManager.OnCoinsChanged -= UpdateCoinText;
+        EconomyManager.OnCoinsChanged -= RefreshVisuals;
     }
 
     public override void DeselectButton(int index)
@@ -89,7 +103,10 @@ public class BarnUIMenu : NaviagatableUI
             }
         }
 
-            btn.SetSelected(true);
+        btn.SetSelected(true);
+
+        //Update the buy button based on if the new selected index can be purchased
+        UpdateButtons();
     }
 
     public void ShowMenu()
@@ -100,7 +117,9 @@ public class BarnUIMenu : NaviagatableUI
         UpdateCropText(econManager.GetHarvestedCrops(1));
         UpdateCoinText(econManager.GetCoins());
         TurnOnInput();
-        buyButton.SetAcceptingInput(true);
+        //Update Buttons
+        UpdateButtons();
+
     }
 
     public void HideMenu()
@@ -119,6 +138,12 @@ public class BarnUIMenu : NaviagatableUI
     public void UpdateCropText(int grainAmount)
     {
         //grainText.text = grainAmount.ToString();
+    }
+
+    public void RefreshVisuals(int coinAmount)
+    {
+        UpdateCoinText(coinAmount);
+        UpdateButtons();
     }
 
     public void UpdateCoinText(int coinAmount)
@@ -157,5 +182,18 @@ public class BarnUIMenu : NaviagatableUI
         base.ReportAction();
         //Do something here in the derived class
         BuyUnit(buttons[selectedChoice].GetComponent<AnimalButton>().entityID);
+    }
+
+    public void UpdateButtons()
+    {
+        foreach (SellCropButton button in sellCropButtons)
+        {
+            button.UpdateVisual();
+        }
+
+        //get reference to the current unit and see if we can buy it
+        UnitInfo info = UnitDatabase.Instance.GetUnitInfo(buttons[selectedChoice].GetComponent<AnimalButton>().entityID);
+
+        buyButton.UpdateVisual(info != null ? info.purchasePrice : int.MaxValue);
     }
 }

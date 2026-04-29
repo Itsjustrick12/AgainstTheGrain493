@@ -19,6 +19,14 @@ public class BuyButton : UIButton
         }
     }
 
+    public void UpdateVisual(int price)
+    {
+        bool canAfford = EconomyManager.Instance.GetCoins() >= price;
+        acceptingInput = canAfford;
+        image.sprite = canAfford ? normalSprite : unavailableSprite;
+        //UpdateVisual();
+    }
+
     public override void OnPointerExit(PointerEventData eventData)
     {
         if (acceptingInput)
