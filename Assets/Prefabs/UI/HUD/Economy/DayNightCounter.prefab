@@ -33,9 +33,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7059439105554523696}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -56, y: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 288, y: 96}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &2443982244087629251
@@ -143,7 +143,7 @@ PrefabInstance:
     - target: {fileID: 285624386942438895, guid: 6f206b2da1ebf0c4a97a9a65559cd3c7, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -305264965510259979, guid: e420cfce8dad68c489a1b07e335b52ab, type: 3}
+      objectReference: {fileID: -3998771892055078564, guid: e420cfce8dad68c489a1b07e335b52ab, type: 3}
     - target: {fileID: 1897780497001650225, guid: 6f206b2da1ebf0c4a97a9a65559cd3c7, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -370,7 +370,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8758104172479040940, guid: 6f206b2da1ebf0c4a97a9a65559cd3c7, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 128
+      value: 52
       objectReference: {fileID: 0}
     - target: {fileID: 8758104172479040940, guid: 6f206b2da1ebf0c4a97a9a65559cd3c7, type: 3}
       propertyPath: m_SizeDelta.y
@@ -535,15 +535,17 @@ MonoBehaviour:
   image: {fileID: 53912126906268046}
   daySprite: {fileID: 585786759, guid: 3034d07992dcf0f4f99b5f1de185f700, type: 3}
   nightSprite: {fileID: -365883429, guid: 3034d07992dcf0f4f99b5f1de185f700, type: 3}
-  imageTransform: {fileID: 4693408904945336143}
+  layoutTransform: {fileID: 0}
   numbers:
-  - {fileID: 6741319368800100139}
-  - {fileID: 7505805419229264599}
-  - {fileID: 68806163295078380}
-  - {fileID: 4221303878461704973}
-  - {fileID: 7185329863494922500}
-  - {fileID: 4427970884101299590}
   - {fileID: 744167335331747753}
+  - {fileID: 4427970884101299590}
+  - {fileID: 7185329863494922500}
+  - {fileID: 4221303878461704973}
+  - {fileID: 68806163295078380}
+  - {fileID: 7505805419229264599}
+  - {fileID: 6741319368800100139}
+  numberSize: 48
+  textOffset: 4
   dayNumber: 0
 --- !u!114 &6741319368800100139 stripped
 MonoBehaviour:

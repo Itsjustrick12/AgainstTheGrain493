@@ -140,10 +140,6 @@ PrefabInstance:
       value: DayNightCounter
       objectReference: {fileID: 0}
     - target: {fileID: 4755101708079580726, guid: 324a2548e30d3a4498fa88b0e4a7b17e, type: 3}
-      propertyPath: dayNumber
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4755101708079580726, guid: 324a2548e30d3a4498fa88b0e4a7b17e, type: 3}
       propertyPath: layoutTransform
       value: 
       objectReference: {fileID: 5343374212317832261}
