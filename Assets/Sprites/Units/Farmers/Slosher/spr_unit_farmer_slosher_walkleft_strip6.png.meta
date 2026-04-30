@@ -1,37 +1,7 @@
 fileFormatVersion: 2
-guid: 0b57dfe6e8b7342789a73475d9496a16
+guid: 352cdd073f564bd449522a8523d6ca86
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -6192853276953649638
-    second: ui_font_strip10 2_0
-  - first:
-      213: -366127062266533888
-    second: ui_font_strip10 2_1
-  - first:
-      213: -7396912090375833769
-    second: ui_font_strip10 2_2
-  - first:
-      213: 1743447080619762118
-    second: ui_font_strip10 2_3
-  - first:
-      213: -8912808790550786330
-    second: ui_font_strip10 2_4
-  - first:
-      213: -4754974740663008702
-    second: ui_font_strip10 2_5
-  - first:
-      213: -3283242580881036595
-    second: ui_font_strip10 2_6
-  - first:
-      213: -7067832061734966705
-    second: ui_font_strip10 2_7
-  - first:
-      213: 759502800432820166
-    second: ui_font_strip10 2_8
-  - first:
-      213: -5815977235688445457
-    second: ui_font_strip10 2_9
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -140,35 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ui_font_strip10 2_0
+      name: spr_unit_farmer_slosher_walkleft_strip6_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 17
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a1e501971c09e0aa0800000000000000
-      internalID: -6192853276953649638
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ui_font_strip10 2_1
-      rect:
-        serializedVersion: 2
-        x: 17
-        y: 0
-        width: 17
-        height: 18
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,20 +125,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cb9783a4e2f27d43924aa661148d745
-      internalID: -366127062266533888
+      spriteID: 5cebfd0cf92cb2242a05ef9d6fc91dad
+      internalID: 168314402
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ui_font_strip10 2_2
+      name: spr_unit_farmer_slosher_walkleft_strip6_1
       rect:
         serializedVersion: 2
-        x: 34
+        x: 64
         y: 0
-        width: 17
-        height: 18
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -199,20 +147,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c871fac53628c734086153f9f59bee7c
-      internalID: -7396912090375833769
+      spriteID: c4a9bd8729f2d3e4086f35aa34deb3b3
+      internalID: -478635587
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ui_font_strip10 2_3
+      name: spr_unit_farmer_slosher_walkleft_strip6_2
       rect:
         serializedVersion: 2
-        x: 51
+        x: 128
         y: 0
-        width: 17
-        height: 18
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,20 +169,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb888f2a11e410c43a178de30329d695
-      internalID: 1743447080619762118
+      spriteID: ec900896287befb42897e29568f8738f
+      internalID: -84094168
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ui_font_strip10 2_4
+      name: spr_unit_farmer_slosher_walkleft_strip6_3
       rect:
         serializedVersion: 2
-        x: 68
+        x: 192
         y: 0
-        width: 17
-        height: 18
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -243,20 +191,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fadedf3799d093b48beb1ecbd5afb7df
-      internalID: -8912808790550786330
+      spriteID: 84c5291c46eba774ab41cd881859a9ca
+      internalID: -890647505
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ui_font_strip10 2_5
+      name: spr_unit_farmer_slosher_walkleft_strip6_4
       rect:
         serializedVersion: 2
-        x: 85
+        x: 256
         y: 0
-        width: 17
-        height: 18
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -265,20 +213,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2069a00d7a741b7489830c54e70d8f5e
-      internalID: -4754974740663008702
+      spriteID: 8166ccb57fe82404bbcdac59f912c0a6
+      internalID: -1898894649
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ui_font_strip10 2_6
+      name: spr_unit_farmer_slosher_walkleft_strip6_5
       rect:
         serializedVersion: 2
-        x: 102
+        x: 320
         y: 0
-        width: 17
-        height: 18
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -287,74 +235,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5bb2318f02489a14fb71bc2a5cf3bda1
-      internalID: -3283242580881036595
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ui_font_strip10 2_7
-      rect:
-        serializedVersion: 2
-        x: 119
-        y: 0
-        width: 17
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 37c2bc72726898a49860a26cfb0605f2
-      internalID: -7067832061734966705
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ui_font_strip10 2_8
-      rect:
-        serializedVersion: 2
-        x: 136
-        y: 0
-        width: 17
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6de8ab4226855f2449d64efc7c91ea90
-      internalID: 759502800432820166
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ui_font_strip10 2_9
-      rect:
-        serializedVersion: 2
-        x: 153
-        y: 0
-        width: 17
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 80da66e488bae0448b8a000f6c8f23ce
-      internalID: -5815977235688445457
+      spriteID: adb8ed6e8e08d9a44bd2fa3c8944afce
+      internalID: -901151018
       vertices: []
       indices: 
       edges: []
@@ -363,7 +245,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8ee0a64e2ab59e941930987f2566ae88
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -373,18 +255,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":17.0,"y":18.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      ui_font_strip10 2_0: -6192853276953649638
-      ui_font_strip10 2_1: -366127062266533888
-      ui_font_strip10 2_2: -7396912090375833769
-      ui_font_strip10 2_3: 1743447080619762118
-      ui_font_strip10 2_4: -8912808790550786330
-      ui_font_strip10 2_5: -4754974740663008702
-      ui_font_strip10 2_6: -3283242580881036595
-      ui_font_strip10 2_7: -7067832061734966705
-      ui_font_strip10 2_8: 759502800432820166
-      ui_font_strip10 2_9: -5815977235688445457
+      spr_unit_farmer_slosher_walkleft_strip6_0: 168314402
+      spr_unit_farmer_slosher_walkleft_strip6_1: -478635587
+      spr_unit_farmer_slosher_walkleft_strip6_2: -84094168
+      spr_unit_farmer_slosher_walkleft_strip6_3: -890647505
+      spr_unit_farmer_slosher_walkleft_strip6_4: -1898894649
+      spr_unit_farmer_slosher_walkleft_strip6_5: -901151018
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
