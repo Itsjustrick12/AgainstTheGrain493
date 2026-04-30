@@ -6,8 +6,11 @@ public class DayNightCounter : MonoBehaviour
     [SerializeField] private Image image;
     [SerializeField] private Sprite daySprite;
     [SerializeField] private Sprite nightSprite;
-    [SerializeField] RectTransform imageTransform;
+    [SerializeField] RectTransform layoutTransform;
     [SerializeField] UINumber[] numbers;
+
+    [SerializeField] float numberSize = 48f;
+    [SerializeField] float textOffset = 4f;
     public int dayNumber = 0;
 
     
@@ -40,7 +43,6 @@ public class DayNightCounter : MonoBehaviour
     {
         string valueStr = dayNumber.ToString();
         int digitCount = valueStr.Length;
-
         for (int i = 0; i < numbers.Length; i++)
         {
             if (i < digitCount)
@@ -54,6 +56,11 @@ public class DayNightCounter : MonoBehaviour
                 numbers[i].gameObject.SetActive(false);
             }
         }
+
+        // Resize container to fit active digits
+        Vector2 size = layoutTransform.sizeDelta;
+        size.x = digitCount * numberSize + textOffset;
+        layoutTransform.sizeDelta = size;
     }
 
 }
