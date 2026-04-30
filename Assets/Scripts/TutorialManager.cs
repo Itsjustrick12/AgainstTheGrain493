@@ -24,6 +24,9 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private bool requireCropGrownBeforeRobotMove = true;
     [SerializeField] private bool requireCropWateredBeforeGrow = true;
 
+    [SerializeField] private ObjectiveUI mainObjectiveBox;
+    [SerializeField] private ObjectiveUI stepObjectiveBox;
+
     private bool robotMoved = false;
     private bool cropPlanted = false;
     private bool cropWatered = false;
@@ -41,8 +44,9 @@ public class TutorialManager : MonoBehaviour
             gameObject.SetActive(false);
             return;
         }
-        ObjectiveUI.Instance.SetMainObjective("Objective: Kill that rustbolt");
-        ObjectiveUI.Instance.SetSteps("Click a friendly unit on the grid");
+
+        mainObjectiveBox.SetObjective("Kill that rustbolt");
+        stepObjectiveBox.SetObjective("Click on a farmer");
     }
 
     private void OnEnable()
@@ -83,7 +87,7 @@ public class TutorialManager : MonoBehaviour
     {
         TryStartConversation(onUnitClickedConversation);
 
-        ObjectiveUI.Instance.SetSteps("Move farmer onto dirt and plant wheat");
+        stepObjectiveBox.SetObjective("Move farmer onto dirt and plant wheat");
 
         UnitInteractionSystem.OnUnitSelected -= OnUnitClicked;
     }
@@ -93,7 +97,7 @@ public class TutorialManager : MonoBehaviour
         if (requireCropGrownBeforeRobotMove && !cropGrown) return;
         robotMoved = true;
         TryStartConversation(onRobotMoveConversation);
-        ObjectiveUI.Instance.SetSteps("Harvest the Wheat");
+        stepObjectiveBox.SetObjective("Harvest the Wheat");
         GameManager.StartEnemyTurn -= OnRobotMove;
     }
 
@@ -101,7 +105,7 @@ public class TutorialManager : MonoBehaviour
     {
         cropPlanted = true;
         TryStartConversation(onCropPlantedConversation);
-        ObjectiveUI.Instance.SetSteps("Move farmer near seeds and water them");
+        stepObjectiveBox.SetObjective("Move farmer near seeds and water them");
         PlantAction.onPlant -= OnCropPlanted;
     }
 
@@ -110,7 +114,7 @@ public class TutorialManager : MonoBehaviour
         if (requireCropWateredBeforeGrow && !cropWatered) return;
         cropGrown = true;
         TryStartConversation(onCropGrowConversation);
-        ObjectiveUI.Instance.SetSteps("Water the crops again");
+        stepObjectiveBox.SetObjective("Water the crops again");
         GameManager.StartPlayerTurn -= OnCropGrow;
     }
 
@@ -118,7 +122,7 @@ public class TutorialManager : MonoBehaviour
     {
         cropWatered = true;
         TryStartConversation(onCropWateredConversation);
-        ObjectiveUI.Instance.SetSteps("End the Turn");
+        stepObjectiveBox.SetObjective("End the Turn");
         BasicWaterAction.onWater -= OnCropWatered;
     }
 
@@ -126,7 +130,7 @@ public class TutorialManager : MonoBehaviour
     {
         cropHarvested = true;
         TryStartConversation(onCropHarvestedConversation);
-        ObjectiveUI.Instance.SetSteps("Sell Wheat at barn & buy chicken");
+        stepObjectiveBox.SetObjective("Sell Wheat at barn & buy chicken");
         BasicHarvestAction.onHarvest -= OnCropHarvested;
     }
 
@@ -134,7 +138,7 @@ public class TutorialManager : MonoBehaviour
     {
         chickenPurchased = true;
         TryStartConversation(onChickenPurchasedConversation);
-        ObjectiveUI.Instance.SetSteps("Purchase another chicken and attack the tinhead");
+        stepObjectiveBox.SetObjective("Purchase another chicken and attack the tinhead");
         SpawnUnitAction.OnSpawn -= OnChickenPurchased;
     }
 
@@ -142,21 +146,21 @@ public class TutorialManager : MonoBehaviour
     {
         enemyHit = true;
         TryStartConversation(onEnemyHitConversation);
-        ObjectiveUI.Instance.SetSteps("Kill that man");
+        stepObjectiveBox.SetObjective("Kill that bot");
         Unit.OnEnemyHit -= OnEnemyHit;
     }
 
     public void OnFriendlyDie()
     {
         TryStartConversation(onFriendlyDieConversation);
-        ObjectiveUI.Instance.SetSteps("Bruh");
+        stepObjectiveBox.SetObjective("Bruh");
         Unit.OnFriendlyDie -= OnFriendlyDie;
     }
 
     public void OnAnimalDie()
     {
         TryStartConversation(onAnimalDieConversation);
-        ObjectiveUI.Instance.SetSteps("Bruh");
+        stepObjectiveBox.SetObjective("Bruh");
         Unit.OnAnimalDie -= OnAnimalDie;
     }
 }

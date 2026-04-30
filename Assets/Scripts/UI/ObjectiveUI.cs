@@ -7,7 +7,6 @@ public class ObjectiveUI : MonoBehaviour
 
     [Header("UI References")]
     [SerializeField] private TMP_Text mainObjectiveText;
-    [SerializeField] private TMP_Text stepsText;
 
     private void Awake()
     {
@@ -15,21 +14,14 @@ public class ObjectiveUI : MonoBehaviour
     }
 
     // Main objective (big goal)
-    public void SetMainObjective(string text)
+    public void SetObjective(string text)
     {
         mainObjectiveText.text = text;
-    }
-
-    // Smaller instruction text
-    public void SetSteps(string text)
-    {
-        stepsText.text = text;
     }
 
     // Helper to clear UI
     public void Clear()
     {
         mainObjectiveText.text = "";
-        stepsText.text = "";
     }
 }
