@@ -512,6 +512,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CropDisplay
       objectReference: {fileID: 0}
+    - target: {fileID: 5611931274883039701, guid: 80d8e00db942a694aafec344f9600771, type: 3}
+      propertyPath: arrowOffset
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 6021398342275503311, guid: 80d8e00db942a694aafec344f9600771, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -637,6 +645,14 @@ PrefabInstance:
     - target: {fileID: 5351906402903172753, guid: 80d8e00db942a694aafec344f9600771, type: 3}
       propertyPath: m_Name
       value: CropDisplay (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5611931274883039701, guid: 80d8e00db942a694aafec344f9600771, type: 3}
+      propertyPath: arrowOffset
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 6021398342275503311, guid: 80d8e00db942a694aafec344f9600771, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
