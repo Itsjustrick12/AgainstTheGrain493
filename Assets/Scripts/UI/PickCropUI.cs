@@ -212,6 +212,12 @@ public class PickCropUI : NaviagatableUI
             }
         }
         SetSelectedIndex(selectedChoice);
+
+        if (selectedChoice >= 0 && selectedChoice < buttons.Count)
+        {
+            CropButton button = buttons[selectedChoice].GetComponent<CropButton>();
+            button?.SetSelected(true);
+        }
     }
 
     public void StopPicking()

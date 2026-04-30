@@ -24,6 +24,7 @@ public class CropButton : UIButton
             cropImage = GetComponentInChildren<Image>();
         }
         acceptingInput = false;
+        arrow?.SetIconOnly(false);
     }
 
     public void UpdateAvailability()
