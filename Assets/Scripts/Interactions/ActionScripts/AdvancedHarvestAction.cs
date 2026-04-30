@@ -110,6 +110,7 @@ public class AdvancedHarvestAction : BasicHarvestAction
 
     public override void PerformAt(Entity unit, Vector3Int pos)
     {
+        TileManager manager = FindFirstObjectByType<TileManager>();
         Unit unitCheck = unit as Unit;
         if(unitCheck != null && unitCheck.HasAnimator())
         {
@@ -121,35 +122,25 @@ public class AdvancedHarvestAction : BasicHarvestAction
         }
 
         //if a crop exists, harvest the crop
-        Crop targetCrop = FindFirstObjectByType<TileManager>().GetCropOnTile(pos);
+        Crop targetCrop = manager.GetCropOnTile(pos);
         if(targetCrop != null)targetCrop.Harvest();
 
         //harvest the crops at the positions next to the crop
         if(pos.x != unit.GetGridPos().x)
         {
-            targetCrop = FindFirstObjectByType<TileManager>().GetCropOnTile(new Vector3Int(pos.x, pos.y + 1, pos.z));
+            targetCrop = manager.GetCropOnTile(new Vector3Int(pos.x, pos.y + 1, pos.z));
             if(targetCrop != null)targetCrop.Harvest();
-            targetCrop = FindFirstObjectByType<TileManager>().GetCropOnTile(new Vector3Int(pos.x, pos.y - 1, pos.z));
+            targetCrop = manager.GetCropOnTile(new Vector3Int(pos.x, pos.y - 1, pos.z));
             if(targetCrop != null)targetCrop.Harvest();
         }
         else if(pos.y != unit.GetGridPos().y)
         {
-            targetCrop = FindFirstObjectByType<TileManager>().GetCropOnTile(new Vector3Int(pos.x + 1, pos.y, pos.z));
+            targetCrop = manager.GetCropOnTile(new Vector3Int(pos.x + 1, pos.y, pos.z));
             if(targetCrop != null)targetCrop.Harvest();
-            targetCrop = FindFirstObjectByType<TileManager>().GetCropOnTile(new Vector3Int(pos.x - 1, pos.y, pos.z));
+            targetCrop = manager.GetCropOnTile(new Vector3Int(pos.x - 1, pos.y, pos.z));
             if(targetCrop != null)targetCrop.Harvest();
         }
 
-        /*
-        targetCrop = FindFirstObjectByType<TileManager>().GetCropOnTile(new Vector3Int(pos.x + 1, pos.y, pos.z));
-        if(targetCrop != null) targetCrop.Harvest();
-        targetCrop = FindFirstObjectByType<TileManager>().GetCropOnTile(new Vector3Int(pos.x - 1, pos.y, pos.z));
-        if(targetCrop != null) targetCrop.Harvest();
-        targetCrop = FindFirstObjectByType<TileManager>().GetCropOnTile(new Vector3Int(pos.x, pos.y + 1, pos.z));
-        if(targetCrop != null) targetCrop.Harvest();
-        targetCrop = FindFirstObjectByType<TileManager>().GetCropOnTile(new Vector3Int(pos.x, pos.y - 1, pos.z));
-        if(targetCrop != null) targetCrop.Harvest();
-        */
         onHarvest?.Invoke();
     }
 

@@ -77,6 +77,7 @@ public class BasicWaterAction : EntityAction
 
         if (targetCrop == null)
         {
+            Debug.Log("No Crop");
             return;
         }
 

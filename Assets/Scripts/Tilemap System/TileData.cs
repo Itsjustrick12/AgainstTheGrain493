@@ -82,6 +82,11 @@ public class TileData
     
     }
 
+    public TileType GetType()
+    {
+        return type;
+    }
+
     public void PlaceEntity(Entity entity)
     {
         if (entity == null)

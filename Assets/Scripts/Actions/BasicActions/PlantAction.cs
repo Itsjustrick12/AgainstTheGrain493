@@ -57,7 +57,7 @@ public class PlantAction : EntityAction
 
     public override bool IsPossible(Entity unit)
     {
-        //Attack isn't possible if there are no nearby enemy units or the unit already moved
+        //Plant isn't possible if there are no nearby enemy units or the unit already moved
         if (GetValidTargets(unit).Count <= 0 || !unit.IsActive())
         {
             return false;
@@ -67,7 +67,7 @@ public class PlantAction : EntityAction
 
     public override void PerformAt(Entity unit, List<Vector3Int> positions)
     {
-        //Just attack the unit from the selected position, for this basic attack there shouldn't be more than one target
+        //Just plant the unit from the selected position, for this basic attack there shouldn't be more than one target
         PerformAt(unit, positions[0]);
 
     }

@@ -74,6 +74,12 @@ public class Entity : MonoBehaviour, IBuffable
         return actions.Where(action => action.IsPossible(this)).ToList();
     }
 
+    public List<EntityAction> GetAllActions()
+    {
+        //Return all the actions that are currently possible given the Unit's information (and generally position)
+        return actions;
+    }
+
     public void SetGridPos(Vector3Int pos)
     {
         gridPos = pos;
