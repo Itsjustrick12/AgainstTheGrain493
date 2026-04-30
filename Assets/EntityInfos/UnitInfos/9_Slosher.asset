@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 000595eef398e0f45a8e664d8f5ff3c8, type: 3}
+  m_Name: 9_Slosher
+  m_EditorClassIdentifier: Assembly-CSharp::UnitInfo
+  id: 9
+  entityName: Slosher
+  baseHealth: 5
+  prefab: {fileID: 4935858330493278644, guid: 3010cfc5fd1194825b16197f27ddb648, type: 3}
+  tile: {fileID: 11400000, guid: b0414251200a340bb8f4201e2f5aa5a4, type: 2}
+  sprite: {fileID: -3622224362263781715, guid: f824b4bd8617b684992a544f83f978a1, type: 3}
+  actions:
+  - {fileID: 11400000, guid: f92ad7ce0d1f344b69880b2bb3496488, type: 2}
+  purchasePrice: 15
+  sellValue: 15
+  hurtSound: {fileID: 8300000, guid: d88985e9feca51649984a523bcd49efa, type: 3}
+  deathSound: {fileID: 8300000, guid: 1eb23301a54e4e749965a894b4d2f2fe, type: 3}
+  isEnemy: 0
+  attackRange: 1
+  strength: 0
+  moveRange: 4
+  attackSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  walkSound: {fileID: 8300000, guid: 7c8bbff6ccf32d744ad306dff31f1ebe, type: 3}
+  placeSound: {fileID: 0}

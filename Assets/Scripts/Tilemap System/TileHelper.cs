@@ -409,8 +409,8 @@ public class TileHelper : MonoBehaviour
                         returnTile.z = 0;
                     }
 
-                }//check to see if the tile is in action range AND has an occupant
-                else if(Mathf.Abs(i) + Mathf.Abs(j) <= moveAmt + atkAmt && data.HasOccupant())
+                }//check to see if the tile is in action range AND has an occupant ir is an enemy(for enemy attack range)
+                else if(Mathf.Abs(i) + Mathf.Abs(j) <= moveAmt + atkAmt && (data.HasOccupant() || currentUnit.GetIsEnemy()))
                 {
                     //get the path to the current position
                     var validPath = TilePath(currentPos, candidateTile, currentUnit);
@@ -433,8 +433,12 @@ public class TileHelper : MonoBehaviour
                     //if the cost isn't to great, we look at the occupant
                     if (totalCost <= moveAmt)
                     {
-                        //if the occupying entity is a unit
-                        if(data.GetOccupyingEntity() as Unit != null)
+                        //if the currentUnit is an enemy
+                        if(currentUnit.GetIsEnemy())
+                        {
+                            returnTile.z = 1;
+                        }//if the currentUnit is a friendly
+                        else if(data.GetOccupyingEntity() as Unit != null)
                         {
                             if((data.GetOccupyingEntity() as Unit).GetIsEnemy())
                             {

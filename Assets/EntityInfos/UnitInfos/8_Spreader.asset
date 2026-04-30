@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 000595eef398e0f45a8e664d8f5ff3c8, type: 3}
+  m_Name: 8_Spreader
+  m_EditorClassIdentifier: Assembly-CSharp::UnitInfo
+  id: 8
+  entityName: Spreader
+  baseHealth: 5
+  prefab: {fileID: 4935858330493278644, guid: 3d3f358bfe15340df8634a7eaaeff558, type: 3}
+  tile: {fileID: 11400000, guid: f269d9a93ac3a4119ae0b573306942e8, type: 2}
+  sprite: {fileID: -7504789038950256894, guid: f25a4acd0d22e6140b4f53e26c29db8b, type: 3}
+  actions:
+  - {fileID: 11400000, guid: 55ee132a63d0648cfa6795227d910514, type: 2}
+  purchasePrice: 10
+  sellValue: 10
+  hurtSound: {fileID: 8300000, guid: d88985e9feca51649984a523bcd49efa, type: 3}
+  deathSound: {fileID: 8300000, guid: 1eb23301a54e4e749965a894b4d2f2fe, type: 3}
+  isEnemy: 0
+  attackRange: 1
+  strength: 0
+  moveRange: 3
+  attackSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  walkSound: {fileID: 8300000, guid: 7c8bbff6ccf32d744ad306dff31f1ebe, type: 3}
+  placeSound: {fileID: 0}

@@ -181,11 +181,9 @@ public class UnitInteractionSystem : TileCursor
                     infoPanel.ShowPanel(unit);
                     if (unit.GetIsEnemy())
                     {
-                        hoverLocations = unit.GetMovementRange();
-                        foreach (Vector3Int locations in hoverLocations)
-                        {
-                            optionsMap.SetTile(locations, GetInfoTile(TileColor.White));
-                        }
+                        hoverLocations = tileHelper.GetQuickActionRange(unit);
+                        List<EntityAction> actions = unit.GetAllActions();
+                        SetOptionsTiles(hoverLocations, actions);
                     }
                     lastHoveredUnit = unit;
                 }
@@ -296,36 +294,10 @@ public class UnitInteractionSystem : TileCursor
                             return;
                         }
                         infoPanel.HidePanel();
-                        validLocations = unit.GetMovementRange();
+                        List<Vector3Int> valid = tileHelper.GetQuickActionRange(unit);
+                        List<EntityAction> actions = unit.GetAllActions();
                         
-                        for(int i = 0; i < valid.Count; i++)
-                        {
-                            //make a temp tile so we can place it on the optionsMap
-                            if(valid[i].z == 0)
-                            {
-                                    //movement tile
-                                    valid[i] = new Vector3Int(valid[i].x, valid[i].y, 0);
-                                    optionsMap.SetTile(valid[i], GetInfoTile(TileColor.White));
-                            }
-                            else if(valid[i].z == 1 && HasAction(actions, "Attack"))
-                            {
-                                    //attack tile
-                                    valid[i] = new Vector3Int(valid[i].x, valid[i].y, 0);
-                                    optionsMap.SetTile(valid[i], GetInfoTile(TileColor.Red));
-                            }
-                            else if(valid[i].z == 2 && HasAction(actions, "Water"))
-                            {
-                                    //water tile
-                                    valid[i] = new Vector3Int(valid[i].x, valid[i].y, 0);
-                                    optionsMap.SetTile(valid[i], GetInfoTile(TileColor.Blue));
-                            }
-                            else if(valid[i].z == 3 && HasAction(actions, "Harvest"))
-                            {
-                                    //harvest tile
-                                    valid[i] = new Vector3Int(valid[i].x, valid[i].y, 0);
-                                    optionsMap.SetTile(valid[i], GetInfoTile(TileColor.Yellow));
-                            }
-                        }
+                        SetOptionsTiles(valid, actions);
 
                         validLocations = valid;
                         SoundManager.Instance.PlayEntitySound(unit, SoundType.SELECT);
@@ -589,33 +561,7 @@ public class UnitInteractionSystem : TileCursor
                         validLocations = tileHelper.GetQuickActionRange(unit);
                         List<EntityAction> actions = unit.GetAllActions();
                         
-                        foreach(Vector3Int tile in validLocations)
-                        {
-                            //make a temp tile so we can place it on the optionsMap
-                            Vector3Int temp = tile;
-                            temp.z = 0;
-                            if(tile.z == 0)
-                            {
-                                    //movement tile
-                                    optionsMap.SetTile(temp, GetInfoTile(TileColor.White));
-                            }
-                            else if(tile.z == 1 && HasAction(actions, "Attack"))
-                            {
-                                    //attack tile
-                                    optionsMap.SetTile(temp, GetInfoTile(TileColor.Red));
-                            }
-                            else if(tile.z == 2 && HasAction(actions, "Water"))
-                            {
-                                    //water tile
-                                    optionsMap.SetTile(temp, GetInfoTile(TileColor.Blue));
-                            }
-                            else if(tile.z == 3 && HasAction(actions, "Harvest"))
-                            {
-                                    //harvest tile
-                                    optionsMap.SetTile(temp, GetInfoTile(TileColor.Yellow));
-                            }
-                            
-                        }
+                        SetOptionsTiles(validLocations, actions);
                 }
                 break;
             case InteractionState.DecisionSelection:
@@ -829,11 +775,11 @@ public class UnitInteractionSystem : TileCursor
                 {
                     optionsMap.SetTile(pos, GetInfoTile(TileColor.Blue));
                 }
-                else
-                {
-                    optionsMap.SetTile(pos, GetInfoTile(TileColor.Green));
-                }
-            }//if it has nothing on it
+            }//if it has nothing on it check if we're planting
+            else if(tileManager.GetTileDataAt(pos).GetOccupyingEntity() == null && currAction.GetName() == "Plant")
+            {
+                optionsMap.SetTile(pos, GetInfoTile(TileColor.Green));
+            }
             else
             {
                 optionsMap.SetTile(pos, GetInfoTile(TileColor.White));
@@ -861,12 +807,13 @@ public class UnitInteractionSystem : TileCursor
                 {
                     extensionsMap.SetTile(pos, GetExtensionTile(TileColor.Blue));
                 }
-                else
-                {
-                    extensionsMap.SetTile(pos, GetExtensionTile(TileColor.Green));
-                }
             }
-            else {
+            else if(tileManager.GetTileDataAt(pos).GetOccupyingEntity() == null && currAction.GetName() == "Plant")
+            {
+                extensionsMap.SetTile(pos, GetExtensionTile(TileColor.Green));
+            }
+            else
+            {
                 extensionsMap.SetTile(pos, GetExtensionTile(TileColor.White));
             }
         }
@@ -1061,5 +1008,37 @@ public class UnitInteractionSystem : TileCursor
             }
         }
         return false;
+    }
+
+    public void SetOptionsTiles(List<Vector3Int> valid, List<EntityAction> actions)
+    {
+        for(int i = 0; i < valid.Count; i++)
+        {
+            //make a temp tile so we can place it on the optionsMap
+            if(valid[i].z == 0)
+            {
+                    //movement tile
+                    valid[i] = new Vector3Int(valid[i].x, valid[i].y, 0);
+                    optionsMap.SetTile(valid[i], GetInfoTile(TileColor.White));
+            }
+            else if(valid[i].z == 1 && HasAction(actions, "Attack"))
+            {
+                    //attack tile
+                    valid[i] = new Vector3Int(valid[i].x, valid[i].y, 0);
+                    optionsMap.SetTile(valid[i], GetInfoTile(TileColor.Red));
+            }
+            else if(valid[i].z == 2 && HasAction(actions, "Water"))
+            {
+                    //water tile
+                    valid[i] = new Vector3Int(valid[i].x, valid[i].y, 0);
+                    optionsMap.SetTile(valid[i], GetInfoTile(TileColor.Blue));
+            }
+            else if(valid[i].z == 3 && HasAction(actions, "Harvest"))
+            {
+                    //harvest tile
+                    valid[i] = new Vector3Int(valid[i].x, valid[i].y, 0);
+                    optionsMap.SetTile(valid[i], GetInfoTile(TileColor.Yellow));
+            }
+        }
     }
 }
