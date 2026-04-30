@@ -84,6 +84,7 @@ public class UnitInteractionSystem : TileCursor
     public bool isInputOn = true;
 
     public UnitInfoPanel infoPanel;
+    private Unit lastHoveredUnit;
     public bool isFeeding = false;
     public bool isMoving = false;
 
@@ -163,27 +164,43 @@ public class UnitInteractionSystem : TileCursor
         Vector3Int pos = GetCurrentTile();
         Entity potentialEntity = null;
         TileData data = tileManager.GetTileDataAt(pos);
-        if (data != null)
+        List<Vector3Int> hoverLocations;
+        // Only run hover logic when in Selection state AND nothing is selected
+        if (state == InteractionState.Selection && selectedEntity == null)
         {
-            potentialEntity = data.GetOccupyingEntity();
-        }
-        if(selectedEntity == null && potentialEntity != null)
-        {
+            if (data != null)
+            {
+                potentialEntity = data.GetOccupyingEntity();
+            }
             Unit unit = potentialEntity as Unit;
-            if (unit != null) { 
-            
-                infoPanel.ShowPanel(unit);
+            if (unit != null)
+            {
+                if (unit != lastHoveredUnit)
+                {
+                    optionsMap.ClearAllTiles();
+                    infoPanel.ShowPanel(unit);
+                    if (unit.GetIsEnemy())
+                    {
+                        hoverLocations = unit.GetMovementRange();
+                        foreach (Vector3Int locations in hoverLocations)
+                        {
+                            optionsMap.SetTile(locations, GetInfoTile(TileColor.White));
+                        }
+                    }
+                    lastHoveredUnit = unit;
+                }
             }
             else
             {
-                infoPanel.HidePanel();
+                if (lastHoveredUnit != null)
+                {
+                    optionsMap.ClearAllTiles();
+                    infoPanel.HidePanel();
+                    lastHoveredUnit = null;
+                }
             }
-            //Debug.Log("There is an entity Here");
         }
-        else
-        {
-            infoPanel.HidePanel();
-        }
+
     }
 
     public void SetArrow()
@@ -272,9 +289,14 @@ public class UnitInteractionSystem : TileCursor
                     if (selectedEntity != null && selectedEntity is Unit)
                     {
                         Unit unit = selectedEntity as Unit;
-                        if (unit.isEnemy) return;
-                        List<Vector3Int> valid = tileHelper.GetQuickActionRange(unit);
-                        List<EntityAction> actions = unit.GetAllActions();
+                        if (unit.isEnemy)
+                        {
+                            selectedEntity = null;
+                            //selectedPosition = new Vector3Int(0, 0, -1); // reset to your default
+                            return;
+                        }
+                        infoPanel.HidePanel();
+                        validLocations = unit.GetMovementRange();
                         
                         for(int i = 0; i < valid.Count; i++)
                         {
