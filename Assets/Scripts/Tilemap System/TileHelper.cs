@@ -435,10 +435,10 @@ public class TileHelper : MonoBehaviour
                         validPath.Add(currentUnit.GetGridPos());
                     }
                     //if the cost isn't to great, we look at the occupant
-                    if (totalCost <= moveAmt && Mathf.Abs(validPath[validPath.Count - 1].x - candidateTile.x) + Mathf.Abs(validPath[validPath.Count - 1].y - candidateTile.y) <= atkAmt)
+                    if (totalCost <= moveAmt)
                     {
                         //if the currentUnit is an enemy
-                        if(currentUnit.GetIsEnemy())
+                        if(currentUnit.GetIsEnemy()&& Mathf.Abs(validPath[validPath.Count - 1].x - candidateTile.x) + Mathf.Abs(validPath[validPath.Count - 1].y - candidateTile.y) <= atkAmt)
                         {
                             returnTile.z = 1;
                         }//if the currentUnit is a friendly
