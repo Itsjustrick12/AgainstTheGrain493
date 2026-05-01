@@ -376,7 +376,7 @@ public class TileHelper : MonoBehaviour
                 TileData data = tileManager.GetTileDataAt(candidateTile);
 
                 //make sure the tile is on the board
-                if (!InRange(candidateTile))
+                if (!InRange(candidateTile) || data == null)
                 {
 
                 }//check to see if the position is the current position
@@ -409,7 +409,7 @@ public class TileHelper : MonoBehaviour
                         returnTile.z = 0;
                     }
 
-                }//check to see if the tile is in action range AND has an occupant ir is an enemy(for enemy attack range)
+                }//check to see if the tile is in action range AND has an occupant or is an enemy(for enemy attack range)
                 else if(Mathf.Abs(i) + Mathf.Abs(j) <= moveAmt + atkAmt && (data.HasOccupant() || currentUnit.GetIsEnemy()))
                 {
                     //get the path to the current position
@@ -430,8 +430,12 @@ public class TileHelper : MonoBehaviour
                             totalCost += stepData.movementCost;
                     }
 
+                    if(validPath.Count < 1)
+                    {
+                        validPath.Add(currentUnit.GetGridPos());
+                    }
                     //if the cost isn't to great, we look at the occupant
-                    if (totalCost <= moveAmt)
+                    if (totalCost <= moveAmt && Mathf.Abs(validPath[validPath.Count - 1].x - candidateTile.x) + Mathf.Abs(validPath[validPath.Count - 1].y - candidateTile.y) <= atkAmt)
                     {
                         //if the currentUnit is an enemy
                         if(currentUnit.GetIsEnemy())
@@ -463,7 +467,6 @@ public class TileHelper : MonoBehaviour
 
                 if (returnTile.z != -1)
                         validPositions.Add(returnTile);
-                
                 
                 
                 
