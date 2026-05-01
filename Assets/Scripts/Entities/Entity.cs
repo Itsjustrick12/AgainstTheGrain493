@@ -32,8 +32,9 @@ public class Entity : MonoBehaviour, IBuffable
 
     //near constant color used for dimming entities when they are deactivated
     public static readonly Color DimColor = new Color(0.4f, 0.4f, 0.4f);
-
     [Header("Stats")]
+    //stores the entity ID
+    public int ID;
     //stores the entity's max hitpoints
     [SerializeField] protected int maxHealth = 10;
     //stores the entity's type
@@ -78,6 +79,19 @@ public class Entity : MonoBehaviour, IBuffable
     {
         //Return all the actions that are currently possible given the Unit's information (and generally position)
         return actions;
+    }
+
+    public int GetEntityID()
+    {
+        return ID;
+    }
+
+    public void SetEntityID(int tempID)
+    {
+        if(tempID > 0)
+        {
+            ID = tempID;
+        }
     }
 
     public void SetGridPos(Vector3Int pos)

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518d8414c2a540c4695900d04ce3dc65, type: 3}
   m_Name: 7_Stump
   m_EditorClassIdentifier: Assembly-CSharp::StructureInfo
-  id: 7
+  ID: 7
   entityName: Stump
   baseHealth: 15
   prefab: {fileID: 4935858330493278644, guid: fd89eb10d3d7f1f4bbdb876ad11938ef, type: 3}

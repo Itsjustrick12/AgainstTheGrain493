@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518d8414c2a540c4695900d04ce3dc65, type: 3}
   m_Name: 12 Hay Bale 1
   m_EditorClassIdentifier: Assembly-CSharp::StructureInfo
-  id: 12
+  ID: 12
   entityName: Hay Bale
   baseHealth: 10
   prefab: {fileID: 4935858330493278644, guid: a0824ccbd590d394383bef05eaf86e04, type: 3}

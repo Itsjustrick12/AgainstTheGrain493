@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 public class Structure : Entity
 {
-    public int ID;
     public virtual void Interact()
     {
         if (isActive && IsInteractable())

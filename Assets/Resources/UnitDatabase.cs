@@ -30,7 +30,7 @@ public class UnitDatabase : ScriptableObject
 
     public List<UnitInfo> units = new List<UnitInfo>();
 
-    // Used for quickly finding information with only an id int
+    // Used for quickly finding information with only an ID int
     private Dictionary<int, UnitInfo> lookup;
 
     private void BuildLookup()
@@ -39,19 +39,19 @@ public class UnitDatabase : ScriptableObject
         //Loop over all units and add an entry in the lookup
         foreach (var unit in units)
         {
-            if (!lookup.ContainsKey(unit.id))
+            if (!lookup.ContainsKey(unit.ID))
             {
-                lookup.Add(unit.id, unit);
+                lookup.Add(unit.ID, unit);
             }
             else
             {
                 //If exists already, read error out
-                Debug.LogError($"There are two Units trying to use the same ID: {unit.id}");
+                Debug.LogError($"There are two Units trying to use the same ID: {unit.ID}");
             }
         }
     }
 
-    public UnitInfo GetUnitInfo(int id)
+    public UnitInfo GetUnitInfo(int ID)
     {
         if (lookup == null)
         {
@@ -59,17 +59,17 @@ public class UnitDatabase : ScriptableObject
         }
 
         //Use the lookup to try and find unit info
-        if (lookup.TryGetValue(id, out UnitInfo unit))
+        if (lookup.TryGetValue(ID, out UnitInfo unit))
         {
             return unit;
         }
 
-        Debug.LogError($"There is no Unit with ID: {id} in the lookup!");
+        Debug.LogError($"There is no Unit with ID: {ID} in the lookup!");
         return null;
 
     }
 
-    public List<EntityAction> GetActions(int id)
+    public List<EntityAction> GetActions(int ID)
     {
         if (lookup == null)
         {
@@ -77,20 +77,20 @@ public class UnitDatabase : ScriptableObject
         }
 
         //Use the lookup to try and find unit info
-        if (lookup.TryGetValue(id, out UnitInfo unit))
+        if (lookup.TryGetValue(ID, out UnitInfo unit))
         {
             return unit.actions;
         }
 
-        Debug.LogError($"There is no Unit with ID: {id} in the lookup!");
+        Debug.LogError($"There is no Unit with ID: {ID} in the lookup!");
         return null;
 
     }
 
     //get the reference to the specified unit's gameobject
-    public GameObject GetPrefab(int id)
+    public GameObject GetPrefab(int ID)
     {
-        UnitInfo unit = GetUnitInfo(id);
+        UnitInfo unit = GetUnitInfo(ID);
         if (unit == null)
         {
             return null;
@@ -99,9 +99,9 @@ public class UnitDatabase : ScriptableObject
         return unit.prefab;
     }
 
-    public int GetPurcahsePrice(int id)
+    public int GetPurcahsePrice(int ID)
     {
-        UnitInfo unit = GetUnitInfo(id);
+        UnitInfo unit = GetUnitInfo(ID);
         if (unit == null)
         {
             return -1;
@@ -111,9 +111,9 @@ public class UnitDatabase : ScriptableObject
     }
 
     //Get reference to the specfied unit's placeholder tile
-    public TileBase GetTile(int id)
+    public TileBase GetTile(int ID)
     {
-        UnitInfo unit = GetUnitInfo(id);
+        UnitInfo unit = GetUnitInfo(ID);
         if (unit == null)
         {
             return null;
@@ -122,9 +122,9 @@ public class UnitDatabase : ScriptableObject
         return unit.tile;
     }
     //Get reference to the specfied unit's sprite
-    public Sprite GetSprite(int id)
+    public Sprite GetSprite(int ID)
     {
-        UnitInfo unit = GetUnitInfo(id);
+        UnitInfo unit = GetUnitInfo(ID);
         if (unit == null)
         {
             return null;
@@ -149,12 +149,12 @@ public class UnitDatabase : ScriptableObject
         return -1;
     }
 
-    public bool GetIsEnemy(int id)
+    public bool GetIsEnemy(int ID)
     {
-        UnitInfo unit = GetUnitInfo(id);
+        UnitInfo unit = GetUnitInfo(ID);
         if (unit == null)
         {
-            Debug.LogError($"There is no Unit with ID: {id} in the lookup!");
+            Debug.LogError($"There is no Unit with ID: {ID} in the lookup!");
         }
 
         return unit.isEnemy;

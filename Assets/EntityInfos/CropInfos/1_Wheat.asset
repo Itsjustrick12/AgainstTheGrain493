@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79a0fde824500ef43b87be30ce7415db, type: 3}
   m_Name: 1_Wheat
   m_EditorClassIdentifier: Assembly-CSharp::CropInfo
-  id: 1
+  ID: 1
   entityName: Wheat
   baseHealth: 5
   prefab: {fileID: 5362854747147872654, guid: 31b5e4c4b0f085c4cb46728346f788a7, type: 3}

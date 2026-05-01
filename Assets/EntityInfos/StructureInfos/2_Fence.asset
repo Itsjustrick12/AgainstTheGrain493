@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518d8414c2a540c4695900d04ce3dc65, type: 3}
   m_Name: 2_Fence
   m_EditorClassIdentifier: Assembly-CSharp::StructureInfo
-  id: 2
+  ID: 2
   entityName: Fence
   baseHealth: 15
   prefab: {fileID: 4935858330493278644, guid: 382b3da311946024e9b29fa5bea1c4d4, type: 3}

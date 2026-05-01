@@ -5,7 +5,7 @@ using UnityEngine;
 public class EntityInfo : ScriptableObject
 {
     [Header("Basic Information")]
-    public int id;
+    public int ID;
     public string entityName;
     public int baseHealth = 0;
 

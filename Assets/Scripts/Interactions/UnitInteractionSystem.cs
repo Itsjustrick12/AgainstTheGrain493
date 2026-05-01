@@ -84,7 +84,7 @@ public class UnitInteractionSystem : TileCursor
     public bool isInputOn = true;
 
     public UnitInfoPanel infoPanel;
-    private Unit lastHoveredUnit;
+    private Entity lastHoveredEntity;
     public bool isFeeding = false;
     public bool isMoving = false;
 
@@ -168,33 +168,51 @@ public class UnitInteractionSystem : TileCursor
         // Only run hover logic when in Selection state AND nothing is selected
         if (state == InteractionState.Selection && selectedEntity == null)
         {
+            //get the information for the potential entity
             if (data != null)
             {
                 potentialEntity = data.GetOccupyingEntity();
             }
-            Unit unit = potentialEntity as Unit;
-            if (unit != null)
+
+            //check to see if the potential entity exists
+            if (potentialEntity != null)
             {
-                if (unit != lastHoveredUnit)
+                
+                //if unit isn't the last hovered unit
+                if (potentialEntity != lastHoveredEntity)
                 {
+                    //clear the optionmap
                     optionsMap.ClearAllTiles();
-                    infoPanel.ShowPanel(unit);
-                    if (unit.GetIsEnemy())
+
+
+                    //if the entity is a unit
+                    Unit unit = potentialEntity as Unit;
+                    if(unit != null)
                     {
-                        hoverLocations = tileHelper.GetQuickActionRange(unit);
-                        List<EntityAction> actions = unit.GetAllActions();
-                        SetOptionsTiles(hoverLocations, actions);
+                        infoPanel.ShowPanel(potentialEntity);
+                        //if the unit is an enemy
+                        if(unit.GetIsEnemy())
+                        {
+                            hoverLocations = tileHelper.GetQuickActionRange(unit);
+                            List<EntityAction> actions = unit.GetAllActions();
+                            SetOptionsTiles(hoverLocations, actions);
+                        }
+                    }//if the entity is not a unit
+                    else
+                    {
+                        infoPanel.ShowPanel(potentialEntity);
+
                     }
-                    lastHoveredUnit = unit;
+                    lastHoveredEntity = potentialEntity;
                 }
             }
             else
             {
-                if (lastHoveredUnit != null)
+                if(lastHoveredEntity != null)
                 {
                     optionsMap.ClearAllTiles();
                     infoPanel.HidePanel();
-                    lastHoveredUnit = null;
+                    lastHoveredEntity = null;
                 }
             }
         }

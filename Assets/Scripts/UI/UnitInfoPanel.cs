@@ -1,18 +1,17 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 using static UnityEngine.AdaptivePerformance.Provider.AdaptivePerformanceSubsystemDescriptor;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class UnitInfoPanel : MonoBehaviour
 {
     [SerializeField] private CanvasGroup currentCanvas;
-    [SerializeField] private TextMeshProUGUI nameText;
-    [SerializeField] private TextMeshProUGUI healthText;
-    [SerializeField] private TextMeshProUGUI strengthText;
-    [SerializeField] private TextMeshProUGUI movementText;
+
+    [SerializeField] private List<TextMeshProUGUI> infoText;
 
     [SerializeField] RectTransform healthBarMask;
     [SerializeField] RectTransform healthBar;
@@ -27,9 +26,7 @@ public class UnitInfoPanel : MonoBehaviour
     [SerializeField] private Vector3 offset = new Vector3(2.5f, 0, 0);
 
     //used for swapping image to different background for each unit type
-    [SerializeField] private Sprite farmerUI;
-    [SerializeField] private Sprite animalUI;
-    [SerializeField] private Sprite robotUI;
+    [SerializeField] private List<Sprite> UIpanels;
     [SerializeField] private Image image;
 
     private void OnEnable()
@@ -42,10 +39,10 @@ public class UnitInfoPanel : MonoBehaviour
         GameManager.StartEnemyTurn -= HidePanel;
     }
 
-    public void ShowPanel(Unit currUnit)
+    public void ShowPanel(Entity entity)
     {
         if (!GameManager.Instance.isPlayerTurn) return;
-        if (currUnit == null)
+        if (entity == null)
         {
             //Debug.Log("Null Check");
             return;
@@ -55,24 +52,31 @@ public class UnitInfoPanel : MonoBehaviour
         currentCanvas.interactable = true;
         currentCanvas.blocksRaycasts = true; //Prevents things from behind it being clicked
 
-        switch (currUnit.GetEntityType())
+        //sets the background sprite depending on the entity type
+        switch (entity.GetEntityType())
         {
             case EntityType.Farmer:
-                image.sprite = farmerUI;
+                image.sprite = UIpanels[0];
+                break;
+            case EntityType.Crop:
+                image.sprite = UIpanels[1];
                 break;
             case EntityType.Enemy:
-                image.sprite = robotUI;
+                image.sprite = UIpanels[2];
                 break;
             case EntityType.Animal:
-                image.sprite = animalUI;
+                image.sprite = UIpanels[3];
+                break;
+            case EntityType.Structure:
+                image.sprite = UIpanels[4];
                 break;
             default:
                 break;
         }
 
-        MovePanel(currUnit); 
+        MovePanel(entity); 
 
-        PopulatePanel(currUnit);
+        PopulatePanel(entity);
 
         //Debug.Log(unitName);
 
@@ -85,81 +89,136 @@ public class UnitInfoPanel : MonoBehaviour
         currentCanvas.blocksRaycasts = false; //Prevents things from behind it being clicked
     }
 
-    public void PopulatePanel(Unit currUnit)
+    public void PopulatePanel(Entity entity)
     {
+        /*
+            infoText[] guide
+            in general:
+                0 is the name
+                1 is the health info
+        */
 
-        UnitInfo info = UnitDatabase.Instance.GetUnitInfo(currUnit.ID);
-        string unitName = info.entityName;
-        int currentHealth = currUnit.GetHealth();
+        //first hide everything
+        foreach (TextMeshProUGUI text in infoText)
+        {
+            text.gameObject.SetActive(false);
+            text.text = "";
+        }
+
+        //grab the general info first
+        EntityInfo info;
+        if(entity as Unit != null) info = UnitDatabase.Instance.GetUnitInfo((entity as Unit).GetEntityID());
+        else if(entity as Crop != null) info = CropDatabase.Instance.GetCropInfo((entity as Crop).GetEntityID());
+        else info = StructureDatabase.Instance.GetStructureInfo((entity as Structure).GetEntityID());
+        //name
+        string name = info.entityName;
+        infoText[0].text = name;
+
+        //hp
         int maxHealth = info.baseHealth;
-        int strength = currUnit.GetStrength();
-        int moveRange = currUnit.GetMoveRange();
+        int currentHealth = entity.GetCurrentHealth();
 
-        nameText.text = unitName;
-        healthText.text = currentHealth.ToString() + "/" + maxHealth.ToString();
-        strengthText.text = strength.ToString();
-        movementText.text = moveRange.ToString();
-
-        int baseStat = 0;
-
-        baseStat = info.baseHealth;
+        //set the health text
+        int baseStat = info.baseHealth;
         if (currentHealth > baseStat)
         {
             int valDif = currentHealth - baseStat;
-            healthText.text = currentHealth.ToString() + " (" + valDif + ")" + "/" + maxHealth.ToString();
-            healthText.color = buffColor;
+            infoText[1].text = currentHealth.ToString() + " (" + valDif + ")" + "/" + maxHealth.ToString();
+            infoText[1].color = buffColor;
         }
         else
         {
-            healthText.text = currentHealth.ToString() + "/" + maxHealth.ToString();
-            healthText.color = normalColor;
+            infoText[1].text = currentHealth.ToString() + "/" + maxHealth.ToString();
+            infoText[1].color = normalColor;
         }
 
-        baseStat = info.strength;
-        if (strength != baseStat)
+        //grabbing unit specific info
+        if(entity as Unit != null)
         {
-            Debug.Log("BaseStat: " + baseStat);
-            Debug.Log("Strength: " + strength);
-            int valDif = strength - baseStat;
-            //Debug.Log("Diff: " + valDif);
-            if(valDif > 0)
+            /*
+                for Units:
+                    2 is strength
+                    3 is movement range
+            */
+            Unit currUnit = entity as Unit;
+
+            //strength
+            baseStat = (info as UnitInfo).strength;
+            int strength = currUnit.GetStrength();
+            if (strength != baseStat)
             {
-                strengthText.text = strength.ToString() + " ( +" + valDif + ")";
-                strengthText.color = buffColor;
+                Debug.Log("BaseStat: " + baseStat);
+                Debug.Log("Strength: " + strength);
+                int valDif = strength - baseStat;
+                //Debug.Log("Diff: " + valDif);
+                if(valDif > 0)
+                {
+                    infoText[2].text = strength.ToString() + " ( +" + valDif + ")";
+                    infoText[2].color = buffColor;
+                }
+                else
+                {
+                    infoText[2].text = strength.ToString() + " ( -" + valDif + ")";
+                    infoText[2].color = debuffColor;
+                }
+                
             }
             else
             {
-                strengthText.text = strength.ToString() + " ( -" + valDif + ")";
-                strengthText.color = debuffColor;
+                infoText[2].text = strength.ToString();
+                infoText[2].color = normalColor;
             }
-            
-        }
-        else
-        {
-            strengthText.text = strength.ToString();
-            strengthText.color = normalColor;
-        }
 
-        baseStat = info.moveRange;
-        if (moveRange != baseStat)
-        {
-            int valDif = moveRange - baseStat;
-            if (valDif > 0)
+            //movement range
+            int moveRange = currUnit.GetMoveRange();
+            baseStat = (info as UnitInfo).moveRange;
+            if (moveRange != baseStat)
             {
-                movementText.text = moveRange.ToString() + " ( +" + valDif + ")";
-                movementText.color = buffColor;
+                int valDif = moveRange - baseStat;
+                if (valDif > 0)
+                {
+                    infoText[3].text = moveRange.ToString() + " ( +" + valDif + ")";
+                    infoText[3].color = buffColor;
+                }
+                else
+                {
+                    infoText[3].text = moveRange.ToString() + " ( -" + valDif + ")";
+                    infoText[3].color = debuffColor;
+                }
+                
             }
             else
             {
-                movementText.text = moveRange.ToString() + " ( -" + valDif + ")";
-                movementText.color = debuffColor;
+                infoText[3].text = moveRange.ToString();
+                infoText[3].color = normalColor;
             }
-            
+
+
         }
-        else
+        else if(entity as Crop != null)
         {
-            movementText.text = moveRange.ToString();
-            movementText.color = normalColor;
+            /*
+                for Crops:
+                    2 is turns till harvest
+            */
+            Crop currCrop = entity as Crop;
+            //baseStat is being used for the # of stages total
+            baseStat = (info as CropInfo).numStages;
+            int currStage = currCrop.GetCurrentStage();
+            baseStat -= currStage;
+            
+            infoText[2].text = baseStat.ToString();
+            infoText[2].color = normalColor;
+
+        }
+
+        //show what's updated
+        foreach (TextMeshProUGUI text in infoText)
+        {
+            if(text.text != "")
+            {
+                text.gameObject.SetActive(true);
+            }
         }
 
         unitImage.sprite = info.sprite;
@@ -180,12 +239,12 @@ public class UnitInfoPanel : MonoBehaviour
     }
 
 
-    public void MovePanel(Unit currUnit)
+    public void MovePanel(Entity entity)
     {
         RectTransform rect = GetComponent<RectTransform>();
         Vector2 size = rect.sizeDelta;
 
-        Vector3 worldPos = currUnit.GetGridPos();
+        Vector3 worldPos = entity.GetGridPos();
 
         // First try with normal offset
         Vector3 desiredWorldPos = worldPos + offset;

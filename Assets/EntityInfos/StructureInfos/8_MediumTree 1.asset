@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518d8414c2a540c4695900d04ce3dc65, type: 3}
   m_Name: 8_MediumTree 1
   m_EditorClassIdentifier: Assembly-CSharp::StructureInfo
-  id: 8
+  ID: 8
   entityName: MediumTree
   baseHealth: 20
   prefab: {fileID: 4935858330493278644, guid: 0ff33a26bc7ed45438b6428775b5a154, type: 3}

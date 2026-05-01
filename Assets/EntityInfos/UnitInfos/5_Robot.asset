@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 000595eef398e0f45a8e664d8f5ff3c8, type: 3}
   m_Name: 5_Robot
   m_EditorClassIdentifier: Assembly-CSharp::UnitInfo
-  id: 5
+  ID: 5
   entityName: Robot
   baseHealth: 10
   prefab: {fileID: 1180065947808181623, guid: 5b34ecd98973263479dfea6cd49ec888, type: 3}

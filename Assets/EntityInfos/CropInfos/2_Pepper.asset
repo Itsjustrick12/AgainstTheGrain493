@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79a0fde824500ef43b87be30ce7415db, type: 3}
   m_Name: 2_Pepper
   m_EditorClassIdentifier: Assembly-CSharp::CropInfo
-  id: 2
+  ID: 2
   entityName: Pepper
   baseHealth: 5
   prefab: {fileID: 5362854747147872654, guid: 453131f73030afa43893a54b473556fb, type: 3}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 000595eef398e0f45a8e664d8f5ff3c8, type: 3}
   m_Name: 2_Reaper
   m_EditorClassIdentifier: Assembly-CSharp::UnitInfo
-  id: 2
+  ID: 2
   entityName: Reaper
   baseHealth: 10
   prefab: {fileID: 4935858330493278644, guid: ea129828cb21e2743b00d1d1941e01b9, type: 3}

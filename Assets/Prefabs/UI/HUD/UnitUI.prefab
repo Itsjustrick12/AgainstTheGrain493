@@ -87,8 +87,8 @@ GameObject:
   - component: {fileID: 7247201219279986856}
   - component: {fileID: 6473258541890138009}
   - component: {fileID: 2713810534598828848}
-  - component: {fileID: 6700521052339286765}
   - component: {fileID: 4605741968769118241}
+  - component: {fileID: 5645603421743798968}
   m_Layer: 5
   m_Name: UnitDataUI
   m_TagString: Untagged
@@ -185,35 +185,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &6700521052339286765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4089155898649510962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1d5f815750ebbb478c3dbbfab502726, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UnitInfoPanel
-  currentCanvas: {fileID: 4605741968769118241}
-  nameText: {fileID: 1213186060966232152}
-  healthText: {fileID: 371218902038004977}
-  strengthText: {fileID: 6161419095201210648}
-  movementText: {fileID: 946763908996324065}
-  healthBarMask: {fileID: 4114431438138596095}
-  healthBar: {fileID: 5660963292955104334}
-  healthBarWidth: 0
-  unitImage: {fileID: 5163202042895243433}
-  normalColor: {r: 0, g: 0, b: 0, a: 1}
-  buffColor: {r: 0.17850478, g: 0.5169811, b: 0.2587621, a: 1}
-  debuffColor: {r: 0.6150943, g: 0.12882164, b: 0.12882164, a: 1}
-  offset: {x: 3, y: -0.75, z: 0}
-  farmerUI: {fileID: 21300000, guid: f964b59961a8d5948acbdf014ceb41cb, type: 3}
-  animalUI: {fileID: 21300000, guid: d165801461623674b9eb9b0966c131df, type: 3}
-  robotUI: {fileID: 21300000, guid: bcb50735d9a4ced40aeceea97193fbf8, type: 3}
-  image: {fileID: 6473258541890138009}
 --- !u!225 &4605741968769118241
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -226,6 +197,39 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &5645603421743798968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4089155898649510962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab5344ed28164440852db3b104cff53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitInfoPanel
+  currentCanvas: {fileID: 4605741968769118241}
+  infoText:
+  - {fileID: 1213186060966232152}
+  - {fileID: 371218902038004977}
+  - {fileID: 6161419095201210648}
+  - {fileID: 946763908996324065}
+  healthBarMask: {fileID: 4114431438138596095}
+  healthBar: {fileID: 5660963292955104334}
+  healthBarWidth: 0
+  unitImage: {fileID: 5163202042895243433}
+  normalColor: {r: 0, g: 0, b: 0, a: 1}
+  buffColor: {r: 0.18039216, g: 0.5176471, b: 0.25882354, a: 0}
+  debuffColor: {r: 0.6156863, g: 0.12941177, b: 0.12941177, a: 0}
+  offset: {x: 2.5, y: 0, z: 0}
+  UIpanels:
+  - {fileID: 21300000, guid: f964b59961a8d5948acbdf014ceb41cb, type: 3}
+  - {fileID: 21300000, guid: f964b59961a8d5948acbdf014ceb41cb, type: 3}
+  - {fileID: 21300000, guid: bcb50735d9a4ced40aeceea97193fbf8, type: 3}
+  - {fileID: 21300000, guid: d165801461623674b9eb9b0966c131df, type: 3}
+  - {fileID: 21300000, guid: d165801461623674b9eb9b0966c131df, type: 3}
+  image: {fileID: 6473258541890138009}
 --- !u!1 &4107150615470710380
 GameObject:
   m_ObjectHideFlags: 0

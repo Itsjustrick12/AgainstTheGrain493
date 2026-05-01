@@ -4,7 +4,6 @@ using UnityEngine;
 public class Crop : Entity
 {
     //What crop does this entity represent?
-    public int id;
     private CropInfo refCrop;
 
     private int currentStage = 0;
@@ -27,7 +26,7 @@ public class Crop : Entity
     public void Initialize(CropInfo info)
     {
         refCrop = info;
-        id = info.id;
+        ID = info.ID;
         isWatered = false;
         currentStage = 0;
         SetIsHarvestable(false);
@@ -42,7 +41,7 @@ public class Crop : Entity
     public override void Initialize()
     {
         base.Initialize();
-        CropInfo info = CropDatabase.Instance.GetCropInfo(id);
+        CropInfo info = CropDatabase.Instance.GetCropInfo(ID);
         if (info == null)
         {
             Debug.LogError("Tried to initialize crop without a valid info in the database scriptable object. Check the resources folder!");
@@ -134,7 +133,7 @@ public class Crop : Entity
         if (CanBeHarvested())
         {
 
-            EconomyManager.Instance.AddHarvestedCrops(id);
+            EconomyManager.Instance.AddHarvestedCrops(ID);
             //If multiharvest, jump to the stage defined by the CropInfo, then proceed like normal
             if (isMultiHarvest)
             {
@@ -172,5 +171,18 @@ public class Crop : Entity
     private void OnDisable()
     {
         GameManager.StartPlayerTurn -= ProcessGrowth;
+    }
+
+    public int GetCurrentStage()
+    {
+        return currentStage;
+    }
+
+    public void SetCurrentStage(int tempstage)
+    {
+        if(tempstage < refCrop.numStages && tempstage >= 0)
+        {
+            currentStage = tempstage;
+        }
     }
 }

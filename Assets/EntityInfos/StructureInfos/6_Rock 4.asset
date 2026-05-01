@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518d8414c2a540c4695900d04ce3dc65, type: 3}
   m_Name: 6_Rock 4
   m_EditorClassIdentifier: Assembly-CSharp::StructureInfo
-  id: 6
+  ID: 6
   entityName: Rock
   baseHealth: 20
   prefab: {fileID: 3987968686697476471, guid: 8227e9e8210e2ae48a052f6b06ed7f63, type: 3}

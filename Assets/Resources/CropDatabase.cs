@@ -38,50 +38,50 @@ public class CropDatabase : ScriptableObject
 
         foreach (var crop in crops)
         {
-            if (!lookup.ContainsKey(crop.id))
+            if (!lookup.ContainsKey(crop.ID))
             {
-                lookup.Add(crop.id, crop);
+                lookup.Add(crop.ID, crop);
             }
             else
             {
-                Debug.LogError($"Duplicate Crop ID detected: {crop.id}");
+                Debug.LogError($"Duplicate Crop ID detected: {crop.ID}");
             }
         }
     }
 
-    public CropInfo GetCropInfo(int id)
+    public CropInfo GetCropInfo(int ID)
     {
         if (lookup == null)
             BuildLookup();
 
-        if (lookup.TryGetValue(id, out CropInfo crop))
+        if (lookup.TryGetValue(ID, out CropInfo crop))
             return crop;
 
-        Debug.LogError("No crop exists with id: " + id);
+        Debug.LogError("No crop exists with ID: " + ID);
         return null;
     }
 
-    public TileBase GetSeedTile(int id)
+    public TileBase GetSeedTile(int ID)
     {
-        CropInfo crop = GetCropInfo(id);
+        CropInfo crop = GetCropInfo(ID);
         return crop != null ? crop.tile : null;
     }
 
-    public Sprite GetIcon(int id)
+    public Sprite GetIcon(int ID)
     {
-        CropInfo crop = GetCropInfo(id);
+        CropInfo crop = GetCropInfo(ID);
         return crop != null ? crop.sprite : null;
     }
 
-    public int GetNumStages(int id)
+    public int GetNumStages(int ID)
     {
-        CropInfo crop = GetCropInfo(id);
+        CropInfo crop = GetCropInfo(ID);
         return crop != null ? crop.numStages : 0;
     }
 
-    public int GetSellValue(int id)
+    public int GetSellValue(int ID)
     {
-        CropInfo crop = GetCropInfo(id);
+        CropInfo crop = GetCropInfo(ID);
         return crop != null ? crop.sellValue : 0;
     }
 
@@ -90,7 +90,7 @@ public class CropDatabase : ScriptableObject
         foreach (var crop in crops)
         {
             if (crop.tile == tile)
-                return crop.id;
+                return crop.ID;
         }
 
         return -1;

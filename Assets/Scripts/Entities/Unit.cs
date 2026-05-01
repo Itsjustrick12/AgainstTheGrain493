@@ -11,7 +11,6 @@ using static UnityEngine.UI.Image;
 public class Unit : Entity
 {
     [Header("General Settings")]
-    public int ID;
     [SerializeField] protected int strength = 1;
     [SerializeField] protected int attackRange = 1;
     [SerializeField] protected int movementRange = 3;
@@ -141,7 +140,7 @@ public class Unit : Entity
     { 
         return canFly;
     }
-
+    
     public void SetIsEnemy(bool tempIsEnemy)
     {
         isEnemy = tempIsEnemy;

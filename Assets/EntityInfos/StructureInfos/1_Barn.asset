@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518d8414c2a540c4695900d04ce3dc65, type: 3}
   m_Name: 1_Barn
   m_EditorClassIdentifier: Assembly-CSharp::StructureInfo
-  id: 1
+  ID: 1
   entityName: Barn
   baseHealth: 15
   prefab: {fileID: 4935858330493278644, guid: 1fb64ed29ebab7643b1a81c0905270c5, type: 3}
