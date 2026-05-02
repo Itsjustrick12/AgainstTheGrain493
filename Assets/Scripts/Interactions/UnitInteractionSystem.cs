@@ -181,7 +181,8 @@ public class UnitInteractionSystem : TileCursor
                     infoPanel.ShowPanel(unit);
                     if (unit.GetIsEnemy())
                     {
-                        hoverLocations = tileHelper.GetQuickActionRange(unit);
+                        hoverLocations = tileHelper.GetInteractionRange(unit);
+
                         List<EntityAction> actions = unit.GetAllActions();
                         SetOptionsTiles(hoverLocations, actions);
                     }
@@ -294,7 +295,7 @@ public class UnitInteractionSystem : TileCursor
                             return;
                         }
                         infoPanel.HidePanel();
-                        List<Vector3Int> valid = tileHelper.GetQuickActionRange(unit);
+                        List<Vector3Int> valid = tileHelper.GetInteractionRange(unit);
                         List<EntityAction> actions = unit.GetAllActions();
                         
                         SetOptionsTiles(valid, actions);
@@ -477,6 +478,13 @@ public class UnitInteractionSystem : TileCursor
             {
                 return true;
             }
+            if (validLocations[i].x == pos.x && validLocations[i].y == pos.y)
+            {
+                // Block pure extension tiles (white, non-actionable)
+                return validLocations[i].z != -1;
+            }
+
+
         }
         return false;
     }
@@ -1015,30 +1023,35 @@ public class UnitInteractionSystem : TileCursor
         for(int i = 0; i < valid.Count; i++)
         {
             //make a temp tile so we can place it on the optionsMap
-            if(valid[i].z == 0)
+            Vector3Int paintLocation = new Vector3Int(valid[i].x, valid[i].y, 0);
+
+            //store a variable for the tile to update based on what kind of tile it is
+            TileBase tile = null;
+            int zFlag = valid[i].z;
+
+            if (zFlag == 0 || zFlag == 1)
             {
-                    //movement tile
-                    valid[i] = new Vector3Int(valid[i].x, valid[i].y, 0);
-                    optionsMap.SetTile(valid[i], GetInfoTile(TileColor.White));
+                tile = GetInfoTile(TileColor.White);
             }
-            else if(valid[i].z == 1 && HasAction(actions, "Attack"))
+            else if ((zFlag == 2 || zFlag == -2) && HasAction(actions, "Attack"))
             {
-                    //attack tile
-                    valid[i] = new Vector3Int(valid[i].x, valid[i].y, 0);
-                    optionsMap.SetTile(valid[i], GetInfoTile(TileColor.Red));
+                tile = zFlag > 0 ? GetInfoTile(TileColor.Red) : GetExtensionTile(TileColor.Red);
             }
-            else if(valid[i].z == 2 && HasAction(actions, "Water"))
+            else if ((zFlag == 3 || zFlag == -3) && HasAction(actions, "Water"))
             {
-                    //water tile
-                    valid[i] = new Vector3Int(valid[i].x, valid[i].y, 0);
-                    optionsMap.SetTile(valid[i], GetInfoTile(TileColor.Blue));
+                tile = zFlag > 0 ? GetInfoTile(TileColor.Blue) : GetExtensionTile(TileColor.Blue);
             }
-            else if(valid[i].z == 3 && HasAction(actions, "Harvest"))
+            else if ((zFlag == 4 || zFlag == -4) && HasAction(actions, "Harvest"))
             {
-                    //harvest tile
-                    valid[i] = new Vector3Int(valid[i].x, valid[i].y, 0);
-                    optionsMap.SetTile(valid[i], GetInfoTile(TileColor.Yellow));
+
+                tile = zFlag > 0 ? GetInfoTile(TileColor.Yellow) : GetExtensionTile(TileColor.Yellow);
             }
+            else if (zFlag == -1)
+            {
+                tile = GetExtensionTile(TileColor.White);
+            }
+            //draw the tile
+            optionsMap.SetTile(valid[i], tile);
         }
     }
 }

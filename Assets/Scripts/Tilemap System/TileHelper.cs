@@ -507,40 +507,138 @@ public class TileHelper : MonoBehaviour
         return validPositions;
     }
 
-
-    //Draw interaction range
-    public List<Vector3Int> GetInteractionRange(Unit currentUnit)
+    public List<Vector3Int> GetInteractionRange(Unit unit)
     {
-        Vector3Int currentPos = currentUnit.GetGridPos();
-        //Interaction range is anything that can be reached from the farthest tile you can move to
-        int moveAmt = currentUnit.GetMoveRange() + 1;
+        List<Vector3Int> locations = GetMovementRange(unit);
+        List<Vector3Int> range = new List<Vector3Int>(locations);
 
-        var validPositions = new List<Vector3Int>();
-
-        // Loop around the unit within possible movement distance +-moveamt
-        for (int i = -moveAmt; i <= moveAmt; i++)
+        //loop over ever tile and add its adjacent tiles
+        foreach (Vector3Int location in locations)
         {
-            for (int j = -moveAmt; j <= moveAmt; j++)
+            //another for loop for each direction tile
+            foreach (Vector3Int dir in TileManager.DIRECTIONS)
             {
-                //Skip tiles that are unreachable via the distance
-                if (Mathf.Abs(i) + Mathf.Abs(j) > moveAmt)
-                    continue;
-
-                //Get a reference to the next possible tile to pathfind to
-                Vector3Int candidateTile = new Vector3Int(currentPos.x + i, currentPos.y + j, 0);
-                //The starting tile is not a part of the interaction range
-                if (candidateTile == currentPos)
+                Vector3Int pos = location + dir;
+                //check if this is already in the range
+                if (!range.Contains(pos))
                 {
-                    continue;
+                    range.Add(pos);
                 }
-
-                if (!InRange(candidateTile))
-                    continue;
-
             }
         }
 
-        return validPositions;
+        //modify the range to change z values for "quick actions"
+        for (int i = 0; i < range.Count; i++)
+        {
+            Vector3Int pos = range[i];
+            //get a reference to the tile we are looking at
+            TileData data = tileManager.GetTileDataAt(pos);
+            if (data == null)
+            {
+                continue;
+            }
+            //get the unit / entity tile
+            Entity entity = data.GetOccupyingEntity();
+
+
+            int extensionFlag = 1;
+            //Mark extension tiles with a negative z
+            if (!locations.Contains(pos) && IsReachableIfEmpty(pos, unit))
+            {
+                extensionFlag = -1;
+            }
+
+
+
+            //flags
+            //red = 2
+            //water = 3
+            //harvest = 4
+
+            //get info if there is an entity here:
+            if (entity is Unit)
+            {
+                Unit unitCheck = entity as Unit;
+                if (!unitCheck.IsSameTeamAs(unit))
+                {
+                    //set as enemy (red)
+                    pos.z = 2 * extensionFlag;
+                }
+            }
+            else if (entity is Crop)
+            {
+                Crop cropCheck = entity as Crop;
+                if (cropCheck.CanBeHarvested())
+                {
+                    pos.z = 4 * extensionFlag;
+                }
+                else if (!cropCheck.IsWatered())
+                {
+                    pos.z = 3 * extensionFlag;
+                }
+
+            }
+            else if (entity is Structure)
+            {
+                Structure structureCheck = entity as Structure;
+                if (structureCheck != null && !structureCheck.IsSameTeamAs(unit))
+                {
+                    pos.z = 2 * extensionFlag;
+                }
+            }
+            else
+            {
+                //if this is not a movement valid tile, set it to be a white "extension" tile
+                if (!locations.Contains(pos))
+                {
+                    pos.z = -1;
+                }
+
+            }
+            //modify
+            range[i] = pos;
+        }
+        return range;
+    }
+
+
+    public bool IsReachableIfEmpty(Vector3Int pos, Unit unit)
+    {
+        TileData data = tileManager.GetTileDataAt(pos);
+        if (data == null) return false;
+
+        int moveAmt = unit.GetMoveRange();
+
+        // Quick manhattan check to avoid unnecessary pathing
+        Vector3Int unitPos = unit.GetGridPos();
+        if (Mathf.Abs(pos.x - unitPos.x) + Mathf.Abs(pos.y - unitPos.y) > moveAmt)
+            return false;
+
+        Entity entity = null;
+        if (data.HasOccupant())
+        {
+            entity = data.GetOccupyingEntity();
+            data.ClearOccupant();
+        }
+
+        List<Vector3Int> path = TilePath(unitPos, pos, unit);
+
+        // Restore before returning
+        if (entity != null)
+            data.occupyingEntity = entity;
+
+        if (path == null || path.Count <= 1 || path[path.Count - 1] != pos)
+            return false;
+
+        // Check actual movement cost
+        int totalCost = 0;
+        for (int k = 1; k < path.Count; k++)
+        {
+            TileData stepData = tileManager.GetTileDataAt(path[k]);
+            if (stepData != null) totalCost += stepData.movementCost;
+        }
+
+        return totalCost <= moveAmt;
     }
 };
 
