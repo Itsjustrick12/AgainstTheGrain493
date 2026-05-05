@@ -99,7 +99,7 @@ public class UnitInfoPanel : MonoBehaviour
         */
 
         //first hide everything
-        foreach (TextMeshProUGUI text in infoText)
+        foreach TextMeshProUGUI text in infoText)
         {
             text.gameObject.SetActive(false);
             text.text = "";
@@ -213,7 +213,7 @@ public class UnitInfoPanel : MonoBehaviour
         }
 
         //show what's updated
-        foreach (TextMeshProUGUI text in infoText)
+        foreach(TextMeshProUGUI text in infoText)
         {
             if(text.text != "")
             {
