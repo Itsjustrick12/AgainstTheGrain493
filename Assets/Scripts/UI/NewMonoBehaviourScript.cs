@@ -1,16 +1,11 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class UnlockTest : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        PlayerPrefs.SetInt("Level_1_Unlocked", 1);
+        PlayerPrefs.SetInt("Level_2_Unlocked", 0);
+        PlayerPrefs.Save();
     }
 }
