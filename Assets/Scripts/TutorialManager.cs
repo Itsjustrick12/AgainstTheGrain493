@@ -1,6 +1,7 @@
 using PixelCrushers.DialogueSystem;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -33,6 +34,9 @@ public class TutorialManager : MonoBehaviour
     private bool chickenPurchased = false;
     private bool enemyHit = false;
 
+    [SerializeField] private Tilemap hoverMap;
+    [SerializeField] private TileBase hoverTile;
+
     private void Awake()
     {
         Instance = this;
@@ -55,6 +59,10 @@ public class TutorialManager : MonoBehaviour
         Unit.OnFriendlyDie += OnFriendlyDie;
         Unit.OnAnimalDie += OnAnimalDie;
         Unit.OnEnemyHit += OnEnemyHit;
+        Lua.RegisterFunction("HighlightTile", this,
+        SymbolExtensions.GetMethodInfo(() => HighlightTileLua(0.0, 0.0)));
+        Lua.RegisterFunction("ClearHoverTiles", this,
+            SymbolExtensions.GetMethodInfo(() => ClearHoverTiles()));
     }
 
     private void OnDisable()
@@ -69,6 +77,8 @@ public class TutorialManager : MonoBehaviour
         Unit.OnFriendlyDie -= OnFriendlyDie;
         Unit.OnAnimalDie -= OnAnimalDie;
         Unit.OnEnemyHit -= OnEnemyHit;
+        Lua.UnregisterFunction("HighlightTile");
+        Lua.UnregisterFunction("ClearHoverTiles");
     }
 
     private void TryStartConversation(string key)
@@ -144,5 +154,20 @@ public class TutorialManager : MonoBehaviour
     {
         TryStartConversation(onAnimalDieConversation);
         Unit.OnAnimalDie -= OnAnimalDie;
+    }
+
+    public void HighlightTileLua(double x, double y)
+    {
+        HighlightTile(new Vector3Int((int)x, (int)y, 0));
+    }
+
+    public void HighlightTile(Vector3Int tile)
+    {
+        hoverMap.SetTile(tile, hoverTile);
+    }
+
+    public void ClearHoverTiles()
+    {
+        hoverMap.ClearAllTiles();
     }
 }

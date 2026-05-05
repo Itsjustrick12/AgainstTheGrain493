@@ -17,8 +17,6 @@ public class ActionMenu : NaviagatableUI
     private TileCursor cursor;
     private TileManager tileManager;
 
-    public Color shadeColor;
-
     public EntityActionEvent OnActionSelected;
 
     [Header("UI References")]
@@ -53,14 +51,14 @@ public class ActionMenu : NaviagatableUI
     {
         if (index < 0 || index > buttons.Count - 1) return;
         base.DeselectButton(index);
-        buttons[index].GetComponent<Image>().color = Color.white;
+        buttons[index].GetComponent<UIButton>().SetSelected(false);
     }
 
     public override void SelectButton(int index)
     {
         if (index < 0 || index > buttons.Count - 1) return;
         base.SelectButton(index);
-        buttons[index].GetComponent<Image>().color = shadeColor;
+        buttons[index].GetComponent<UIButton>().SetSelected(true);
     }
 
     //Called from the UnitInteractionSystem for getting the action the user wants

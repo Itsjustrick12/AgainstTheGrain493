@@ -243,7 +243,7 @@ public class Entity : MonoBehaviour, IBuffable
         return isActive;
     }
 
-    public void Deactivate()
+    public virtual void Deactivate()
     {
         sprite.color = DimColor;
         isActive = false;

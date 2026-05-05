@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
 
     //Set which crops are availible to play with
     public List<int> cropIDs = new List<int>();
+    public List<int> entityIDs = new List<int>();
 
 
     private void Awake()
@@ -292,6 +293,12 @@ public class GameManager : MonoBehaviour
     public List<Crop> GetAllCrops()
     {
         return new List<Crop>(cropContainer.GetComponentsInChildren<Crop>());
+    }
+
+    public List<int> GetLevelEntities()
+    {
+        //return the list of entities flagged for this level
+        return entityIDs;
     }
 
     private void OnEnable()

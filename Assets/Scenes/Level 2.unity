@@ -162,6 +162,8 @@ MonoBehaviour:
   onAnimalDieConversation: 
   requireCropGrownBeforeRobotMove: 1
   requireCropWateredBeforeGrow: 1
+  hoverMap: {fileID: 1620141879}
+  hoverTile: {fileID: 11400000, guid: 43c3207df2dee1c43a14557151a57a53, type: 2}
 --- !u!4 &315333021
 Transform:
   m_ObjectHideFlags: 0
@@ -10008,6 +10010,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+--- !u!1839735485 &1620141879 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 2167807993414824472, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+  m_PrefabInstance: {fileID: 1620141878}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

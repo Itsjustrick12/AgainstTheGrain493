@@ -486,7 +486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2424873646121605172, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
       propertyPath: m_Name
-      value: Shop Menu
+      value: Barn Menu
       objectReference: {fileID: 0}
     - target: {fileID: 4747349241873896520, guid: 052249c99f705854089693a1dca2d3a4, type: 3}
       propertyPath: m_Pivot.x
