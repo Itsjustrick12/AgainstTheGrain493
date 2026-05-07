@@ -17,7 +17,7 @@ MonoBehaviour:
   baseHealth: 5
   prefab: {fileID: 4935858330493278644, guid: 3010cfc5fd1194825b16197f27ddb648, type: 3}
   tile: {fileID: 11400000, guid: b0414251200a340bb8f4201e2f5aa5a4, type: 2}
-  sprite: {fileID: -3622224362263781715, guid: f824b4bd8617b684992a544f83f978a1, type: 3}
+  sprite: {fileID: 21300000, guid: a82d3170c6a68428999376d0fce6e3ee, type: 3}
   actions:
   - {fileID: 11400000, guid: f92ad7ce0d1f344b69880b2bb3496488, type: 2}
   purchasePrice: 15

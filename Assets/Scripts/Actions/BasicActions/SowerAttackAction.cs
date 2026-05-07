@@ -60,7 +60,7 @@ public class SowerAttackAction : BasicAttackAction
 
     public override bool IsAOE()
     {
-        return false;
+        return true;
     }
 
     public override bool IsPossible(Entity unit)
@@ -120,6 +120,9 @@ public class SowerAttackAction : BasicAttackAction
         Vector3Int dir = new Vector3Int(
             Math.Sign(target.x - casterPos.x),
             Math.Sign(target.y - casterPos.y), 0);
+        
+        Debug.Log(target);
+        Debug.Log(target+dir);
 
         return new List<Vector3Int> {target + dir};
     }
