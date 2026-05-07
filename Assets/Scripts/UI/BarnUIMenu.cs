@@ -22,6 +22,7 @@ public class BarnUIMenu : NaviagatableUI
     public static UnityEvent CancelAction = new UnityEvent();
 
     public Transform buttonLayout;
+    public Sprite[] animalButtonSprites;
     public int[] animalList;
 
     public Transform sellButtonLayout;
@@ -42,6 +43,9 @@ public class BarnUIMenu : NaviagatableUI
             //Create a button and place it under the button layout group
             GameObject obj = Instantiate(animalButtonObj, buttonLayout);
             AnimalButton button = obj.GetComponent<AnimalButton>();
+
+            //set the sprite values
+
             buttons.Add(obj);
             button.UpdateButton(id);
             button.Initialize(buttons.Count - 1);
@@ -51,7 +55,7 @@ public class BarnUIMenu : NaviagatableUI
         foreach (Transform child in sellButtonLayout)
         {
             SellCropButton button = child.gameObject.GetComponent<SellCropButton>();
-            if ( button != null)
+            if (button != null)
             {
                 if (crops.Contains(button.cropID))
                 {
@@ -163,7 +167,7 @@ public class BarnUIMenu : NaviagatableUI
 
     public void SellCrop(int id)
     {
-        if (econManager.SellHarvestedCrops(id)){
+        if (econManager.SellHarvestedCrops(id)) {
             UpdateCropText(econManager.GetHarvestedCrops(id));
             UpdateCoinText(econManager.GetCoins());
         }
@@ -184,7 +188,7 @@ public class BarnUIMenu : NaviagatableUI
             OnUnitPurchased.Invoke(id);
             Debug.Log("Purchased unit: " + info.entityName);
         }
-        
+
     }
 
     public override void ReportAction()
@@ -205,5 +209,21 @@ public class BarnUIMenu : NaviagatableUI
         UnitInfo info = UnitDatabase.Instance.GetUnitInfo(buttons[selectedChoice].GetComponent<AnimalButton>().entityID);
 
         buyButton.UpdateVisual(info != null ? info.purchasePrice : int.MaxValue);
+    }
+
+    //Convert the barn animal index to get the index for the buttons stored here
+    public int IndexToOffset(int index)
+    {
+        switch (index)
+        {
+            //chicken
+            case 3:
+                return 0;
+            //cow
+            case 4:
+                return 1;
+            default:
+                return -1;
+        }
     }
 }
