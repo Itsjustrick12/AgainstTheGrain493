@@ -531,6 +531,15 @@ public class TileHelper : MonoBehaviour
         for (int i = 0; i < range.Count; i++)
         {
             Vector3Int pos = range[i];
+
+            //Mark starting point as a white regular movement tile
+            if (pos.x == unit.GetGridPos().x && pos.y == unit.GetGridPos().y)
+            {
+                pos.z = 0;
+                range[i] = pos;
+                continue;
+            }
+
             //get a reference to the tile we are looking at
             TileData data = tileManager.GetTileDataAt(pos);
             if (data == null)
@@ -543,7 +552,7 @@ public class TileHelper : MonoBehaviour
 
             int extensionFlag = 1;
             //Mark extension tiles with a negative z
-            if (!locations.Contains(pos) && IsReachableIfEmpty(pos, unit))
+            if (!locations.Contains(pos) && !IsReachableIfEmpty(pos, unit))
             {
                 extensionFlag = -1;
             }
@@ -551,9 +560,12 @@ public class TileHelper : MonoBehaviour
 
 
             //flags
+            //Regular movement white = 0
+            //movement / no action white = 1
             //red = 2
             //water = 3
             //harvest = 4
+            //plant / friendly = 5 green
 
             //get info if there is an entity here:
             if (entity is Unit)
@@ -564,19 +576,34 @@ public class TileHelper : MonoBehaviour
                     //set as enemy (red)
                     pos.z = 2 * extensionFlag;
                 }
+                else
+                {
+                    pos.z = 5 * extensionFlag;
+                }
             }
             else if (entity is Crop)
             {
-                Crop cropCheck = entity as Crop;
-                if (cropCheck.CanBeHarvested())
+                //If enemy, mark crop as attack target
+                if (unit.isEnemy)
                 {
-                    pos.z = 4 * extensionFlag;
+                    pos.z = 2 * extensionFlag; 
                 }
-                else if (!cropCheck.IsWatered())
+                else
                 {
-                    pos.z = 3 * extensionFlag;
+                    Crop cropCheck = entity as Crop;
+                    if (cropCheck.CanBeHarvested())
+                    {
+                        pos.z = 4 * extensionFlag;
+                    }
+                    else if (!cropCheck.IsWatered())
+                    {
+                        pos.z = 3 * extensionFlag;
+                    }
+                    else
+                    {
+                        pos.z = 5 * extensionFlag;
+                    }
                 }
-
             }
             else if (entity is Structure)
             {
@@ -584,6 +611,10 @@ public class TileHelper : MonoBehaviour
                 if (structureCheck != null && !structureCheck.IsSameTeamAs(unit))
                 {
                     pos.z = 2 * extensionFlag;
+                }
+                else
+                {
+                    pos.z = -1;
                 }
             }
             else

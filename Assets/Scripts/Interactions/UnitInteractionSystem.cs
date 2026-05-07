@@ -9,6 +9,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
+using static UnityEditor.PlayerSettings;
 
 public enum InteractionState
 {
@@ -300,6 +301,9 @@ public class UnitInteractionSystem : TileCursor
                         
                         SetOptionsTiles(valid, actions);
 
+                        //Remove any not moveable or interactable tiles
+                        
+
                         validLocations = valid;
                         SoundManager.Instance.PlayEntitySound(unit, SoundType.SELECT);
                         PushState(InteractionState.Movement);
@@ -330,14 +334,14 @@ public class UnitInteractionSystem : TileCursor
                 {
                     //grab what's at the position before clearing
                     TileBase end = optionsMap.GetTile(pos);
-                    optionsMap.ClearAllTiles();
-                    extensionsMap.ClearAllTiles();
+
                     //check they if they're the same
                     if (fromData == toData)
                     {
                         //switch to interaction selection phase
                         ShowUnitOptions(toData.GetOccupyingEntity());
-
+                        optionsMap.ClearAllTiles();
+                        extensionsMap.ClearAllTiles();
                         //Needed for the cancel action to work
                         prevLocation = selectedPosition;
                         afterLocation = pos;
@@ -351,16 +355,31 @@ public class UnitInteractionSystem : TileCursor
                         afterLocation = pos;
                         Unit unitCheck = selectedEntity as Unit;
                         if (unitCheck == null) return;
-                        //what happens depends on the tile at the position
-                        //TODO
-                        if(end == GetInfoTile(TileColor.White))
+                        
+                        //Used to determine what to do at a given location
+                        int zFlag = 0;
+                        for (int i = 0; i < validLocations.Count; i++)
                         {
-                            Debug.Log("MoveTile");
+                            if (SameExceptZ(validLocations[i], pos)) { zFlag = validLocations[i].z; break; }
+                        }
+
+                        // Only move to white tiles that indicate movement
+                        if (end == GetInfoTile(TileColor.White) || zFlag == 0)
+                        {
+                            optionsMap.ClearAllTiles();
+                            extensionsMap.ClearAllTiles();
                             StartCoroutine(WaitForMoveAndShowOptions(unitCheck, toData));
+                        }
+                        else if (end == null || zFlag == 5 || zFlag == -5 || zFlag == -1)
+                        {
+                            //ignore clicks if the zFlag is indicating a friendly unit or a reach tile
+                            return; 
                         }
                         else
                         {
-                            Debug.Log("QuickAction");
+                            //if anything else, do the quick action
+                            optionsMap.ClearAllTiles();
+                            extensionsMap.ClearAllTiles();
                             StartCoroutine(QuickAction(unitCheck, toData));
                         }
 
@@ -417,7 +436,9 @@ public class UnitInteractionSystem : TileCursor
         isMoving = true;
         //grab the path and store incase we undo
         //move along path
-        Vector3Int end = afterLocation;
+
+        //normalize the ending tile's z flag that was set
+        Vector3Int end = new Vector3Int(afterLocation.x, afterLocation.y, 0);
         yield return StartCoroutine(unit.Move(lastMovePath));
 
         yield return new WaitUntil(() => !unit.isMoving);
@@ -474,17 +495,11 @@ public class UnitInteractionSystem : TileCursor
     {
         for(int i = 0; i < validLocations.Count; i++)
         {
-            if(validLocations[i].x == pos.x && validLocations[i].y == pos.y)
-            {
-                return true;
-            }
-            if (validLocations[i].x == pos.x && validLocations[i].y == pos.y)
+            if (SameExceptZ(validLocations[i],pos))
             {
                 // Block pure extension tiles (white, non-actionable)
                 return validLocations[i].z != -1;
             }
-
-
         }
         return false;
     }
@@ -497,8 +512,10 @@ public class UnitInteractionSystem : TileCursor
             return false;
         }
 
+        
+        //check to see that the location is valid
         //Check that the position you clicked is a valid target
-        if (validLocations.Count > 0 && validLocations.Contains(pos))
+        if (validLocations.Count > 0 && XYInList(validLocations, pos))
         {
             //Execute the action
             //Need to remain general
@@ -509,6 +526,24 @@ public class UnitInteractionSystem : TileCursor
         }
         Debug.Log("Invalid location");
         return false; 
+    }
+    //Determins if pos is contained in the list ignoring it's z coordinate
+    private bool XYInList(List<Vector3Int> list, Vector3Int pos)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            //check if theres an x and y match
+            if (SameExceptZ(list[i], pos))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    //Compares the two pos ignoring their z coordinate
+    private bool SameExceptZ(Vector3Int a, Vector3Int b)
+    {
+        return a.x == b.x && a.y == b.y;
     }
 
     private void ShowUnitOptions(Unit unit)
@@ -566,7 +601,7 @@ public class UnitInteractionSystem : TileCursor
                 if (unit != null)
                 {
                     //show movement range
-                        validLocations = tileHelper.GetQuickActionRange(unit);
+                        validLocations = tileHelper.GetInteractionRange(unit);
                         List<EntityAction> actions = unit.GetAllActions();
                         
                         SetOptionsTiles(validLocations, actions);
@@ -958,11 +993,6 @@ public class UnitInteractionSystem : TileCursor
         StartFeedTargeting();
     }
 
-    private void QuickAction()
-    {
-
-    }
-
     private void StopFeeding()
     {
         StopAction();
@@ -1046,12 +1076,17 @@ public class UnitInteractionSystem : TileCursor
 
                 tile = zFlag > 0 ? GetInfoTile(TileColor.Yellow) : GetExtensionTile(TileColor.Yellow);
             }
+            else if ((zFlag == 5 || zFlag == -5))
+            {
+                //marks plants and units as Green to signify they are allies
+                tile = zFlag > 0 ? GetInfoTile(TileColor.Green) : GetExtensionTile(TileColor.Green);
+            }
             else if (zFlag == -1)
             {
                 tile = GetExtensionTile(TileColor.White);
             }
             //draw the tile
-            optionsMap.SetTile(valid[i], tile);
+            optionsMap.SetTile(paintLocation, tile);
         }
     }
 }
