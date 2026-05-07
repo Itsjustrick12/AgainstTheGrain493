@@ -25,6 +25,9 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private bool requireCropGrownBeforeRobotMove = true;
     [SerializeField] private bool requireCropWateredBeforeGrow = true;
 
+    [Header("Objective Box")]
+    [SerializeField] private ObjectiveUI mainObjectiveBox;
+
     private bool robotMoved = false;
     private bool cropPlanted = false;
     private bool cropWatered = false;
@@ -45,6 +48,7 @@ public class TutorialManager : MonoBehaviour
             gameObject.SetActive(false);
             return;
         }
+        mainObjectiveBox.SetObjective("Select a Farmer");
     }
 
     private void OnEnable()
@@ -90,6 +94,7 @@ public class TutorialManager : MonoBehaviour
     public void OnUnitClicked()
     {
         TryStartConversation(onUnitClickedConversation);
+        mainObjectiveBox.SetObjective("Plant some Wheat");
         UnitInteractionSystem.OnUnitSelected -= OnUnitClicked;
     }
 
@@ -98,6 +103,7 @@ public class TutorialManager : MonoBehaviour
         if (requireCropGrownBeforeRobotMove && !cropGrown) return;
         robotMoved = true;
         TryStartConversation(onRobotMoveConversation);
+        mainObjectiveBox.SetObjective("Harvest the Wheat");
         GameManager.StartEnemyTurn -= OnRobotMove;
     }
 
@@ -105,6 +111,7 @@ public class TutorialManager : MonoBehaviour
     {
         cropPlanted = true;
         TryStartConversation(onCropPlantedConversation);
+        mainObjectiveBox.SetObjective("Water the plant");
         PlantAction.onPlant -= OnCropPlanted;
     }
 
@@ -113,6 +120,7 @@ public class TutorialManager : MonoBehaviour
         if (requireCropWateredBeforeGrow && !cropWatered) return;
         cropGrown = true;
         TryStartConversation(onCropGrowConversation);
+        mainObjectiveBox.SetObjective("Water the plant again");
         GameManager.StartPlayerTurn -= OnCropGrow;
     }
 
@@ -120,6 +128,7 @@ public class TutorialManager : MonoBehaviour
     {
         cropWatered = true;
         TryStartConversation(onCropWateredConversation);
+        mainObjectiveBox.SetObjective("End the Turn");
         BasicWaterAction.onWater -= OnCropWatered;
     }
 
@@ -127,6 +136,7 @@ public class TutorialManager : MonoBehaviour
     {
         cropHarvested = true;
         TryStartConversation(onCropHarvestedConversation);
+        mainObjectiveBox.SetObjective("Sell Wheat at Barn");
         BasicHarvestAction.onHarvest -= OnCropHarvested;
     }
 
@@ -134,6 +144,7 @@ public class TutorialManager : MonoBehaviour
     {
         chickenPurchased = true;
         TryStartConversation(onChickenPurchasedConversation);
+        mainObjectiveBox.SetObjective("Buy another Chicken");
         SpawnUnitAction.OnSpawn -= OnChickenPurchased;
     }
 
@@ -141,18 +152,21 @@ public class TutorialManager : MonoBehaviour
     {
         enemyHit = true;
         TryStartConversation(onEnemyHitConversation);
+        mainObjectiveBox.SetObjective("Kill that rustbolt");
         Unit.OnEnemyHit -= OnEnemyHit;
     }
 
     public void OnFriendlyDie()
     {
         TryStartConversation(onFriendlyDieConversation);
+        mainObjectiveBox.SetObjective("Kill that rustbolt");
         Unit.OnFriendlyDie -= OnFriendlyDie;
     }
 
     public void OnAnimalDie()
     {
         TryStartConversation(onAnimalDieConversation);
+        mainObjectiveBox.SetObjective("Kill that rustbolt");
         Unit.OnAnimalDie -= OnAnimalDie;
     }
 
