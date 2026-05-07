@@ -9,7 +9,6 @@ public class TurnChangeUI : MonoBehaviour
     public void EndAnimation()
     {
         TurnAnimationEnd?.Invoke();
-        anim.SetTrigger("idle");
     }
 
     public void PlayPlayerTurn()
