@@ -14,7 +14,7 @@ public class AdvancedWaterAction : BasicWaterAction
             Debug.LogError("Trying to get valid targets based on an invalid Unit in attack action");
             return targets;
         }
-
+        
         TileManager TM = FindFirstObjectByType<TileManager>();
 
         Vector3Int startPos = unit.GetGridPos();
@@ -22,12 +22,13 @@ public class AdvancedWaterAction : BasicWaterAction
         //get a reference to all tiles
         foreach (Vector3Int offset in TileManager.DIRECTIONS)
         {
-            for(int i = 0; i < 3; i++)
+            for(int i = 1; i < 4; i++)
             {
                 Vector3Int currentTile = startPos + (offset * i);
                 TileData data = TM.GetTileDataAt(currentTile);
                 //check if there is a dirt tile //or an enemy 
-                if(data.GetType() == TileType.Dirt)// || (data.GetOccupyingEntity() as Unit && (data.GetOccupyingEntity() as Unit))
+                if(data.GetType() == TileType.Dirt 
+                || ((data.GetOccupyingEntity() as Unit) != null && (data.GetOccupyingEntity() as Unit).GetIsEnemy()))// || (data.GetOccupyingEntity() as Unit && (data.GetOccupyingEntity() as Unit))
                 {
                     targets.Add(startPos + offset);
                     i = 3;
