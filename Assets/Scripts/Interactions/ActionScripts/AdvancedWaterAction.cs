@@ -71,21 +71,27 @@ public class AdvancedWaterAction : BasicWaterAction
 
         //attempt to water closest
         Crop targetCrop = manager.GetCropOnTile(pos);
+        Unit targetUnit = manager.GetUnitOnTile(pos);
         if(targetCrop != null) targetCrop.WaterCrop();
+        if(targetUnit != null) AddDebuff(targetUnit);
         if(manager.GetTileTypeAt(pos) == TileType.Dirt) manager.SetTile(pos, TileType.WateredDirt);
 
-        //water the dirt away from the unit
+        //water the dirt away from the unit, if there's an enemy on the tile debuff it, else if there's a crop water it
         if(pos.x != unit.GetGridPos().x)
         {   
             int direction = (pos.x - unit.GetGridPos().x) / Mathf.Abs(pos.x - unit.GetGridPos().x);
             pos = new Vector3Int(pos.x + direction, pos.y, pos.z);
             if(manager.GetTileTypeAt(pos) == TileType.Dirt) manager.SetTile(pos, TileType.WateredDirt);
             targetCrop = manager.GetCropOnTile(pos);
+            targetUnit = manager.GetUnitOnTile(pos);
             if(targetCrop != null) targetCrop.WaterCrop();
+            if(targetUnit != null) AddDebuff(targetUnit);
             pos = new Vector3Int(pos.x + direction, pos.y, pos.z);
             if(manager.GetTileTypeAt(pos) == TileType.Dirt) manager.SetTile(pos, TileType.WateredDirt);
             targetCrop = manager.GetCropOnTile(pos);
+            targetUnit = manager.GetUnitOnTile(pos);
             if(targetCrop != null) targetCrop.WaterCrop();
+            if(targetUnit != null) AddDebuff(targetUnit);
         }
         else if(pos.y != unit.GetGridPos().y)
         {
@@ -93,11 +99,15 @@ public class AdvancedWaterAction : BasicWaterAction
             pos = new Vector3Int(pos.x, pos.y + direction, pos.z);
             if(manager.GetTileTypeAt(pos) == TileType.Dirt) manager.SetTile(pos, TileType.WateredDirt);
             targetCrop = manager.GetCropOnTile(pos);
+            targetUnit = manager.GetUnitOnTile(pos);
             if(targetCrop != null) targetCrop.WaterCrop();
+            if(targetUnit != null) AddDebuff(targetUnit);
             pos = new Vector3Int(pos.x, pos.y + direction, pos.z);
             if(manager.GetTileTypeAt(pos) == TileType.Dirt) manager.SetTile(pos, TileType.WateredDirt);
             targetCrop = manager.GetCropOnTile(pos);
+            targetUnit = manager.GetUnitOnTile(pos);
             if(targetCrop != null) targetCrop.WaterCrop();
+            if(targetUnit != null) AddDebuff(targetUnit);
         }
 
         //SoundManager.Instance.PlaySound(waterSounds[UnityEngine.Random.Range(0, waterSounds.Length)]);
@@ -111,5 +121,18 @@ public class AdvancedWaterAction : BasicWaterAction
             Math.Sign(target.y - casterPos.y), 0);
 
         return new List<Vector3Int> { target + dir, target + (dir * 2)};
+    }
+
+    public void AddDebuff(Unit targetUnit)
+    {
+        if(targetUnit != null)
+        {
+            MovementBuff movementBuff = new MovementBuff(1, -1 * (targetUnit.GetBaseMoveRange() - 1));
+            if(movementBuff.baseIncrease > 0)
+            {
+                movementBuff.baseIncrease = 0;
+            }
+            targetUnit.AddBuff(movementBuff);
+        }
     }
 }

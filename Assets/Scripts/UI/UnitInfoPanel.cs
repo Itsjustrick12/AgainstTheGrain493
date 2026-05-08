@@ -129,7 +129,7 @@ public class UnitInfoPanel : MonoBehaviour
             }
             else
             {
-                strengthText.text = strength.ToString() + " ( -" + valDif + ")";
+                strengthText.text = strength.ToString() + " ( " + valDif + ")";
                 strengthText.color = debuffColor;
             }
             
@@ -151,7 +151,7 @@ public class UnitInfoPanel : MonoBehaviour
             }
             else
             {
-                movementText.text = moveRange.ToString() + " ( -" + valDif + ")";
+                movementText.text = moveRange.ToString() + " ( " + valDif + ")";
                 movementText.color = debuffColor;
             }
             
