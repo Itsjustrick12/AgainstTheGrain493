@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public static event Action StartEnemyTurn;
     //fires after animation finishes
     public static event Action EnemyAnimDone;
+    public static event Action EndEnemyTurn;
 
     public GameObject pauseScreen;
     public GameObject winScreen;
@@ -262,6 +263,8 @@ public class GameManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.5f);
+        EndEnemyTurn?.Invoke();
+        yield return StartCoroutine(WaitForDialogue());
 
         PlayPlayerTurnAnimation();
 

@@ -59,7 +59,7 @@ public class TutorialManager : MonoBehaviour
         PlantAction.onPlant += OnCropPlanted;
         GameManager.StartPlayerTurn += OnCropGrow;
         SpawnUnitAction.OnSpawn += OnChickenPurchased;
-        GameManager.EnemyAnimDone += OnRobotMove;
+        GameManager.EndEnemyTurn += OnRobotMove;
         Unit.OnFriendlyDie += OnFriendlyDie;
         Unit.OnAnimalDie += OnAnimalDie;
         Unit.OnEnemyHit += OnEnemyHit;
@@ -78,7 +78,7 @@ public class TutorialManager : MonoBehaviour
         PlantAction.onPlant -= OnCropPlanted;
         GameManager.StartPlayerTurn -= OnCropGrow;
         SpawnUnitAction.OnSpawn -= OnChickenPurchased;
-        GameManager.EnemyAnimDone -= OnRobotMove;
+        GameManager.EndEnemyTurn -= OnRobotMove;
         Unit.OnFriendlyDie -= OnFriendlyDie;
         Unit.OnAnimalDie -= OnAnimalDie;
         Unit.OnEnemyHit -= OnEnemyHit;
@@ -109,8 +109,8 @@ public class TutorialManager : MonoBehaviour
 
     public void OnRobotMove()
     {
-        //if (requireCropGrownBeforeRobotMove && !cropGrown) return;
-        //robotMoved = true;
+        if (robotMoved) return;
+        robotMoved = true;
         TryStartConversation(onRobotMoveConversation);
         GameManager.StartEnemyTurn -= OnRobotMove;
     }
