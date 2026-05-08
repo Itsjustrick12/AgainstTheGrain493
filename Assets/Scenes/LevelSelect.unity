@@ -339,11 +339,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7638875483631564493, guid: 9b0066bc545ebf2448531205fdcb2c0d, type: 3}
       propertyPath: levelIndex
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7638875483631564493, guid: 9b0066bc545ebf2448531205fdcb2c0d, type: 3}
       propertyPath: sceneNumber
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

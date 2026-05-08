@@ -46,7 +46,7 @@ public class LevelButton : MonoBehaviour
 
     bool IsLevelUnlocked()
     {
-        return PlayerPrefs.GetInt($"Level_{levelIndex}_Unlocked", 0) == 1;
+        return true;//PlayerPrefs.GetInt($"Level_{levelIndex}_Unlocked", 0) == 1;
     }
 
     public void LoadScene()
