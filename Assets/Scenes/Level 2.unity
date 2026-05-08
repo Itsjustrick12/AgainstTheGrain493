@@ -164,6 +164,7 @@ MonoBehaviour:
   requireCropWateredBeforeGrow: 1
   hoverMap: {fileID: 1620141879}
   hoverTile: {fileID: 11400000, guid: 43c3207df2dee1c43a14557151a57a53, type: 2}
+  onGameStartConversation: Level2/Intro
 --- !u!4 &315333021
 Transform:
   m_ObjectHideFlags: 0
@@ -186,7 +187,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315333019}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
   m_Name: 

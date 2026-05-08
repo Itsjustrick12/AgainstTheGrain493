@@ -1081,7 +1081,7 @@ public class UnitInteractionSystem : TileCursor
                 //marks plants and units as Green to signify they are allies
                 tile = zFlag > 0 ? GetInfoTile(TileColor.Green) : GetExtensionTile(TileColor.Green);
             }
-            else if (zFlag == -1)
+            else
             {
                 tile = GetExtensionTile(TileColor.White);
             }

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: eac1308b1b0867446b12756eb30a86ba
+guid: dfd9f3f9aad109f4483bec4d1ddcf9ba
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BarnUIAnimated_0
+      name: BarnUIAnimation_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 640
-        height: 368
+        width: 576
+        height: 352
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,20 +125,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e51a41dc96bd246478873ca47036e89a
-      internalID: -167351661
+      spriteID: e02dad7d39ed99549833f5e81509f628
+      internalID: -1125062503
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BarnUIAnimated_1
+      name: BarnUIAnimation_1
       rect:
         serializedVersion: 2
-        x: 640
+        x: 576
         y: 0
-        width: 640
-        height: 368
+        width: 576
+        height: 352
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,20 +147,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a925e10260fc73b4a91b92aa38197317
-      internalID: -1211483579
+      spriteID: 8de0463510a755f42b8668741407b911
+      internalID: -1407706518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BarnUIAnimated_2
+      name: BarnUIAnimation_2
       rect:
         serializedVersion: 2
-        x: 1280
+        x: 1152
         y: 0
-        width: 640
-        height: 368
+        width: 576
+        height: 352
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,20 +169,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7add47de1897eb249935c99f9786ddf1
-      internalID: -307784362
+      spriteID: 18ccaeb99549591449987f3670ab4674
+      internalID: -1837220969
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BarnUIAnimated_3
+      name: BarnUIAnimation_3
       rect:
         serializedVersion: 2
-        x: 1920
+        x: 1728
         y: 0
-        width: 640
-        height: 368
+        width: 576
+        height: 352
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,20 +191,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97636c629ac377a47b8528ade7168419
-      internalID: -2053967663
+      spriteID: 478d17420a6b77c478336721be93cffd
+      internalID: -2077414340
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BarnUIAnimated_4
+      name: BarnUIAnimation_4
       rect:
         serializedVersion: 2
-        x: 2560
+        x: 2304
         y: 0
-        width: 640
-        height: 368
+        width: 576
+        height: 352
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,20 +213,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de196ca5d4c1ee44bafbca70cb614ccd
-      internalID: 1408108015
+      spriteID: 5affa7d14beb6814eab134aac6b349f8
+      internalID: 1536131999
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BarnUIAnimated_5
+      name: BarnUIAnimation_5
       rect:
         serializedVersion: 2
-        x: 3200
+        x: 2880
         y: 0
-        width: 640
-        height: 368
+        width: 576
+        height: 352
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -235,20 +235,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69b8501c91227f742a4b1a724bf80578
-      internalID: -1418580079
+      spriteID: 324690b55dfa865488f85d4817423c8b
+      internalID: 296508939
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BarnUIAnimated_6
+      name: BarnUIAnimation_6
       rect:
         serializedVersion: 2
-        x: 3840
+        x: 3456
         y: 0
-        width: 640
-        height: 368
+        width: 576
+        height: 352
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,20 +257,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e155485d91dde547805b7552ca94b8c
-      internalID: 1945992141
+      spriteID: 23e951e691dd3cc40b37f9dc4856a8bd
+      internalID: -67390049
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BarnUIAnimated_7
+      name: BarnUIAnimation_7
       rect:
         serializedVersion: 2
-        x: 4480
+        x: 4032
         y: 0
-        width: 640
-        height: 368
+        width: 576
+        height: 352
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,20 +279,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06facc5afcd079a40899f2e90186acb4
-      internalID: -189773673
+      spriteID: e0e9fbb900590be469ed7bfb00ce16a9
+      internalID: -1393109368
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BarnUIAnimated_8
+      name: BarnUIAnimation_8
       rect:
         serializedVersion: 2
-        x: 5120
+        x: 4608
         y: 0
-        width: 640
-        height: 368
+        width: 576
+        height: 352
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -301,20 +301,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0875dde90e5edc47afe5016f7654db4
-      internalID: 1285055351
+      spriteID: 02840b17d431bd348b191e5b7b7b3fe2
+      internalID: -796435382
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BarnUIAnimated_9
+      name: BarnUIAnimation_9
       rect:
         serializedVersion: 2
-        x: 5760
+        x: 5184
         y: 0
-        width: 640
-        height: 368
+        width: 576
+        height: 352
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -323,8 +323,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c96cdc5459c52044abf7171cf83b34e2
-      internalID: -1668203876
+      spriteID: 3c554d2a02b5db14f824a5a940f0b07c
+      internalID: -1301058944
       vertices: []
       indices: 
       edges: []
@@ -343,18 +343,18 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":640.0,"y":368.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":576.0,"y":352.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      BarnUIAnimated_0: -167351661
-      BarnUIAnimated_1: -1211483579
-      BarnUIAnimated_2: -307784362
-      BarnUIAnimated_3: -2053967663
-      BarnUIAnimated_4: 1408108015
-      BarnUIAnimated_5: -1418580079
-      BarnUIAnimated_6: 1945992141
-      BarnUIAnimated_7: -189773673
-      BarnUIAnimated_8: 1285055351
-      BarnUIAnimated_9: -1668203876
+      BarnUIAnimation_0: -1125062503
+      BarnUIAnimation_1: -1407706518
+      BarnUIAnimation_2: -1837220969
+      BarnUIAnimation_3: -2077414340
+      BarnUIAnimation_4: 1536131999
+      BarnUIAnimation_5: 296508939
+      BarnUIAnimation_6: -67390049
+      BarnUIAnimation_7: -1393109368
+      BarnUIAnimation_8: -796435382
+      BarnUIAnimation_9: -1301058944
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

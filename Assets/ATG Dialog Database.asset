@@ -1097,7 +1097,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: "[pic=3]That\u2019s one of them clankers, huh?"
+        value: "[pic=3]That\u2019s one of them bots, huh?"
         type: 0
         typeString: 
       - title: Sequence
@@ -3779,7 +3779,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=6]That damn clanker!'
+        value: '[pic=6]That damn rust bucket!'
         type: 0
         typeString: 
       - title: Sequence
@@ -5022,8 +5022,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=3]We will focus on clearing out these clankers first, then come
-          back to defend you!'
+        value: '[pic=3]We will focus on clearing out these rust buckets first, then
+          come back to defend you!'
         type: 0
         typeString: 
       - title: Sequence
