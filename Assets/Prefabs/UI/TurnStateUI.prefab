@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TurnChangeUI
   anim: {fileID: 5675254843839347978}
-  enemyOverlay: {fileID: 0}
+  enemyOverlay: {fileID: 7660636879125346888}
 --- !u!1 &5844836054325826936
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,5 +356,5 @@ MonoBehaviour:
   overlay: {fileID: 9117141493523199163}
   fadeDuration: 0.5
   targetAlpha: 0.85
-  playerTurnDelay: 1.25
-  enemyTurnDelay: 1.75
+  playerTurnDelay: 1.85
+  enemyTurnDelay: 0.8

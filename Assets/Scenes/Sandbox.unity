@@ -508,17 +508,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8016565621345408862, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
   m_PrefabInstance: {fileID: 1620141878}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1514675611 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 641678594880845220, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
-  m_PrefabInstance: {fileID: 1620141878}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e26bbd592d79e684380e3ee365826aeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyTurnOverlay
 --- !u!1001 &1620141878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3459,14 +3448,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 641678594880845220, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
-      propertyPath: enemyTurnDelay
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 641678594880845220, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
-      propertyPath: playerTurnDelay
-      value: 1.85
-      objectReference: {fileID: 0}
     - target: {fileID: 680386667898526721, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3651,10 +3632,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3655897301377825370, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
-      propertyPath: enemyOverlay
-      value: 
-      objectReference: {fileID: 1514675611}
     - target: {fileID: 3779074647839733437, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
