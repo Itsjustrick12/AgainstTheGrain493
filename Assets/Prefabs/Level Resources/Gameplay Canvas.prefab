@@ -91,6 +91,8 @@ MonoBehaviour:
   overlay: {fileID: 3730349759400531971}
   fadeDuration: 0.5
   targetAlpha: 0.75
+  playerTurnDelay: 0
+  enemyTurnDelay: 0
 --- !u!1 &4972369598648447873
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,14 +226,14 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4854063737175089347}
+  - {fileID: 5251868919215219823}
   - {fileID: 3559705844549353129}
   - {fileID: 7542627418893819492}
   - {fileID: 6966476717902365507}
   - {fileID: 458110701186323819}
   - {fileID: 3117526693694825075}
   - {fileID: 6697006616998385747}
-  - {fileID: 5251868919215219823}
-  - {fileID: 4854063737175089347}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -698,6 +700,30 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3397213352408252223, guid: bceb8e2865d0eb2428552b0e26fb6b55, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5261502478239445877, guid: bceb8e2865d0eb2428552b0e26fb6b55, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5261502478239445877, guid: bceb8e2865d0eb2428552b0e26fb6b55, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5261502478239445877, guid: bceb8e2865d0eb2428552b0e26fb6b55, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5261502478239445877, guid: bceb8e2865d0eb2428552b0e26fb6b55, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5261502478239445877, guid: bceb8e2865d0eb2428552b0e26fb6b55, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5261502478239445877, guid: bceb8e2865d0eb2428552b0e26fb6b55, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}

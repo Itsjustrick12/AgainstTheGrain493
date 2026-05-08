@@ -14,7 +14,7 @@ public class EnemyTurnOverlay : MonoBehaviour
     private void Start()
     {
         Color c = overlay.color;
-        c.a = 0f;
+        c.a = 190f/255f;
         overlay.color = c;
     }
 

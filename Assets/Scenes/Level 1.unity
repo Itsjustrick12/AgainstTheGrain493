@@ -169,6 +169,7 @@ MonoBehaviour:
   requireCropWateredBeforeGrow: 1
   hoverMap: {fileID: 228520232}
   hoverTile: {fileID: 11400000, guid: 43c3207df2dee1c43a14557151a57a53, type: 2}
+  onGameStartConversation: Tutorial/Intro
 --- !u!4 &315333021
 Transform:
   m_ObjectHideFlags: 0
@@ -191,7 +192,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315333019}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
   m_Name: 
@@ -2808,6 +2809,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2031448943861267287, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_Color.b
+      value: 0.22745098
+      objectReference: {fileID: 0}
     - target: {fileID: 2055440212220092173, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3102,6 +3107,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4432311807043391356, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
       propertyPath: skipTurnAnimations
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615969545119660942, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4745311966347517567, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}

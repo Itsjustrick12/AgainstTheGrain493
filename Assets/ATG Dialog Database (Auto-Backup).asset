@@ -981,9 +981,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 'SendMessage(PanToNextUnit,  , MainCamera);
-
-          speakerportrait'
+        value: SendMessage(PanToNextUnit,  , MainCamera);
         type: 0
         typeString: 
       - title: Response Menu Sequence
@@ -1564,8 +1562,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 147.88232, y: 103.78434}
-    canvasZoom: 0.84999967
+    canvasScrollPosition: {x: 74.378105, y: 39.531013}
+    canvasZoom: 0.7899997
   - id: 5
     fields:
     - title: Title
@@ -1697,7 +1695,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 
+        value: SendMessage(FocusOnRobot, ,MainCamera);
         type: 0
         typeString: 
       conversationID: 5
@@ -1722,7 +1720,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 162
-        y: 80
+        y: 79
         width: 160
         height: 30
     - id: 2

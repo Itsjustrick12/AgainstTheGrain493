@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using PixelCrushers.DialogueSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,6 +32,8 @@ public class GameManager : MonoBehaviour
 
     public static event Action StartPlayerTurn;
     public static event Action StartEnemyTurn;
+    //fires after animation finishes
+    public static event Action EnemyAnimDone;
 
     public GameObject pauseScreen;
     public GameObject winScreen;
@@ -235,6 +238,9 @@ public class GameManager : MonoBehaviour
     {
         isPlayerTurn = false;
         interactionSystem.DisableInputs();
+
+        yield return StartCoroutine(WaitForDialogue());
+
         List<Unit> tempunits = GetAllEnemyUnits();
 
         //sort based on units that are closest to opposing units first to prevent poor team execution
@@ -259,6 +265,17 @@ public class GameManager : MonoBehaviour
 
         PlayPlayerTurnAnimation();
 
+    }
+
+    //Checks to see if a dialogue section has started to allow the dialogue to happen before continuing
+    private IEnumerator WaitForDialogue()
+    {
+        // Wait a frame first to let the conversation actually start
+        yield return null;
+        while (DialogueManager.IsConversationActive)
+        {
+            yield return null;
+        }
     }
 
     private void PlayPlayerTurnAnimation()
@@ -321,6 +338,7 @@ public class GameManager : MonoBehaviour
     {
         TurnChangeUI.TurnAnimationEnd.RemoveListener(OnEnemyTurnAnimDone);
         // Now safe to begin player turn AFTER animation finishes
+        EnemyAnimDone?.Invoke();
         StartCoroutine(EnemyTurnRoutine());
     }
 
