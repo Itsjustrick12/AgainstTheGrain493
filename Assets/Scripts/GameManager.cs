@@ -83,6 +83,12 @@ public class GameManager : MonoBehaviour
         isPlayerTurn = true;
         SpawnStartingUnits();
         interactionSystem.DisableInputs();
+        
+        //turn off the info panel
+        interactionSystem.infoPanel.HidePanel();
+        //clear the optionsmap
+        interactionSystem.optionsMap.ClearAllTiles();
+
         SoundManager.Instance.PlayMusic(MusicTrack.BATTLE);
         PlayPlayerTurnAnimation();
     }
@@ -90,12 +96,6 @@ public class GameManager : MonoBehaviour
     public void BeginEnemyTurn()
     {
         StartEnemyTurn?.Invoke();
-
-        //turn off the info panel
-        interactionSystem.infoPanel.HidePanel();
-        //clear the optionsmap
-        interactionSystem.optionsMap.ClearAllTiles();
-
         if (skipTurnAnimations)
         {
             StartCoroutine(EnemyTurnRoutine());
@@ -245,7 +245,6 @@ public class GameManager : MonoBehaviour
     {
         isPlayerTurn = false;
         interactionSystem.DisableInputs();
-
 
         yield return StartCoroutine(WaitForDialogue());
 
@@ -434,13 +433,13 @@ public class GameManager : MonoBehaviour
         {
             isGameOver = true;
             Debug.Log("You win!");
-            ShowWinScreen();
+            StartCoroutine(ShowWinScreen());
         }
         else if (IsFriendlyDefeated())
         {
             isGameOver = true;
             Debug.Log("You Lose!");
-            GameOver();
+            StartCoroutine(GameOver());
         }
     }
 
@@ -450,14 +449,16 @@ public class GameManager : MonoBehaviour
     }
 
     //Display lose Screen
-    public void GameOver()
+    public IEnumerator GameOver()
     {
         //probably do other things later but just want to test functionality
+        yield return new WaitForSeconds(0.5f);
         loseScreen.SetActive(true);
     }
 
-    public void ShowWinScreen()
+    public IEnumerator ShowWinScreen()
     {
+        yield return new WaitForSeconds(0.5f);
         winScreen.SetActive(true);
     }
 

@@ -15,9 +15,9 @@ MonoBehaviour:
   id: 10
   entityName: Ram
   baseHealth: 10
-  prefab: {fileID: 0}
+  prefab: {fileID: 4935858330493278644, guid: b6e9c5697802e414e941e5ed8e230911, type: 3}
   tile: {fileID: 11400000, guid: b7ae0805b3cc941b38b29e3d0c0b63fd, type: 2}
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 9bf562ee156c44fffbcc2ed27a43d57a, type: 3}
   actions: []
   purchasePrice: 20
   sellValue: 20

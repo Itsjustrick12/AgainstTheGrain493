@@ -152,7 +152,7 @@ public class UnitInteractionSystem : TileCursor
 
     public override void Update()
     {
-        if (DialogueManager.isConversationActive)
+        if (DialogueManager.isConversationActive || !isInputOn)
         {
             return;
         }
@@ -756,6 +756,7 @@ public class UnitInteractionSystem : TileCursor
         {
 
             //Undo the movement from the previous action and return
+            DisableInputs();
             GameManager.Instance.BeginEnemyTurn();
             ResetData();
             return;
@@ -1025,7 +1026,6 @@ public class UnitInteractionSystem : TileCursor
     public void DisableInputs()
     {
         isInputOn = false;
-        hoverMap.ClearAllTiles();
         input.Disable();
     }
 
