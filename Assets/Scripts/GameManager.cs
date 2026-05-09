@@ -90,6 +90,12 @@ public class GameManager : MonoBehaviour
     public void BeginEnemyTurn()
     {
         StartEnemyTurn?.Invoke();
+
+        //turn off the info panel
+        interactionSystem.infoPanel.HidePanel();
+        //clear the optionsmap
+        interactionSystem.optionsMap.ClearAllTiles();
+
         if (skipTurnAnimations)
         {
             StartCoroutine(EnemyTurnRoutine());
@@ -239,6 +245,7 @@ public class GameManager : MonoBehaviour
     {
         isPlayerTurn = false;
         interactionSystem.DisableInputs();
+
 
         yield return StartCoroutine(WaitForDialogue());
 
