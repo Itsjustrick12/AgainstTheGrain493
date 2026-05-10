@@ -53,7 +53,6 @@ MonoBehaviour:
   optionsMap: {fileID: 0}
   extensionsMap: {fileID: 0}
   arrowMap: {fileID: 0}
-  arrowTile: {fileID: 11400000, guid: f5587689633574c64b1cf3b74d28135c, type: 2}
   aiManager: {fileID: 0}
   infoTiles:
   - {fileID: 11400000, guid: e5091c83003c5a14ba2ac5bd6049d005, type: 2}
@@ -67,6 +66,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7805e929502c91a449b326efbd864b8f, type: 2}
   - {fileID: 11400000, guid: 48d94b040e2b3d64f8c65c753840566d, type: 2}
   - {fileID: 11400000, guid: 76afa184333343144ba8ea0e662d0167, type: 2}
+  arrowTiles:
+  - {fileID: 11400000, guid: aec6ab589f58c4c57b50cebf7124412f, type: 2}
+  - {fileID: 11400000, guid: a420e7d9c83014819af4401c59fb00d6, type: 2}
+  - {fileID: 11400000, guid: 3660b18bfb2f14fc986f4b0d3e011bc6, type: 2}
+  - {fileID: 11400000, guid: d3c276c5008ca41e484fd745626d9f62, type: 2}
+  - {fileID: 11400000, guid: 1872c2a4c5fd548b9b23fb8c60e93283, type: 2}
+  - {fileID: 11400000, guid: 369c9dccd394543fbb422432dca73df3, type: 2}
+  - {fileID: 11400000, guid: 66db449463e304a93b0b096b87bfbbe9, type: 2}
+  - {fileID: 11400000, guid: 81dd8649935894b8eb543ed83e86af5d, type: 2}
+  - {fileID: 11400000, guid: d8414d87c3efc4d119d0eb12903cce85, type: 2}
+  - {fileID: 11400000, guid: a555d2fa6cfa5478dbc0ac844d1068b3, type: 2}
+  - {fileID: 11400000, guid: 001d81417e91b49dd8f270b8179cee3d, type: 2}
+  - {fileID: 11400000, guid: 12c9767eb78594b859b982e62f533038, type: 2}
+  - {fileID: 11400000, guid: a8308e3facde24ef6bbdaf6845255c07, type: 2}
+  - {fileID: 11400000, guid: 17ebfdc6c8f8347dabc1f3e631d6928f, type: 2}
   actionMenu: {fileID: 0}
   state: 0
   selectedPosition: {x: 0, y: 0, z: 0}
