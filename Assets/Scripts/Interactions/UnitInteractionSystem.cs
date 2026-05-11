@@ -831,7 +831,7 @@ public class UnitInteractionSystem : TileCursor
             //Don't do anything, consider the unit moved and don't do anything else
             state = InteractionState.Selection;
             OnStateChanged?.Invoke(state);
-            selectedEntity.Deactivate();
+            selectedEntity.Deactivate(0f);
             ResetData();
             return;
         }
