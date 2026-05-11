@@ -6,6 +6,11 @@ public class TurnChangeUI : MonoBehaviour
     public static UnityEvent TurnAnimationEnd = new UnityEvent();
     public Animator anim;
     public EnemyTurnOverlay enemyOverlay;
+
+    //for the sounds made by ahad for each turn
+    public AudioClip player;
+    public AudioClip enemy;
+
     public void EndAnimation()
     {
         TurnAnimationEnd?.Invoke();
@@ -21,5 +26,15 @@ public class TurnChangeUI : MonoBehaviour
     {
         enemyOverlay.EnemyTurn();
         anim.SetTrigger("enemyTurn");
+    }
+
+    public void PlayPlayerTurnSFX()
+    {
+        SoundManager.Instance.PlaySound(player);
+    }
+
+    public void PlayEnemyTurnSFX()
+    {
+        SoundManager.Instance.PlaySound(enemy);
     }
 }

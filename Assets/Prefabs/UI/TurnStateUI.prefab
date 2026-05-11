@@ -88,6 +88,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TurnChangeUI
   anim: {fileID: 5675254843839347978}
   enemyOverlay: {fileID: 7660636879125346888}
+  player: {fileID: 8300000, guid: 13eba17734816b04db8472f62e1b9598, type: 3}
+  enemy: {fileID: 8300000, guid: 4a9ed3d9b96e70a40b94ec687985fea0, type: 3}
 --- !u!1 &5844836054325826936
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +174,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &7041755008494962179
 MonoBehaviour:
   m_ObjectHideFlags: 0
