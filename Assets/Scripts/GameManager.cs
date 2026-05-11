@@ -427,12 +427,14 @@ public class GameManager : MonoBehaviour
         {
             isGameOver = true;
             Debug.Log("You win!");
+            SoundManager.Instance.PlayMusic(MusicTrack.VICTORY);
             ShowWinScreen();
         }
         else if (IsFriendlyDefeated())
         {
             isGameOver = true;
             Debug.Log("You Lose!");
+            SoundManager.Instance.PlayMusic(MusicTrack.GAME_OVER);
             GameOver();
         }
     }
