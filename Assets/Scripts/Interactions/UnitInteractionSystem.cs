@@ -888,7 +888,7 @@ public class UnitInteractionSystem : TileCursor
 
     public void AskEndTurn(InputAction.CallbackContext context)
     {
-        if (DialogueManager.IsConversationActive)
+        if (DialogueManager.IsConversationActive || !GameManager.Instance.isPlayerTurn)
         {
             return;
         }

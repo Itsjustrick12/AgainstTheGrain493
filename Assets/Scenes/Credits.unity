@@ -597,9 +597,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Project Lead & Programmer: \nRick Jenkins\n\n\nProgrammers: \r\nCristian
-    Uribe \r\nHenry Walenczyk \n\nArtists:\nDaniel Lee \r\nBen Varga \r\nLacey Wilburn
-    \r\nUnchisa Kitisook (Mary) "
+  m_text: "Project Lead: \nRick Jenkins\n\n\nProgrammers: \r\nCristian Uribe \nRick
+    Jenkins\r\nHenry Walenczyk \n\nArtists:\nDaniel Lee \r\nBen Varga \r\nLacey Wilburn
+    \r\nUnchisa Kitisook (Mary)\n\nMusic:\nHeath Franklin\n\nSFX:\nHeath Franklin\nAhad
+    Siddiqui"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 68f7419993f11b24a84e3e821e18a0d1, type: 2}
   m_sharedMaterial: {fileID: 3769680725080982169, guid: 68f7419993f11b24a84e3e821e18a0d1, type: 2}
@@ -608,8 +609,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

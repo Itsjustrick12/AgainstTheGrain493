@@ -163,7 +163,7 @@ MonoBehaviour:
   requireCropGrownBeforeRobotMove: 1
   requireCropWateredBeforeGrow: 1
   hoverMap: {fileID: 1620141879}
-  hoverTile: {fileID: 11400000, guid: 43c3207df2dee1c43a14557151a57a53, type: 2}
+  hoverTile: {fileID: 11400000, guid: de20ea10176662144b43a033be4c1af8, type: 2}
   onGameStartConversation: Tutorial/Intro
 --- !u!4 &315333021
 Transform:
