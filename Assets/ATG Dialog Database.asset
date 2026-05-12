@@ -4966,7 +4966,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=1] Grow some peppers, then feed them to us!'
+        value: '[pic=1] Just grow some peppers, then feed them to us!'
         type: 0
         typeString: 
       - title: Sequence
