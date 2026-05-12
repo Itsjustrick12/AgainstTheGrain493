@@ -164,7 +164,7 @@ MonoBehaviour:
   requireCropWateredBeforeGrow: 1
   hoverMap: {fileID: 1620141879}
   hoverTile: {fileID: 11400000, guid: 43c3207df2dee1c43a14557151a57a53, type: 2}
-  onGameStartConversation: 
+  onGameStartConversation: Level5/Intro
 --- !u!4 &315333021
 Transform:
   m_ObjectHideFlags: 0
@@ -4803,11 +4803,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5070286251698668506, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
       propertyPath: farmerList.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5070286251698668506, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
       propertyPath: 'farmerList.Array.data[2]'
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5070286251698668506, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
+      propertyPath: 'farmerList.Array.data[3]'
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5381004811467769986, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
       propertyPath: m_IsActive

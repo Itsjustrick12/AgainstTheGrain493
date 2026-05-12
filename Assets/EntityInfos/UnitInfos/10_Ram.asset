@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: 10_Ram
   m_EditorClassIdentifier: Assembly-CSharp::UnitInfo
   id: 10
-  entityName: Ram
+  entityName: Goat
   baseHealth: 10
   prefab: {fileID: 4935858330493278644, guid: b6e9c5697802e414e941e5ed8e230911, type: 3}
   tile: {fileID: 11400000, guid: b7ae0805b3cc941b38b29e3d0c0b63fd, type: 2}
   sprite: {fileID: 21300000, guid: 9bf562ee156c44fffbcc2ed27a43d57a, type: 3}
   actions:
   - {fileID: 11400000, guid: f005905e775234c00b1638d2eda5ea14, type: 2}
-  purchasePrice: 20
+  purchasePrice: 15
   sellValue: 20
   hurtSound: {fileID: 8300000, guid: d88985e9feca51649984a523bcd49efa, type: 3}
   deathSound: {fileID: 8300000, guid: 1eb23301a54e4e749965a894b4d2f2fe, type: 3}
