@@ -667,7 +667,11 @@ public class Unit : Entity
             Vector3 endWorld = tileManager.entitiesMap.CellToWorld(nextPos) + cellOffset;
 
             //if it can't be moved back more exit
-            if(tileManager.GetTileDataAt(nextPos) != null && tileManager.GetTileDataAt(nextPos).HasOccupant())
+            if(tileManager.GetTileDataAt(nextPos) == null)
+            {
+                break;
+            }
+            else if(tileManager.GetTileDataAt(nextPos).HasOccupant())
             {
                 takeDamage = true;
                 break;
