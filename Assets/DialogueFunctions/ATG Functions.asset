@@ -26,3 +26,15 @@ MonoBehaviour:
   - functionName: Tutorial/ClearHoverTiles
     parameters: 
     returnValue: 0
+  - functionName: ObjectiveBox/ShowObjectiveBox
+    parameters: 
+    returnValue: 0
+  - functionName: ObjectiveBox/HideObjectiveBox
+    parameters: 
+    returnValue: 0
+  - functionName: ObjectiveBox/SetObjective
+    parameters: 02000000
+    returnValue: 0
+  - functionName: ObjectiveBox/ClearObjective
+    parameters: 
+    returnValue: 0

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 935899b62f48ae5498594680ed17d133, type: 3}
-  m_Name: ATG Dialog Database
+  m_Name: ATG Dialog Database (Auto-Backup)
   m_EditorClassIdentifier: Assembly-CSharp-firstpass::PixelCrushers.DialogueSystem.Wrappers.DialogueDatabase
   version: 1.0
   author: 
@@ -732,7 +732,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: ClearObjective()
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -782,7 +782,7 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: SetObjective("Plant seeds in dirt!")
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -2033,7 +2033,7 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: SetObjective("Water your seeds!")
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -2190,7 +2190,7 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: SetObjective("End your turn!")
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -2352,9 +2352,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: 'ShowBarnParticles();
-
-        ClearObjective()'
+      userScript: ShowBarnParticles()
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -2410,7 +2408,9 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: HighlightTile(-1, 6);
+      userScript: 'ClearHoverTiles()
+
+        HighlightTile(-1, 6)'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -2459,7 +2459,7 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: SetObjective("Buy a chicken!")
+      userScript: ClearHoverTiles();
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -2471,7 +2471,7 @@ MonoBehaviour:
         height: 30
     entryGroups: []
     canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.9189998
+    canvasZoom: 1
   - id: 9
     fields:
     - title: Title
@@ -2777,7 +2777,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: ClearObjective()
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -3055,7 +3055,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: SetObjective("Attack the Robot!")
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -3115,8 +3115,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.5694994
+    canvasScrollPosition: {x: 0, y: 69.07331}
+    canvasZoom: 0.43174967
   - id: 11
     fields:
     - title: Title
@@ -3266,7 +3266,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: ClearObjective()
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -3351,7 +3351,7 @@ MonoBehaviour:
         typeString: CustomFieldType_Actor
       - title: Menu Text
         value: '[pic=1]Looks like we''ll need to <color=#668faf>water</color> it
-          again, then wait one more day of growth before we can <color=#eb8f48>harvest</color>
+          again, then wait one more day before we can <color=#eb8f48>harvest</color>
           it.'
         type: 0
         typeString: 
@@ -3372,7 +3372,7 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: SetObjective("Harvest a wheat!")
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -3535,7 +3535,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: ClearObjective()
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -3590,7 +3590,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: SetObjective("Defeat the robot!")
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
