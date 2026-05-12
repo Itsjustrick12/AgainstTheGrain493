@@ -50,12 +50,12 @@ public class UnitInteractionSystem : TileCursor
     public Tilemap extensionsMap;
 
     public Tilemap arrowMap;
-    public TileBase arrowTile;
     public AIManager aiManager;
 
     //Used for color coding actionable areas
     public TileBase[] infoTiles;
     public TileBase[] extensionTiles;
+    public TileBase[] arrowTiles;
     public TileBase GetInfoTile(TileColor color) => infoTiles[(int)color];
     public TileBase GetExtensionTile(TileColor color) => extensionTiles[(int)color];
 
@@ -154,7 +154,7 @@ public class UnitInteractionSystem : TileCursor
 
     public override void Update()
     {
-        if (DialogueManager.isConversationActive)
+        if (DialogueManager.isConversationActive || !isInputOn)
         {
             return;
         }
@@ -228,10 +228,101 @@ public class UnitInteractionSystem : TileCursor
         {
             for(int i = 0; i < path.Count; i++)
             {
-                arrowMap.SetTile(path[i], arrowTile);
+                arrowMap.SetTile(path[i], arrowTiles[ArrowHelper(i, path)]);
             }
         }
 
+    }
+
+    private int ArrowHelper(int currentTile, List<Vector3Int> path)
+    {
+        int positionOne = -1;
+        int positionTwo = -1;
+
+        // directions:
+        // 0 = left
+        // 1 = up
+        // 2 = right
+        // 3 = down
+
+        Vector3Int currentPos = path[currentTile];
+
+        bool hasPrevious = currentTile > 0;
+        bool hasNext = currentTile < path.Count - 1;
+
+        //if it's the starting tile
+        if(!hasPrevious && hasNext)
+        {
+            Vector3Int diff = path[currentTile + 1] - currentPos;
+
+            if(diff == Vector3Int.left) return 0; //tail left
+
+            if(diff == Vector3Int.up) return 1; //tail up
+
+            if(diff == Vector3Int.right) return 2; //tail right
+
+            if(diff == Vector3Int.down) return 3; //tail down
+        }
+
+        //if it's the ending tile
+        if(hasPrevious && !hasNext)
+        {
+            Vector3Int diff = currentPos - path[currentTile - 1];
+
+            if(diff == Vector3Int.left) return 4; // head left
+
+            if(diff == Vector3Int.up) return 5; // head up
+
+            if(diff == Vector3Int.right) return 6; // head right
+
+            if(diff == Vector3Int.down) return 7; // head down
+        }
+
+        //middle tile
+        if(hasPrevious && hasNext)
+        {
+            Vector3Int diffOne = path[currentTile - 1] - currentPos;
+            Vector3Int diffTwo = path[currentTile + 1] - currentPos;
+
+            if(diffOne == Vector3Int.left) positionOne = 0;
+            else if(diffOne == Vector3Int.up) positionOne = 1;
+            else if(diffOne == Vector3Int.right) positionOne = 2;
+            else if(diffOne == Vector3Int.down) positionOne = 3;
+
+            if(diffTwo == Vector3Int.left) positionTwo = 0;
+            else if(diffTwo == Vector3Int.up) positionTwo = 1;
+            else if(diffTwo == Vector3Int.right) positionTwo = 2;
+            else if(diffTwo == Vector3Int.down) positionTwo = 3;
+
+            int low = Mathf.Min(positionOne, positionTwo);
+            int high = Mathf.Max(positionOne, positionTwo);
+
+            //left + right
+            if(low == 0 && high == 2)
+                return 8; //horizontal
+
+            //up + down
+            if(low == 1 && high == 3)
+                return 9; //vertical
+
+            //left + up
+            if(low == 0 && high == 1)
+                return 10; //corner left-up
+
+            //up + right
+            if(low == 1 && high == 2)
+                return 11; //corner up-right
+
+            //right + down
+            if(low == 2 && high == 3)
+                return 12; //corner right-down
+
+            //down + left
+            if(low == 0 && high == 3)
+                return 13; //corner down-left
+        }
+
+        return 0;
     }
 
     //Modify state with this to keep track of history for undo functionality
@@ -742,7 +833,7 @@ public class UnitInteractionSystem : TileCursor
             //Don't do anything, consider the unit moved and don't do anything else
             state = InteractionState.Selection;
             OnStateChanged?.Invoke(state);
-            selectedEntity.Deactivate();
+            selectedEntity.Deactivate(0f);
             ResetData();
             return;
         }
@@ -758,6 +849,7 @@ public class UnitInteractionSystem : TileCursor
         {
 
             //Undo the movement from the previous action and return
+            DisableInputs();
             GameManager.Instance.BeginEnemyTurn();
             ResetData();
             return;
@@ -1027,7 +1119,6 @@ public class UnitInteractionSystem : TileCursor
     public void DisableInputs()
     {
         isInputOn = false;
-        hoverMap.ClearAllTiles();
         input.Disable();
     }
 

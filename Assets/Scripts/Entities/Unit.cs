@@ -644,6 +644,7 @@ public class Unit : Entity
         Vector3Int startPos = GetGridPos();
         Vector3Int currentPos = startPos;
         Vector3Int otherPos = otherUnit.GetGridPos();
+        bool takeDamage = false;
 
         //sets the x and y for the knockback based on the difference between this unit and the other unit
         Vector3Int diff = startPos - otherPos;
@@ -668,6 +669,7 @@ public class Unit : Entity
             //if it can't be moved back more exit
             if(tileManager.GetTileDataAt(nextPos).HasOccupant())
             {
+                takeDamage = true;
                 break;
             }
 
@@ -688,6 +690,12 @@ public class Unit : Entity
         if(startPos != currentPos)
         {
             tileManager.MoveEntity(startPos, currentPos);
+        }
+
+        //logic for ram knockback
+        if(takeDamage && otherUnit.ID == 10)
+        {
+            this.TakeDamage(5, otherUnit.GetGridPos());
         }
     }
 

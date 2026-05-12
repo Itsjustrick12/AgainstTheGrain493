@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System;
@@ -245,8 +246,19 @@ public class Entity : MonoBehaviour, IBuffable
 
     public virtual void Deactivate()
     {
-        sprite.color = DimColor;
+        Deactivate(0.7f);
+    }
+
+    public virtual void Deactivate(float tim)
+    {
         isActive = false;
+        StartCoroutine(DeactivateHelper(tim));
+    }
+
+    private IEnumerator DeactivateHelper(float tim)
+    {
+        yield return new WaitForSeconds(tim);
+        sprite.color = DimColor;
     }
 
     public virtual void Activate()
