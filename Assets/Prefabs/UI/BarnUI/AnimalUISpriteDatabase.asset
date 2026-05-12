@@ -21,3 +21,7 @@ MonoBehaviour:
     normalSprite: {fileID: -1041616492, guid: 1dc4b5dcc8963bb4f8156bccea6518fb, type: 3}
     highlightSprite: {fileID: -1858785903, guid: 1dc4b5dcc8963bb4f8156bccea6518fb, type: 3}
     unavailableSprite: {fileID: -781585416, guid: 1dc4b5dcc8963bb4f8156bccea6518fb, type: 3}
+  - entityID: 10
+    normalSprite: {fileID: 21300000, guid: 770594e4c9d193d478ef3f3498efc58c, type: 3}
+    highlightSprite: {fileID: 21300000, guid: 7bc95fb1c39dc6745ae2ceb4a6a3b639, type: 3}
+    unavailableSprite: {fileID: 21300000, guid: f668cb6044e4ff241a5c351d4092c98b, type: 3}

@@ -12,29 +12,35 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 7e317ab12112a194fa408deabfd3e3f3
   - enabled: 1
-    path: Assets/Scenes/Level 1.unity
-    guid: e6af670256758427c9ddfb4fe238cce7
-  - enabled: 1
-    path: Assets/Scenes/Level 2.unity
-    guid: 642d666356d664dbb849dff8ca14d5e4
-  - enabled: 1
-    path: Assets/Scenes/Level 3.unity
-    guid: a6299848b9969410487d5623ae203db3
-  - enabled: 1
-    path: Assets/Scenes/TilemapScene.unity
-    guid: 620afeb56692a7b45ba43489cc9f199e
+    path: Assets/Scenes/LevelSelect.unity
+    guid: b73d3538d5673334d8f87fd9b7f90456
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 12d3d4bb41a82e440b4a0877fd88cf21
   - enabled: 1
+    path: Assets/Scenes/Level 1.unity
+    guid: e6af670256758427c9ddfb4fe238cce7
+  - enabled: 1
+    path: Assets/Scenes/Level 2.unity
+    guid: 9a3a72d5b3bcfb544a83eacc2f410b8b
+  - enabled: 1
+    path: Assets/Scenes/Level 3.unity
+    guid: b2ae3966d8106c349ade6cee4487f5ef
+  - enabled: 1
+    path: Assets/Scenes/Level 4.unity
+    guid: f8ec10dbca4a03e4493a069c49db2cbb
+  - enabled: 1
+    path: Assets/Scenes/Level 5.unity
+    guid: 8b1bc53148b23d343b41744dd5f2acd8
+  - enabled: 0
+    path: Assets/Scenes/TilemapScene.unity
+    guid: 620afeb56692a7b45ba43489cc9f199e
+  - enabled: 0
     path: Assets/Scenes/Controls.unity
     guid: 0472055aa69bd0f4ab3adbc521bf632a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Sandbox.unity
     guid: ade882a02b46b1545a5e92ccc98de871
-  - enabled: 1
-    path: Assets/Scenes/LevelSelect.unity
-    guid: b73d3538d5673334d8f87fd9b7f90456
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: d109cead009eb824480eccc23d5cb78f, type: 3}
   m_UseUCBPForAssetBundles: 0

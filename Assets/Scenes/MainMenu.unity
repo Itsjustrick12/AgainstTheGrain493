@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6326cc3f6a2ef4992911f3ccfd3ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToScene
-  SceneNumber: 5
+  SceneNumber: 2
 --- !u!1 &502895742 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4414898403347105453, guid: 1923dbf9f698f7044b472fc96f68318d, type: 3}
@@ -1265,7 +1265,7 @@ GameObject:
   - component: {fileID: 1181235641}
   - component: {fileID: 1181235640}
   m_Layer: 5
-  m_Name: Tutorial Button (1)
+  m_Name: Controls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1896,7 +1896,7 @@ GameObject:
   - component: {fileID: 1594913377}
   - component: {fileID: 1594913376}
   m_Layer: 5
-  m_Name: Tutorial Button (2)
+  m_Name: Level Select
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1934,7 +1934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6326cc3f6a2ef4992911f3ccfd3ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToScene
-  SceneNumber: 8
+  SceneNumber: 1
 --- !u!114 &1594913377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2317,7 +2317,7 @@ GameObject:
   - component: {fileID: 2115788639}
   - component: {fileID: 2115788638}
   m_Layer: 5
-  m_Name: Tutorial Button
+  m_Name: Start Game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2355,7 +2355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6326cc3f6a2ef4992911f3ccfd3ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToScene
-  SceneNumber: 1
+  SceneNumber: 3
 --- !u!114 &2115788639
 MonoBehaviour:
   m_ObjectHideFlags: 0
