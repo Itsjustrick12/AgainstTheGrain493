@@ -925,6 +925,9 @@ MonoBehaviour:
   nameText: {fileID: 303405579051108166}
   wageText: {fileID: 6825845797041891223}
   workerImage: {fileID: 6793052185616617473}
+  strengthText: {fileID: 2214468591803940041}
+  healthText: {fileID: 1180149607712082418}
+  movementText: {fileID: 176002466160042685}
   entityID: 2
 --- !u!222 &6560156770749563628
 CanvasRenderer:

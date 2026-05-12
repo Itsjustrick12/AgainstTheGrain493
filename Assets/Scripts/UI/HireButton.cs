@@ -12,6 +12,11 @@ public class HireButton : UIButton
     public TextMeshProUGUI wageText;
     public Image workerImage;
 
+
+    public TextMeshProUGUI strengthText;
+    public TextMeshProUGUI healthText;
+    public TextMeshProUGUI movementText;
+
     public int entityID;
 
     public override void Awake()
@@ -37,7 +42,14 @@ public class HireButton : UIButton
         nameText.text = info.entityName;
         wageText.text = info.purchasePrice.ToString();
 
-        UpdateVisual(info.purchasePrice);
+        strengthText.text = info.strength.ToString();
+        healthText.text = info.baseHealth.ToString();
+        movementText.text = info.moveRange.ToString();
+
+
+    //update stat text
+
+    UpdateVisual(info.purchasePrice);
     }
 
     public void UpdateVisual(int price)
