@@ -667,7 +667,7 @@ public class Unit : Entity
             Vector3 endWorld = tileManager.entitiesMap.CellToWorld(nextPos) + cellOffset;
 
             //if it can't be moved back more exit
-            if(tileManager.GetTileDataAt(nextPos).HasOccupant())
+            if(tileManager.GetTileDataAt(nextPos) != null && tileManager.GetTileDataAt(nextPos).HasOccupant())
             {
                 takeDamage = true;
                 break;
@@ -695,6 +695,7 @@ public class Unit : Entity
         //logic for ram knockback
         if(takeDamage && otherUnit.ID == 10)
         {
+            //ShowNumber(5, otherUnit.GetGridPos(), distance);
             this.TakeDamage(5, otherUnit.GetGridPos());
         }
     }
