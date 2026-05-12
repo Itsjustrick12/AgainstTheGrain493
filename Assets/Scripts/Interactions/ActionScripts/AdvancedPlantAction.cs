@@ -27,7 +27,7 @@ public class AdvancedPlantAction : PlantAction
                 Vector3Int currentTile = startPos + (offset * i);
                 TileData data = TM.GetTileDataAt(currentTile);
 
-                if(data.IsPlantable())
+                if(data != null && data.IsPlantable())
                 {
                     targets.Add(startPos + offset);
                     i = 3;
