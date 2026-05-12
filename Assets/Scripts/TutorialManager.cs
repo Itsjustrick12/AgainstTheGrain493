@@ -40,6 +40,10 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private Tilemap hoverMap;
     [SerializeField] private TileBase hoverTile;
 
+    //Starting the dialogue
+    [SerializeField] private string onGameStartConversation = "Tutorial/Intro";
+    private bool introPlayed = false;
+
     private void Awake()
     {
         Instance = this;
@@ -59,10 +63,11 @@ public class TutorialManager : MonoBehaviour
         PlantAction.onPlant += OnCropPlanted;
         GameManager.StartPlayerTurn += OnCropGrow;
         SpawnUnitAction.OnSpawn += OnChickenPurchased;
-        GameManager.StartEnemyTurn += OnRobotMove;
+        GameManager.EndEnemyTurn += OnRobotMove;
         Unit.OnFriendlyDie += OnFriendlyDie;
         Unit.OnAnimalDie += OnAnimalDie;
         Unit.OnEnemyHit += OnEnemyHit;
+        GameManager.StartPlayerTurn += OnGameStart;
         Lua.RegisterFunction("HighlightTile", this,
         SymbolExtensions.GetMethodInfo(() => HighlightTileLua(0.0, 0.0)));
         Lua.RegisterFunction("ClearHoverTiles", this,
@@ -77,12 +82,21 @@ public class TutorialManager : MonoBehaviour
         PlantAction.onPlant -= OnCropPlanted;
         GameManager.StartPlayerTurn -= OnCropGrow;
         SpawnUnitAction.OnSpawn -= OnChickenPurchased;
-        GameManager.StartEnemyTurn -= OnRobotMove;
+        GameManager.EndEnemyTurn -= OnRobotMove;
         Unit.OnFriendlyDie -= OnFriendlyDie;
         Unit.OnAnimalDie -= OnAnimalDie;
         Unit.OnEnemyHit -= OnEnemyHit;
+        GameManager.StartPlayerTurn -= OnGameStart;
         Lua.UnregisterFunction("HighlightTile");
         Lua.UnregisterFunction("ClearHoverTiles");
+    }
+
+    public void OnGameStart()
+    {
+        if (introPlayed) return;
+        introPlayed = true;
+        TryStartConversation(onGameStartConversation);
+        GameManager.StartPlayerTurn -= OnGameStart;
     }
 
     private void TryStartConversation(string key)
@@ -100,7 +114,7 @@ public class TutorialManager : MonoBehaviour
 
     public void OnRobotMove()
     {
-        if (requireCropGrownBeforeRobotMove && !cropGrown) return;
+        if (robotMoved) return;
         robotMoved = true;
         TryStartConversation(onRobotMoveConversation);
         mainObjectiveBox.SetObjective("Harvest the Wheat");

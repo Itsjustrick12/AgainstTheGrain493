@@ -7,33 +7,26 @@ public class EnemyTurnOverlay : MonoBehaviour
     public Image overlay;
     public float fadeDuration = 0.5f;
     public float targetAlpha = 0.5f;
+    public float playerTurnDelay = 0f;
+    public float enemyTurnDelay = 0f;
+    private float delay = 0f;
 
     private void Start()
     {
         Color c = overlay.color;
-        c.a = 0f;
+        c.a = 190f/255f;
         overlay.color = c;
     }
 
-    private void OnEnable()
+    public void EnemyTurn()
     {
-        GameManager.StartEnemyTurn += OnEnemyTurn;
-        GameManager.StartPlayerTurn += OnPlayerTurn;
-    }
-
-    private void OnDisable()
-    {
-        GameManager.StartEnemyTurn -= OnEnemyTurn;
-        GameManager.StartPlayerTurn -= OnPlayerTurn;
-    }
-
-    void OnEnemyTurn()
-    {
+        delay = enemyTurnDelay;
         FadeTo(targetAlpha);
     }
 
-    void OnPlayerTurn()
+    public void PlayerTurn()
     {
+        delay = playerTurnDelay;
         FadeTo(0f);
     }
 
@@ -49,6 +42,7 @@ public class EnemyTurnOverlay : MonoBehaviour
         float time = 0f;
         Color c = overlay.color;
 
+        yield return new WaitForSeconds(delay);
         while (time < fadeDuration)
         {
             time += Time.deltaTime;

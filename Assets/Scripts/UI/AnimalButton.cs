@@ -10,6 +10,7 @@ public class AnimalButton : UIButton
     public TextMeshProUGUI nameText;
     public Image unitImage;
     public TextMeshProUGUI priceText;
+    public AnimalUISpriteDatabase database;
 
     public int entityID;
 
@@ -27,6 +28,19 @@ public class AnimalButton : UIButton
         priceText.text = info.purchasePrice.ToString();
         nameText.text = info.entityName;
         entityID = id;
+
+        if (database == null) return;
+
+        AnimalUISpriteDatabase.AnimalSpriteSet spriteSet = database.GetSpriteSet(id);
+
+        if (spriteSet != null)
+        {
+            normalSprite = spriteSet.normalSprite;
+            highlightSprite = spriteSet.highlightSprite;
+            unavailableSprite = spriteSet.unavailableSprite;
+
+            UpdateVisual();
+        }
     }
 
     //Remove the click functionality of the base class
@@ -42,5 +56,13 @@ public class AnimalButton : UIButton
     public override void OnPointerEnter(PointerEventData eventData)
     {
 
+    }
+
+    public void UpdateSpriteSet(Sprite[] sprites, int offset)
+    {
+        normalSprite = sprites[offset];
+        highlightSprite = sprites[offset+1];
+        unavailableSprite = sprites[offset+2];
+        UpdateVisual();
     }
 }

@@ -1,3 +1,4 @@
+using PixelCrushers.DialogueSystem;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine.TestTools;
 using UnityEngine.UI;
 using static UnityEngine.AdaptivePerformance.Provider.AdaptivePerformanceSubsystemDescriptor;
 using static UnityEngine.RuleTile.TilingRuleOutput;
-
+using PixelCrushers.DialogueSystem;
 public class UnitInfoPanel : MonoBehaviour
 {
     [SerializeField] private CanvasGroup currentCanvas;
@@ -45,6 +46,7 @@ public class UnitInfoPanel : MonoBehaviour
     public void ShowPanel(Unit currUnit)
     {
         if (!GameManager.Instance.isPlayerTurn) return;
+        if (DialogueManager.IsConversationActive) return;
         if (currUnit == null)
         {
             //Debug.Log("Null Check");
@@ -129,7 +131,7 @@ public class UnitInfoPanel : MonoBehaviour
             }
             else
             {
-                strengthText.text = strength.ToString() + " ( -" + valDif + ")";
+                strengthText.text = strength.ToString() + " ( " + valDif + ")";
                 strengthText.color = debuffColor;
             }
             
@@ -151,7 +153,7 @@ public class UnitInfoPanel : MonoBehaviour
             }
             else
             {
-                movementText.text = moveRange.ToString() + " ( -" + valDif + ")";
+                movementText.text = moveRange.ToString() + " ( " + valDif + ")";
                 movementText.color = debuffColor;
             }
             

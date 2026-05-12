@@ -64,6 +64,11 @@ public class Unit : Entity
         return isFed;
     }
 
+    public int GetBaseMoveRange()
+    {
+        return movementRange;
+    }
+
     public int GetMoveRange()
     {
         if (activeBuffs.Count <= 0)
@@ -604,7 +609,7 @@ public class Unit : Entity
         }
     }
 
-    //does the knockback animation for the unit
+    //does the damaged knockback animation for the unit
     public IEnumerator Knockback(int x, int y)
     {
         Renderer rend = GetComponent<Renderer>();
@@ -625,6 +630,65 @@ public class Unit : Entity
             yield return new WaitForSeconds(duration / 60f);
         }
         rend.material.color = og;
+    }
+
+    public void KnockbackHelper(Unit otherUnit, int distance)
+    {
+        StartCoroutine(Knockback(otherUnit, distance));
+    }
+
+    //forcefully moves this unit back distance spaces
+    public IEnumerator Knockback(Unit otherUnit, int distance)
+    {
+        //gets positions for logic
+        Vector3Int startPos = GetGridPos();
+        Vector3Int currentPos = startPos;
+        Vector3Int otherPos = otherUnit.GetGridPos();
+
+        //sets the x and y for the knockback based on the difference between this unit and the other unit
+        Vector3Int diff = startPos - otherPos;
+        Vector3Int knockback = new Vector3Int(
+            diff.x == 0 ? 0 : diff.x > 0 ? 1 : -1,
+            diff.y == 0 ? 0 : diff.y > 0 ? 1 : -1,
+            0
+        );
+
+        // VISUAL MOVE LOOP, LOOP OVER ALL TILES IN PATH
+        Vector3 cellOffset = new Vector3(
+            tileManager.entitiesMap.cellSize.x,
+            tileManager.entitiesMap.cellSize.y, 0) * 0.5f;
+
+        for (int i = 0; i < distance; i++)
+        {
+            //find the next position of the unit
+            Vector3Int nextPos = currentPos + knockback;
+            Vector3 startWorld = transform.position;
+            Vector3 endWorld = tileManager.entitiesMap.CellToWorld(nextPos) + cellOffset;
+
+            //if it can't be moved back more exit
+            if(tileManager.GetTileDataAt(nextPos).HasOccupant())
+            {
+                break;
+            }
+
+            float elapsed = 0f;
+            while (elapsed < tileManager.stepDuration)
+            {
+                transform.position = Vector3.Lerp(startWorld, endWorld, elapsed / tileManager.stepDuration);
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+            transform.position = endWorld;
+
+            //set next position for the loop
+            currentPos = nextPos;
+        }
+
+        // LOGICAL MOVE, ACTUALLY MOVE TO GRID SPACE
+        if(startPos != currentPos)
+        {
+            tileManager.MoveEntity(startPos, currentPos);
+        }
     }
 
     public void ShowNumber(int damage, Vector3Int position, int x)

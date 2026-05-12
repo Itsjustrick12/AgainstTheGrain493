@@ -1097,7 +1097,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: "[pic=3]That\u2019s one of them clankers, huh?"
+        value: "[pic=3]That\u2019s one of them bots, huh?"
         type: 0
         typeString: 
       - title: Sequence
@@ -1564,8 +1564,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 51.533512, y: 137.04646}
-    canvasZoom: 0.7899997
+    canvasScrollPosition: {x: 103.58417, y: 37.242752}
+    canvasZoom: 0.63999987
   - id: 5
     fields:
     - title: Title
@@ -1697,7 +1697,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 
+        value: SendMessage(PanToWorldPosition, -1|-7, MainCamera);
         type: 0
         typeString: 
       conversationID: 5
@@ -1722,7 +1722,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 162
-        y: 80
+        y: 81
         width: 160
         height: 30
     - id: 2
@@ -1752,7 +1752,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 
+        value: SendMessage(PanToWorldPosition, -1|5, MainCamera);
         type: 0
         typeString: 
       conversationID: 5
@@ -2416,7 +2416,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 159
+        x: 160
         y: 190
         width: 160
         height: 30
@@ -3779,7 +3779,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=6]That damn clanker!'
+        value: '[pic=6]That damn rust bucket!'
         type: 0
         typeString: 
       - title: Sequence
@@ -5022,8 +5022,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=3]We will focus on clearing out these clankers first, then come
-          back to defend you!'
+        value: '[pic=3]We will focus on clearing out these rust buckets first, then
+          come back to defend you!'
         type: 0
         typeString: 
       - title: Sequence

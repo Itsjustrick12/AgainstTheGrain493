@@ -20,7 +20,7 @@ public class EndTurnButton : UIButton
         UnitInteractionSystem.OnStateChanged += CanInteract;
         GameManager.StartEnemyTurn += CanInteract;
         GameManager.StartPlayerTurn += CanInteract;
-        UpdateVisual();
+        CanInteract();
     }
 
     private void OnDisable()
@@ -32,13 +32,15 @@ public class EndTurnButton : UIButton
 
     private void CanInteract()
     {
-        acceptingInput = interactionSystem.state == InteractionState.Selection && gameManager.isPlayerTurn;
+        acceptingInput = gameManager.isPlayerTurn
+                      && interactionSystem.state == InteractionState.Selection;
         UpdateVisual();
     }
 
     private void CanInteract(InteractionState newState)
     {
-        acceptingInput = newState == InteractionState.Selection && gameManager.isPlayerTurn;
+        acceptingInput = gameManager.isPlayerTurn
+                      && newState == InteractionState.Selection;
         UpdateVisual();
     }
 

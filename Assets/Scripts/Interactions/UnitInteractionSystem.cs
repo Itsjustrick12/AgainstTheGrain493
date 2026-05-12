@@ -9,7 +9,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
-using static UnityEditor.PlayerSettings;
+//using static UnityEditor.PlayerSettings;
 
 public enum InteractionState
 {
@@ -111,6 +111,8 @@ public class UnitInteractionSystem : TileCursor
         PushState(InteractionState.Selection);
         BarnUIMenu.OnUnitPurchased.AddListener(OnSelectUnit);
         BarnUIMenu.CancelAction.AddListener(StopAction);
+        JobBoardUI.OnFarmerHired.AddListener(OnSelectUnit);
+        JobBoardUI.CancelAction.AddListener(StopAction);
         FeedManager.OnFeedingComplete += StopFeeding;
         feedManager = FindFirstObjectByType<FeedManager>();
         validLocations = new List<Vector3Int>();
@@ -886,7 +888,7 @@ public class UnitInteractionSystem : TileCursor
 
     public void AskEndTurn(InputAction.CallbackContext context)
     {
-        if (DialogueManager.IsConversationActive)
+        if (DialogueManager.IsConversationActive || !GameManager.Instance.isPlayerTurn)
         {
             return;
         }
@@ -1081,7 +1083,7 @@ public class UnitInteractionSystem : TileCursor
                 //marks plants and units as Green to signify they are allies
                 tile = zFlag > 0 ? GetInfoTile(TileColor.Green) : GetExtensionTile(TileColor.Green);
             }
-            else if (zFlag == -1)
+            else
             {
                 tile = GetExtensionTile(TileColor.White);
             }

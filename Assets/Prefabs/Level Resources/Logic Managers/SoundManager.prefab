@@ -309,5 +309,5 @@ MonoBehaviour:
   musicTracks:
   - {fileID: 8300000, guid: d23504f896547824eb35f7dcbad62b43, type: 3}
   - {fileID: 8300000, guid: dc4ec813065d00f4b80e150eed848c84, type: 3}
-  - {fileID: 8300000, guid: d23504f896547824eb35f7dcbad62b43, type: 3}
-  - {fileID: 8300000, guid: d23504f896547824eb35f7dcbad62b43, type: 3}
+  - {fileID: 8300000, guid: 25239147e6e8519488ca6b2022673da6, type: 3}
+  - {fileID: 8300000, guid: 32c02cce440d2294f9594b65682f7a6b, type: 3}
