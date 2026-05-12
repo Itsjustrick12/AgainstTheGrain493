@@ -111,6 +111,8 @@ public class UnitInteractionSystem : TileCursor
         PushState(InteractionState.Selection);
         BarnUIMenu.OnUnitPurchased.AddListener(OnSelectUnit);
         BarnUIMenu.CancelAction.AddListener(StopAction);
+        JobBoardUI.OnFarmerHired.AddListener(OnSelectUnit);
+        JobBoardUI.CancelAction.AddListener(StopAction);
         FeedManager.OnFeedingComplete += StopFeeding;
         feedManager = FindFirstObjectByType<FeedManager>();
         validLocations = new List<Vector3Int>();

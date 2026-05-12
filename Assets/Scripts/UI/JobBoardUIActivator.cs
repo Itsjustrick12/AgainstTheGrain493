@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class JobBoardUIActivator : MonoBehaviour
 {
-    public BarnUIMenu barnMenu;
+    public JobBoardUI jobBoard;
     private void OnEnable()
     {
-        Barn.OnBarnInteraction += OpenMenu;
+        Farmhouse.OnFarmhouseInteraction += OpenMenu;
     }
     private void OnDisable()
     {
-        Barn.OnBarnInteraction -= OpenMenu;
+        Farmhouse.OnFarmhouseInteraction -= OpenMenu;
     }
     private void OpenMenu()
     {
-        barnMenu.ShowMenu();
+        jobBoard.ShowMenu();
     }
 }

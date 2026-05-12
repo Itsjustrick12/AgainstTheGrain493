@@ -1,11 +1,11 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Handles the farmer hiring job board UI
-public class JobBoardUI : NaviagatableUI
+public class JobBoardUI : MonoBehaviour
 {
     public EconomyManager econManager;
 
@@ -13,18 +13,13 @@ public class JobBoardUI : NaviagatableUI
     public TextMeshProUGUI coinText;
 
     [Header("Farmer Listings")]
-    public GameObject farmerButtonObj;
+    public GameObject hireCardObj;
     public Transform buttonLayout;
+    [SerializeField] protected List<GameObject> buttons;
 
-    // List of hireable farmer unit IDs
     public int[] farmerList;
 
-    [Header("Preview")]
-    public Image unitPreview;
-    public HireButton hireButton;
-
-    [Header("Stats")]
-    [SerializeField] private StatDisplay[] stats;
+    public List<SellCropButton> sellCropButtons;
 
     public static IntEvent OnFarmerHired = new IntEvent();
     public static UnityEvent CancelAction = new UnityEvent();
@@ -33,17 +28,11 @@ public class JobBoardUI : NaviagatableUI
     {
         econManager = EconomyManager.Instance;
 
-        hireButton.SetAcceptingInput(false);
-
-        // Generate farmer listing buttons
         foreach (int id in farmerList)
         {
-            GameObject obj = Instantiate(farmerButtonObj, buttonLayout);
-
-            AnimalButton button = obj.GetComponent<AnimalButton>();
-
+            GameObject obj = Instantiate(hireCardObj, buttonLayout);
+            HireButton button = obj.GetComponentInChildren<HireButton>();
             buttons.Add(obj);
-
             button.UpdateButton(id);
             button.Initialize(buttons.Count - 1);
         }
@@ -62,113 +51,33 @@ public class JobBoardUI : NaviagatableUI
     public void ShowMenu()
     {
         gameObject.SetActive(true);
-
-        SetSelectedIndex(0);
-
-        UpdateCoinText(econManager.GetCoins());
-
-        TurnOnInput();
-
-        UpdateButtons();
+        RefreshVisuals(econManager.GetCoins());
+        StartCoroutine(EnableInputNextFrame());
+        SetButtonsAcceptingInput(false);
     }
 
     public void HideMenu()
     {
-        TurnOffInput();
-
-        hireButton.SetAcceptingInput(false);
-
         gameObject.SetActive(false);
     }
 
     public void CloseMenu()
     {
         CancelAction?.Invoke();
-
         HideMenu();
-    }
-
-    public override void SelectButton(int index)
-    {
-        base.SelectButton(index);
-
-        AnimalButton btn = buttons[index].GetComponent<AnimalButton>();
-
-        btn.SetSelected(true);
-
-        unitPreview.sprite =
-            UnitDatabase.Instance.GetSprite(btn.entityID);
-
-        UnitInfo info =
-            UnitDatabase.Instance.GetUnitInfo(btn.entityID);
-
-        if (info != null)
-        {
-            foreach (StatDisplay display in stats)
-            {
-                display.gameObject.SetActive(true);
-            }
-
-            // Example farmer stats
-            stats[0].SetText(info.strength);
-            stats[1].SetText(info.moveRange);
-            stats[2].SetText(info.baseHealth);
-        }
-        else
-        {
-            foreach (StatDisplay display in stats)
-            {
-                display.gameObject.SetActive(false);
-            }
-        }
-
-        UpdateButtons();
-    }
-
-    public override void DeselectButton(int index)
-    {
-        base.DeselectButton(index);
-
-        AnimalButton btn =
-            buttons[index].GetComponent<AnimalButton>();
-
-        btn.SetSelected(false);
-    }
-
-    public override void ReportAction()
-    {
-        base.ReportAction();
-
-        HireFarmer(
-            buttons[selectedChoice]
-            .GetComponent<AnimalButton>()
-            .entityID
-        );
     }
 
     public void HireFarmer(int id)
     {
-        UnitInfo info =
-            UnitDatabase.Instance.GetUnitInfo(id);
+        UnitInfo info = UnitDatabase.Instance.GetUnitInfo(id);
 
-        if (info != null &&
-            econManager.AttemptToBuy(info.purchasePrice))
+        if (info != null && econManager.AttemptToBuy(info.purchasePrice))
         {
             UpdateCoinText(econManager.GetCoins());
-
             HideMenu();
-
             OnFarmerHired.Invoke(id);
-
             Debug.Log("Hired farmer: " + info.entityName);
         }
-    }
-
-    public void RefreshVisuals(int coinAmount)
-    {
-        UpdateCoinText(coinAmount);
-
-        UpdateButtons();
     }
 
     public void UpdateCoinText(int coinAmount)
@@ -176,13 +85,41 @@ public class JobBoardUI : NaviagatableUI
         coinText.text = coinAmount.ToString();
     }
 
-    public void UpdateButtons()
+    public void UpdateSellButtons()
     {
-        if (buttons.Count == 0)
-            return;
+        foreach (SellCropButton button in sellCropButtons)
+        {
+            button.UpdateVisual();
+        }
+    }
 
-        HireButton btn = buttons[selectedChoice].GetComponent<HireButton>();
+    public void RefreshVisuals(int coinAmount)
+    {
+        UpdateCoinText(coinAmount);
 
-        btn.UpdateButton(1);
+        foreach (GameObject obj in buttons)
+        {
+            HireButton btn = obj.GetComponentInChildren<HireButton>();
+            UnitInfo info = UnitDatabase.Instance.GetUnitInfo(btn.entityID);
+            if (info != null)
+                btn.UpdateVisual(info.purchasePrice);
+        }
+        UpdateSellButtons();
+    }
+
+    private IEnumerator EnableInputNextFrame()
+    {
+        yield return null; // wait one frame for the opening click to clear
+        SetButtonsAcceptingInput(true);
+    }
+
+    private void SetButtonsAcceptingInput(bool accepting)
+    {
+        foreach (GameObject obj in buttons)
+        {
+            HireButton btn = obj.GetComponent<HireButton>();
+            if (btn != null)
+                btn.acceptingInput = accepting;
+        }
     }
 }

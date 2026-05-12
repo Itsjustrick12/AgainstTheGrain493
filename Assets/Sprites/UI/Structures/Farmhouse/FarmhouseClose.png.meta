@@ -1,10 +1,7 @@
 fileFormatVersion: 2
-guid: 6681ba799a584439cad54ba398faa996
+guid: c8e8ab3bda21ad14a97e0d55641e6d9a
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 619165132434888885
-    second: RedFarmerCalm 1_0
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RedFarmerCalm 1_0
+      name: WhiteFarmerCalm_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 10
         y: 0
-        width: 118
-        height: 121
+        width: 108
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5b8d6105867b79800800000000000000
-      internalID: 619165132434888885
+      spriteID: 1d10b555ce1278420800000000000000
+      internalID: 2632109806149370321
       vertices: []
       indices: 
       edges: []
@@ -148,7 +145,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      RedFarmerCalm 1_0: 619165132434888885
+      WhiteFarmerCalm_0: 2632109806149370321
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

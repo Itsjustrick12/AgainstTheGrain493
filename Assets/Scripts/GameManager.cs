@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
 
     public void BeginEnemyTurn()
     {
+        isPlayerTurn = false;
         StartEnemyTurn?.Invoke();
         if (skipTurnAnimations)
         {
