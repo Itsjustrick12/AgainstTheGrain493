@@ -3337,10 +3337,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3930009558693366777, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3971509733635429362, guid: 4cd7f8ad26ede69409fc385d6da64957, type: 3}
       propertyPath: m_ChunkCullingBounds.x
       value: 0.50000095
