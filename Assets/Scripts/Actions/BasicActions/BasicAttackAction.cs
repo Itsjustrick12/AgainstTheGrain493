@@ -4,21 +4,10 @@ using static UnityEngine.EventSystems.EventTrigger;
 [CreateAssetMenu(menuName = "Actions/Attack")]
 public class BasicAttackAction : EntityAction
 {
-    public override string GetName()
-    {
-        return "Attack";
-    }
     //Need to validate size when returned
     public override List<Vector3Int> GetValidTargets(Entity entity)
     {
         List<Vector3Int> targets = new List<Vector3Int>();
-        //get references 
-        if (entity == null)
-        {
-            Debug.LogError("Trying to get valid targets based on an invalid Unit in attack action");
-            return targets;
-        }
-
         TileManager TM = FindFirstObjectByType<TileManager>();
 
         Unit unit = entity as Unit;
@@ -30,28 +19,6 @@ public class BasicAttackAction : EntityAction
         Vector3Int startPos = unit.GetGridPos();
         int atkRange = unit.GetAttackRange();
 
-        ////get a reference to all tiles nearby and check if there are opposing units there
-        //foreach (Vector3Int offset in TileManager.DIRECTIONS)
-        //{
-        //    Vector3Int currentTile = startPos + offset;
-        //    TileData data = TM.GetTileDataAt(currentTile);
-
-        //    if (data != null && data.HasOccupant())
-        //    {
-        //        Unit unitCheck = data.occupyingEntity as Unit;
-        //        if (unitCheck == null)
-        //        {
-        //            continue;
-        //        }
-        //        else if (!unit.IsSameTeamAs(unitCheck))
-        //        {
-
-        //            targets.Add(currentTile);
-        //        }
-
-        //    }
-        //}
-
         for (int i = -atkRange; i <= atkRange; i++)
         {
             for (int j = -atkRange; j <= atkRange; j++)
@@ -62,14 +29,9 @@ public class BasicAttackAction : EntityAction
                 if (i == 0 && j == 0) continue;
 
                 Vector3Int currentTile = startPos + new Vector3Int(i, j, 0);
-                TileData data = TM.GetTileDataAt(currentTile);
-                if (data != null && data.HasOccupant())
+                if(AttackAction(unit, currentTile))
                 {
-                    Unit unitCheck = data.occupyingEntity as Unit;
-                    if (unitCheck != null && !unit.IsSameTeamAs(unitCheck))
-                    {
-                        targets.Add(currentTile);
-                    }
+                    targets.Add(currentTile);
                 }
             }
         }
@@ -78,56 +40,90 @@ public class BasicAttackAction : EntityAction
 
     }
 
-    public override bool IsAOE()
+    //actually checks to see if the action can be done at position tilePos
+    public virtual bool AttackAction(Unit unit, Vector3Int centerTile)
     {
+        //checks valid targets in length
+        for(int i = 1; i <= length; i++)
+        {
+            //checks valid targets width
+            for(int j = 0; j < width; j++)
+            {
+                Vector3Int currentTile = centerTile + new Vector3Int(i, j, 0);
+                TileData data = TM.GetTileDataAt(currentTile);
+                if (data != null && data.HasOccupant())
+                {
+                    Unit unitCheck = data.occupyingEntity as Unit;
+                    if (unitCheck != null && !unit.IsSameTeamAs(unitCheck))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
         return false;
     }
 
-    public override bool IsPossible(Entity unit)
-    {
-        //Attack isn't possible if there are no nearby enemy units or the unit already moved
-        if (GetValidTargets(unit).Count <= 0 || !unit.IsActive())
-        {
-            return false;
-        }
-        return true;
-    }
-
-    public override void PerformAt(Entity unit, List<Vector3Int> positions)
-    {
-        //Just attack the unit from the selected position, for this basic attack there shouldn't be more than one target
-        PerformAt(unit, positions[0]);
-
-    }
-
+    //The unit here is the unit performing the action
     public override void PerformAt(Entity entity, Vector3Int pos)
     {
-        //Execute a simple attack on the unit at the location specified
-        Unit targetUnit = FindFirstObjectByType<TileManager>().GetUnitOnTile(pos);
+        Unit unit = entity as Unit;
 
-        if (targetUnit == null)
+        //returns if the unit doesn't exist
+        if(unit == null)
+        {
+            return;
+        }//sets the animator if it exists
+        else if(unit.HasAnimator())
+        {
+            if(pos.x - unit.GetGridPos().x != 0)
+            {
+                unit.animator.SetFloat("facing", pos.x - unit.GetGridPos().x);
+            }
+            unit.SetAnimationTrigger(actionTrigger);
+        }
+
+        if(actionSound != null)
+        {
+            SoundManager.Instance.PlaySound(actionSound);
+        }
+
+        PerformAttackAt(unit, pos);
+    }
+
+    //actually preforms the Action on the tile
+    public virtual void PerformAttackAt(Unit unit, Vector3Int centerTile)
+    {
+        //make sure unit exists
+        if (unit == null)
         {
             return;
         }
 
-        Unit unit = entity as Unit;
-        if (unit == null)
+        //checks valid targets in length
+        for(int i = 1; i <= length; i++)
         {
-            Debug.LogError("No Unit, just an entity");
-        }
-
-        if (unit.HasAnimator())
-        {
-            if(targetUnit.GetGridPos().x - unit.GetGridPos().x != 0)
+            //checks valid targets width
+            for(int j = 0; j < width; j++)
             {
-                unit.animator.SetFloat("facing", targetUnit.GetGridPos().x - unit.GetGridPos().x);
-            }
-            unit.SetAnimationTrigger("attack");
-        }
+                Vector3Int currentTile = centerTile + new Vector3Int(i, j, 0);
+                TileData data = TM.GetTileDataAt(currentTile);
 
-        //do a simple attack
-        SoundManager.Instance.PlayEntitySound(entity, SoundType.ATTACK);
-        unit.ShowNumber(unit.GetStrength(), targetUnit.GetGridPos(), unit.GetGridPos().x - targetUnit.GetGridPos().x);
-        targetUnit.TakeDamage(unit.GetStrength(), unit.GetGridPos());
+                //makes sure the tile exists
+                if(data == null)
+                {
+                    continue;
+                }
+
+                Entity targetEntity = FindFirstObjectByType<TileManager>().GetEntityOnTile(currentTile);
+                if (targetEntity == null)
+                {
+                    continue;
+                }
+
+                unit.ShowNumber(unit.GetStrength(), targetEntity.GetGridPos(), unit.GetGridPos().x - targetUnit.GetGridPos().x);
+                targetEntity.TakeDamage(unit.GetStrength(), unit.GetGridPos());
+            }
+        }
     }
 }

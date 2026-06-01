@@ -4,99 +4,39 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Actions/Water")]
 public class BasicWaterAction : EntityAction
 {
-    public AudioClip[] waterSounds;
     public static Action onWater;
-    public override string GetName()
+    public TileManager manager = FindFirstObjectByType<TileManager>();
+
+    //actually checks to see if the action can be done at position tilePos
+    public virtual bool Action(TileData tileData)
     {
-        return "Water";
-    }
-    //Need to validate size when returned
-    public override List<Vector3Int> GetValidTargets(Entity unit)
-    {
-        List<Vector3Int> targets = new List<Vector3Int>();
-        //get references 
-        if (unit == null)
+        if (tileData != null && tileData.HasOccupant())
         {
-            Debug.LogError("Trying to get valid targets based on an invalid Unit in attack action");
-            return targets;
-        }
-
-        TileManager TM = FindFirstObjectByType<TileManager>();
-
-        Vector3Int startPos = unit.GetGridPos();
-
-        //get a reference to all tiles nearby and check if there are opposing units there
-        foreach (Vector3Int offset in TileManager.DIRECTIONS)
-        {
-            Vector3Int currentTile = startPos + offset;
-            TileData data = TM.GetTileDataAt(currentTile);
-
-            if (data != null && data.HasOccupant())
-            {
-                Crop cropCheck = data.occupyingEntity as Crop;
-                //You only need to water crops if they aren't fully grown and they haven't been watered already
-                if (cropCheck != null && (!cropCheck.IsWatered() && !cropCheck.IsHarvestable())){
-                    
-                    targets.Add(currentTile);
-                }
-
+            Crop cropCheck = tileData.occupyingEntity as Crop;
+            //You only need to water crops if they aren't fully grown and they haven't been watered already
+            if (cropCheck != null && (!cropCheck.IsWatered() && !cropCheck.IsHarvestable())){
+                
+                return true;
             }
+
         }
-
-        return targets;
-
-    }
-
-    public override bool IsAOE()
-    {
         return false;
     }
 
-    public override bool IsPossible(Entity unit)
+    //actually preforms the Action on the tile
+    public virtual void PerformAt(TileData tileData)
     {
-        //Attack isn't possible if there are no nearby enemy units or the unit already moved
-        if (GetValidTargets(unit).Count <= 0 || !unit.IsActive())
-        {
-            return false;
-        }
-        return true;
-    }
+        Crop targetCrop = tileData.occupyingEntity as Crop;
 
-    public override void PerformAt(Entity unit, List<Vector3Int> positions)
-    {
-        //Just attack the unit from the selected position, for this basic attack there shouldn't be more than one target
-        PerformAt(unit, positions[0]);
-
-    }
-
-    public override void PerformAt(Entity unit, Vector3Int pos)
-    {
-        TileManager manager = FindFirstObjectByType<TileManager>();
-        //Execute a simple attack on the unit at the location specified
-        Crop targetCrop = manager.GetCropOnTile(pos);
-
+        //make sure a crop exists
         if (targetCrop == null)
         {
             Debug.Log("No Crop");
             return;
         }
 
-        Unit unituse = unit as Unit;
-        if (unituse != null && unituse.HasAnimator())
-        {
-            if(pos.x - unituse.GetGridPos().x != 0)
-            {
-                unituse.animator.SetFloat("facing", pos.x - unituse.GetGridPos().x);
-            }
-            
-            unituse.SetAnimationTrigger("water");
-        }
-
-        manager.SetTile(pos, TileType.WateredDirt);
-
-        //Water the crop at the position
+        manager.SetTile(tileData.GetGridPos(), TileType.WateredDirt);
         targetCrop.WaterCrop();
-        SoundManager.Instance.PlaySound(waterSounds[UnityEngine.Random.Range(0, waterSounds.Length)]);
         onWater?.Invoke();
     }
 }

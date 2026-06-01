@@ -92,21 +92,6 @@ public class ReaperAttackAction : BasicAttackAction
 
     }
 
-    public override bool IsPossible(Entity unit)
-    {
-        //Attack isn't possible if there are no nearby enemy units or the unit already moved
-        if (GetValidTargets(unit).Count <= 0 || !unit.IsActive())
-        {
-            return false;
-        }
-        return true;
-    }
-
-    public override bool IsAOE()
-    {
-        return true;
-    }
-
     public override void PerformAt(Entity entity, Vector3Int pos)
     {
         TileManager manager = FindFirstObjectByType<TileManager>();

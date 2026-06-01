@@ -6,44 +6,10 @@ using static UnityEngine.EventSystems.EventTrigger;
 public class SpawnSpecifiedEntity : EntityAction
 {
     public GameObject entityObj;
+    
     public override string GetName()
     {
         return ("Spawn " + entityObj.GetComponent<Entity>().name);
-    }
-
-    public override List<Vector3Int> GetValidTargets(Entity entity)
-    {
-        List<Vector3Int> targets = new List<Vector3Int>();
-        //get references 
-        if (entity == null)
-        {
-            Debug.LogError("Trying to get valid targets based on an invalid Unit in attack action");
-            return targets;
-        }
-
-        TileManager TM = FindFirstObjectByType<TileManager>();
-
-        Vector3Int startPos = entity.GetGridPos();
-
-        //get a reference to all tiles nearby and check if there are opposing units there
-        foreach (Vector3Int offset in TileManager.DIRECTIONS)
-        {
-            Vector3Int currentTile = startPos + offset;
-            TileData data = TM.GetTileDataAt(currentTile);
-
-            if (data != null && data.CanPlaceEntity())
-            {
-                targets.Add(currentTile);
-            }
-        }
-
-        Debug.Log("barn sees " + targets.Count + "valid targets for spawning");
-        return targets;
-    }
-
-    public override bool IsAOE()
-    {
-        return false;
     }
 
     public override bool IsPossible(Entity entity)
@@ -56,29 +22,26 @@ public class SpawnSpecifiedEntity : EntityAction
         return false;
     }
 
-    public override void PerformAt(Entity entity, List<Vector3Int> positions)
+    public override bool Action(TileData tileData)
     {
-        if (IsAOE())
+        if (data != null && data.CanPlaceEntity())
         {
-            //do multiple
+            return true;
         }
-        else
-        {
-            PerformAt(entity, positions[0]);
-        }
+
+        return false;
     }
 
-    public override void PerformAt(Entity entity, Vector3Int pos)
+    //actually preforms the Action on the tile
+    public override void PerformAt(TileData tileData)
     {
-        TileManager manager = FindFirstObjectByType<TileManager>();
-        GameManager gameManager = FindFirstObjectByType<GameManager>();
-        //Execute a simple attack on the unit at the location specified
-        TileData data = manager.GetTileDataAt(pos);
-
-        if (data == null)
+        if(tileData = null)
         {
             return;
         }
+
+        GameManager gameManager = FindFirstObjectByType<GameManager>();
+        Vector3Int pos = tileData.getGridPos();
         GameObject tempEntity = Instantiate(entityObj);
         Entity toSpawn = tempEntity.GetComponent<Entity>();
         toSpawn.UpdateTransform(pos);

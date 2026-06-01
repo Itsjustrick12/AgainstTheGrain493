@@ -5,10 +5,6 @@ using UnityEngine;
 
 public class EndTurnAction : EntityAction
 {
-    public override string GetName()
-    {
-        return "End Turn";
-    }
 
     public override List<Vector3Int> GetValidTargets(Entity entity)
     {
@@ -17,23 +13,8 @@ public class EndTurnAction : EntityAction
         return valid;
     }
 
-    public override bool IsAOE()
-    {
-        return false;
-    }
-
     public override bool IsPossible(Entity entity)
     {
         return true;
-    }
-
-    public override void PerformAt(Entity entity, List<Vector3Int> positions)
-    {
-        return;
-    }
-
-    public override void PerformAt(Entity entity, Vector3Int pos)
-    {
-        return;
     }
 }

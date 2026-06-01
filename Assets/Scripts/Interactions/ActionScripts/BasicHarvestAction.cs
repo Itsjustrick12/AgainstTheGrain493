@@ -5,10 +5,7 @@ using UnityEngine;
 public class BasicHarvestAction : EntityAction
 {
     public static Action onHarvest;
-    public override string GetName()
-    {
-        return "Harvest";
-    }
+    
     //Need to validate size when returned
     public override List<Vector3Int> GetValidTargets(Entity unit)
     {
@@ -44,28 +41,6 @@ public class BasicHarvestAction : EntityAction
         }
         //Debug.Log("Found " + targets.Count + " different crops that can be harvested");
         return targets;
-
-    }
-
-    public override bool IsAOE()
-    {
-        return false;
-    }
-
-    public override bool IsPossible(Entity unit)
-    {
-        //Attack isn't possible if there are no nearby enemy units or the unit already moved
-        if (GetValidTargets(unit).Count <= 0 || !unit.IsActive())
-        {
-            return false;
-        }
-        return true;
-    }
-
-    public override void PerformAt(Entity unit, List<Vector3Int> positions)
-    {
-        //Just attack the unit from the selected position, for this basic attack there shouldn't be more than one target
-        PerformAt(unit, positions[0]);
 
     }
 
