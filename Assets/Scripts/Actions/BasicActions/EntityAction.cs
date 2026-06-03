@@ -13,7 +13,7 @@ public class EntityAction : ScriptableObject
     [Tooltip("length must be greater than 0")]
     public int length = 1;
 
-    public AudioClip actionSound;
+    public AudioClip actionSound = null;
 
     //Returns the name of the action for scripts to identify actions with
     public virtual string GetName()
@@ -137,6 +137,7 @@ public class EntityAction : ScriptableObject
         //returns if the unit doesn't exist
         if(unit == null)
         {
+            Debug.Log("unit does not exist");
             return;
         }//sets the animator if it exists
         else if(unit.HasAnimator())
@@ -154,9 +155,56 @@ public class EntityAction : ScriptableObject
         }
 
         TileData data = TM.GetTileDataAt(pos);
+        Vector3Int startPos = unit.GetGridPos();
+        Vector3Int offset = pos - startPos;
+
         if(data != null)
         {
-            PerformAt(data);
+            for(int i = 1; i <= length; i++)
+            {
+                //checks valid targets width
+                for(int j = 0; j < width; j++)
+                {
+                    //so first we find the tile i length away
+                    Vector3Int currentTile = startPos + offset * i;
+                    data = TM.GetTileDataAt(currentTile);
+                    if(data == null)
+                    {
+                        continue;
+                    }
+
+                    //if there's no width we just check the center tile
+                    if(j == 0)
+                    {
+                        //if the width is actionable
+                        if(Action(data))
+                        {
+                            PerformAt(data);
+                        }
+                    }//if we have a width we go through all the widths
+                    else
+                    {
+                        Vector3Int checkTile = currentTile + new Vector3Int(offset.y * j, offset.x * j, 0);
+                        data = TM.GetTileDataAt(checkTile);
+                        if(data != null)
+                        {
+                            if(Action(TM.GetTileDataAt(checkTile)))
+                            {
+                                PerformAt(data);
+                            }
+                        }
+                        checkTile = currentTile + new Vector3Int(offset.y * j * -1, offset.x * j * -1, 0);
+                        data = TM.GetTileDataAt(checkTile);
+                        if(data != null)
+                        {
+                            if(Action(TM.GetTileDataAt(checkTile)))
+                            {
+                                PerformAt(data);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 

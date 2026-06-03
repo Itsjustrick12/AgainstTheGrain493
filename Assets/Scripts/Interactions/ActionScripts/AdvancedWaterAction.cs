@@ -6,7 +6,7 @@ public class AdvancedWaterAction : BasicWaterAction
 {
 
     //actually preforms the Action on the tile
-    public virtual void PerformAt(TileData tileData)
+    public override void PerformAt(TileData tileData)
     {
         TileManager manager = FindFirstObjectByType<TileManager>();
         Entity entity = tileData.occupyingEntity;

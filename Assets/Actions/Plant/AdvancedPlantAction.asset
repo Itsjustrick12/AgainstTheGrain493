@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35995068ad0f54b12bfa126b1b9d71f9, type: 3}
   m_Name: AdvancedPlantAction
   m_EditorClassIdentifier: Assembly-CSharp::AdvancedPlantAction
-  actionName: EntityAction
+  actionName: Plant
   actionTrigger: plant
   width: 2
   length: 1

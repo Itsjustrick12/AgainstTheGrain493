@@ -7,13 +7,14 @@ public class BasicWaterAction : EntityAction
     public static Action onWater;
 
     //actually checks to see if the action can be done at position tilePos
-    public virtual bool Action(TileData tileData)
+    public override bool Action(TileData tileData)
     {
         if (tileData != null && tileData.HasOccupant())
         {
             Crop cropCheck = tileData.occupyingEntity as Crop;
             //You only need to water crops if they aren't fully grown and they haven't been watered already
-            if (cropCheck != null && (!cropCheck.IsWatered() && !cropCheck.IsHarvestable())){
+            if (cropCheck != null && (!cropCheck.IsWatered() && !cropCheck.IsHarvestable()))
+            {
                 
                 return true;
             }
@@ -23,7 +24,7 @@ public class BasicWaterAction : EntityAction
     }
 
     //actually preforms the Action on the tile
-    public virtual void PerformAt(TileData tileData)
+    public override void PerformAt(TileData tileData)
     {
         Crop targetCrop = tileData.occupyingEntity as Crop;
         TileManager manager = FindFirstObjectByType<TileManager>();
