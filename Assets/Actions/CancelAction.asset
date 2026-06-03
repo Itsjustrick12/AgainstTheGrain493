@@ -12,3 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8748a4b6eca6834e851536efbccc95b, type: 3}
   m_Name: CancelAction
   m_EditorClassIdentifier: Assembly-CSharp::Cancel
+  actionName: Cancel
+  actionTrigger: none
+  width: 1
+  length: 1
+  actionSound: {fileID: 0}

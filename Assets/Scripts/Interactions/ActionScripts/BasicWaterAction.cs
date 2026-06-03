@@ -5,7 +5,6 @@ using UnityEngine;
 public class BasicWaterAction : EntityAction
 {
     public static Action onWater;
-    public TileManager manager = FindFirstObjectByType<TileManager>();
 
     //actually checks to see if the action can be done at position tilePos
     public virtual bool Action(TileData tileData)
@@ -27,6 +26,7 @@ public class BasicWaterAction : EntityAction
     public virtual void PerformAt(TileData tileData)
     {
         Crop targetCrop = tileData.occupyingEntity as Crop;
+        TileManager manager = FindFirstObjectByType<TileManager>();
 
         //make sure a crop exists
         if (targetCrop == null)

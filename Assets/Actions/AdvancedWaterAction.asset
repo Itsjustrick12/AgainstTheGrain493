@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad8d37b3e8d8f40fe8ce891925071770, type: 3}
   m_Name: AdvancedWaterAction
   m_EditorClassIdentifier: Assembly-CSharp::AdvancedWaterAction
-  waterSounds: []
+  actionName: Water
+  actionTrigger: water
+  width: 1
+  length: 3
+  actionSound: {fileID: 0}

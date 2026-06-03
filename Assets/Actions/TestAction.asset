@@ -12,3 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60eda36b543f3a843977b9f6a42b39a3, type: 3}
   m_Name: TestAction
   m_EditorClassIdentifier: Assembly-CSharp::TestAction
+  actionName: Test Action
+  actionTrigger: none
+  width: 1
+  length: 1
+  actionSound: {fileID: 0}

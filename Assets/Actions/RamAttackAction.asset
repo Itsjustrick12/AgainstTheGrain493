@@ -12,3 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0a0133de9184e21a703157a2fdca2d, type: 3}
   m_Name: RamAttackAction
   m_EditorClassIdentifier: Assembly-CSharp::RamAttackAction
+  actionName: Attack
+  actionTrigger: attack
+  width: 1
+  length: 1
+  actionSound: {fileID: 0}

@@ -12,3 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42a2622f0c3e37c48855ef46f05dad8a, type: 3}
   m_Name: WaitAction
   m_EditorClassIdentifier: Assembly-CSharp::WaitAction
+  actionName: Wait
+  actionTrigger: none
+  width: 1
+  length: 1
+  actionSound: {fileID: 0}

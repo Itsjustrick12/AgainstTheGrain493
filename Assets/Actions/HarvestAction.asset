@@ -12,3 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a95a75f40d05b74c93704f7776a8c69, type: 3}
   m_Name: HarvestAction
   m_EditorClassIdentifier: Assembly-CSharp::BasicHarvestAction
+  actionName: Harvest
+  actionTrigger: harvest
+  width: 1
+  length: 1
+  actionSound: {fileID: 0}

@@ -33,7 +33,6 @@ public class EntityAction : ScriptableObject
     //Holds the logic that is excuted when the action is chosen
 
     //finds any valid targets for the action
-    /*
     public virtual List<Vector3Int> GetValidTargets(Entity entity)
     {
         //creates the empty list for return
@@ -114,7 +113,6 @@ public class EntityAction : ScriptableObject
         }
         return false;
     }
-    */
 
     //The unit here is the unit performing the action
     public virtual void PerformAt(Entity entity, List<Vector3Int> positions)

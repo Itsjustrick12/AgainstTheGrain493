@@ -48,7 +48,7 @@ public class SpawnUnitAction : EntityAction
         UnitInfo info = UnitDatabase.Instance.GetUnitInfo(unitID);
         gameManager.SpawnUnitOnTile(info, pos);
         //Deactivate that unit
-        data.GetOccupyingEntity().Deactivate();
+        tileData.GetOccupyingEntity().Deactivate();
         OnSpawn?.Invoke();
     }
 }

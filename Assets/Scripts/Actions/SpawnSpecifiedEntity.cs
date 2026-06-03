@@ -24,7 +24,7 @@ public class SpawnSpecifiedEntity : EntityAction
 
     public override bool Action(TileData tileData)
     {
-        if (data != null && data.CanPlaceEntity())
+        if (tileData != null && tileData.CanPlaceEntity())
         {
             return true;
         }
@@ -35,17 +35,19 @@ public class SpawnSpecifiedEntity : EntityAction
     //actually preforms the Action on the tile
     public override void PerformAt(TileData tileData)
     {
-        if(tileData = null)
+        if(tileData == null)
         {
             return;
         }
 
         GameManager gameManager = FindFirstObjectByType<GameManager>();
-        Vector3Int pos = tileData.getGridPos();
+        TileManager tileManager = FindFirstObjectByType<TileManager>();
+        Vector3Int pos = tileData.GetGridPos();
         GameObject tempEntity = Instantiate(entityObj);
         Entity toSpawn = tempEntity.GetComponent<Entity>();
+        Entity entity = tileManager.GetEntityOnTile(pos);
         toSpawn.UpdateTransform(pos);
-        manager.PlaceEntityOnTile(pos, toSpawn);
+        tileManager.PlaceEntityOnTile(pos, toSpawn);
         
 
         //Spawn the entity with the tilemanager
@@ -58,6 +60,7 @@ public class SpawnSpecifiedEntity : EntityAction
         {
             toSpawn.Deactivate();
         }
+
         entity.Deactivate();
     }
 }

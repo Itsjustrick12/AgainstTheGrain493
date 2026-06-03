@@ -8,7 +8,7 @@ public class AdvancedPlantAction : PlantAction
     //actually checks to see if the action can be done at position tilePos
     public override bool Action(TileData tileData)
     {
-        if(data.IsPlantable())
+        if(tileData.IsPlantable())
         {
             return true;
         }
@@ -19,7 +19,9 @@ public class AdvancedPlantAction : PlantAction
     public override void PerformAt(TileData tileData)
     {
         //attempt to plant crop
-        GM.SpawnCropOnTile(CropDatabase.Instance.GetCropInfo(cropID), pos);
+        Vector3Int pos = tileData.GetGridPos();
+        GameManager gameManager = FindFirstObjectByType<GameManager>();
+        gameManager.SpawnCropOnTile(CropDatabase.Instance.GetCropInfo(cropID), pos);
         onPlant?.Invoke();
     }
 }

@@ -27,7 +27,9 @@ public class PlantAction : EntityAction
     //actually preforms the Action on the tile
     public override void PerformAt(TileData tileData)
     {
-        GM.SpawnCropOnTile(CropDatabase.Instance.GetCropInfo(cropID), pos);
+        Vector3Int pos = tileData.GetGridPos();
+        GameManager manager = FindFirstObjectByType<GameManager>();
+        manager.SpawnCropOnTile(CropDatabase.Instance.GetCropInfo(cropID), pos);
         onPlant?.Invoke();
     }
 }

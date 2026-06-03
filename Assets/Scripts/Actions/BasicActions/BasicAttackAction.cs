@@ -4,11 +4,11 @@ using static UnityEngine.EventSystems.EventTrigger;
 [CreateAssetMenu(menuName = "Actions/Attack")]
 public class BasicAttackAction : EntityAction
 {
+
     //Need to validate size when returned
     public override List<Vector3Int> GetValidTargets(Entity entity)
     {
         List<Vector3Int> targets = new List<Vector3Int>();
-        TileManager TM = FindFirstObjectByType<TileManager>();
 
         Unit unit = entity as Unit;
         if (unit == null)
@@ -43,6 +43,7 @@ public class BasicAttackAction : EntityAction
     //actually checks to see if the action can be done at position tilePos
     public virtual bool AttackAction(Unit unit, Vector3Int centerTile)
     {
+        TileManager manager = FindFirstObjectByType<TileManager>();
         //checks valid targets in length
         for(int i = 1; i <= length; i++)
         {
@@ -50,7 +51,7 @@ public class BasicAttackAction : EntityAction
             for(int j = 0; j < width; j++)
             {
                 Vector3Int currentTile = centerTile + new Vector3Int(i, j, 0);
-                TileData data = TM.GetTileDataAt(currentTile);
+                TileData data = manager.GetTileDataAt(currentTile);
                 if (data != null && data.HasOccupant())
                 {
                     Unit unitCheck = data.occupyingEntity as Unit;
@@ -100,6 +101,8 @@ public class BasicAttackAction : EntityAction
             return;
         }
 
+        TileManager manager = FindFirstObjectByType<TileManager>();
+
         //checks valid targets in length
         for(int i = 1; i <= length; i++)
         {
@@ -107,7 +110,7 @@ public class BasicAttackAction : EntityAction
             for(int j = 0; j < width; j++)
             {
                 Vector3Int currentTile = centerTile + new Vector3Int(i, j, 0);
-                TileData data = TM.GetTileDataAt(currentTile);
+                TileData data = manager.GetTileDataAt(currentTile);
 
                 //makes sure the tile exists
                 if(data == null)
@@ -121,8 +124,14 @@ public class BasicAttackAction : EntityAction
                     continue;
                 }
 
-                unit.ShowNumber(unit.GetStrength(), targetEntity.GetGridPos(), unit.GetGridPos().x - targetUnit.GetGridPos().x);
-                targetEntity.TakeDamage(unit.GetStrength(), unit.GetGridPos());
+                Unit targetUnit = targetEntity as Unit;
+                if(targetUnit == null)
+                {
+                    continue;
+                }
+
+                unit.ShowNumber(unit.GetStrength(), targetUnit.GetGridPos(), unit.GetGridPos().x - unit.GetGridPos().x);
+                targetUnit.TakeDamage(unit.GetStrength(), unit.GetGridPos());
             }
         }
     }
