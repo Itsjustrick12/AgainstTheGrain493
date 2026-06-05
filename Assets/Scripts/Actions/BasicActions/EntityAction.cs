@@ -41,7 +41,7 @@ public class EntityAction : ScriptableObject
         //makes sure entity exists
         if (entity == null)
         {
-            Debug.LogError("Trying to get valid targets based on an invalid Unit in attack action");
+            Debug.LogError("Invalid Entity");
             return targets;
         }
 
@@ -49,58 +49,79 @@ public class EntityAction : ScriptableObject
         TileManager TM = FindFirstObjectByType<TileManager>();
         Vector3Int startPos = entity.GetGridPos();
 
-        //checks all four directions for targets
-        foreach (Vector3Int offset in TileManager.DIRECTIONS)
+        int range = 1;
+        if(entity as Unit != null)
         {
-            //checks valid targets in length
-            for(int i = 1; i <= length; i++)
+            range = (entity as Unit).GetAttackRange();
+        }
+
+        Debug.Log("unit at " + startPos);
+
+        //checks all four directions for targets
+        for(int distx = -range; distx <= range; distx++)
+        {
+            for(int disty = -range; disty <= range; disty++)
             {
-                //checks valid targets width
-                for(int j = 0; j < width; j++)
+                //makes sure that the action is done withing the action range
+                if(Mathf.Abs(distx) + Mathf.Abs(disty) > range)
                 {
-                    //so first we find the tile i length away
-                    Vector3Int currentTile = startPos + offset * i;
-                    TileData data = TM.GetTileDataAt(currentTile);
-                    if(data == null)
-                    {
-                        continue;
-                    }
+                    continue;
+                }
 
-                    //if there's no width we just check the center tile
-                    if(j == 0)
+                Vector3Int offset = new Vector3Int(distx, disty, 0);
+                Vector3Int currentTile = startPos + offset;
+                //checks valid targets in length
+                for(int i = 0; i < length; i++)
+                {
+                    //checks valid targets width
+                    for(int j = 0; j < width; j++)
                     {
-                        //if the width is actionable
-                        if(Action(data))
-                        {
-                            targets.Add(currentTile);
-                        }
-                    }//if we have a width we go through all the widths
-                    else
-                    {
+                        //so first we find the tile i length away
                         Vector3Int checkTile = currentTile + new Vector3Int(offset.y * j, offset.x * j, 0);
-                        data = TM.GetTileDataAt(checkTile);
-                        if(data != null)
+                        TileData data = TM.GetTileDataAt(checkTile);
+                        if(data == null)
                         {
-                            if(Action(TM.GetTileDataAt(checkTile)))
-                            {
-                                targets.Add(checkTile);
-                            }
+                            continue;
                         }
-                        checkTile = currentTile + new Vector3Int(offset.y * j * -1, offset.x * j * -1, 0);
-                        data = TM.GetTileDataAt(checkTile);
-                        if(data != null)
-                        {
-                            if(Action(TM.GetTileDataAt(checkTile)))
-                            {
-                                targets.Add(checkTile);
-                            }
-                        }
-                    }
 
+                        //if there's no width we just check the center tile
+                        if(j == 0)
+                        {
+                            //if the width is actionable
+                            if(Action(TM.GetTileDataAt(checkTile)))
+                            {
+                                targets.Add(currentTile);
+                                continue;
+                            }
+                        }//if we have a width we go through all the widths
+                        else
+                        {
+                            checkTile = currentTile + new Vector3Int(offset.y * j, offset.x * j, 0);
+                            data = TM.GetTileDataAt(checkTile);
+                            if(data != null)
+                            {
+                                if(Action(TM.GetTileDataAt(checkTile)))
+                                {
+                                    targets.Add(currentTile);
+                                    continue;
+                                }
+                            }
+                            checkTile = currentTile + new Vector3Int(offset.y * j * -1, offset.x * j * -1, 0);
+                            data = TM.GetTileDataAt(checkTile);
+                            if(data != null)
+                            {
+                                if(Action(TM.GetTileDataAt(checkTile)))
+                                {
+                                    targets.Add(currentTile);
+                                    continue;
+                                }
+                            }
+                        }
+
+                    }
                 }
             }
         }
-
         return targets;
     }
     
@@ -134,13 +155,7 @@ public class EntityAction : ScriptableObject
         TileManager TM = FindFirstObjectByType<TileManager>();
         Unit unit = entity as Unit;
 
-        //returns if the unit doesn't exist
-        if(unit == null)
-        {
-            Debug.Log("unit does not exist");
-            return;
-        }//sets the animator if it exists
-        else if(unit.HasAnimator())
+        if(unit != null && unit.HasAnimator())
         {
             if(pos.x - unit.GetGridPos().x != 0)
             {
@@ -155,7 +170,7 @@ public class EntityAction : ScriptableObject
         }
 
         TileData data = TM.GetTileDataAt(pos);
-        Vector3Int startPos = unit.GetGridPos();
+        Vector3Int startPos = entity.GetGridPos();
         Vector3Int offset = pos - startPos;
 
         if(data != null)
@@ -218,17 +233,53 @@ public class EntityAction : ScriptableObject
 
         //TODO set up extension Tiles properly
         List<Vector3Int> tiles =  new List<Vector3Int>();
-
-        /*
-            Vector3Int dir = new Vector3Int(
-            Math.Sign(target.x - casterPos.x),
-            Math.Sign(target.y - casterPos.y), 0);
+        TileManager TM = FindFirstObjectByType<TileManager>();
+        //gets a directional offset between -1 and 1 to incriment the loops with
         
-            Debug.Log(target);
-            Debug.Log(target+dir);
+        Vector3Int offset = (target - casterPos);
+        if(offset.x != 0)
+        {
+            offset.x = offset.x / Mathf.Abs(offset.x);
+        }
+        if(offset.y != 0)
+        {
+            offset.y = offset.y / Mathf.Abs(offset.y);
+        }
+        Vector3Int check = target - casterPos;
 
-            return new List<Vector3Int> {target + dir};
-        */
+        for(int i = 0; i < length; i++)
+        {
+            for(int j = 0; j < width; j++)
+            {
+                check = target + offset * i;
+
+                if(i == 0 && j == 0)
+                {
+                    continue;
+                }
+                if(j == 0)
+                {
+                    if(TM.GetTileDataAt(check) != null)
+                    {
+                        tiles.Add(check);
+                    }
+                }
+                else
+                {
+                    Vector3Int side = new Vector3Int(offset.y * j, offset.x * j, 0);
+                    check = target + offset * i + side;
+                    if(TM.GetTileDataAt(check) != null)
+                    {
+                        tiles.Add(check);
+                    }
+                    check = target + offset * i - side;
+                    if(TM.GetTileDataAt(check) != null)
+                    {
+                        tiles.Add(check);
+                    }
+                }
+            }
+        }
 
         return tiles;
     }

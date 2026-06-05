@@ -666,7 +666,13 @@ public class Unit : Entity
             Vector3 startWorld = transform.position;
             Vector3 endWorld = tileManager.entitiesMap.CellToWorld(nextPos) + cellOffset;
 
-            //if it can't be moved back more exit
+            //if it's a border tile don't take damage and exit
+            if(tileManager.GetTileDataAt(nextPos) == null)
+            {
+                break;
+            }
+
+            //if there's an occupant take damage and exit
             if(tileManager.GetTileDataAt(nextPos).HasOccupant())
             {
                 takeDamage = true;

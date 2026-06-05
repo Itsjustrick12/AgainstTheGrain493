@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
-[CreateAssetMenu(menuName = "Actions/SowerAttack")]
-public class SowerAttackAction : BasicAttackAction
+[CreateAssetMenu(menuName = "Actions/RamAttack")]
+public class RamAttackAction : BasicAttackAction
 {
     //Need to validate size when returned
     public override List<Vector3Int> GetValidTargets(Entity entity)
@@ -53,14 +53,14 @@ public class SowerAttackAction : BasicAttackAction
         return targets;
 
     }
-
+    
     public override void PerformAt(Entity entity, Vector3Int pos)
     {
         //Execute a simple attack on the unit at the location specified
         Unit targetUnit = FindFirstObjectByType<TileManager>().GetUnitOnTile(pos);
 
         //distance the targetunit gets knocked back
-        int distance = 1;
+        int distance = 2;
 
         if (targetUnit == null)
         {
@@ -87,17 +87,5 @@ public class SowerAttackAction : BasicAttackAction
         unit.ShowNumber(unit.GetStrength(), targetUnit.GetGridPos(), unit.GetGridPos().x - targetUnit.GetGridPos().x);
         targetUnit.TakeDamage(unit.GetStrength(), unit.GetGridPos());
         targetUnit.KnockbackHelper(unit, distance);
-    }
-
-    public override List<Vector3Int> GetExtensionTiles(Vector3Int target, Vector3Int casterPos)
-    {
-        Vector3Int dir = new Vector3Int(
-            Math.Sign(target.x - casterPos.x),
-            Math.Sign(target.y - casterPos.y), 0);
-        
-        Debug.Log(target);
-        Debug.Log(target+dir);
-
-        return new List<Vector3Int> {target + dir};
     }
 }
