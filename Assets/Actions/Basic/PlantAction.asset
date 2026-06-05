@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlantAction
   actionName: Plant
   actionTrigger: plant
-  width: 2
+  width: 1
   length: 1
   actionSound: {fileID: 0}
-  cropID: 3
+  cropID: 1
